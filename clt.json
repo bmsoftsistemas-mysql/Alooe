@@ -1,0 +1,34 @@
+{
+	"Customer":{
+		"name":"AAAA CLIENTE PADRAO",
+		"rg":"",
+		"cpf":"08655884812",
+		"phone":"",
+		"cellphone":"",
+		"birth_date":"",
+		"gender":"",
+		"email":"luiscazevedo@gmail.com",
+		"nickname":"",
+		"observation":"",
+		"type":"F",
+		"company_name":"CLIENTE PADRAO",
+		"cnpj":"08655884812",
+		"state_inscription":"",
+		"reseller":"",
+		"discount":"",
+		"blocked":"",
+		"credit_limit":"5000",
+		"indicator_id":"",
+		"profile_customer_id":"",
+		"address":"RUA EMILIO WUTZOW",
+		"zip_code":"89163212",
+		"number":"173",
+		"complement":"BARRACAO",
+		"neighborhood":"CANTA GALO",
+		"city":"RIO DO SUL",
+		"state":"SC",
+		"newsletter":"",
+		"CustomerAddress":[
+					]
+	}
+}

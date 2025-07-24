@@ -1,0 +1,254 @@
+﻿unit ufrmerros;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, dbisamtb, Vcl.Grids,
+  Vcl.DBGrids, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.StdCtrls, RzPanel, DateUtils,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,TabForms, Vcl.Themes;
+
+type
+  Tfrmerros = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    RzPanel15: TRzPanel;
+    btnFiltrar: TButton;
+    Panel3: TPanel;
+    Label1: TLabel;
+    dtinicio: TDateTimePicker;
+    DBGrid1: TDBGrid;
+    QrProducoes: TFDQuery;
+    DtProducoes: TDataSource;
+    Panel4: TPanel;
+    btnNovaOrdem: TButton;
+    QrProducoesid_producao: TStringField;
+    QrProducoesid_prod: TStringField;
+    QrProducoesexpectedProductionQuantity: TIntegerField;
+    QrProducoesproductionQuantityBalance: TIntegerField;
+    QrProducoesisFictitious: TBooleanField;
+    QrProducoespriority: TIntegerField;
+    QrProducoesdeliveryDate: TDateTimeField;
+    QrProducoesearlyStart: TDateTimeField;
+    QrProducoeslaterEnd: TDateTimeField;
+    QrProducoessalesOrder: TStringField;
+    QrProducoessalesOrderDate: TDateTimeField;
+    QrProducoescustomer: TStringField;
+    QrProducoescolor: TStringField;
+    QrProducoesprogressStatus: TStringField;
+    QrProducoesprogressStatusPt: TStringField;
+    Label2: TLabel;
+    dtfim: TDateTimePicker;
+    cbCampo: TComboBox;
+    btnTodos: TButton;
+    procedure FormCreate(Sender: TObject);
+    procedure btnFiltrarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure btnNovaOrdemClick(Sender: TObject);
+    procedure DBGrid1DblClick(Sender: TObject);
+    procedure QrProducoesCalcFields(DataSet: TDataSet);
+    procedure FormShow(Sender: TObject);
+    procedure btnTodosClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmerros: Tfrmerros;
+
+implementation
+
+{$R *.dfm}
+
+uses ufuncoesGerais, ufrmAviso, uMain, uDD, ufrmProducao;
+
+//Listar erros com base na data escolhida e a data atual + 1
+procedure Tfrmerros.btnFiltrarClick(Sender: TObject);
+var
+  DataInicial, DataFinal: TDateTime;
+  CampoFiltrar: string;
+begin
+  DataInicial := dtInicio.Date;
+  DataFinal := dtFim.Date + 1 - 0.00001; // fim do dia
+
+  // Determina o campo a ser filtrado com base na seleção do usuário
+  case cbCampo.ItemIndex of
+    0: CampoFiltrar := 'deliveryDate';
+    1: CampoFiltrar := 'earlyStart';
+    2: CampoFiltrar := 'laterEnd';
+  else
+    ShowMessage('Selecione o campo para filtrar!');
+    cbCampo.SetFocus;
+    Exit;
+  end;
+
+  // Monta a query com parâmetros
+  with QrProducoes do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT');
+    SQL.Add('  id_producao,');
+    SQL.Add('  id_prod,');
+    SQL.Add('  expectedProductionQuantity,');
+    SQL.Add('  productionQuantityBalance,');
+    SQL.Add('  isFictitious,');
+    SQL.Add('  priority,');
+    SQL.Add('  deliveryDate,');
+    SQL.Add('  earlyStart,');
+    SQL.Add('  laterEnd,');
+    SQL.Add('  salesOrder,');
+    SQL.Add('  salesOrderDate,');
+    SQL.Add('  customer,');
+    SQL.Add('  color,');
+    SQL.Add('  progressStatus');
+    SQL.Add('FROM ordens_producao');
+    SQL.Add('WHERE ' + CampoFiltrar + ' BETWEEN :DataInicio AND :DataFim');
+
+    ParamByName('DataInicio').AsDateTime := DataInicial;
+    ParamByName('DataFim').AsDateTime := DataFinal;
+
+    Open;
+  end;
+end;
+
+//Limpar a tabela de erros completamente
+procedure Tfrmerros.btnNovaOrdemClick(Sender: TObject);
+begin
+    frmProducao := TfrmProducao.Create(Application);
+    frmProducao.ShowModal;
+    frmProducao.Free;
+
+    QrProducoes.Close;
+    QrProducoes.Open;
+    QrProducoes.Last;
+end;
+
+procedure Tfrmerros.btnTodosClick(Sender: TObject);
+begin
+  with QrProducoes do
+  begin
+    Close;
+    SQL.Text := 'SELECT * FROM ordens_producao';
+    Open;
+  end;
+end;
+
+procedure Tfrmerros.DBGrid1DblClick(Sender: TObject);
+begin
+//  frmProducao := TfrmProducao.Create(Application);
+//  try
+//    frmProducao.Visualizacao := True;
+//
+//    // aqui você pode passar os dados selecionados do grid para os campos do form:
+////    frmProducao.EditNome.Text := DataSource1.DataSet.FieldByName('name').AsString;
+////    frmProducao.EditQuantidade.Text := DataSource1.DataSet.FieldByName('expectedProductionQuantity').AsString;
+//
+//
+//    if frmProducao.Visualizacao then
+//      frmProducao.BloquearCampos;
+//
+//    frmProducao.ShowModal;
+//  finally
+//    frmProducao.Free;
+//  end;
+end;
+
+procedure Tfrmerros.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+  DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  status: string;
+begin
+  if Column.FieldName = 'progressStatusPt'#$A#$A then
+  begin
+    status := Column.Field.AsString.ToUpper;
+
+    if status = 'PARADA' then
+      DBGrid1.Canvas.Brush.Color := RGB(255, 220, 220)//clRed
+    else if status = 'NÃO INICIADA' then
+      DBGrid1.Canvas.Brush.Color := clSilver
+    else if status = 'FINALIZADA' then
+      DBGrid1.Canvas.Brush.Color := RGB(200, 255, 200)//clGreen
+    else if status = 'EXECUTANDO' then
+      DBGrid1.Canvas.Brush.Color := RGB(255, 240, 200)
+    else
+      DBGrid1.Canvas.Brush.Color := clWhite;
+
+    DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+  end
+  else
+    DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+end;
+
+//Limpa o FORM ao fechar
+procedure Tfrmerros.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  action := caFree;
+  frmerros := nil;
+end;
+
+//joga a data atual no componente DATE
+procedure Tfrmerros.FormCreate(Sender: TObject);
+begin
+//  edtdata.DateTime := date;
+//  btserros.Click;
+
+  // Ativa um estilo moderno se disponível
+  DD.DB.Connected := True;
+  QrProducoes.Close;
+  QrProducoes.Open;
+end;
+
+procedure Tfrmerros.FormShow(Sender: TObject);
+begin
+  // Estilização do botão Nova Ordem
+  btnNovaOrdem.Caption := '➕ Nova Produção';
+  btnNovaOrdem.Font.Size := 10;
+  btnNovaOrdem.Font.Style := [fsBold];
+  btnNovaOrdem.Font.Color := clWhite;
+
+    // Exemplo de estilização das colunas do grid
+  DBGrid1.Columns[0].Title.Caption := 'Nº Pedido';
+  DBGrid1.Columns[1].Title.Caption := 'Cliente';
+  DBGrid1.Columns[2].Title.Caption := 'Quantidade';
+  DBGrid1.Columns[2].Alignment := taRightJustify;
+  DBGrid1.Columns[3].Title.Caption := 'Data Início';
+  DBGrid1.Columns[3].Alignment := taCenter;
+  DBGrid1.Columns[4].Title.Caption := 'Data Fim';
+  DBGrid1.Columns[4].Alignment := taCenter;
+  DBGrid1.Columns[5].Title.Caption := 'Data Entrega';
+  DBGrid1.Columns[5].Alignment := taCenter;
+  DBGrid1.Columns[6].Title.Caption := 'Status';
+
+
+  dtinicio.DateTime := now;
+  dtfim.DateTime := now;
+  //cbCampo.Style := csDropDownList;
+end;
+
+procedure Tfrmerros.QrProducoesCalcFields(DataSet: TDataSet);
+var
+  statusIngles: string;
+begin
+  statusIngles := DataSet.FieldByName('progressStatus').AsString;
+
+  if SameText(statusIngles, 'NotInitiated') then
+    QrProducoesprogressStatusPt.AsString := 'NÃO INICIADA'
+  else if SameText(statusIngles, 'Stopped') then
+    QrProducoesprogressStatusPt.AsString := 'PARADA'
+  else if SameText(statusIngles, 'Running') then
+    QrProducoesprogressStatusPt.AsString := 'EXECUTANDO'
+  else if SameText(statusIngles, 'Ended') then
+    QrProducoesprogressStatusPt.AsString := 'FINALIZADA'
+  else
+    QrProducoesprogressStatusPt.AsString := statusIngles;
+end;
+
+end.
+

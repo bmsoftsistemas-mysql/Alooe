@@ -1,0 +1,9 @@
+- verificar o retorno de dados de dosagem.
+- salvar os dados junto com lote deo produto e materia-prima para consultas futuras. 
+- enviar bateladas parciais para produção.
+- verificar pelo txt andamento da produção.
+
+----BM-----
+- Adicionar código do produto na frente do nome nas etiquetas.
+- Trazer automaticamente data do dia quando imprimir rótulo e data de validade automática.
+- Lote do produto na etiqueta.

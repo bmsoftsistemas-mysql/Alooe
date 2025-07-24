@@ -1,0 +1,7248 @@
+object frmTabelas: TfrmTabelas
+  Left = 0
+  Top = 0
+  Caption = 'Produtos'
+  ClientHeight = 793
+  ClientWidth = 1195
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesigned
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 14
+  object RzPanel1: TRzPanel
+    Left = 0
+    Top = 0
+    Width = 1195
+    Height = 37
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alTop
+    BorderOuter = fsNone
+    Caption = 'TABELAS DE INTEGRA'#199#195'O BMSOFT <> TRAY'
+    Color = 8404992
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    GradientColorStyle = gcsCustom
+    GradientColorStart = 15770519
+    GradientColorStop = clBlack
+    GradientDirection = gdVerticalEnd
+    ParentFont = False
+    TabOrder = 0
+    VisualStyle = vsClassic
+  end
+  object pTabelasSincronizacao: TRzPageControl
+    Left = 0
+    Top = 37
+    Width = 1195
+    Height = 756
+    Hint = ''
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    ActivePage = TabSheet13
+    ActivePageDefault = TabSheet13
+    Align = alClient
+    UseColoredTabs = True
+    TabIndex = 10
+    TabOrder = 1
+    OnEnter = pTabelasSincronizacaoEnter
+    FixedDimension = 20
+    object Clientes: TRzTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
+      Caption = 'Clientes'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object DBGrid2: TDBGrid
+        Left = 0
+        Top = 0
+        Width = 1191
+        Height = 477
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alClient
+        DataSource = dtTrayClientes
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -12
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+      end
+      object tray_refresh_clientes: TEdit
+        Left = 0
+        Top = 540
+        Width = 1191
+        Height = 22
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        TabOrder = 1
+      end
+      object tray_token_clientes: TEdit
+        Left = 0
+        Top = 518
+        Width = 1191
+        Height = 22
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        TabOrder = 2
+      end
+      object JSONtray_clientes: TRzMemo
+        AlignWithMargins = True
+        Left = 2
+        Top = 564
+        Width = 1187
+        Height = 166
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderStyle = bsNone
+        Color = clInfoBk
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -8
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 3
+        WordWrap = False
+      end
+      object RzPanel15: TRzPanel
+        Left = 0
+        Top = 477
+        Width = 1191
+        Height = 41
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderOuter = fsNone
+        BorderColor = 15770519
+        BorderWidth = 3
+        Color = 15770519
+        TabOrder = 4
+        object lblpage: TLabel
+          Left = 272
+          Top = 14
+          Width = 38
+          Height = 14
+          Caption = 'lblpage'
+        end
+        object RzButton12: TRzButton
+          Left = 87
+          Top = 3
+          Width = 82
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Get Clientes'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 0
+          OnClick = RzButton12Click
+        end
+        object RzButton15: TRzButton
+          Left = 3
+          Top = 3
+          Width = 84
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Gerar Token'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 1
+          OnClick = RzButton15Click
+        end
+        object RzButton10: TRzButton
+          Left = 169
+          Top = 3
+          Width = 82
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Enviar BM'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 2
+          OnClick = RzButton10Click
+        end
+      end
+    end
+    object TabSheet5: TRzTabSheet
+      Caption = 'Marcas'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object Panel1: TPanel
+        Left = 0
+        Top = 617
+        Width = 1191
+        Height = 41
+        Align = alBottom
+        TabOrder = 0
+        object Button1: TButton
+          Left = 8
+          Top = 6
+          Width = 75
+          Height = 25
+          Caption = 'Abrir tabelas'
+          TabOrder = 0
+          OnClick = Button1Click
+        end
+        object Button2: TButton
+          Left = 89
+          Top = 6
+          Width = 91
+          Height = 25
+          Caption = 'Marcar Todos'
+          TabOrder = 1
+        end
+        object Panel4: TPanel
+          Left = 610
+          Top = 1
+          Width = 580
+          Height = 39
+          Align = alRight
+          BiDiMode = bdLeftToRight
+          ParentBiDiMode = False
+          ParentShowHint = False
+          ShowHint = False
+          TabOrder = 2
+          object Button6: TButton
+            Left = 15
+            Top = 5
+            Width = 91
+            Height = 25
+            Caption = 'Enviar marca(s)'
+            TabOrder = 0
+            OnClick = Button6Click
+          end
+        end
+        object RzBitBtn3: TRzBitBtn
+          AlignWithMargins = True
+          Left = 249
+          Top = 6
+          Width = 54
+          Caption = '>>'
+          TabOrder = 3
+          OnClick = RzBitBtn2Click
+        end
+        object RzBitBtn4: TRzBitBtn
+          AlignWithMargins = True
+          Left = 186
+          Top = 6
+          Width = 57
+          Caption = '<<'
+          TabOrder = 4
+          OnClick = RzBitBtn1Click
+        end
+      end
+      object Panel2: TPanel
+        Left = 0
+        Top = 0
+        Width = 569
+        Height = 617
+        Align = alLeft
+        TabOrder = 1
+        object DBGrid7: TDBGrid
+          Left = 1
+          Top = 1
+          Width = 567
+          Height = 615
+          Align = alClient
+          DataSource = frmmarcas.dtBMmarcas
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -12
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+        end
+      end
+      object Panel3: TPanel
+        Left = 569
+        Top = 0
+        Width = 622
+        Height = 617
+        Align = alClient
+        TabOrder = 2
+        object DBGrid8: TDBGrid
+          Left = 1
+          Top = 1
+          Width = 620
+          Height = 615
+          Align = alClient
+          DataSource = frmmarcas.dtBMintaux
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -12
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+        end
+      end
+      object Edit1: TEdit
+        Left = 0
+        Top = 680
+        Width = 1191
+        Height = 22
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        TabOrder = 3
+      end
+      object Edit2: TEdit
+        Left = 0
+        Top = 658
+        Width = 1191
+        Height = 22
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        TabOrder = 4
+      end
+      object RzMemo1: TRzMemo
+        AlignWithMargins = True
+        Left = 2
+        Top = 704
+        Width = 1187
+        Height = 26
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderStyle = bsNone
+        Color = clInfoBk
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -8
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 5
+        WordWrap = False
+      end
+    end
+    object TabSheet1: TRzTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
+      Color = clSilver
+      Caption = 'Produtos'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object gridProdutosBM: TcxGrid
+        AlignWithMargins = True
+        Left = 2
+        Top = 2
+        Width = 1187
+        Height = 414
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alClient
+        BorderStyle = cxcbsNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        LookAndFeel.Kind = lfOffice11
+        object cxGridDBTableView1: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          Navigator.Buttons.Insert.Visible = False
+          Navigator.Buttons.Append.Visible = True
+          Navigator.Buttons.Delete.Visible = False
+          Navigator.Buttons.SaveBookmark.Visible = False
+          Navigator.Buttons.GotoBookmark.Visible = False
+          Navigator.Buttons.Filter.Visible = False
+          DataController.DataModeController.GridMode = True
+          DataController.DataSource = dtProdutos
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Format = ',0.00'
+              Kind = skSum
+            end>
+          DataController.Summary.SummaryGroups = <>
+          NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+          OptionsBehavior.FocusCellOnTab = True
+          OptionsBehavior.FocusFirstCellOnNewRecord = True
+          OptionsBehavior.GoToNextCellOnEnter = True
+          OptionsBehavior.ImmediateEditor = False
+          OptionsCustomize.ColumnFiltering = False
+          OptionsCustomize.ColumnHiding = True
+          OptionsCustomize.ColumnSorting = False
+          OptionsView.ShowEditButtons = gsebForFocusedRecord
+          OptionsView.DataRowHeight = 23
+          OptionsView.GridLineColor = 15658734
+          OptionsView.GroupByBox = False
+          OptionsView.HeaderHeight = 21
+          OptionsView.Indicator = True
+          Styles.Header = DD.Trebuchet10negrito
+          object cxGridDBTableView1ATUALIZAR: TcxGridDBColumn
+            Caption = 'Atualizar'
+            DataBinding.FieldName = 'ATUALIZAR'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 79
+          end
+          object cxGridDBTableView1ERRO_CODIGO: TcxGridDBColumn
+            Caption = 'Status'
+            DataBinding.FieldName = 'ERRO_CODIGO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 71
+          end
+          object cxGridDBTableView1ID_PRO: TcxGridDBColumn
+            Caption = 'ID/Produto'
+            DataBinding.FieldName = 'ID_PRO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 87
+          end
+          object cxGridDBTableView1ID_REF: TcxGridDBColumn
+            Caption = 'ID/Ref.'
+            DataBinding.FieldName = 'ID_REF'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView1IDPRODBM: TcxGridDBColumn
+            Caption = 'ID/Produto/BM'
+            DataBinding.FieldName = 'IDPRODBM'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 108
+          end
+          object cxGridDBTableView1IDREFPRODBM: TcxGridDBColumn
+            Caption = 'ID/Ref/BM'
+            DataBinding.FieldName = 'IDREFPRODBM'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 112
+          end
+          object cxGridDBTableView1IDREFPRODMP: TcxGridDBColumn
+            Caption = 'ID/MP'
+            DataBinding.FieldName = 'IDREFPRODMP'
+            HeaderAlignmentHorz = taCenter
+            Width = 141
+          end
+          object cxGridDBTableView1IDCLASSE: TcxGridDBColumn
+            Caption = 'ID/Classe/BM'
+            DataBinding.FieldName = 'IDCLASSE'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 110
+          end
+          object cxGridDBTableView1IDCLASSEMP: TcxGridDBColumn
+            Caption = 'ID/Classe/MP'
+            DataBinding.FieldName = 'IDCLASSEMP'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 125
+          end
+          object cxGridDBTableView1REFERENCIA: TcxGridDBColumn
+            Caption = 'Refer'#234'ncia/BM'
+            DataBinding.FieldName = 'REFERENCIA'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView1DESCRICAO_PRO: TcxGridDBColumn
+            Caption = 'Produto'
+            DataBinding.FieldName = 'DESCRICAO_PRO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 394
+          end
+          object cxGridDBTableView1DESCRICAO_REF: TcxGridDBColumn
+            Caption = 'Descri'#231#227'o/Ref.'
+            DataBinding.FieldName = 'DESCRICAO_REF'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView1PRECO_TABELA: TcxGridDBColumn
+            Caption = 'Pre'#231'o/Tabela'
+            DataBinding.FieldName = 'PRECO_TABELA'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 112
+          end
+          object cxGridDBTableView1PRECO_MINIMO: TcxGridDBColumn
+            Caption = 'Pre'#231'o/M'#237'nimo'
+            DataBinding.FieldName = 'PRECO_MINIMO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 118
+          end
+          object cxGridDBTableView1IPI: TcxGridDBColumn
+            DataBinding.FieldName = 'IPI'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView1TIPO_IPI: TcxGridDBColumn
+            Caption = 'Tipo/IPI'
+            DataBinding.FieldName = 'TIPO_IPI'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 76
+          end
+          object cxGridDBTableView1ST: TcxGridDBColumn
+            DataBinding.FieldName = 'ST'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView1MOEDA: TcxGridDBColumn
+            Caption = 'Moeda'
+            DataBinding.FieldName = 'MOEDA'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView1UNIDADE: TcxGridDBColumn
+            Caption = 'Unidade'
+            DataBinding.FieldName = 'UNIDADE'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 78
+          end
+          object cxGridDBTableView1SALDO_ESTOQUE: TcxGridDBColumn
+            Caption = 'Saldo/Estoque'
+            DataBinding.FieldName = 'SALDO_ESTOQUE'
+            HeaderAlignmentHorz = taCenter
+            Width = 133
+          end
+          object cxGridDBTableView1OBSERVACOES: TcxGridDBColumn
+            Caption = 'Observa'#231#245'es'
+            DataBinding.FieldName = 'OBSERVACOES'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 500
+          end
+          object cxGridDBTableView1ULTIMA_ALTERACAO: TcxGridDBColumn
+            Caption = #218'ltima Altera'#231#227'o'
+            DataBinding.FieldName = 'ULTIMA_ALTERACAO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 144
+          end
+          object cxGridDBTableView1EXCLUIDO: TcxGridDBColumn
+            Caption = 'Exclu'#237'do'
+            DataBinding.FieldName = 'EXCLUIDO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 76
+          end
+          object cxGridDBTableView1ATIVO: TcxGridDBColumn
+            Caption = 'Ativo'
+            DataBinding.FieldName = 'ATIVO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 70
+          end
+          object cxGridDBTableView1CATEGORIA_ID: TcxGridDBColumn
+            Caption = 'Categoria/ID/MP'
+            DataBinding.FieldName = 'CATEGORIA_ID'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 120
+          end
+          object cxGridDBTableView1NCM: TcxGridDBColumn
+            DataBinding.FieldName = 'NCM'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView1MULTIPLO: TcxGridDBColumn
+            Caption = 'M'#250'ltiplo'
+            DataBinding.FieldName = 'MULTIPLO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView1PESO_BRUTO: TcxGridDBColumn
+            Caption = 'Peso/Bruto'
+            DataBinding.FieldName = 'PESO_BRUTO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 123
+          end
+          object cxGridDBTableView1HASH: TcxGridDBColumn
+            DataBinding.FieldName = 'HASH'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 74
+          end
+          object cxGridDBTableView1HASH_NOVO: TcxGridDBColumn
+            Caption = 'HASH/Novo'
+            DataBinding.FieldName = 'HASH_NOVO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 92
+          end
+          object cxGridDBTableView1ULTIMA_ATIVIDADE: TcxGridDBColumn
+            Caption = #218'ltima Atividade'
+            DataBinding.FieldName = 'ULTIMA_ATIVIDADE'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView1MENSAGEM: TcxGridDBColumn
+            Caption = 'Mensagem'
+            DataBinding.FieldName = 'MENSAGEM'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 500
+          end
+          object cxGridDBTableView1PRECOVENDA2: TcxGridDBColumn
+            Caption = 'Pre'#231'o Venda/2'
+            DataBinding.FieldName = 'PRECOVENDA2'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 113
+          end
+          object cxGridDBTableView1PRECOVENDA3: TcxGridDBColumn
+            Caption = 'Pre'#231'o Venda/3'
+            DataBinding.FieldName = 'PRECOVENDA3'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 109
+          end
+          object cxGridDBTableView1IDTABELAPRECO2: TcxGridDBColumn
+            Caption = 'ID/Tabela/2'
+            DataBinding.FieldName = 'IDTABELAPRECO2'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 127
+          end
+          object cxGridDBTableView1IDPRECO2MP: TcxGridDBColumn
+            Caption = 'ID/Pre'#231'o/2'
+            DataBinding.FieldName = 'IDPRECO2MP'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 101
+          end
+          object cxGridDBTableView1VALORPRECO2: TcxGridDBColumn
+            Caption = 'Valor/Pre'#231'o/2'
+            DataBinding.FieldName = 'VALORPRECO2'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 110
+          end
+          object cxGridDBTableView1IDTABELAPRECO3: TcxGridDBColumn
+            Caption = 'ID/Tabela/3'
+            DataBinding.FieldName = 'IDTABELAPRECO3'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 131
+          end
+          object cxGridDBTableView1IDPRECO3MP: TcxGridDBColumn
+            Caption = 'ID/Pre'#231'o/3'
+            DataBinding.FieldName = 'IDPRECO3MP'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 101
+          end
+          object cxGridDBTableView1VALORPRECO3: TcxGridDBColumn
+            Caption = 'Valor/Pre'#231'o/3'
+            DataBinding.FieldName = 'VALORPRECO3'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 109
+          end
+          object cxGridDBTableView1ERRO_JSON: TcxGridDBColumn
+            Caption = 'Erro JSON'
+            DataBinding.FieldName = 'ERRO_JSON'
+            HeaderAlignmentHorz = taCenter
+            Width = 150
+          end
+        end
+        object cxGridDBTableView2: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          DataController.DetailKeyFieldNames = 'id_dp'
+          DataController.MasterKeyFieldNames = 'id'
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+              Column = cxGridDBColumn8
+            end>
+          DataController.Summary.SummaryGroups = <>
+          OptionsCustomize.ColumnFiltering = False
+          OptionsView.Footer = True
+          OptionsView.GroupByBox = False
+          object cxGridDBColumn6: TcxGridDBColumn
+            DataBinding.FieldName = 'id'
+          end
+          object cxGridDBColumn7: TcxGridDBColumn
+            DataBinding.FieldName = 'id_dp'
+          end
+          object cxGridDBColumn8: TcxGridDBColumn
+            DataBinding.FieldName = 'valor_recto'
+          end
+          object cxGridDBColumn9: TcxGridDBColumn
+            DataBinding.FieldName = 'juros'
+          end
+          object cxGridDBColumn10: TcxGridDBColumn
+            DataBinding.FieldName = 'descontos'
+          end
+          object cxGridDBColumn11: TcxGridDBColumn
+            DataBinding.FieldName = 'data_recto'
+          end
+          object cxGridDBColumn12: TcxGridDBColumn
+            DataBinding.FieldName = 'obs'
+          end
+        end
+        object cxGridLevel1: TcxGridLevel
+          GridView = cxGridDBTableView1
+        end
+      end
+      object RzPageControl2: TRzPageControl
+        Left = 0
+        Top = 418
+        Width = 1191
+        Height = 314
+        Hint = ''
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        ActivePage = RzTabSheet1
+        ActivePageDefault = RzTabSheet1
+        Align = alBottom
+        TabIndex = 0
+        TabOrder = 1
+        FixedDimension = 20
+        object RzTabSheet1: TRzTabSheet
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          Color = clSilver
+          Caption = 'Produtos do Tray'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
+          object gridProdutosTray: TcxGrid
+            AlignWithMargins = True
+            Left = 2
+            Top = 2
+            Width = 1183
+            Height = 150
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alClient
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            BorderStyle = cxcbsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            LookAndFeel.Kind = lfOffice11
+            object cxGridDBTableView3: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              Navigator.Buttons.Insert.Visible = False
+              Navigator.Buttons.Append.Visible = True
+              Navigator.Buttons.Delete.Visible = False
+              Navigator.Buttons.SaveBookmark.Visible = False
+              Navigator.Buttons.GotoBookmark.Visible = False
+              Navigator.Buttons.Filter.Visible = False
+              DataController.DataModeController.GridMode = True
+              DataController.DataSource = dtTempTrayProdutos
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Format = ',0.00'
+                  Kind = skSum
+                end>
+              DataController.Summary.SummaryGroups = <>
+              NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+              OptionsBehavior.FocusCellOnTab = True
+              OptionsBehavior.FocusFirstCellOnNewRecord = True
+              OptionsBehavior.GoToNextCellOnEnter = True
+              OptionsBehavior.ImmediateEditor = False
+              OptionsCustomize.ColumnFiltering = False
+              OptionsCustomize.ColumnHiding = True
+              OptionsCustomize.ColumnSorting = False
+              OptionsData.Editing = False
+              OptionsView.DataRowHeight = 23
+              OptionsView.GridLineColor = 15658734
+              OptionsView.GroupByBox = False
+              OptionsView.HeaderHeight = 21
+              OptionsView.Indicator = True
+              Styles.Header = DD.Trebuchet10negrito
+              object cxGridDBTableView3id: TcxGridDBColumn
+                Caption = 'ID'
+                DataBinding.FieldName = 'id'
+                HeaderAlignmentHorz = taCenter
+              end
+              object cxGridDBTableView3codigo: TcxGridDBColumn
+                Caption = 'C'#243'digo'
+                DataBinding.FieldName = 'codigo'
+                HeaderAlignmentHorz = taCenter
+                Width = 119
+              end
+              object cxGridDBTableView3nome: TcxGridDBColumn
+                Caption = 'Nome'
+                DataBinding.FieldName = 'nome'
+                HeaderAlignmentHorz = taCenter
+                Width = 351
+              end
+              object cxGridDBTableView3ultima_alteracao: TcxGridDBColumn
+                Caption = #218'ltima Altera'#231#227'o'
+                DataBinding.FieldName = 'ultima_alteracao'
+                HeaderAlignmentHorz = taCenter
+              end
+              object cxGridDBTableView3excluido: TcxGridDBColumn
+                Caption = 'Exclu'#237'do'
+                DataBinding.FieldName = 'excluido'
+                HeaderAlignmentHorz = taCenter
+                Width = 86
+              end
+            end
+            object cxGridDBTableView4: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              DataController.DetailKeyFieldNames = 'id_dp'
+              DataController.MasterKeyFieldNames = 'id'
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                  Column = cxGridDBColumn57
+                end>
+              DataController.Summary.SummaryGroups = <>
+              OptionsCustomize.ColumnFiltering = False
+              OptionsView.Footer = True
+              OptionsView.GroupByBox = False
+              object cxGridDBColumn55: TcxGridDBColumn
+                DataBinding.FieldName = 'id'
+              end
+              object cxGridDBColumn56: TcxGridDBColumn
+                DataBinding.FieldName = 'id_dp'
+              end
+              object cxGridDBColumn57: TcxGridDBColumn
+                DataBinding.FieldName = 'valor_recto'
+              end
+              object cxGridDBColumn58: TcxGridDBColumn
+                DataBinding.FieldName = 'juros'
+              end
+              object cxGridDBColumn59: TcxGridDBColumn
+                DataBinding.FieldName = 'descontos'
+              end
+              object cxGridDBColumn60: TcxGridDBColumn
+                DataBinding.FieldName = 'data_recto'
+              end
+              object cxGridDBColumn61: TcxGridDBColumn
+                DataBinding.FieldName = 'obs'
+              end
+            end
+            object cxGridLevel2: TcxGridLevel
+              GridView = cxGridDBTableView3
+            end
+          end
+          object JSONprodutosTray: TRzMemo
+            AlignWithMargins = True
+            Left = 2
+            Top = 198
+            Width = 1183
+            Height = 90
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alBottom
+            BorderStyle = bsNone
+            Color = clInfoBk
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -8
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 1
+            WordWrap = False
+          end
+          object RzPanel4: TRzPanel
+            Left = 0
+            Top = 154
+            Width = 1187
+            Height = 42
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alBottom
+            BorderOuter = fsNone
+            BorderColor = 15770519
+            BorderWidth = 3
+            Color = 15770519
+            TabOrder = 2
+            object btnAtualizarProdutos: TRzButton
+              Left = 3
+              Top = 3
+              Width = 84
+              Height = 36
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Atualizar'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 0
+              OnClick = btnAtualizarProdutosClick
+            end
+            object btnExcluir: TRzButton
+              Left = 1094
+              Top = 3
+              Width = 90
+              Height = 36
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alRight
+              Caption = 'EXCLUIR'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clRed
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = [fsBold]
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 1
+            end
+            object btnIncluirProdutoUnico: TRzButton
+              Left = 407
+              Top = 3
+              Width = 125
+              Height = 36
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Incluir 1 produto'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 2
+              OnClick = btnIncluirProdutoUnicoClick
+            end
+            object btnRelacionarTrayBM: TRzButton
+              Left = 87
+              Top = 3
+              Width = 165
+              Height = 36
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Rel. Tray > BM (todos)'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 3
+            end
+            object btnRelacionarTrayBMeste: TRzButton
+              Left = 252
+              Top = 3
+              Width = 155
+              Height = 36
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Rel. BM > Tray (este)'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 4
+            end
+          end
+        end
+      end
+    end
+    object TabSheet2: TRzTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
+      Color = clSilver
+      Caption = 'Imagens'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object RzPanel5: TRzPanel
+        Left = 0
+        Top = 0
+        Width = 1191
+        Height = 691
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alClient
+        BorderOuter = fsNone
+        Color = clSilver
+        TabOrder = 0
+        object RzPanel6: TRzPanel
+          Left = 0
+          Top = 0
+          Width = 976
+          Height = 691
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          Align = alClient
+          BorderOuter = fsNone
+          Color = clSilver
+          TabOrder = 0
+          object cxGrid1: TcxGrid
+            AlignWithMargins = True
+            Left = 2
+            Top = 2
+            Width = 972
+            Height = 646
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alClient
+            BorderStyle = cxcbsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            LookAndFeel.Kind = lfOffice11
+            object cxGridDBTableView5: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              Navigator.Buttons.Insert.Visible = False
+              Navigator.Buttons.Append.Visible = True
+              Navigator.Buttons.Delete.Visible = False
+              Navigator.Buttons.SaveBookmark.Visible = False
+              Navigator.Buttons.GotoBookmark.Visible = False
+              Navigator.Buttons.Filter.Visible = False
+              DataController.DataModeController.GridMode = True
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Format = ',0.00'
+                  Kind = skSum
+                end>
+              DataController.Summary.SummaryGroups = <>
+              NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+              OptionsBehavior.FocusCellOnTab = True
+              OptionsBehavior.FocusFirstCellOnNewRecord = True
+              OptionsBehavior.GoToNextCellOnEnter = True
+              OptionsBehavior.ImmediateEditor = False
+              OptionsCustomize.ColumnFiltering = False
+              OptionsCustomize.ColumnHiding = True
+              OptionsCustomize.ColumnSorting = False
+              OptionsData.Appending = True
+              OptionsData.Editing = False
+              OptionsView.ShowEditButtons = gsebForFocusedRecord
+              OptionsView.DataRowHeight = 23
+              OptionsView.GridLineColor = 15658734
+              OptionsView.GroupByBox = False
+              OptionsView.HeaderHeight = 21
+              OptionsView.Indicator = True
+              Styles.Header = DD.Trebuchet10negrito
+              object cxGridDBTableView5ID: TcxGridDBColumn
+                Caption = 'ID/Imagem'
+                DataBinding.FieldName = 'ID'
+                HeaderAlignmentHorz = taCenter
+                Width = 84
+              end
+              object cxGridDBTableView5ID_PRODUTO: TcxGridDBColumn
+                Caption = 'ID/Produto'
+                DataBinding.FieldName = 'ID_PRODUTO'
+                HeaderAlignmentHorz = taCenter
+                Width = 122
+              end
+              object cxGridDBTableView5IDREFPRODMP: TcxGridDBColumn
+                Caption = 'ID/Ref/Prod/MP'
+                DataBinding.FieldName = 'IDREFPRODMP'
+                HeaderAlignmentHorz = taCenter
+                Width = 110
+              end
+              object cxGridDBTableView5IDIMAGEMMP: TcxGridDBColumn
+                Caption = 'ID/Imagem/MP'
+                DataBinding.FieldName = 'IDIMAGEMMP'
+                HeaderAlignmentHorz = taCenter
+                Width = 129
+              end
+              object cxGridDBTableView5IDMP: TcxGridDBColumn
+                Caption = 'ID/Prod/Imagem/MP'
+                DataBinding.FieldName = 'IDMP'
+                HeaderAlignmentHorz = taCenter
+                Width = 143
+              end
+              object cxGridDBTableView5REFERENCIA: TcxGridDBColumn
+                Caption = 'Refer'#234'ncia'
+                DataBinding.FieldName = 'REFERENCIA'
+                HeaderAlignmentHorz = taCenter
+              end
+              object cxGridDBTableView5DESCRICAO_PRODUTO: TcxGridDBColumn
+                Caption = 'Produto'
+                DataBinding.FieldName = 'DESCRICAO_PRODUTO'
+                HeaderAlignmentHorz = taCenter
+                Width = 330
+              end
+              object cxGridDBTableView5DESCRICAO_FOTO: TcxGridDBColumn
+                Caption = 'Descri'#231#227'o/Foto'
+                DataBinding.FieldName = 'DESCRICAO_FOTO'
+                HeaderAlignmentHorz = taCenter
+                Width = 203
+              end
+              object cxGridDBTableView5ID_Tray_PRODUTOSIMAGEM: TcxGridDBColumn
+                Caption = 'ID/Tray_produtosimagens'
+                DataBinding.FieldName = 'ID_Tray_PRODUTOSIMAGEM'
+                HeaderAlignmentHorz = taCenter
+                Width = 217
+              end
+              object cxGridDBTableView5IDPRODBM: TcxGridDBColumn
+                Caption = 'ID/Prod/BM'
+                DataBinding.FieldName = 'IDPRODBM'
+                HeaderAlignmentHorz = taCenter
+                Width = 152
+              end
+              object cxGridDBTableView5MENSAGEM: TcxGridDBColumn
+                Caption = 'Mensagem'
+                DataBinding.FieldName = 'MENSAGEM'
+                HeaderAlignmentHorz = taCenter
+                Width = 400
+              end
+            end
+            object cxGridDBTableView6: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              DataController.DetailKeyFieldNames = 'id_dp'
+              DataController.MasterKeyFieldNames = 'id'
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                  Column = cxGridDBColumn38
+                end>
+              DataController.Summary.SummaryGroups = <>
+              OptionsCustomize.ColumnFiltering = False
+              OptionsView.Footer = True
+              OptionsView.GroupByBox = False
+              object cxGridDBColumn36: TcxGridDBColumn
+                DataBinding.FieldName = 'id'
+              end
+              object cxGridDBColumn37: TcxGridDBColumn
+                DataBinding.FieldName = 'id_dp'
+              end
+              object cxGridDBColumn38: TcxGridDBColumn
+                DataBinding.FieldName = 'valor_recto'
+              end
+              object cxGridDBColumn39: TcxGridDBColumn
+                DataBinding.FieldName = 'juros'
+              end
+              object cxGridDBColumn40: TcxGridDBColumn
+                DataBinding.FieldName = 'descontos'
+              end
+              object cxGridDBColumn41: TcxGridDBColumn
+                DataBinding.FieldName = 'data_recto'
+              end
+              object cxGridDBColumn42: TcxGridDBColumn
+                DataBinding.FieldName = 'obs'
+              end
+            end
+            object cxGridLevel3: TcxGridLevel
+              GridView = cxGridDBTableView5
+            end
+          end
+          object RzPanel3: TRzPanel
+            Left = 0
+            Top = 650
+            Width = 976
+            Height = 41
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alBottom
+            BorderOuter = fsNone
+            BorderColor = 15770519
+            BorderWidth = 3
+            Color = 15770519
+            TabOrder = 1
+            object btnAtualizarImagens: TRzButton
+              Left = 3
+              Top = 3
+              Width = 84
+              Height = 35
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Atualizar'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 0
+            end
+            object RzButton2: TRzButton
+              Left = 884
+              Top = 3
+              Width = 89
+              Height = 35
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alRight
+              Caption = 'EXCLUIR'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clRed
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = [fsBold]
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 1
+            end
+            object btnIncluirImagemUnica: TRzButton
+              Left = 87
+              Top = 3
+              Width = 126
+              Height = 35
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Incluir 1 imagem'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 2
+            end
+            object btnAlterarTudoImagens: TRzButton
+              Left = 213
+              Top = 3
+              Width = 124
+              Height = 35
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'ALTERAR TUDO'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 3
+            end
+            object RzButton13: TRzButton
+              Left = 721
+              Top = 3
+              Width = 163
+              Height = 35
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alRight
+              Caption = 'LIMPAR ID/MP NO BM'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clRed
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 4
+              OnClick = RzButton13Click
+            end
+          end
+        end
+        object RzPanel7: TRzPanel
+          AlignWithMargins = True
+          Left = 978
+          Top = 2
+          Width = 211
+          Height = 687
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          Align = alRight
+          BorderOuter = fsNone
+          Color = 14211288
+          TabOrder = 1
+          object img: TDBImage
+            Left = 0
+            Top = 0
+            Width = 211
+            Height = 158
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alTop
+            BorderStyle = bsNone
+            DataField = 'FOTO'
+            Stretch = True
+            TabOrder = 0
+          end
+        end
+      end
+      object RzPanel13: TRzPanel
+        Left = 0
+        Top = 691
+        Width = 1191
+        Height = 41
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderOuter = fsNone
+        BorderColor = 15770519
+        BorderWidth = 3
+        Color = 15770519
+        TabOrder = 1
+      end
+    end
+    object TabSheet3: TRzTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
+      Color = clSilver
+      Caption = 'Categorias'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object RzPageControl4: TRzPageControl
+        Left = 0
+        Top = 473
+        Width = 1191
+        Height = 259
+        Hint = ''
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        ActivePage = RzTabSheet3
+        ActivePageDefault = RzTabSheet3
+        Align = alBottom
+        TabIndex = 0
+        TabOrder = 0
+        FixedDimension = 20
+        object RzTabSheet3: TRzTabSheet
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          Color = clSilver
+          Caption = 'Categorias Tray'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
+          object cxGrid3: TcxGrid
+            AlignWithMargins = True
+            Left = 2
+            Top = 2
+            Width = 1183
+            Height = 95
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alClient
+            BorderStyle = cxcbsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            LookAndFeel.Kind = lfOffice11
+            object cxGridDBTableView9: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              Navigator.Buttons.Insert.Visible = False
+              Navigator.Buttons.Append.Visible = True
+              Navigator.Buttons.Delete.Visible = False
+              Navigator.Buttons.SaveBookmark.Visible = False
+              Navigator.Buttons.GotoBookmark.Visible = False
+              Navigator.Buttons.Filter.Visible = False
+              DataController.DataModeController.GridMode = True
+              DataController.DataSource = dtTempTrayCategorais
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Format = ',0.00'
+                  Kind = skSum
+                end>
+              DataController.Summary.SummaryGroups = <>
+              NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+              OptionsBehavior.FocusCellOnTab = True
+              OptionsBehavior.FocusFirstCellOnNewRecord = True
+              OptionsBehavior.GoToNextCellOnEnter = True
+              OptionsBehavior.ImmediateEditor = False
+              OptionsCustomize.ColumnFiltering = False
+              OptionsCustomize.ColumnHiding = True
+              OptionsCustomize.ColumnSorting = False
+              OptionsData.Editing = False
+              OptionsView.ShowEditButtons = gsebForFocusedRecord
+              OptionsView.DataRowHeight = 23
+              OptionsView.GridLineColor = 15658734
+              OptionsView.GroupByBox = False
+              OptionsView.HeaderHeight = 21
+              OptionsView.Indicator = True
+              Styles.Header = DD.Trebuchet10negrito
+              object cxGridDBTableView9id: TcxGridDBColumn
+                Caption = 'ID'
+                DataBinding.FieldName = 'id'
+                HeaderAlignmentHorz = taCenter
+                Options.ShowEditButtons = isebNever
+                Width = 60
+              end
+              object cxGridDBTableView9nome: TcxGridDBColumn
+                Caption = 'Nome'
+                DataBinding.FieldName = 'nome'
+                HeaderAlignmentHorz = taCenter
+                Options.ShowEditButtons = isebNever
+                Width = 400
+              end
+              object cxGridDBTableView9categoria_pai_id: TcxGridDBColumn
+                Caption = 'ID/Categoria/Pai'
+                DataBinding.FieldName = 'categoria_pai_id'
+                HeaderAlignmentHorz = taCenter
+                Options.ShowEditButtons = isebNever
+                Width = 128
+              end
+              object cxGridDBTableView9ultima_alteracao: TcxGridDBColumn
+                Caption = #218'ltima Altera'#231#227'o'
+                DataBinding.FieldName = 'ultima_alteracao'
+                HeaderAlignmentHorz = taCenter
+                Options.ShowEditButtons = isebNever
+              end
+              object cxGridDBTableView9excluido: TcxGridDBColumn
+                Caption = 'Exclu'#237'do'
+                DataBinding.FieldName = 'excluido'
+                HeaderAlignmentHorz = taCenter
+                Options.ShowEditButtons = isebNever
+                Width = 83
+              end
+            end
+            object cxGridDBTableView10: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              DataController.DetailKeyFieldNames = 'id_dp'
+              DataController.MasterKeyFieldNames = 'id'
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                  Column = cxGridDBColumn14
+                end>
+              DataController.Summary.SummaryGroups = <>
+              OptionsCustomize.ColumnFiltering = False
+              OptionsView.Footer = True
+              OptionsView.GroupByBox = False
+              object cxGridDBColumn5: TcxGridDBColumn
+                DataBinding.FieldName = 'id'
+              end
+              object cxGridDBColumn13: TcxGridDBColumn
+                DataBinding.FieldName = 'id_dp'
+              end
+              object cxGridDBColumn14: TcxGridDBColumn
+                DataBinding.FieldName = 'valor_recto'
+              end
+              object cxGridDBColumn15: TcxGridDBColumn
+                DataBinding.FieldName = 'juros'
+              end
+              object cxGridDBColumn16: TcxGridDBColumn
+                DataBinding.FieldName = 'descontos'
+              end
+              object cxGridDBColumn17: TcxGridDBColumn
+                DataBinding.FieldName = 'data_recto'
+              end
+              object cxGridDBColumn18: TcxGridDBColumn
+                DataBinding.FieldName = 'obs'
+              end
+            end
+            object cxGridLevel5: TcxGridLevel
+              GridView = cxGridDBTableView9
+            end
+          end
+          object JSONcategoriasTray: TRzMemo
+            AlignWithMargins = True
+            Left = 2
+            Top = 101
+            Width = 1183
+            Height = 90
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alBottom
+            BorderStyle = bsNone
+            Color = clInfoBk
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -8
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 1
+            WordWrap = False
+          end
+          object RzPanel8: TRzPanel
+            Left = 0
+            Top = 193
+            Width = 1187
+            Height = 42
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alBottom
+            BorderOuter = fsNone
+            BorderColor = 15770519
+            BorderWidth = 3
+            Color = 15770519
+            TabOrder = 2
+            object btnAtualizarCategorias: TRzButton
+              Left = 3
+              Top = 3
+              Width = 84
+              Height = 36
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Atualizar'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 0
+              OnClick = btnAtualizarCategoriasClick
+            end
+            object RzButton3: TRzButton
+              Left = 1094
+              Top = 3
+              Width = 90
+              Height = 36
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alRight
+              Caption = 'EXCLUIR'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clRed
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = [fsBold]
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 1
+              OnClick = RzButton3Click
+            end
+            object btnIncluirCategoria: TRzButton
+              Left = 87
+              Top = 3
+              Width = 126
+              Height = 36
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Incluir 1 categoria'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 2
+              OnClick = btnIncluirCategoriaClick
+            end
+            object btnAlterarCategoria: TRzButton
+              Left = 213
+              Top = 3
+              Width = 124
+              Height = 36
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Alterar 1 categoria'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 3
+            end
+            object btnAlterarTudoCategorias: TRzButton
+              Left = 337
+              Top = 3
+              Width = 126
+              Height = 36
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'ALTERAR TUDO'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 4
+              OnClick = btnAlterarTudoCategoriasClick
+            end
+          end
+        end
+      end
+      object RzPanel9: TRzPanel
+        Left = 0
+        Top = 0
+        Width = 1191
+        Height = 473
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alClient
+        BorderOuter = fsNone
+        Color = clSilver
+        TabOrder = 1
+        object RzPanel10: TRzPanel
+          Left = 0
+          Top = 0
+          Width = 1191
+          Height = 473
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          Align = alClient
+          BorderOuter = fsNone
+          Color = clSilver
+          TabOrder = 0
+          object cxGrid4: TcxGrid
+            AlignWithMargins = True
+            Left = 2
+            Top = 2
+            Width = 1187
+            Height = 469
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alClient
+            BorderStyle = cxcbsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            LookAndFeel.Kind = lfOffice11
+            object cxGridDBTableView11: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              Navigator.Buttons.Insert.Visible = False
+              Navigator.Buttons.Append.Visible = True
+              Navigator.Buttons.Delete.Visible = False
+              Navigator.Buttons.SaveBookmark.Visible = False
+              Navigator.Buttons.GotoBookmark.Visible = False
+              Navigator.Buttons.Filter.Visible = False
+              DataController.DataModeController.GridMode = True
+              DataController.DataSource = dtProClasses
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Format = ',0.00'
+                  Kind = skSum
+                end>
+              DataController.Summary.SummaryGroups = <>
+              NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+              OptionsBehavior.FocusCellOnTab = True
+              OptionsBehavior.FocusFirstCellOnNewRecord = True
+              OptionsBehavior.GoToNextCellOnEnter = True
+              OptionsBehavior.ImmediateEditor = False
+              OptionsCustomize.ColumnFiltering = False
+              OptionsCustomize.ColumnHiding = True
+              OptionsCustomize.ColumnSorting = False
+              OptionsData.Appending = True
+              OptionsData.Editing = False
+              OptionsView.ShowEditButtons = gsebForFocusedRecord
+              OptionsView.DataRowHeight = 23
+              OptionsView.GridLineColor = 15658734
+              OptionsView.GroupByBox = False
+              OptionsView.HeaderHeight = 21
+              OptionsView.Indicator = True
+              Styles.Header = DD.Trebuchet10negrito
+              object cxGridDBTableView11ATUALIZAR: TcxGridDBColumn
+                Caption = 'Atualizar'
+                DataBinding.FieldName = 'ATUALIZAR'
+                HeaderAlignmentHorz = taCenter
+                Width = 97
+              end
+              object cxGridDBTableView11ERRO_CODIGO: TcxGridDBColumn
+                Caption = 'Status'
+                DataBinding.FieldName = 'ERRO_CODIGO'
+                HeaderAlignmentHorz = taCenter
+                Width = 91
+              end
+              object cxGridDBTableView11ID: TcxGridDBColumn
+                DataBinding.FieldName = 'ID'
+                HeaderAlignmentHorz = taCenter
+              end
+              object cxGridDBTableView11IDCLASSEBM: TcxGridDBColumn
+                Caption = 'ID/Classe/BM'
+                DataBinding.FieldName = 'IDCLASSEBM'
+                HeaderAlignmentHorz = taCenter
+                Width = 117
+              end
+              object cxGridDBTableView11IDCLASSEMP: TcxGridDBColumn
+                Caption = 'ID/Classe/MP'
+                DataBinding.FieldName = 'IDCLASSEMP'
+                HeaderAlignmentHorz = taCenter
+                Width = 100
+              end
+              object cxGridDBTableView11NIVEL: TcxGridDBColumn
+                Caption = 'N'#237'vel'
+                DataBinding.FieldName = 'NIVEL'
+                HeaderAlignmentHorz = taCenter
+                Width = 67
+              end
+              object cxGridDBTableView11CLASSE: TcxGridDBColumn
+                Caption = 'Classe'
+                DataBinding.FieldName = 'CLASSE'
+                HeaderAlignmentHorz = taCenter
+              end
+              object cxGridDBTableView11ID_PAI: TcxGridDBColumn
+                Caption = 'ID/Pai'
+                DataBinding.FieldName = 'ID_PAI'
+                HeaderAlignmentHorz = taCenter
+              end
+              object cxGridDBTableView11IDCLASSEMP_PAI: TcxGridDBColumn
+                Caption = 'ID/Classe/MP/Pai'
+                DataBinding.FieldName = 'IDCLASSEMP_PAI'
+                HeaderAlignmentHorz = taCenter
+                Width = 123
+              end
+              object cxGridDBTableView11DESCRICAO: TcxGridDBColumn
+                Caption = 'Descri'#231#227'o'
+                DataBinding.FieldName = 'DESCRICAO'
+                HeaderAlignmentHorz = taCenter
+              end
+              object cxGridDBTableView11HASH: TcxGridDBColumn
+                DataBinding.FieldName = 'HASH'
+                HeaderAlignmentHorz = taCenter
+                Width = 78
+              end
+              object cxGridDBTableView11HASH_NOVO: TcxGridDBColumn
+                Caption = 'HASH/Novo'
+                DataBinding.FieldName = 'HASH_NOVO'
+                HeaderAlignmentHorz = taCenter
+                Width = 83
+              end
+              object cxGridDBTableView11ERRO_JSON: TcxGridDBColumn
+                Caption = 'Erro/JSON'
+                DataBinding.FieldName = 'ERRO_JSON'
+                HeaderAlignmentHorz = taCenter
+                Width = 800
+              end
+            end
+            object cxGridDBTableView12: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              DataController.DetailKeyFieldNames = 'id_dp'
+              DataController.MasterKeyFieldNames = 'id'
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                  Column = cxGridDBColumn35
+                end>
+              DataController.Summary.SummaryGroups = <>
+              OptionsCustomize.ColumnFiltering = False
+              OptionsView.Footer = True
+              OptionsView.GroupByBox = False
+              object cxGridDBColumn33: TcxGridDBColumn
+                DataBinding.FieldName = 'id'
+              end
+              object cxGridDBColumn34: TcxGridDBColumn
+                DataBinding.FieldName = 'id_dp'
+              end
+              object cxGridDBColumn35: TcxGridDBColumn
+                DataBinding.FieldName = 'valor_recto'
+              end
+              object cxGridDBColumn54: TcxGridDBColumn
+                DataBinding.FieldName = 'juros'
+              end
+              object cxGridDBColumn62: TcxGridDBColumn
+                DataBinding.FieldName = 'descontos'
+              end
+              object cxGridDBColumn63: TcxGridDBColumn
+                DataBinding.FieldName = 'data_recto'
+              end
+              object cxGridDBColumn64: TcxGridDBColumn
+                DataBinding.FieldName = 'obs'
+              end
+            end
+            object cxGridLevel6: TcxGridLevel
+              GridView = cxGridDBTableView11
+            end
+          end
+        end
+      end
+    end
+    object TabSheet4: TRzTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
+      Color = clSilver
+      Caption = 'Tabelas de Pre'#231'os'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object cxGrid5: TcxGrid
+        AlignWithMargins = True
+        Left = 2
+        Top = 2
+        Width = 1187
+        Height = 451
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alClient
+        BorderStyle = cxcbsNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        LookAndFeel.Kind = lfOffice11
+        object cxGridDBTableView13: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          Navigator.Buttons.Insert.Visible = False
+          Navigator.Buttons.Append.Visible = True
+          Navigator.Buttons.Delete.Visible = False
+          Navigator.Buttons.SaveBookmark.Visible = False
+          Navigator.Buttons.GotoBookmark.Visible = False
+          Navigator.Buttons.Filter.Visible = False
+          DataController.DataModeController.GridMode = True
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Format = ',0.00'
+              Kind = skSum
+            end>
+          DataController.Summary.SummaryGroups = <>
+          NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+          OptionsBehavior.FocusCellOnTab = True
+          OptionsBehavior.FocusFirstCellOnNewRecord = True
+          OptionsBehavior.GoToNextCellOnEnter = True
+          OptionsBehavior.ImmediateEditor = False
+          OptionsCustomize.ColumnFiltering = False
+          OptionsCustomize.ColumnHiding = True
+          OptionsCustomize.ColumnSorting = False
+          OptionsView.DataRowHeight = 23
+          OptionsView.GridLineColor = 15658734
+          OptionsView.GroupByBox = False
+          OptionsView.HeaderHeight = 21
+          OptionsView.Indicator = True
+          Styles.Header = DD.Trebuchet10negrito
+          object cxGridDBTableView13ID: TcxGridDBColumn
+            DataBinding.FieldName = 'ID'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView13IDMP: TcxGridDBColumn
+            Caption = 'ID/MP'
+            DataBinding.FieldName = 'IDMP'
+            HeaderAlignmentHorz = taCenter
+          end
+          object cxGridDBTableView13NOME: TcxGridDBColumn
+            Caption = 'Nome'
+            DataBinding.FieldName = 'NOME'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 253
+          end
+          object cxGridDBTableView13TIPO: TcxGridDBColumn
+            Caption = 'Tipo'
+            DataBinding.FieldName = 'TIPO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 74
+          end
+          object cxGridDBTableView13ACRESCIMO: TcxGridDBColumn
+            Caption = 'Acr'#233'scimo'
+            DataBinding.FieldName = 'ACRESCIMO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 103
+          end
+          object cxGridDBTableView13DESCONTO: TcxGridDBColumn
+            Caption = 'Desconto'
+            DataBinding.FieldName = 'DESCONTO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView13EXCLUIDO: TcxGridDBColumn
+            Caption = 'Exclu'#237'do'
+            DataBinding.FieldName = 'EXCLUIDO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 79
+          end
+          object cxGridDBTableView13ULTIMA_ALTERACAO: TcxGridDBColumn
+            Caption = #218'ltima Altera'#231#227'o'
+            DataBinding.FieldName = 'ULTIMA_ALTERACAO'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 133
+          end
+        end
+        object cxGridDBTableView14: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          DataController.DetailKeyFieldNames = 'id_dp'
+          DataController.MasterKeyFieldNames = 'id'
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+              Column = cxGridDBColumn80
+            end>
+          DataController.Summary.SummaryGroups = <>
+          OptionsCustomize.ColumnFiltering = False
+          OptionsView.Footer = True
+          OptionsView.GroupByBox = False
+          object cxGridDBColumn78: TcxGridDBColumn
+            DataBinding.FieldName = 'id'
+          end
+          object cxGridDBColumn79: TcxGridDBColumn
+            DataBinding.FieldName = 'id_dp'
+          end
+          object cxGridDBColumn80: TcxGridDBColumn
+            DataBinding.FieldName = 'valor_recto'
+          end
+          object cxGridDBColumn81: TcxGridDBColumn
+            DataBinding.FieldName = 'juros'
+          end
+          object cxGridDBColumn82: TcxGridDBColumn
+            DataBinding.FieldName = 'descontos'
+          end
+          object cxGridDBColumn83: TcxGridDBColumn
+            DataBinding.FieldName = 'data_recto'
+          end
+          object cxGridDBColumn84: TcxGridDBColumn
+            DataBinding.FieldName = 'obs'
+          end
+        end
+        object cxGridLevel7: TcxGridLevel
+          GridView = cxGridDBTableView13
+        end
+      end
+      object RzPageControl5: TRzPageControl
+        Left = 0
+        Top = 455
+        Width = 1191
+        Height = 277
+        Hint = ''
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        ActivePage = RzTabSheet4
+        ActivePageDefault = RzTabSheet4
+        Align = alBottom
+        TabIndex = 0
+        TabOrder = 1
+        FixedDimension = 20
+        object RzTabSheet4: TRzTabSheet
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          Color = clSilver
+          Caption = 'Tabelas do Tray'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
+          object cxGrid6: TcxGrid
+            AlignWithMargins = True
+            Left = 2
+            Top = 2
+            Width = 1183
+            Height = 117
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alClient
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            BorderStyle = cxcbsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            LookAndFeel.Kind = lfOffice11
+            object cxGridDBTableView15: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              Navigator.Buttons.Insert.Visible = False
+              Navigator.Buttons.Append.Visible = True
+              Navigator.Buttons.Delete.Visible = False
+              Navigator.Buttons.SaveBookmark.Visible = False
+              Navigator.Buttons.GotoBookmark.Visible = False
+              Navigator.Buttons.Filter.Visible = False
+              DataController.DataModeController.GridMode = True
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Format = ',0.00'
+                  Kind = skSum
+                end>
+              DataController.Summary.SummaryGroups = <>
+              NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+              OptionsBehavior.FocusCellOnTab = True
+              OptionsBehavior.FocusFirstCellOnNewRecord = True
+              OptionsBehavior.GoToNextCellOnEnter = True
+              OptionsBehavior.ImmediateEditor = False
+              OptionsCustomize.ColumnFiltering = False
+              OptionsCustomize.ColumnHiding = True
+              OptionsCustomize.ColumnSorting = False
+              OptionsView.DataRowHeight = 23
+              OptionsView.GridLineColor = 15658734
+              OptionsView.GroupByBox = False
+              OptionsView.HeaderHeight = 21
+              OptionsView.Indicator = True
+              Styles.Header = DD.Trebuchet10negrito
+              object cxGridDBTableView15idMP: TcxGridDBColumn
+                Caption = 'ID/MP'
+                DataBinding.FieldName = 'idMP'
+                HeaderAlignmentHorz = taCenter
+                Options.Editing = False
+              end
+              object cxGridDBTableView15nome: TcxGridDBColumn
+                Caption = 'Nome'
+                DataBinding.FieldName = 'nome'
+                HeaderAlignmentHorz = taCenter
+                Options.Editing = False
+                Width = 400
+              end
+              object cxGridDBTableView15tipo: TcxGridDBColumn
+                Caption = 'Tipo'
+                DataBinding.FieldName = 'tipo'
+                HeaderAlignmentHorz = taCenter
+                Options.Editing = False
+                Width = 58
+              end
+              object cxGridDBTableView15acrescimo: TcxGridDBColumn
+                Caption = 'Acr'#233'scimo'
+                DataBinding.FieldName = 'acrescimo'
+                HeaderAlignmentHorz = taCenter
+                Options.Editing = False
+                Width = 83
+              end
+              object cxGridDBTableView15desconto: TcxGridDBColumn
+                Caption = 'Desconto'
+                DataBinding.FieldName = 'desconto'
+                HeaderAlignmentHorz = taCenter
+                Options.Editing = False
+              end
+              object cxGridDBTableView15excluido: TcxGridDBColumn
+                Caption = 'Exclu'#237'do'
+                DataBinding.FieldName = 'excluido'
+                HeaderAlignmentHorz = taCenter
+                Width = 68
+              end
+              object cxGridDBTableView15ultima_alteracao: TcxGridDBColumn
+                Caption = #218'ltima Altera'#231#227'o'
+                DataBinding.FieldName = 'ultima_alteracao'
+                HeaderAlignmentHorz = taCenter
+                Options.Editing = False
+                Width = 151
+              end
+            end
+            object cxGridDBTableView16: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              DataController.DetailKeyFieldNames = 'id_dp'
+              DataController.MasterKeyFieldNames = 'id'
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                  Column = cxGridDBColumn91
+                end>
+              DataController.Summary.SummaryGroups = <>
+              OptionsCustomize.ColumnFiltering = False
+              OptionsView.Footer = True
+              OptionsView.GroupByBox = False
+              object cxGridDBColumn89: TcxGridDBColumn
+                DataBinding.FieldName = 'id'
+              end
+              object cxGridDBColumn90: TcxGridDBColumn
+                DataBinding.FieldName = 'id_dp'
+              end
+              object cxGridDBColumn91: TcxGridDBColumn
+                DataBinding.FieldName = 'valor_recto'
+              end
+              object cxGridDBColumn92: TcxGridDBColumn
+                DataBinding.FieldName = 'juros'
+              end
+              object cxGridDBColumn93: TcxGridDBColumn
+                DataBinding.FieldName = 'descontos'
+              end
+              object cxGridDBColumn94: TcxGridDBColumn
+                DataBinding.FieldName = 'data_recto'
+              end
+              object cxGridDBColumn95: TcxGridDBColumn
+                DataBinding.FieldName = 'obs'
+              end
+            end
+            object cxGridLevel8: TcxGridLevel
+              GridView = cxGridDBTableView15
+            end
+          end
+          object JSONtabelasTray: TRzMemo
+            AlignWithMargins = True
+            Left = 2
+            Top = 162
+            Width = 1183
+            Height = 89
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alBottom
+            BorderStyle = bsNone
+            Color = clInfoBk
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -8
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 1
+            WordWrap = False
+          end
+          object RzPanel11: TRzPanel
+            Left = 0
+            Top = 121
+            Width = 1187
+            Height = 39
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alBottom
+            BorderOuter = fsNone
+            BorderColor = 15770519
+            BorderWidth = 3
+            Color = 15770519
+            TabOrder = 2
+            object RzButton7: TRzButton
+              Left = 3
+              Top = 3
+              Width = 84
+              Height = 33
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Atualizar'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 0
+            end
+            object RzButton9: TRzButton
+              Left = 87
+              Top = 3
+              Width = 126
+              Height = 33
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Incluir 1 Tabela'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 1
+            end
+            object RzButton8: TRzButton
+              Left = 213
+              Top = 3
+              Width = 158
+              Height = 33
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Mandar Status Excluido'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clRed
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 2
+            end
+          end
+        end
+      end
+    end
+    object TabSheet6: TRzTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
+      Color = clSilver
+      Caption = 'Vendedores'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object cxGrid9: TcxGrid
+        AlignWithMargins = True
+        Left = 2
+        Top = 2
+        Width = 1187
+        Height = 416
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alClient
+        BorderStyle = cxcbsNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        LookAndFeel.Kind = lfOffice11
+        object cxGridDBTableView21: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          Navigator.Buttons.Insert.Visible = False
+          Navigator.Buttons.Append.Visible = True
+          Navigator.Buttons.Delete.Visible = False
+          Navigator.Buttons.SaveBookmark.Visible = False
+          Navigator.Buttons.GotoBookmark.Visible = False
+          Navigator.Buttons.Filter.Visible = False
+          DataController.DataModeController.GridMode = True
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Format = ',0.00'
+              Kind = skSum
+            end>
+          DataController.Summary.SummaryGroups = <>
+          NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+          OptionsBehavior.FocusCellOnTab = True
+          OptionsBehavior.FocusFirstCellOnNewRecord = True
+          OptionsBehavior.GoToNextCellOnEnter = True
+          OptionsBehavior.ImmediateEditor = False
+          OptionsCustomize.ColumnFiltering = False
+          OptionsCustomize.ColumnHiding = True
+          OptionsCustomize.ColumnSorting = False
+          OptionsView.DataRowHeight = 23
+          OptionsView.GridLineColor = 15658734
+          OptionsView.GroupByBox = False
+          OptionsView.HeaderHeight = 21
+          OptionsView.Indicator = True
+          Styles.Header = DD.Trebuchet10negrito
+          object cxGridDBTableView21ID: TcxGridDBColumn
+            DataBinding.FieldName = 'ID'
+            HeaderAlignmentHorz = taCenter
+          end
+          object cxGridDBTableView21NOMEVENDBM: TcxGridDBColumn
+            Caption = 'Nome/BM'
+            DataBinding.FieldName = 'NOMEVENDBM'
+            HeaderAlignmentHorz = taCenter
+          end
+          object cxGridDBTableView21IDVENDBM: TcxGridDBColumn
+            Caption = 'ID/BM'
+            DataBinding.FieldName = 'IDVENDBM'
+            HeaderAlignmentHorz = taCenter
+            Width = 85
+          end
+          object cxGridDBTableView21IDVENDMP: TcxGridDBColumn
+            Caption = 'ID/MP'
+            DataBinding.FieldName = 'IDVENDMP'
+            HeaderAlignmentHorz = taCenter
+            Width = 80
+          end
+          object cxGridDBTableView21NOMEVENDMP: TcxGridDBColumn
+            Caption = 'Nome/MP'
+            DataBinding.FieldName = 'NOMEVENDMP'
+            HeaderAlignmentHorz = taCenter
+          end
+          object cxGridDBTableView21ADMIN: TcxGridDBColumn
+            Caption = 'Admin'
+            DataBinding.FieldName = 'ADMIN'
+            HeaderAlignmentHorz = taCenter
+            Width = 72
+          end
+        end
+        object cxGridDBTableView22: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          DataController.DetailKeyFieldNames = 'id_dp'
+          DataController.MasterKeyFieldNames = 'id'
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+              Column = cxGridDBColumn32
+            end>
+          DataController.Summary.SummaryGroups = <>
+          OptionsCustomize.ColumnFiltering = False
+          OptionsView.Footer = True
+          OptionsView.GroupByBox = False
+          object cxGridDBColumn30: TcxGridDBColumn
+            DataBinding.FieldName = 'id'
+          end
+          object cxGridDBColumn31: TcxGridDBColumn
+            DataBinding.FieldName = 'id_dp'
+          end
+          object cxGridDBColumn32: TcxGridDBColumn
+            DataBinding.FieldName = 'valor_recto'
+          end
+          object cxGridDBColumn65: TcxGridDBColumn
+            DataBinding.FieldName = 'juros'
+          end
+          object cxGridDBColumn66: TcxGridDBColumn
+            DataBinding.FieldName = 'descontos'
+          end
+          object cxGridDBColumn67: TcxGridDBColumn
+            DataBinding.FieldName = 'data_recto'
+          end
+          object cxGridDBColumn68: TcxGridDBColumn
+            DataBinding.FieldName = 'obs'
+          end
+        end
+        object cxGridLevel11: TcxGridLevel
+          GridView = cxGridDBTableView21
+        end
+      end
+      object RzPageControl7: TRzPageControl
+        Left = 0
+        Top = 420
+        Width = 1191
+        Height = 312
+        Hint = ''
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        ActivePage = RzTabSheet6
+        ActivePageDefault = RzTabSheet6
+        Align = alBottom
+        TabIndex = 0
+        TabOrder = 1
+        FixedDimension = 20
+        object RzTabSheet6: TRzTabSheet
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          Color = clSilver
+          Caption = 'Tabelas do Tray'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
+          object cxGrid10: TcxGrid
+            AlignWithMargins = True
+            Left = 2
+            Top = 2
+            Width = 1183
+            Height = 152
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alClient
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            BorderStyle = cxcbsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            LookAndFeel.Kind = lfOffice11
+            object cxGridDBTableView23: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              Navigator.Buttons.Insert.Visible = False
+              Navigator.Buttons.Append.Visible = True
+              Navigator.Buttons.Delete.Visible = False
+              Navigator.Buttons.SaveBookmark.Visible = False
+              Navigator.Buttons.GotoBookmark.Visible = False
+              Navigator.Buttons.Filter.Visible = False
+              DataController.DataModeController.GridMode = True
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Format = ',0.00'
+                  Kind = skSum
+                end>
+              DataController.Summary.SummaryGroups = <>
+              NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+              OptionsBehavior.FocusCellOnTab = True
+              OptionsBehavior.FocusFirstCellOnNewRecord = True
+              OptionsBehavior.GoToNextCellOnEnter = True
+              OptionsBehavior.ImmediateEditor = False
+              OptionsCustomize.ColumnFiltering = False
+              OptionsCustomize.ColumnHiding = True
+              OptionsCustomize.ColumnSorting = False
+              OptionsView.DataRowHeight = 23
+              OptionsView.GridLineColor = 15658734
+              OptionsView.GroupByBox = False
+              OptionsView.HeaderHeight = 21
+              OptionsView.Indicator = True
+              Styles.Header = DD.Trebuchet10negrito
+              object cxGridDBTableView23id: TcxGridDBColumn
+                Caption = 'ID'
+                DataBinding.FieldName = 'id'
+                HeaderAlignmentHorz = taCenter
+              end
+              object cxGridDBTableView23nome: TcxGridDBColumn
+                Caption = 'Nome'
+                DataBinding.FieldName = 'nome'
+                HeaderAlignmentHorz = taCenter
+                Width = 300
+              end
+              object cxGridDBTableView23email: TcxGridDBColumn
+                Caption = 'eMail'
+                DataBinding.FieldName = 'email'
+                HeaderAlignmentHorz = taCenter
+                Width = 300
+              end
+              object cxGridDBTableView23telefone: TcxGridDBColumn
+                Caption = 'Telefone'
+                DataBinding.FieldName = 'telefone'
+                HeaderAlignmentHorz = taCenter
+              end
+              object cxGridDBTableView23administrador: TcxGridDBColumn
+                Caption = 'Admin'
+                DataBinding.FieldName = 'administrador'
+                HeaderAlignmentHorz = taCenter
+                Width = 103
+              end
+              object cxGridDBTableView23excluido: TcxGridDBColumn
+                Caption = 'Exclu'#237'do'
+                DataBinding.FieldName = 'excluido'
+                HeaderAlignmentHorz = taCenter
+                Width = 77
+              end
+              object cxGridDBTableView23ultima_alteracao: TcxGridDBColumn
+                Caption = #218'ltima Altera'#231#227'o'
+                DataBinding.FieldName = 'ultima_alteracao'
+                HeaderAlignmentHorz = taCenter
+                Width = 192
+              end
+            end
+            object cxGridDBTableView24: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              DataController.DetailKeyFieldNames = 'id_dp'
+              DataController.MasterKeyFieldNames = 'id'
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                  Column = cxGridDBColumn99
+                end>
+              DataController.Summary.SummaryGroups = <>
+              OptionsCustomize.ColumnFiltering = False
+              OptionsView.Footer = True
+              OptionsView.GroupByBox = False
+              object cxGridDBColumn97: TcxGridDBColumn
+                DataBinding.FieldName = 'id'
+              end
+              object cxGridDBColumn98: TcxGridDBColumn
+                DataBinding.FieldName = 'id_dp'
+              end
+              object cxGridDBColumn99: TcxGridDBColumn
+                DataBinding.FieldName = 'valor_recto'
+              end
+              object cxGridDBColumn100: TcxGridDBColumn
+                DataBinding.FieldName = 'juros'
+              end
+              object cxGridDBColumn101: TcxGridDBColumn
+                DataBinding.FieldName = 'descontos'
+              end
+              object cxGridDBColumn102: TcxGridDBColumn
+                DataBinding.FieldName = 'data_recto'
+              end
+              object cxGridDBColumn103: TcxGridDBColumn
+                DataBinding.FieldName = 'obs'
+              end
+            end
+            object cxGridLevel12: TcxGridLevel
+              GridView = cxGridDBTableView23
+            end
+          end
+          object JSONvendedoresTray: TRzMemo
+            AlignWithMargins = True
+            Left = 2
+            Top = 197
+            Width = 1183
+            Height = 89
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alBottom
+            BorderStyle = bsNone
+            Color = clInfoBk
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -8
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 1
+            WordWrap = False
+          end
+          object RzPanel14: TRzPanel
+            Left = 0
+            Top = 156
+            Width = 1187
+            Height = 39
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alBottom
+            BorderOuter = fsNone
+            BorderColor = 15770519
+            BorderWidth = 3
+            Color = 15770519
+            TabOrder = 2
+            object RzButton5: TRzButton
+              Left = 3
+              Top = 3
+              Width = 84
+              Height = 33
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Atualizar'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 0
+            end
+            object RzButton6: TRzButton
+              Left = 87
+              Top = 3
+              Width = 146
+              Height = 33
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Relacionar com BM'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 1
+            end
+          end
+        end
+      end
+    end
+    object TabSheet8: TRzTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
+      Caption = 'Transportadoras'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object cxGrid13: TcxGrid
+        AlignWithMargins = True
+        Left = 2
+        Top = 2
+        Width = 1187
+        Height = 416
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alClient
+        BorderStyle = cxcbsNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        LookAndFeel.Kind = lfOffice11
+        object cxGridDBTableView29: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          Navigator.Buttons.Insert.Visible = False
+          Navigator.Buttons.Append.Visible = True
+          Navigator.Buttons.Delete.Visible = False
+          Navigator.Buttons.SaveBookmark.Visible = False
+          Navigator.Buttons.GotoBookmark.Visible = False
+          Navigator.Buttons.Filter.Visible = False
+          DataController.DataModeController.GridMode = True
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Format = ',0.00'
+              Kind = skSum
+            end>
+          DataController.Summary.SummaryGroups = <>
+          NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+          OptionsBehavior.FocusCellOnTab = True
+          OptionsBehavior.FocusFirstCellOnNewRecord = True
+          OptionsBehavior.GoToNextCellOnEnter = True
+          OptionsBehavior.ImmediateEditor = False
+          OptionsCustomize.ColumnFiltering = False
+          OptionsCustomize.ColumnHiding = True
+          OptionsCustomize.ColumnSorting = False
+          OptionsData.Editing = False
+          OptionsView.DataRowHeight = 23
+          OptionsView.GridLineColor = 15658734
+          OptionsView.GroupByBox = False
+          OptionsView.HeaderHeight = 21
+          OptionsView.Indicator = True
+          Styles.Header = DD.Trebuchet10negrito
+          object cxGridDBTableView29ATUALIZAR: TcxGridDBColumn
+            Caption = 'Atualizar'
+            DataBinding.FieldName = 'ATUALIZAR'
+            HeaderAlignmentHorz = taCenter
+            Width = 99
+          end
+          object cxGridDBTableView29ID: TcxGridDBColumn
+            DataBinding.FieldName = 'ID'
+            HeaderAlignmentHorz = taCenter
+          end
+          object cxGridDBTableView29NOME: TcxGridDBColumn
+            Caption = 'Nome'
+            DataBinding.FieldName = 'NOME'
+            HeaderAlignmentHorz = taCenter
+            Width = 247
+          end
+          object cxGridDBTableView29CIDADE: TcxGridDBColumn
+            Caption = 'Cidade'
+            DataBinding.FieldName = 'CIDADE'
+            HeaderAlignmentHorz = taCenter
+            Width = 177
+          end
+          object cxGridDBTableView29UF: TcxGridDBColumn
+            DataBinding.FieldName = 'UF'
+            HeaderAlignmentHorz = taCenter
+            Width = 94
+          end
+          object cxGridDBTableView29FONE1: TcxGridDBColumn
+            Caption = 'Fone/1'
+            DataBinding.FieldName = 'FONE1'
+            HeaderAlignmentHorz = taCenter
+          end
+          object cxGridDBTableView29FONE2: TcxGridDBColumn
+            Caption = 'Fone/2'
+            DataBinding.FieldName = 'FONE2'
+            HeaderAlignmentHorz = taCenter
+          end
+          object cxGridDBTableView29IDTRANSP: TcxGridDBColumn
+            Caption = 'ID/Transp'
+            DataBinding.FieldName = 'IDTRANSP'
+            HeaderAlignmentHorz = taCenter
+            Width = 91
+          end
+          object cxGridDBTableView29IDMP: TcxGridDBColumn
+            Caption = 'ID/MP'
+            DataBinding.FieldName = 'IDMP'
+            HeaderAlignmentHorz = taCenter
+          end
+          object cxGridDBTableView29HASH: TcxGridDBColumn
+            DataBinding.FieldName = 'HASH'
+            HeaderAlignmentHorz = taCenter
+            Width = 74
+          end
+          object cxGridDBTableView29HASH_NOVO: TcxGridDBColumn
+            Caption = 'HASH/Novo'
+            DataBinding.FieldName = 'HASH_NOVO'
+            HeaderAlignmentHorz = taCenter
+            Width = 95
+          end
+          object cxGridDBTableView29ERRO_CODIGO: TcxGridDBColumn
+            Caption = 'Erro/C'#243'digo'
+            DataBinding.FieldName = 'ERRO_CODIGO'
+            HeaderAlignmentHorz = taCenter
+            Width = 146
+          end
+          object cxGridDBTableView29ERRO_JSON: TcxGridDBColumn
+            Caption = 'Erro/JSON'
+            DataBinding.FieldName = 'ERRO_JSON'
+            HeaderAlignmentHorz = taCenter
+            Width = 148
+          end
+        end
+        object cxGridDBTableView30: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          DataController.DetailKeyFieldNames = 'id_dp'
+          DataController.MasterKeyFieldNames = 'id'
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+              Column = cxGridDBColumn106
+            end>
+          DataController.Summary.SummaryGroups = <>
+          OptionsCustomize.ColumnFiltering = False
+          OptionsView.Footer = True
+          OptionsView.GroupByBox = False
+          object cxGridDBColumn104: TcxGridDBColumn
+            DataBinding.FieldName = 'id'
+          end
+          object cxGridDBColumn105: TcxGridDBColumn
+            DataBinding.FieldName = 'id_dp'
+          end
+          object cxGridDBColumn106: TcxGridDBColumn
+            DataBinding.FieldName = 'valor_recto'
+          end
+          object cxGridDBColumn107: TcxGridDBColumn
+            DataBinding.FieldName = 'juros'
+          end
+          object cxGridDBColumn115: TcxGridDBColumn
+            DataBinding.FieldName = 'descontos'
+          end
+          object cxGridDBColumn116: TcxGridDBColumn
+            DataBinding.FieldName = 'data_recto'
+          end
+          object cxGridDBColumn117: TcxGridDBColumn
+            DataBinding.FieldName = 'obs'
+          end
+        end
+        object cxGridLevel15: TcxGridLevel
+          GridView = cxGridDBTableView29
+        end
+      end
+      object RzPageControl9: TRzPageControl
+        Left = 0
+        Top = 420
+        Width = 1191
+        Height = 312
+        Hint = ''
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        ActivePage = RzTabSheet8
+        ActivePageDefault = RzTabSheet8
+        Align = alBottom
+        TabIndex = 0
+        TabOrder = 1
+        FixedDimension = 20
+        object RzTabSheet8: TRzTabSheet
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          Color = clSilver
+          Caption = 'Tabelas do Tray'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
+          object cxGrid14: TcxGrid
+            AlignWithMargins = True
+            Left = 2
+            Top = 2
+            Width = 1183
+            Height = 152
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alClient
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            BorderStyle = cxcbsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            LookAndFeel.Kind = lfOffice11
+            object cxGridDBTableView31: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              Navigator.Buttons.Insert.Visible = False
+              Navigator.Buttons.Append.Visible = True
+              Navigator.Buttons.Delete.Visible = False
+              Navigator.Buttons.SaveBookmark.Visible = False
+              Navigator.Buttons.GotoBookmark.Visible = False
+              Navigator.Buttons.Filter.Visible = False
+              DataController.DataModeController.GridMode = True
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Format = ',0.00'
+                  Kind = skSum
+                end>
+              DataController.Summary.SummaryGroups = <>
+              NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+              OptionsBehavior.FocusCellOnTab = True
+              OptionsBehavior.FocusFirstCellOnNewRecord = True
+              OptionsBehavior.GoToNextCellOnEnter = True
+              OptionsBehavior.ImmediateEditor = False
+              OptionsCustomize.ColumnFiltering = False
+              OptionsCustomize.ColumnHiding = True
+              OptionsCustomize.ColumnSorting = False
+              OptionsData.Editing = False
+              OptionsView.DataRowHeight = 23
+              OptionsView.GridLineColor = 15658734
+              OptionsView.GroupByBox = False
+              OptionsView.HeaderHeight = 21
+              OptionsView.Indicator = True
+              Styles.Header = DD.Trebuchet10negrito
+              object cxGridDBTableView31id: TcxGridDBColumn
+                Caption = 'ID'
+                DataBinding.FieldName = 'id'
+                HeaderAlignmentHorz = taCenter
+              end
+              object cxGridDBTableView31nome: TcxGridDBColumn
+                Caption = 'Nome'
+                DataBinding.FieldName = 'nome'
+                HeaderAlignmentHorz = taCenter
+                Width = 300
+              end
+              object cxGridDBTableView31cidade: TcxGridDBColumn
+                Caption = 'Cidade'
+                DataBinding.FieldName = 'cidade'
+                HeaderAlignmentHorz = taCenter
+                Width = 200
+              end
+              object cxGridDBTableView31estado: TcxGridDBColumn
+                Caption = 'UF'
+                DataBinding.FieldName = 'estado'
+                HeaderAlignmentHorz = taCenter
+                Width = 60
+              end
+              object cxGridDBTableView31telefone1: TcxGridDBColumn
+                Caption = 'Telefone/1'
+                DataBinding.FieldName = 'telefone1'
+                HeaderAlignmentHorz = taCenter
+              end
+              object cxGridDBTableView31telefone2: TcxGridDBColumn
+                Caption = 'Telefone/2'
+                DataBinding.FieldName = 'telefone2'
+                HeaderAlignmentHorz = taCenter
+              end
+              object cxGridDBTableView31excluido: TcxGridDBColumn
+                Caption = 'Exclu'#237'do'
+                DataBinding.FieldName = 'excluido'
+                HeaderAlignmentHorz = taCenter
+                Width = 79
+              end
+              object cxGridDBTableView31ultima_alteracao: TcxGridDBColumn
+                Caption = #218'ltima Altera'#231#227'o'
+                DataBinding.FieldName = 'ultima_alteracao'
+                HeaderAlignmentHorz = taCenter
+              end
+            end
+            object cxGridDBTableView32: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              DataController.DetailKeyFieldNames = 'id_dp'
+              DataController.MasterKeyFieldNames = 'id'
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                  Column = cxGridDBColumn124
+                end>
+              DataController.Summary.SummaryGroups = <>
+              OptionsCustomize.ColumnFiltering = False
+              OptionsView.Footer = True
+              OptionsView.GroupByBox = False
+              object cxGridDBColumn122: TcxGridDBColumn
+                DataBinding.FieldName = 'id'
+              end
+              object cxGridDBColumn123: TcxGridDBColumn
+                DataBinding.FieldName = 'id_dp'
+              end
+              object cxGridDBColumn124: TcxGridDBColumn
+                DataBinding.FieldName = 'valor_recto'
+              end
+              object cxGridDBColumn125: TcxGridDBColumn
+                DataBinding.FieldName = 'juros'
+              end
+              object cxGridDBColumn126: TcxGridDBColumn
+                DataBinding.FieldName = 'descontos'
+              end
+              object cxGridDBColumn127: TcxGridDBColumn
+                DataBinding.FieldName = 'data_recto'
+              end
+              object cxGridDBColumn128: TcxGridDBColumn
+                DataBinding.FieldName = 'obs'
+              end
+            end
+            object cxGridLevel16: TcxGridLevel
+              GridView = cxGridDBTableView31
+            end
+          end
+          object JSONtranspTray: TRzMemo
+            AlignWithMargins = True
+            Left = 2
+            Top = 197
+            Width = 1183
+            Height = 89
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alBottom
+            BorderStyle = bsNone
+            Color = clInfoBk
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -8
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 1
+            WordWrap = False
+          end
+          object RzPanel16: TRzPanel
+            Left = 0
+            Top = 156
+            Width = 1187
+            Height = 39
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alBottom
+            BorderOuter = fsNone
+            BorderColor = 15770519
+            BorderWidth = 3
+            Color = 15770519
+            TabOrder = 2
+            object btnAtualizarTransp: TRzButton
+              Left = 3
+              Top = 3
+              Width = 84
+              Height = 33
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Atualizar'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 0
+            end
+            object btnIncluirTranspMP: TRzButton
+              Left = 87
+              Top = 3
+              Width = 126
+              Height = 33
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Incluir 1 Tabela MP'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 1
+            end
+            object btnAlterarTranspMP: TRzButton
+              Left = 213
+              Top = 3
+              Width = 124
+              Height = 33
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Alterar 1 Tabela MP'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 2
+            end
+            object btnAlterarTudoTransp: TRzButton
+              Left = 337
+              Top = 3
+              Width = 122
+              Height = 33
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'ALTERAR TUDO'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 3
+            end
+          end
+        end
+      end
+    end
+    object TabSheet9: TRzTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
+      Caption = 'Condi'#231#245'es Pgto.'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object cxGrid15: TcxGrid
+        AlignWithMargins = True
+        Left = 2
+        Top = 2
+        Width = 1187
+        Height = 319
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alClient
+        BorderStyle = cxcbsNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        LookAndFeel.Kind = lfOffice11
+        object cxGridDBTableView33: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          Navigator.Buttons.Insert.Visible = False
+          Navigator.Buttons.Append.Visible = True
+          Navigator.Buttons.Delete.Visible = False
+          Navigator.Buttons.SaveBookmark.Visible = False
+          Navigator.Buttons.GotoBookmark.Visible = False
+          Navigator.Buttons.Filter.Visible = False
+          DataController.DataModeController.GridMode = True
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Format = ',0.00'
+              Kind = skSum
+            end>
+          DataController.Summary.SummaryGroups = <>
+          NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+          OptionsBehavior.FocusCellOnTab = True
+          OptionsBehavior.FocusFirstCellOnNewRecord = True
+          OptionsBehavior.GoToNextCellOnEnter = True
+          OptionsBehavior.ImmediateEditor = False
+          OptionsCustomize.ColumnFiltering = False
+          OptionsCustomize.ColumnHiding = True
+          OptionsCustomize.ColumnSorting = False
+          OptionsData.Editing = False
+          OptionsView.DataRowHeight = 23
+          OptionsView.GridLineColor = 15658734
+          OptionsView.GroupByBox = False
+          OptionsView.HeaderHeight = 21
+          OptionsView.Indicator = True
+          Styles.Header = DD.Trebuchet10negrito
+          object cxGridDBTableView33ATUALIZAR: TcxGridDBColumn
+            Caption = 'Atualizar'
+            DataBinding.FieldName = 'ATUALIZAR'
+            HeaderAlignmentHorz = taCenter
+            Width = 70
+          end
+          object cxGridDBTableView33ID: TcxGridDBColumn
+            DataBinding.FieldName = 'ID'
+            HeaderAlignmentHorz = taCenter
+          end
+          object cxGridDBTableView33DESCRICAO: TcxGridDBColumn
+            Caption = 'Descri'#231#227'o'
+            DataBinding.FieldName = 'DESCRICAO'
+            HeaderAlignmentHorz = taCenter
+          end
+          object cxGridDBTableView33ATIVO: TcxGridDBColumn
+            Caption = 'Ativo'
+            DataBinding.FieldName = 'ATIVO'
+            HeaderAlignmentHorz = taCenter
+            Width = 72
+          end
+          object cxGridDBTableView33IDPLANOBM: TcxGridDBColumn
+            Caption = 'ID/Plano/BM'
+            DataBinding.FieldName = 'IDPLANOBM'
+            HeaderAlignmentHorz = taCenter
+            Width = 100
+          end
+          object cxGridDBTableView33IDPLANOMP: TcxGridDBColumn
+            Caption = 'ID/Plano/MP'
+            DataBinding.FieldName = 'IDPLANOMP'
+            HeaderAlignmentHorz = taCenter
+            Width = 104
+          end
+          object cxGridDBTableView33HASH: TcxGridDBColumn
+            DataBinding.FieldName = 'HASH'
+            HeaderAlignmentHorz = taCenter
+            Width = 70
+          end
+          object cxGridDBTableView33HASH_NOVO: TcxGridDBColumn
+            Caption = 'HASH/Novo'
+            DataBinding.FieldName = 'HASH_NOVO'
+            HeaderAlignmentHorz = taCenter
+            Width = 107
+          end
+          object cxGridDBTableView33ERRO_CODIGO: TcxGridDBColumn
+            Caption = 'Erro/C'#243'digo'
+            DataBinding.FieldName = 'ERRO_CODIGO'
+            HeaderAlignmentHorz = taCenter
+            Width = 113
+          end
+          object cxGridDBTableView33ERRO_JSON: TcxGridDBColumn
+            Caption = 'Erro/JSON'
+            DataBinding.FieldName = 'ERRO_JSON'
+            HeaderAlignmentHorz = taCenter
+            Width = 106
+          end
+        end
+        object cxGridDBTableView34: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          DataController.DetailKeyFieldNames = 'id_dp'
+          DataController.MasterKeyFieldNames = 'id'
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+              Column = cxGridDBColumn132
+            end>
+          DataController.Summary.SummaryGroups = <>
+          OptionsCustomize.ColumnFiltering = False
+          OptionsView.Footer = True
+          OptionsView.GroupByBox = False
+          object cxGridDBColumn130: TcxGridDBColumn
+            DataBinding.FieldName = 'id'
+          end
+          object cxGridDBColumn131: TcxGridDBColumn
+            DataBinding.FieldName = 'id_dp'
+          end
+          object cxGridDBColumn132: TcxGridDBColumn
+            DataBinding.FieldName = 'valor_recto'
+          end
+          object cxGridDBColumn133: TcxGridDBColumn
+            DataBinding.FieldName = 'juros'
+          end
+          object cxGridDBColumn134: TcxGridDBColumn
+            DataBinding.FieldName = 'descontos'
+          end
+          object cxGridDBColumn135: TcxGridDBColumn
+            DataBinding.FieldName = 'data_recto'
+          end
+          object cxGridDBColumn136: TcxGridDBColumn
+            DataBinding.FieldName = 'obs'
+          end
+        end
+        object cxGridLevel17: TcxGridLevel
+          GridView = cxGridDBTableView33
+        end
+      end
+      object RzPageControl10: TRzPageControl
+        Left = 0
+        Top = 323
+        Width = 1191
+        Height = 409
+        Hint = ''
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        ActivePage = RzTabSheet9
+        ActivePageDefault = RzTabSheet9
+        Align = alBottom
+        TabIndex = 0
+        TabOrder = 1
+        FixedDimension = 20
+        object RzTabSheet9: TRzTabSheet
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          Color = clSilver
+          Caption = 'Tabelas do Tray'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
+          object cxGrid16: TcxGrid
+            AlignWithMargins = True
+            Left = 2
+            Top = 2
+            Width = 1183
+            Height = 247
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alClient
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            BorderStyle = cxcbsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            LookAndFeel.Kind = lfOffice11
+            object cxGridDBTableView35: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              Navigator.Buttons.Insert.Visible = False
+              Navigator.Buttons.Append.Visible = True
+              Navigator.Buttons.Delete.Visible = False
+              Navigator.Buttons.SaveBookmark.Visible = False
+              Navigator.Buttons.GotoBookmark.Visible = False
+              Navigator.Buttons.Filter.Visible = False
+              DataController.DataModeController.GridMode = True
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Kind = skSum
+                end
+                item
+                  Format = ',0.00'
+                  Kind = skSum
+                end>
+              DataController.Summary.SummaryGroups = <>
+              NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+              OptionsBehavior.FocusCellOnTab = True
+              OptionsBehavior.FocusFirstCellOnNewRecord = True
+              OptionsBehavior.GoToNextCellOnEnter = True
+              OptionsBehavior.ImmediateEditor = False
+              OptionsCustomize.ColumnFiltering = False
+              OptionsCustomize.ColumnHiding = True
+              OptionsCustomize.ColumnSorting = False
+              OptionsData.Editing = False
+              OptionsView.DataRowHeight = 23
+              OptionsView.GridLineColor = 15658734
+              OptionsView.GroupByBox = False
+              OptionsView.HeaderHeight = 21
+              OptionsView.Indicator = True
+              Styles.Header = DD.Trebuchet10negrito
+              object cxGridDBTableView35id: TcxGridDBColumn
+                Caption = 'ID'
+                DataBinding.FieldName = 'id'
+                HeaderAlignmentHorz = taCenter
+              end
+              object cxGridDBTableView35nome: TcxGridDBColumn
+                Caption = 'Nome'
+                DataBinding.FieldName = 'nome'
+                HeaderAlignmentHorz = taCenter
+                Width = 261
+              end
+              object cxGridDBTableView35valor_minimo: TcxGridDBColumn
+                Caption = 'Valor/M'#237'nimo'
+                DataBinding.FieldName = 'valor_minimo'
+                HeaderAlignmentHorz = taCenter
+                Width = 109
+              end
+              object cxGridDBTableView35excluido: TcxGridDBColumn
+                Caption = 'Exclu'#237'do'
+                DataBinding.FieldName = 'excluido'
+                HeaderAlignmentHorz = taCenter
+                Width = 103
+              end
+              object cxGridDBTableView35ultima_alteracao: TcxGridDBColumn
+                Caption = #218'ltima Altera'#231#227'o'
+                DataBinding.FieldName = 'ultima_alteracao'
+                HeaderAlignmentHorz = taCenter
+                Width = 151
+              end
+            end
+            object cxGridDBTableView36: TcxGridDBTableView
+              Navigator.Buttons.CustomButtons = <>
+              DataController.DetailKeyFieldNames = 'id_dp'
+              DataController.MasterKeyFieldNames = 'id'
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <
+                item
+                  Kind = skSum
+                  Column = cxGridDBColumn148
+                end>
+              DataController.Summary.SummaryGroups = <>
+              OptionsCustomize.ColumnFiltering = False
+              OptionsView.Footer = True
+              OptionsView.GroupByBox = False
+              object cxGridDBColumn146: TcxGridDBColumn
+                DataBinding.FieldName = 'id'
+              end
+              object cxGridDBColumn147: TcxGridDBColumn
+                DataBinding.FieldName = 'id_dp'
+              end
+              object cxGridDBColumn148: TcxGridDBColumn
+                DataBinding.FieldName = 'valor_recto'
+              end
+              object cxGridDBColumn149: TcxGridDBColumn
+                DataBinding.FieldName = 'juros'
+              end
+              object cxGridDBColumn150: TcxGridDBColumn
+                DataBinding.FieldName = 'descontos'
+              end
+              object cxGridDBColumn151: TcxGridDBColumn
+                DataBinding.FieldName = 'data_recto'
+              end
+              object cxGridDBColumn152: TcxGridDBColumn
+                DataBinding.FieldName = 'obs'
+              end
+            end
+            object cxGridLevel18: TcxGridLevel
+              GridView = cxGridDBTableView35
+            end
+          end
+          object JSONplanosTray: TRzMemo
+            AlignWithMargins = True
+            Left = 2
+            Top = 293
+            Width = 1183
+            Height = 90
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alBottom
+            BorderStyle = bsNone
+            Color = clInfoBk
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -8
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 1
+            WordWrap = False
+          end
+          object RzPanel17: TRzPanel
+            Left = 0
+            Top = 251
+            Width = 1187
+            Height = 40
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alBottom
+            BorderOuter = fsNone
+            BorderColor = 15770519
+            BorderWidth = 3
+            Color = 15770519
+            TabOrder = 2
+            object btnAtualizarPlanos: TRzButton
+              Left = 3
+              Top = 3
+              Width = 84
+              Height = 34
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Atualizar'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 0
+            end
+            object btnIncluirPlanoUnico: TRzButton
+              Left = 87
+              Top = 3
+              Width = 126
+              Height = 34
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Incluir 1 Tabela MP'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 1
+            end
+            object btnAlterarPlanoUnico: TRzButton
+              Left = 213
+              Top = 3
+              Width = 124
+              Height = 34
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Alterar 1 Tabela MP'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 2
+            end
+            object btnAlterarTudoPlano: TRzButton
+              Left = 337
+              Top = 3
+              Width = 122
+              Height = 34
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'ALTERAR TUDO'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 3
+            end
+            object ExcluirCondPgtoMP: TRzButton
+              Left = 1038
+              Top = 3
+              Width = 146
+              Height = 34
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alRight
+              Caption = 'EXCLUIR NO MP'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clRed
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 4
+            end
+            object RzButton14: TRzButton
+              Left = 459
+              Top = 3
+              Width = 166
+              Height = 34
+              Margins.Left = 2
+              Margins.Top = 2
+              Margins.Right = 2
+              Margins.Bottom = 2
+              FrameColor = 7617536
+              Align = alLeft
+              Caption = 'Relacionar Tray <> BM'
+              Color = 15791348
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              HotTrack = True
+              ParentFont = False
+              TabOrder = 5
+            end
+          end
+        end
+      end
+    end
+    object TabSheet11: TRzTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
+      Caption = 'Pedidos'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object cxGrid19: TcxGrid
+        AlignWithMargins = True
+        Left = 2
+        Top = 2
+        Width = 1187
+        Height = 231
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alTop
+        BorderStyle = cxcbsNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        LookAndFeel.Kind = lfOffice11
+        object cxGridDBTableView41: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          Navigator.Buttons.Insert.Visible = False
+          Navigator.Buttons.Append.Visible = True
+          Navigator.Buttons.Delete.Visible = False
+          Navigator.Buttons.SaveBookmark.Visible = False
+          Navigator.Buttons.GotoBookmark.Visible = False
+          Navigator.Buttons.Filter.Visible = False
+          DataController.DataModeController.GridMode = True
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Format = ',0.00'
+              Kind = skSum
+            end>
+          DataController.Summary.SummaryGroups = <>
+          NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+          OptionsBehavior.FocusCellOnTab = True
+          OptionsBehavior.FocusFirstCellOnNewRecord = True
+          OptionsBehavior.GoToNextCellOnEnter = True
+          OptionsBehavior.ImmediateEditor = False
+          OptionsCustomize.ColumnFiltering = False
+          OptionsCustomize.ColumnHiding = True
+          OptionsCustomize.ColumnSorting = False
+          OptionsView.DataRowHeight = 23
+          OptionsView.GridLineColor = 15658734
+          OptionsView.GroupByBox = False
+          OptionsView.HeaderHeight = 21
+          OptionsView.Indicator = True
+          Styles.Header = DD.Trebuchet10negrito
+          object cxGridDBTableView41atualizar: TcxGridDBColumn
+            Caption = 'Atualizar'
+            DataBinding.FieldName = 'atualizar'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 115
+          end
+          object cxGridDBTableView41empresa_id: TcxGridDBColumn
+            Caption = 'Empresa ID'
+            DataBinding.FieldName = 'empresa_id'
+            PropertiesClassName = 'TcxCurrencyEditProperties'
+            Properties.Alignment.Horz = taCenter
+            Properties.DecimalPlaces = 0
+            Properties.DisplayFormat = '0'
+            HeaderAlignmentHorz = taCenter
+            Width = 96
+          end
+          object cxGridDBTableView41status: TcxGridDBColumn
+            Caption = 'Status'
+            DataBinding.FieldName = 'status'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 94
+          end
+          object cxGridDBTableView41ultima_alteracao: TcxGridDBColumn
+            Caption = #218'ltima Altera'#231#227'o'
+            DataBinding.FieldName = 'ultima_alteracao'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView41data_emissao: TcxGridDBColumn
+            Caption = 'Emiss'#227'o'
+            DataBinding.FieldName = 'data_emissao'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 110
+          end
+          object cxGridDBTableView41id: TcxGridDBColumn
+            Caption = 'ID'
+            DataBinding.FieldName = 'id'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView41cliente_id: TcxGridDBColumn
+            Caption = 'ID/Cliente/MP'
+            DataBinding.FieldName = 'cliente_id'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 107
+          end
+          object cxGridDBTableView41cliente_idBM: TcxGridDBColumn
+            Caption = 'ID/Cliente/BM'
+            DataBinding.FieldName = 'cliente_idBM'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 119
+          end
+          object cxGridDBTableView41cliente_razao_social: TcxGridDBColumn
+            Caption = 'Raz'#227'o Social'
+            DataBinding.FieldName = 'cliente_razao_social'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 400
+          end
+          object cxGridDBTableView41cliente_nome_fantasia: TcxGridDBColumn
+            Caption = 'Nome/Fantasia'
+            DataBinding.FieldName = 'cliente_nome_fantasia'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView41condicao_pagamento: TcxGridDBColumn
+            Caption = 'Condi'#231#227'o/Pagamento'
+            DataBinding.FieldName = 'condicao_pagamento'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 250
+          end
+          object cxGridDBTableView41total: TcxGridDBColumn
+            Caption = 'Total'
+            DataBinding.FieldName = 'total'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 133
+          end
+          object cxGridDBTableView41transportadora_id: TcxGridDBColumn
+            Caption = 'ID/Transportadora'
+            DataBinding.FieldName = 'transportadora_id'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 157
+          end
+          object cxGridDBTableView41criador_id: TcxGridDBColumn
+            Caption = 'ID/Criador'
+            DataBinding.FieldName = 'criador_id'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView41nome_contato: TcxGridDBColumn
+            Caption = 'Contato'
+            DataBinding.FieldName = 'nome_contato'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+          end
+          object cxGridDBTableView41campoExtra_desconto: TcxGridDBColumn
+            Caption = 'Desconto/Geral'
+            DataBinding.FieldName = 'campoExtra_desconto'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 159
+          end
+          object cxGridDBTableView41campoExtra_pedidoVendedor: TcxGridDBColumn
+            Caption = 'Pedido/Vendedor'
+            DataBinding.FieldName = 'campoExtra_pedidoVendedor'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 218
+          end
+          object cxGridDBTableView41condicao_pagamento_id: TcxGridDBColumn
+            Caption = 'ID/Cond/Pagto/MP'
+            DataBinding.FieldName = 'condicao_pagamento_id'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 166
+          end
+          object cxGridDBTableView41condicao_pagamento_idBM: TcxGridDBColumn
+            Caption = 'ID/Cond/Pagto/BM'
+            DataBinding.FieldName = 'condicao_pagamento_idBM'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 188
+          end
+          object cxGridDBTableView41observacoes: TcxGridDBColumn
+            Caption = 'Observa'#231#245'es'
+            DataBinding.FieldName = 'observacoes'
+            HeaderAlignmentHorz = taCenter
+            Options.Editing = False
+            Width = 400
+          end
+        end
+        object cxGridDBTableView42: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          DataController.DetailKeyFieldNames = 'id_dp'
+          DataController.MasterKeyFieldNames = 'id'
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+              Column = cxGridDBColumn158
+            end>
+          DataController.Summary.SummaryGroups = <>
+          OptionsCustomize.ColumnFiltering = False
+          OptionsView.Footer = True
+          OptionsView.GroupByBox = False
+          object cxGridDBColumn142: TcxGridDBColumn
+            DataBinding.FieldName = 'id'
+          end
+          object cxGridDBColumn157: TcxGridDBColumn
+            DataBinding.FieldName = 'id_dp'
+          end
+          object cxGridDBColumn158: TcxGridDBColumn
+            DataBinding.FieldName = 'valor_recto'
+          end
+          object cxGridDBColumn159: TcxGridDBColumn
+            DataBinding.FieldName = 'juros'
+          end
+          object cxGridDBColumn160: TcxGridDBColumn
+            DataBinding.FieldName = 'descontos'
+          end
+          object cxGridDBColumn161: TcxGridDBColumn
+            DataBinding.FieldName = 'data_recto'
+          end
+          object cxGridDBColumn162: TcxGridDBColumn
+            DataBinding.FieldName = 'obs'
+          end
+        end
+        object cxGridLevel21: TcxGridLevel
+          GridView = cxGridDBTableView41
+        end
+      end
+      object cxGrid20: TcxGrid
+        AlignWithMargins = True
+        Left = 2
+        Top = 237
+        Width = 1187
+        Height = 356
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alClient
+        BorderStyle = cxcbsNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 1
+        LookAndFeel.Kind = lfOffice11
+        object cxGridDBTableView43: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          Navigator.Buttons.Insert.Visible = False
+          Navigator.Buttons.Append.Visible = True
+          Navigator.Buttons.Delete.Visible = False
+          Navigator.Buttons.SaveBookmark.Visible = False
+          Navigator.Buttons.GotoBookmark.Visible = False
+          Navigator.Buttons.Filter.Visible = False
+          DataController.DataModeController.GridMode = True
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Format = ',0.00'
+              Kind = skSum
+            end>
+          DataController.Summary.SummaryGroups = <>
+          NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+          OptionsBehavior.FocusCellOnTab = True
+          OptionsBehavior.FocusFirstCellOnNewRecord = True
+          OptionsBehavior.GoToNextCellOnEnter = True
+          OptionsBehavior.ImmediateEditor = False
+          OptionsCustomize.ColumnFiltering = False
+          OptionsCustomize.ColumnHiding = True
+          OptionsCustomize.ColumnSorting = False
+          OptionsData.Editing = False
+          OptionsView.DataRowHeight = 23
+          OptionsView.GridLineColor = 15658734
+          OptionsView.GroupByBox = False
+          OptionsView.HeaderHeight = 21
+          OptionsView.Indicator = True
+          Styles.Header = DD.Trebuchet10negrito
+          object cxGridDBTableView43atualizar: TcxGridDBColumn
+            Caption = 'Atualizar'
+            DataBinding.FieldName = 'atualizar'
+            HeaderAlignmentHorz = taCenter
+            Width = 83
+          end
+          object cxGridDBTableView43id: TcxGridDBColumn
+            Caption = 'ID'
+            DataBinding.FieldName = 'id'
+            HeaderAlignmentHorz = taCenter
+            Width = 59
+          end
+          object cxGridDBTableView43produto_id: TcxGridDBColumn
+            Caption = 'ID/Produto/MP'
+            DataBinding.FieldName = 'produto_id'
+            HeaderAlignmentHorz = taCenter
+            Width = 108
+          end
+          object cxGridDBTableView43produto_idBM: TcxGridDBColumn
+            Caption = 'ID/Produto/BM'
+            DataBinding.FieldName = 'produto_idBM'
+            HeaderAlignmentHorz = taCenter
+            Width = 117
+          end
+          object cxGridDBTableView43produto_idBMref: TcxGridDBColumn
+            Caption = 'ID/Prod/Ref/BM'
+            DataBinding.FieldName = 'produto_idBMref'
+            HeaderAlignmentHorz = taCenter
+            Width = 131
+          end
+          object cxGridDBTableView43produto_codigo: TcxGridDBColumn
+            Caption = 'Produto/C'#243'digo'
+            DataBinding.FieldName = 'produto_codigo'
+            HeaderAlignmentHorz = taCenter
+            Width = 119
+          end
+          object cxGridDBTableView43produto_nome: TcxGridDBColumn
+            Caption = 'Produto/Descri'#231#227'o'
+            DataBinding.FieldName = 'produto_nome'
+            HeaderAlignmentHorz = taCenter
+            Width = 343
+          end
+          object cxGridDBTableView43tabela_preco_id: TcxGridDBColumn
+            Caption = 'ID/Tabela'
+            DataBinding.FieldName = 'tabela_preco_id'
+            HeaderAlignmentHorz = taCenter
+            Width = 135
+          end
+          object cxGridDBTableView43quantidade: TcxGridDBColumn
+            Caption = 'Qtdade.'
+            DataBinding.FieldName = 'quantidade'
+            HeaderAlignmentHorz = taCenter
+            Width = 114
+          end
+          object cxGridDBTableView43preco_bruto: TcxGridDBColumn
+            Caption = 'Pre'#231'o Tabela'
+            DataBinding.FieldName = 'preco_bruto'
+            HeaderAlignmentHorz = taCenter
+            Width = 106
+          end
+          object cxGridDBTableView43descontos_perc: TcxGridDBColumn
+            Caption = '% Desconto'
+            DataBinding.FieldName = 'descontos_perc'
+            HeaderAlignmentHorz = taCenter
+            Width = 120
+          end
+          object cxGridDBTableView43descontos_valor: TcxGridDBColumn
+            Caption = 'R$ Desconto'
+            DataBinding.FieldName = 'descontos_valor'
+            HeaderAlignmentHorz = taCenter
+            Width = 129
+          end
+          object cxGridDBTableView43preco_liquido: TcxGridDBColumn
+            Caption = 'Pre'#231'o/L'#237'quido'
+            DataBinding.FieldName = 'preco_liquido'
+            HeaderAlignmentHorz = taCenter
+            Width = 110
+          end
+          object cxGridDBTableView43subtotal: TcxGridDBColumn
+            Caption = 'SubTotal'
+            DataBinding.FieldName = 'subtotal'
+            HeaderAlignmentHorz = taCenter
+            Width = 89
+          end
+          object cxGridDBTableView43observacoes: TcxGridDBColumn
+            Caption = 'Observa'#231#245'es'
+            DataBinding.FieldName = 'observacoes'
+            HeaderAlignmentHorz = taCenter
+            Width = 400
+          end
+          object cxGridDBTableView43excluido: TcxGridDBColumn
+            Caption = 'Exclu'#237'do'
+            DataBinding.FieldName = 'excluido'
+            HeaderAlignmentHorz = taCenter
+            Width = 77
+          end
+          object cxGridDBTableView43ipi: TcxGridDBColumn
+            Caption = 'IPI'
+            DataBinding.FieldName = 'ipi'
+            HeaderAlignmentHorz = taCenter
+          end
+          object cxGridDBTableView43tipo_ipi: TcxGridDBColumn
+            Caption = 'Tipo/IPI'
+            DataBinding.FieldName = 'tipo_ipi'
+            HeaderAlignmentHorz = taCenter
+            Width = 70
+          end
+          object cxGridDBTableView43st: TcxGridDBColumn
+            Caption = 'ST'
+            DataBinding.FieldName = 'st'
+            HeaderAlignmentHorz = taCenter
+          end
+        end
+        object cxGridDBTableView44: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          DataController.DetailKeyFieldNames = 'id_dp'
+          DataController.MasterKeyFieldNames = 'id'
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+              Column = cxGridDBColumn176
+            end>
+          DataController.Summary.SummaryGroups = <>
+          OptionsCustomize.ColumnFiltering = False
+          OptionsView.Footer = True
+          OptionsView.GroupByBox = False
+          object cxGridDBColumn174: TcxGridDBColumn
+            DataBinding.FieldName = 'id'
+          end
+          object cxGridDBColumn175: TcxGridDBColumn
+            DataBinding.FieldName = 'id_dp'
+          end
+          object cxGridDBColumn176: TcxGridDBColumn
+            DataBinding.FieldName = 'valor_recto'
+          end
+          object cxGridDBColumn177: TcxGridDBColumn
+            DataBinding.FieldName = 'juros'
+          end
+          object cxGridDBColumn178: TcxGridDBColumn
+            DataBinding.FieldName = 'descontos'
+          end
+          object cxGridDBColumn179: TcxGridDBColumn
+            DataBinding.FieldName = 'data_recto'
+          end
+          object cxGridDBColumn180: TcxGridDBColumn
+            DataBinding.FieldName = 'obs'
+          end
+        end
+        object cxGridLevel22: TcxGridLevel
+          GridView = cxGridDBTableView43
+        end
+      end
+      object RzPanel19: TRzPanel
+        Left = 0
+        Top = 595
+        Width = 1191
+        Height = 41
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderOuter = fsNone
+        BorderColor = 15770519
+        BorderWidth = 3
+        Color = 15770519
+        TabOrder = 2
+        object btnAtualizarPedidos: TRzButton
+          Left = 3
+          Top = 3
+          Width = 84
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Atualizar'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 0
+          OnClick = btnAtualizarPedidosClick
+        end
+        object btnIncluirPedidoBM: TRzButton
+          Left = 87
+          Top = 3
+          Width = 126
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Incluir 1 Tabela BM'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 1
+        end
+        object btnAlterarTudoPedidos: TRzButton
+          Left = 213
+          Top = 3
+          Width = 122
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'ALTERAR TUDO'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 2
+        end
+        object btnTodosHoje: TRzButton
+          Left = 1026
+          Top = 3
+          Width = 162
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alRight
+          Caption = 'SETAR DATA HOJE'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clRed
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 3
+        end
+        object btnBuscarTodosMes: TRzButton
+          Left = 698
+          Top = 3
+          Width = 163
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alRight
+          Caption = 'SETAR DATA INICIO M'#202'S'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clRed
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 4
+          OnClick = btnBuscarTodosMesClick
+        end
+        object RzButton4: TRzButton
+          Left = 536
+          Top = 3
+          Width = 162
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alRight
+          Caption = 'LIMPAR ID/MP NO BM'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clRed
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 5
+        end
+        object btnTodosDesdeOntem: TRzButton
+          Left = 861
+          Top = 3
+          Width = 165
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alRight
+          Caption = 'SETAR DATA ONTEM'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clRed
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 6
+        end
+      end
+      object JSONpedidosTray: TRzMemo
+        AlignWithMargins = True
+        Left = 2
+        Top = 638
+        Width = 1187
+        Height = 92
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderStyle = bsNone
+        Color = clInfoBk
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -8
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 3
+        WordWrap = False
+      end
+    end
+    object TabSheet13: TRzTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
+      Caption = 'Faturamento'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object cxGrid2: TcxGrid
+        AlignWithMargins = True
+        Left = 2
+        Top = 2
+        Width = 1187
+        Height = 687
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alClient
+        BorderStyle = cxcbsNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        LookAndFeel.Kind = lfOffice11
+        object cxGridDBTableView7: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          Navigator.Buttons.Insert.Visible = False
+          Navigator.Buttons.Append.Visible = True
+          Navigator.Buttons.Delete.Visible = False
+          Navigator.Buttons.SaveBookmark.Visible = False
+          Navigator.Buttons.GotoBookmark.Visible = False
+          Navigator.Buttons.Filter.Visible = False
+          DataController.DataModeController.GridMode = True
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Kind = skSum
+            end
+            item
+              Format = ',0.00'
+              Kind = skSum
+            end>
+          DataController.Summary.SummaryGroups = <>
+          NewItemRow.InfoText = 'Clique aqui para adicionar nova duplicata'
+          OptionsBehavior.FocusCellOnTab = True
+          OptionsBehavior.FocusFirstCellOnNewRecord = True
+          OptionsBehavior.GoToNextCellOnEnter = True
+          OptionsBehavior.ImmediateEditor = False
+          OptionsCustomize.ColumnFiltering = False
+          OptionsCustomize.ColumnHiding = True
+          OptionsCustomize.ColumnSorting = False
+          OptionsData.Editing = False
+          OptionsView.DataRowHeight = 23
+          OptionsView.GridLineColor = 15658734
+          OptionsView.GroupByBox = False
+          OptionsView.HeaderHeight = 21
+          OptionsView.Indicator = True
+          Styles.Header = DD.Trebuchet10negrito
+          object cxGridDBTableView7ATUALIZAR: TcxGridDBColumn
+            Caption = 'Atualizar'
+            DataBinding.FieldName = 'ATUALIZAR'
+            HeaderAlignmentHorz = taCenter
+            Width = 104
+          end
+          object cxGridDBTableView7ERRO_CODIGO: TcxGridDBColumn
+            Caption = 'Erro/C'#243'digo'
+            DataBinding.FieldName = 'ERRO_CODIGO'
+            HeaderAlignmentHorz = taCenter
+            Width = 102
+          end
+          object cxGridDBTableView7ID_ORCAMENTOM: TcxGridDBColumn
+            Caption = 'ID/orcamentoM'
+            DataBinding.FieldName = 'ID_ORCAMENTOM'
+            HeaderAlignmentHorz = taCenter
+            Width = 122
+          end
+          object cxGridDBTableView7NUMERO_DAV: TcxGridDBColumn
+            Caption = 'N'#250'mero/DAV'
+            DataBinding.FieldName = 'NUMERO_DAV'
+            HeaderAlignmentHorz = taCenter
+            Width = 134
+          end
+          object cxGridDBTableView7ID_MP: TcxGridDBColumn
+            Caption = 'ID/MP'
+            DataBinding.FieldName = 'ID_MP'
+            HeaderAlignmentHorz = taCenter
+          end
+          object cxGridDBTableView7ID_NF: TcxGridDBColumn
+            Caption = 'ID/NF'
+            DataBinding.FieldName = 'ID_NF'
+            HeaderAlignmentHorz = taCenter
+            Width = 85
+          end
+          object cxGridDBTableView7SERIE_NF: TcxGridDBColumn
+            Caption = 'S'#233'rie/NF'
+            DataBinding.FieldName = 'SERIE_NF'
+            HeaderAlignmentHorz = taCenter
+            Width = 84
+          end
+          object cxGridDBTableView7NUMERO_NF: TcxGridDBColumn
+            Caption = 'N'#250'mero/NF'
+            DataBinding.FieldName = 'NUMERO_NF'
+            HeaderAlignmentHorz = taCenter
+            Width = 113
+          end
+          object cxGridDBTableView7DATA_EMISSAO_NF: TcxGridDBColumn
+            Caption = 'Data/Emiss'#227'o'
+            DataBinding.FieldName = 'DATA_EMISSAO_NF'
+            HeaderAlignmentHorz = taCenter
+            Width = 132
+          end
+          object cxGridDBTableView7TOTAL_NF: TcxGridDBColumn
+            Caption = 'Total/NF'
+            DataBinding.FieldName = 'TOTAL_NF'
+            HeaderAlignmentHorz = taCenter
+          end
+          object cxGridDBTableView7IDPEDIDOBM: TcxGridDBColumn
+            Caption = 'ID/Pedido/BM'
+            DataBinding.FieldName = 'IDPEDIDOBM'
+            HeaderAlignmentHorz = taCenter
+            Width = 102
+          end
+          object cxGridDBTableView7IDPEDIDOMP: TcxGridDBColumn
+            Caption = 'ID/Pedido/MP'
+            DataBinding.FieldName = 'IDPEDIDOMP'
+            HeaderAlignmentHorz = taCenter
+            Width = 105
+          end
+          object cxGridDBTableView7HASH: TcxGridDBColumn
+            DataBinding.FieldName = 'HASH'
+            HeaderAlignmentHorz = taCenter
+            Width = 74
+          end
+          object cxGridDBTableView7HASH_NOVO: TcxGridDBColumn
+            Caption = 'HASH/Novo'
+            DataBinding.FieldName = 'HASH_NOVO'
+            HeaderAlignmentHorz = taCenter
+            Width = 96
+          end
+          object cxGridDBTableView7ERRO_JSON: TcxGridDBColumn
+            Caption = 'Erro/JSON'
+            DataBinding.FieldName = 'ERRO_JSON'
+            HeaderAlignmentHorz = taCenter
+            Width = 400
+          end
+        end
+        object cxGridDBTableView8: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          DataController.DetailKeyFieldNames = 'id_dp'
+          DataController.MasterKeyFieldNames = 'id'
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <
+            item
+              Kind = skSum
+              Column = cxGridDBColumn141
+            end>
+          DataController.Summary.SummaryGroups = <>
+          OptionsCustomize.ColumnFiltering = False
+          OptionsView.Footer = True
+          OptionsView.GroupByBox = False
+          object cxGridDBColumn139: TcxGridDBColumn
+            DataBinding.FieldName = 'id'
+          end
+          object cxGridDBColumn140: TcxGridDBColumn
+            DataBinding.FieldName = 'id_dp'
+          end
+          object cxGridDBColumn141: TcxGridDBColumn
+            DataBinding.FieldName = 'valor_recto'
+          end
+          object cxGridDBColumn170: TcxGridDBColumn
+            DataBinding.FieldName = 'juros'
+          end
+          object cxGridDBColumn171: TcxGridDBColumn
+            DataBinding.FieldName = 'descontos'
+          end
+          object cxGridDBColumn172: TcxGridDBColumn
+            DataBinding.FieldName = 'data_recto'
+          end
+          object cxGridDBColumn173: TcxGridDBColumn
+            DataBinding.FieldName = 'obs'
+          end
+        end
+        object cxGridLevel4: TcxGridLevel
+          GridView = cxGridDBTableView7
+        end
+      end
+      object RzPanel21: TRzPanel
+        Left = 0
+        Top = 691
+        Width = 1191
+        Height = 41
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderOuter = fsNone
+        BorderColor = 15770519
+        BorderWidth = 3
+        Color = 15770519
+        TabOrder = 1
+        object btnAtualizarFatur: TRzButton
+          Left = 3
+          Top = 3
+          Width = 84
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Atualizar'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 0
+        end
+        object btnIncluirFaturUnico: TRzButton
+          Left = 87
+          Top = 3
+          Width = 126
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Incluir 1 Tabela MP'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 1
+        end
+        object btnAlterarTudoFatur: TRzButton
+          Left = 213
+          Top = 3
+          Width = 122
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'ALTERAR TUDO'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 2
+        end
+        object RzButton1: TRzButton
+          Left = 335
+          Top = 3
+          Width = 121
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'HASH'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 3
+          Visible = False
+        end
+      end
+    end
+    object Marcas: TRzTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
+      Caption = 'Marcas'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object DBGrid1: TDBGrid
+        Left = 0
+        Top = 0
+        Width = 1191
+        Height = 477
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alClient
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -12
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+      end
+      object RzPanel12: TRzPanel
+        Left = 0
+        Top = 477
+        Width = 1191
+        Height = 41
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderOuter = fsNone
+        BorderColor = 15770519
+        BorderWidth = 3
+        Color = 15770519
+        TabOrder = 1
+        object btn_get_marcas: TRzButton
+          Left = 87
+          Top = 3
+          Width = 82
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Get Marcas'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 0
+          OnClick = btn_get_marcasClick
+        end
+        object btn_gerar_token: TRzButton
+          Left = 3
+          Top = 3
+          Width = 84
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Gerar Token'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 1
+          OnClick = btn_gerar_tokenClick
+        end
+      end
+      object JSONtray_marcas: TRzMemo
+        AlignWithMargins = True
+        Left = 2
+        Top = 564
+        Width = 1187
+        Height = 166
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderStyle = bsNone
+        Color = clInfoBk
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -8
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 2
+        WordWrap = False
+      end
+      object tray_token: TEdit
+        Left = 0
+        Top = 540
+        Width = 1191
+        Height = 22
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        TabOrder = 3
+      end
+      object tray_refresh: TEdit
+        Left = 0
+        Top = 518
+        Width = 1191
+        Height = 22
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        TabOrder = 4
+      end
+    end
+    object Categorias: TRzTabSheet
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
+      Caption = 'Categorias'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object JSONtray_categorias: TRzMemo
+        AlignWithMargins = True
+        Left = 2
+        Top = 564
+        Width = 1187
+        Height = 166
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderStyle = bsNone
+        Color = clInfoBk
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -8
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 0
+        WordWrap = False
+      end
+      object RzPanel18: TRzPanel
+        Left = 0
+        Top = 477
+        Width = 1191
+        Height = 41
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderOuter = fsNone
+        BorderColor = 15770519
+        BorderWidth = 3
+        Color = 15770519
+        TabOrder = 1
+        object RzButton16: TRzButton
+          Left = 87
+          Top = 3
+          Width = 97
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Get Categorias'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 0
+          OnClick = RzButton16Click
+        end
+        object RzButton17: TRzButton
+          Left = 3
+          Top = 3
+          Width = 84
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Gerar Token'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 1
+          OnClick = RzButton17Click
+        end
+      end
+      object tray_refresh_categorias: TEdit
+        Left = 0
+        Top = 540
+        Width = 1191
+        Height = 22
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        TabOrder = 2
+      end
+      object tray_token_categorias: TEdit
+        Left = 0
+        Top = 518
+        Width = 1191
+        Height = 22
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        TabOrder = 3
+      end
+      object DBGrid3: TDBGrid
+        Left = 0
+        Top = 0
+        Width = 1191
+        Height = 477
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alClient
+        TabOrder = 4
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -12
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+      end
+    end
+    object Produtos: TRzTabSheet
+      Margins.Left = 5
+      Margins.Top = 5
+      Margins.Right = 5
+      Margins.Bottom = 5
+      Caption = 'Produtos'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object DBGrid4: TDBGrid
+        Left = 0
+        Top = 0
+        Width = 1191
+        Height = 477
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alClient
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -12
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+      end
+      object tray_refresh_produtos: TEdit
+        Left = 0
+        Top = 540
+        Width = 1191
+        Height = 22
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        TabOrder = 1
+      end
+      object tray_token_produtos: TEdit
+        Left = 0
+        Top = 518
+        Width = 1191
+        Height = 22
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        TabOrder = 2
+      end
+      object RzPanel20: TRzPanel
+        Left = 0
+        Top = 477
+        Width = 1191
+        Height = 41
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderOuter = fsNone
+        BorderColor = 15770519
+        BorderWidth = 3
+        Color = 15770519
+        TabOrder = 3
+        object RzButton18: TRzButton
+          Left = 87
+          Top = 3
+          Width = 97
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Get Produtos'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 0
+          OnClick = RzButton18Click
+        end
+        object RzButton19: TRzButton
+          Left = 3
+          Top = 3
+          Width = 84
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Gerar Token'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 1
+          OnClick = RzButton19Click
+        end
+      end
+      object JSONtray_produtos: TRzMemo
+        AlignWithMargins = True
+        Left = 2
+        Top = 564
+        Width = 1187
+        Height = 166
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderStyle = bsNone
+        Color = clInfoBk
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -8
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 4
+        WordWrap = False
+      end
+    end
+    object TabSheet7: TRzTabSheet
+      Caption = 'Marcas - Exportar'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object DBGrid5: TDBGrid
+        Left = 657
+        Top = 0
+        Width = 534
+        Height = 477
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alClient
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -12
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+      end
+      object RzPanel22: TRzPanel
+        Left = 0
+        Top = 477
+        Width = 1191
+        Height = 41
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderOuter = fsNone
+        BorderColor = 15770519
+        BorderWidth = 3
+        Color = 15770519
+        TabOrder = 1
+        object RzButton20: TRzButton
+          Left = 87
+          Top = 3
+          Width = 82
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Get Marcas'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 0
+          OnClick = RzButton20Click
+        end
+        object RzButton21: TRzButton
+          Left = 3
+          Top = 3
+          Width = 84
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Gerar Token'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 1
+          OnClick = RzButton21Click
+        end
+        object RzButton22: TRzButton
+          Left = 169
+          Top = 3
+          Width = 82
+          Height = 35
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          FrameColor = 7617536
+          Align = alLeft
+          Caption = 'Montar Json'
+          Color = 15791348
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          HotTrack = True
+          ParentFont = False
+          TabOrder = 2
+          OnClick = RzButton22Click
+        end
+      end
+      object tray_refresh_enviar: TEdit
+        Left = 0
+        Top = 540
+        Width = 1191
+        Height = 22
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        TabOrder = 2
+      end
+      object tray_token_enviar: TEdit
+        Left = 0
+        Top = 518
+        Width = 1191
+        Height = 22
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        TabOrder = 3
+      end
+      object JSONtray_marcas_enviar: TRzMemo
+        AlignWithMargins = True
+        Left = 2
+        Top = 564
+        Width = 1187
+        Height = 166
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alBottom
+        BorderStyle = bsNone
+        Color = clInfoBk
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -8
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 4
+        WordWrap = False
+      end
+      object DBGrid6: TDBGrid
+        Left = 0
+        Top = 0
+        Width = 593
+        Height = 477
+        Margins.Left = 2
+        Margins.Top = 2
+        Margins.Right = 2
+        Margins.Bottom = 2
+        Align = alLeft
+        DataSource = dtBMmarcas
+        TabOrder = 5
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -12
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+      end
+      object RzPanel23: TRzPanel
+        Left = 593
+        Top = 0
+        Width = 64
+        Height = 477
+        Align = alLeft
+        TabOrder = 6
+        object RzBitBtn1: TRzBitBtn
+          AlignWithMargins = True
+          Left = 5
+          Top = 36
+          Width = 54
+          Align = alTop
+          Caption = '<<'
+          TabOrder = 0
+          OnClick = RzBitBtn1Click
+        end
+        object RzBitBtn2: TRzBitBtn
+          AlignWithMargins = True
+          Left = 5
+          Top = 5
+          Width = 54
+          Align = alTop
+          Caption = '>>'
+          TabOrder = 1
+          OnClick = RzBitBtn2Click
+        end
+      end
+    end
+  end
+  object dtProdutos: TDataSource
+    DataSet = qrProdutos
+    Left = 1044
+    Top = 248
+  end
+  object qrProdutos: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT'
+      ''
+      '  '#39'OK'#39' ATUALIZAR,'
+      '  A.ID ID_PRO,'
+      '  B.ID ID_REF,  '
+      '  M.IDPRODBM,'
+      '  M.IDREFPRODBM,'
+      '  M.IDREFPRODMP,'
+      '  M.IDTABELAPRECO2,'
+      '  M.IDPRECO2MP,'
+      '  M.VALORPRECO2,'
+      '  M.IDTABELAPRECO3,'
+      '  M.IDPRECO3MP,'
+      '  M.VALORPRECO3,'
+      '  D.ID IDCLASSE,'
+      '  MC.IDCLASSEMP,'
+      '  B.REFERENCIA,'
+      '  A.DESCRICAO DESCRICAO_PRO,'
+      '  B.DESCRICAO DESCRICAO_REF,'
+      '  A.PRECOVENDA1 PRECO_TABELA,'
+      '  A.PRECOVENDA2 PRECOVENDA2,'
+      '  A.PRECOVENDA3 PRECOVENDA3,'
+      '  A.PRECO_MINIMO,'
+      '  0 IPI,'
+      '  '#39'P'#39' TIPO_IPI,'
+      '  0 ST,'
+      '  '#39#39' GRADE_CORES,'
+      '  '#39#39' GRADE_TAMANHOS,'
+      '  0 MOEDA,'
+      '  UNVENDA UNIDADE,'
+      '  ROUND(ESTOQUE,2) SALDO_ESTOQUE,'
+      '  CAST(TEXTO AS VARCHAR(500)) OBSERVACOES,'
+      '  DATA_ALT ULTIMA_ALTERACAO,'
+      '  FALSE EXCLUIDO,'
+      '  A.ATIVO='#39'S'#39' ATIVO,'
+      '  0 CATEGORIA_ID,'
+      '  SINTEGRA_NCM NCM,'
+      '  1 MULTIPLO,'
+      '  PESO_BRUTO,'
+      '  M.HASH,'
+      '  CAST('#39#39' AS VARCHAR(4)) HASH_NOVO,'
+      '  ULTIMA_ATIVIDADE,'
+      '  MENSAGEM,'
+      '  M.ERRO_CODIGO,'
+      '  M.ERRO_JSON  '
+      '  '
+      'FROM PRODUTOSPRINCIPAL A'
+      'LEFT JOIN PRODUTOSREFERENCIA B ON B.ID_PRODUTO = A.ID'
+      
+        'LEFT JOIN PRODUTOSREFEMPRESA C ON C.ID_REF = B.ID AND C.ID_EMPRE' +
+        'SA = 1'
+      'LEFT JOIN Tray_PRODUTOS M ON M.IDREFPRODBM = B.ID'
+      'LEFT JOIN PRODUTOSCLASSE D ON D.CLASSE = A.CLASSE'
+      'LEFT JOIN Tray_CATEGORIAS MC ON MC.IDCLASSEBM = D.ID'
+      ''
+      'WHERE EXPORTAPALM = '#39'S'#39
+      ''
+      'ORDER BY B.REFERENCIA')
+    Params = <>
+    Left = 1052
+    Top = 104
+    object qrProdutosATUALIZAR: TStringField
+      FieldName = 'ATUALIZAR'
+      Size = 2
+    end
+    object qrProdutosID_PRO: TAutoIncField
+      FieldName = 'ID_PRO'
+    end
+    object qrProdutosID_REF: TAutoIncField
+      FieldName = 'ID_REF'
+    end
+    object qrProdutosIDPRODBM: TIntegerField
+      FieldName = 'IDPRODBM'
+    end
+    object qrProdutosIDREFPRODBM: TIntegerField
+      FieldName = 'IDREFPRODBM'
+    end
+    object qrProdutosIDREFPRODMP: TIntegerField
+      FieldName = 'IDREFPRODMP'
+    end
+    object qrProdutosIDCLASSE: TAutoIncField
+      FieldName = 'IDCLASSE'
+    end
+    object qrProdutosIDCLASSEMP: TIntegerField
+      FieldName = 'IDCLASSEMP'
+    end
+    object qrProdutosREFERENCIA: TStringField
+      FieldName = 'REFERENCIA'
+    end
+    object qrProdutosDESCRICAO_PRO: TStringField
+      FieldName = 'DESCRICAO_PRO'
+      Size = 80
+    end
+    object qrProdutosDESCRICAO_REF: TStringField
+      FieldName = 'DESCRICAO_REF'
+      Size = 25
+    end
+    object qrProdutosPRECO_TABELA: TFloatField
+      FieldName = 'PRECO_TABELA'
+    end
+    object qrProdutosPRECO_MINIMO: TFloatField
+      FieldName = 'PRECO_MINIMO'
+    end
+    object qrProdutosIPI: TIntegerField
+      FieldName = 'IPI'
+    end
+    object qrProdutosTIPO_IPI: TStringField
+      FieldName = 'TIPO_IPI'
+      Size = 1
+    end
+    object qrProdutosST: TIntegerField
+      FieldName = 'ST'
+    end
+    object qrProdutosGRADE_CORES: TStringField
+      FieldName = 'GRADE_CORES'
+      Size = 512
+    end
+    object qrProdutosGRADE_TAMANHOS: TStringField
+      FieldName = 'GRADE_TAMANHOS'
+      Size = 512
+    end
+    object qrProdutosMOEDA: TIntegerField
+      FieldName = 'MOEDA'
+    end
+    object qrProdutosUNIDADE: TStringField
+      FieldName = 'UNIDADE'
+      Size = 6
+    end
+    object qrProdutosSALDO_ESTOQUE: TFloatField
+      FieldName = 'SALDO_ESTOQUE'
+    end
+    object qrProdutosOBSERVACOES: TStringField
+      FieldName = 'OBSERVACOES'
+      Size = 500
+    end
+    object qrProdutosULTIMA_ALTERACAO: TDateField
+      FieldName = 'ULTIMA_ALTERACAO'
+    end
+    object qrProdutosEXCLUIDO: TBooleanField
+      FieldName = 'EXCLUIDO'
+    end
+    object qrProdutosATIVO: TBooleanField
+      FieldName = 'ATIVO'
+    end
+    object qrProdutosCATEGORIA_ID: TIntegerField
+      FieldName = 'CATEGORIA_ID'
+    end
+    object qrProdutosNCM: TStringField
+      FieldName = 'NCM'
+      Size = 8
+    end
+    object qrProdutosMULTIPLO: TIntegerField
+      FieldName = 'MULTIPLO'
+    end
+    object qrProdutosPESO_BRUTO: TFloatField
+      FieldName = 'PESO_BRUTO'
+    end
+    object qrProdutosHASH: TStringField
+      FieldName = 'HASH'
+      Size = 4
+    end
+    object qrProdutosHASH_NOVO: TStringField
+      FieldName = 'HASH_NOVO'
+      Size = 4
+    end
+    object qrProdutosULTIMA_ATIVIDADE: TDateTimeField
+      FieldName = 'ULTIMA_ATIVIDADE'
+    end
+    object qrProdutosMENSAGEM: TStringField
+      FieldName = 'MENSAGEM'
+      Size = 200
+    end
+    object qrProdutosPRECOVENDA2: TFloatField
+      FieldName = 'PRECOVENDA2'
+    end
+    object qrProdutosPRECOVENDA3: TFloatField
+      FieldName = 'PRECOVENDA3'
+    end
+    object qrProdutosIDTABELAPRECO2: TIntegerField
+      FieldName = 'IDTABELAPRECO2'
+    end
+    object qrProdutosIDPRECO2MP: TIntegerField
+      FieldName = 'IDPRECO2MP'
+    end
+    object qrProdutosVALORPRECO2: TFloatField
+      FieldName = 'VALORPRECO2'
+    end
+    object qrProdutosIDTABELAPRECO3: TIntegerField
+      FieldName = 'IDTABELAPRECO3'
+    end
+    object qrProdutosIDPRECO3MP: TIntegerField
+      FieldName = 'IDPRECO3MP'
+    end
+    object qrProdutosVALORPRECO3: TFloatField
+      FieldName = 'VALORPRECO3'
+    end
+    object qrProdutosERRO_CODIGO: TStringField
+      FieldName = 'ERRO_CODIGO'
+      Size = 5
+    end
+    object qrProdutosERRO_JSON: TMemoField
+      FieldName = 'ERRO_JSON'
+      BlobType = ftMemo
+    end
+  end
+  object serverTray: TIdHTTP
+    AllowCookies = True
+    HandleRedirects = True
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.CacheControl = 'no-cache'
+    Request.ContentEncoding = 'utf-8'
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
+    Request.ContentType = 'application/json'
+    Request.Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Request.BasicAuthentication = False
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
+    HTTPOptions = [hoForceEncodeParams]
+    Left = 1052
+    Top = 53
+  end
+  object tempTrayProdutos: TDBISAMTable
+    DatabaseName = 'memory'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'tempTrayProdutos'
+    Left = 928
+    Top = 489
+    object tempTrayProdutosid: TIntegerField
+      FieldName = 'id'
+    end
+    object tempTrayProdutoscodigo: TStringField
+      FieldName = 'codigo'
+      Size = 50
+    end
+    object tempTrayProdutosnome: TStringField
+      FieldName = 'nome'
+      Size = 100
+    end
+    object tempTrayProdutosultima_alteracao: TDateTimeField
+      FieldName = 'ultima_alteracao'
+    end
+    object tempTrayProdutosexcluido: TBooleanField
+      FieldName = 'excluido'
+    end
+  end
+  object dtTempTrayProdutos: TDataSource
+    DataSet = tempTrayProdutos
+    Left = 1048
+    Top = 536
+  end
+  object tbTrayProdutos: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    Exclusive = True
+    TableName = 'TAB_PRODUTOS'
+    Left = 116
+    Top = 112
+    object tbTrayProdutosid_produto: TIntegerField
+      FieldName = 'id_produto'
+    end
+    object tbTrayProdutosean: TStringField
+      FieldName = 'ean'
+      Size = 100
+    end
+    object tbTrayProdutosmodifield: TDateField
+      FieldName = 'modifield'
+    end
+    object tbTrayProdutosslug: TStringField
+      FieldName = 'slug'
+      Size = 100
+    end
+    object tbTrayProdutosncm: TStringField
+      FieldName = 'ncm'
+      Size = 100
+    end
+    object tbTrayProdutosname: TStringField
+      FieldName = 'name'
+      Size = 500
+    end
+    object tbTrayProdutostitle: TStringField
+      FieldName = 'title'
+      Size = 100
+    end
+    object tbTrayProdutosdescription: TStringField
+      FieldName = 'description'
+      Size = 500
+    end
+    object tbTrayProdutosdescription_small: TStringField
+      FieldName = 'description_small'
+      Size = 100
+    end
+    object tbTrayProdutosprice: TFloatField
+      FieldName = 'price'
+    end
+    object tbTrayProdutoscost_price: TFloatField
+      FieldName = 'cost_price'
+    end
+    object tbTrayProdutospromotional_price: TFloatField
+      FieldName = 'promotional_price'
+    end
+    object tbTrayProdutosstart_promotion: TDateField
+      FieldName = 'start_promotion'
+    end
+    object tbTrayProdutosend_promotion: TDateField
+      FieldName = 'end_promotion'
+    end
+    object tbTrayProdutosbrand: TStringField
+      FieldName = 'brand'
+      Size = 100
+    end
+    object tbTrayProdutosmodel: TStringField
+      FieldName = 'model'
+      Size = 100
+    end
+    object tbTrayProdutosweight: TIntegerField
+      FieldName = 'weight'
+    end
+    object tbTrayProdutoslength: TIntegerField
+      FieldName = 'length'
+    end
+    object tbTrayProdutoswidth: TIntegerField
+      FieldName = 'width'
+    end
+    object tbTrayProdutosheight: TIntegerField
+      FieldName = 'height'
+    end
+    object tbTrayProdutoscubic_weight: TIntegerField
+      FieldName = 'cubic_weight'
+    end
+    object tbTrayProdutosstock: TIntegerField
+      FieldName = 'stock'
+    end
+    object tbTrayProdutosid_categoria: TIntegerField
+      FieldName = 'id_categoria'
+    end
+    object tbTrayProdutosavailability: TStringField
+      FieldName = 'availability'
+      Size = 100
+    end
+    object tbTrayProdutosreference: TStringField
+      FieldName = 'reference'
+      Size = 100
+    end
+    object tbTrayProdutosadditional_button: TIntegerField
+      FieldName = 'additional_button'
+    end
+    object tbTrayProdutosadditional_message: TStringField
+      FieldName = 'additional_message'
+      Size = 500
+    end
+    object tbTrayProdutoswarranty: TStringField
+      FieldName = 'warranty'
+      Size = 500
+    end
+    object tbTrayProdutosrating: TIntegerField
+      FieldName = 'rating'
+    end
+    object tbTrayProdutoscount_rating: TIntegerField
+      FieldName = 'count_rating'
+    end
+    object tbTrayProdutosquantity_sold: TIntegerField
+      FieldName = 'quantity_sold'
+    end
+    object tbTrayProdutoscreated: TDateField
+      FieldName = 'created'
+    end
+    object tbTrayProdutospayment_option: TStringField
+      FieldName = 'payment_option'
+      Size = 500
+    end
+    object tbTrayProdutosrelease_date: TDateField
+      FieldName = 'release_date'
+    end
+    object tbTrayProdutosshortcut: TStringField
+      FieldName = 'shortcut'
+      Size = 100
+    end
+    object tbTrayProdutosminimum_stock: TIntegerField
+      FieldName = 'minimum_stock'
+    end
+    object tbTrayProdutosminimum_stocl_alert: TIntegerField
+      FieldName = 'minimum_stocl_alert'
+    end
+    object tbTrayProdutospromotion_id: TIntegerField
+      FieldName = 'promotion_id'
+    end
+    object tbTrayProdutosincluded_items: TStringField
+      FieldName = 'included_items'
+      Size = 500
+    end
+    object tbTrayProdutosrelated_products: TIntegerField
+      FieldName = 'related_products'
+    end
+    object tbTrayProdutoscurrent_price: TFloatField
+      FieldName = 'current_price'
+    end
+    object tbTrayProdutosipi: TFloatField
+      FieldName = 'ipi'
+    end
+    object tbTrayProdutosacceptance_term_option: TIntegerField
+      FieldName = 'acceptance_term_option'
+    end
+    object tbTrayProdutoswarranty_days: TIntegerField
+      FieldName = 'warranty_days'
+    end
+    object tbTrayProdutosavailability_days: TIntegerField
+      FieldName = 'availability_days'
+    end
+    object tbTrayProdutosid_matetag: TIntegerField
+      FieldName = 'id_matetag'
+    end
+    object tbTrayProdutosid_variant: TIntegerField
+      FieldName = 'id_variant'
+    end
+  end
+  object qrProClasses: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT '
+      ' '#39'OK'#39' ATUALIZAR,'
+      ' A.ID,'
+      ' A.NIVEL,'
+      ' CAST('#39#39' AS VARCHAR(10)) GRUPO1,'
+      ' 0 ID_GRUPO1,'
+      ' CAST('#39#39' AS VARCHAR(10)) GRUPO2,'
+      ' 0 ID_GRUPO2,'
+      ' CAST('#39#39' AS VARCHAR(10)) GRUPO3,'
+      ' 0 ID_GRUPO3,'
+      ' CAST('#39#39' AS VARCHAR(10)) GRUPO4,'
+      ' 0 ID_GRUPO4,'
+      ' CAST('#39#39' AS VARCHAR(10)) GRUPO5,'
+      ' 0 ID_GRUPO5,'
+      ' A.CLASSE CLASSE,'
+      ' 0 ID_PAI,'
+      ' A.DESCRICAO,'
+      ' B.IDCLASSEBM,'
+      ' B.IDCLASSEBM_PAI,'
+      ' B.IDCLASSEMP,'
+      ' B.IDCLASSEMP_PAI,'
+      ' B.DESCRICAOCLASSEBM,'
+      ' B.HASH,'
+      ' CAST('#39#39' AS VARCHAR(4)) HASH_NOVO,'
+      ' B.ERRO_CODIGO,'
+      ' B.ERRO_JSON'
+      ' '
+      'INTO "MEMORY\T33"'
+      'FROM PRODUTOSCLASSE A'
+      'LEFT JOIN Tray_CATEGORIAS B ON B.IDCLASSEBM = A.ID'
+      ''
+      'ORDER BY CLASSE'
+      ''
+      ';'
+      ''
+      'UPDATE "MEMORY\T33" SET GRUPO1 = SUBSTRING(CLASSE,1,2);'
+      'UPDATE "MEMORY\T33" SET GRUPO2 = SUBSTRING(CLASSE,1,5);'
+      'UPDATE "MEMORY\T33" SET GRUPO3 = SUBSTRING(CLASSE,1,8)'
+      ''
+      ';'
+      ''
+      
+        'UPDATE "MEMORY\T33" A SET A.ID_GRUPO1 = B.ID FROM "MEMORY\T33" L' +
+        'EFT JOIN PRODUTOSCLASSE B ON B.CLASSE = A.GRUPO1;'
+      
+        'UPDATE "MEMORY\T33" A SET A.ID_GRUPO2 = B.ID FROM "MEMORY\T33" L' +
+        'EFT JOIN PRODUTOSCLASSE B ON B.CLASSE = A.GRUPO2;'
+      
+        'UPDATE "MEMORY\T33" A SET A.ID_GRUPO3 = B.ID FROM "MEMORY\T33" L' +
+        'EFT JOIN PRODUTOSCLASSE B ON B.CLASSE = A.GRUPO3'
+      ''
+      ';'
+      ''
+      
+        'UPDATE "MEMORY\T33" A SET A.ID_PAI = 0 WHERE ID_GRUPO1 = ID_GRUP' +
+        'O2 AND ID_GRUPO2 = ID_GRUPO3;'
+      
+        'UPDATE "MEMORY\T33" A SET A.ID_PAI = ID_GRUPO1 WHERE ID_GRUPO1 <' +
+        '> ID_GRUPO2 AND ID_GRUPO2 = ID_GRUPO3;'
+      
+        'UPDATE "MEMORY\T33" A SET A.ID_PAI = ID_GRUPO2 WHERE ID_GRUPO1 <' +
+        '> ID_GRUPO2 AND ID_GRUPO2 <> ID_GRUPO3'
+      ''
+      ';'
+      ''
+      
+        'UPDATE "MEMORY\T33" A SET A.DESCRICAO = A.DESCRICAO + '#39' '#39' + A.CL' +
+        'ASSE WHERE A.DESCRICAO = '#39'ESTUDO'#39
+      ''
+      ';'
+      ''
+      'SELECT * FROM "MEMORY\T33" WHERE POSITION('#39'*'#39',DESCRICAO)=0')
+    Params = <>
+    Left = 1048
+    Top = 152
+    object qrProClassesATUALIZAR: TStringField
+      FieldName = 'ATUALIZAR'
+      Size = 2
+    end
+    object qrProClassesID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object qrProClassesNIVEL: TStringField
+      FieldName = 'NIVEL'
+      Size = 1
+    end
+    object qrProClassesGRUPO1: TStringField
+      FieldName = 'GRUPO1'
+      Size = 10
+    end
+    object qrProClassesID_GRUPO1: TIntegerField
+      FieldName = 'ID_GRUPO1'
+    end
+    object qrProClassesGRUPO2: TStringField
+      FieldName = 'GRUPO2'
+      Size = 10
+    end
+    object qrProClassesID_GRUPO2: TIntegerField
+      FieldName = 'ID_GRUPO2'
+    end
+    object qrProClassesGRUPO3: TStringField
+      FieldName = 'GRUPO3'
+      Size = 10
+    end
+    object qrProClassesID_GRUPO3: TIntegerField
+      FieldName = 'ID_GRUPO3'
+    end
+    object qrProClassesGRUPO4: TStringField
+      FieldName = 'GRUPO4'
+      Size = 10
+    end
+    object qrProClassesID_GRUPO4: TIntegerField
+      FieldName = 'ID_GRUPO4'
+    end
+    object qrProClassesGRUPO5: TStringField
+      FieldName = 'GRUPO5'
+      Size = 10
+    end
+    object qrProClassesID_GRUPO5: TIntegerField
+      FieldName = 'ID_GRUPO5'
+    end
+    object qrProClassesCLASSE: TStringField
+      FieldName = 'CLASSE'
+      Size = 30
+    end
+    object qrProClassesID_PAI: TIntegerField
+      FieldName = 'ID_PAI'
+    end
+    object qrProClassesDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 50
+    end
+    object qrProClassesIDCLASSEBM: TIntegerField
+      FieldName = 'IDCLASSEBM'
+    end
+    object qrProClassesIDCLASSEBM_PAI: TIntegerField
+      FieldName = 'IDCLASSEBM_PAI'
+    end
+    object qrProClassesIDCLASSEMP: TIntegerField
+      FieldName = 'IDCLASSEMP'
+    end
+    object qrProClassesIDCLASSEMP_PAI: TIntegerField
+      FieldName = 'IDCLASSEMP_PAI'
+    end
+    object qrProClassesDESCRICAOCLASSEBM: TStringField
+      FieldName = 'DESCRICAOCLASSEBM'
+    end
+    object qrProClassesHASH: TStringField
+      FieldName = 'HASH'
+      Size = 4
+    end
+    object qrProClassesHASH_NOVO: TStringField
+      FieldName = 'HASH_NOVO'
+      Size = 4
+    end
+    object qrProClassesERRO_CODIGO: TStringField
+      FieldName = 'ERRO_CODIGO'
+      Size = 5
+    end
+    object qrProClassesERRO_JSON: TMemoField
+      FieldName = 'ERRO_JSON'
+      BlobType = ftMemo
+    end
+  end
+  object dtProClasses: TDataSource
+    DataSet = qrProClasses
+    Left = 1048
+    Top = 296
+  end
+  object dtTempTrayCategorais: TDataSource
+    DataSet = tempTrayCategorias
+    Left = 1056
+    Top = 496
+  end
+  object tempTrayCategorias: TDBISAMTable
+    DatabaseName = 'memory'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'tempTrayCategorias'
+    Left = 832
+    Top = 489
+    object tempTrayCategoriasid: TIntegerField
+      FieldName = 'id'
+    end
+    object tempTrayCategoriasnome: TStringField
+      FieldName = 'nome'
+      Size = 100
+    end
+    object tempTrayCategoriascategoria_pai_id: TIntegerField
+      FieldName = 'categoria_pai_id'
+    end
+    object tempTrayCategoriasultima_alteracao: TDateTimeField
+      FieldName = 'ultima_alteracao'
+    end
+    object tempTrayCategoriasexcluido: TBooleanField
+      FieldName = 'excluido'
+    end
+  end
+  object tbTrayClasses: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'Tray_Categorias'
+    Left = 528
+    Top = 488
+    object tbTrayClassesID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object tbTrayClassesIDclasseBM: TIntegerField
+      FieldName = 'IDclasseBM'
+    end
+    object tbTrayClassesIDclasseBM_pai: TIntegerField
+      FieldName = 'IDclasseBM_pai'
+    end
+    object tbTrayClassesDescricaoClasseBM: TStringField
+      FieldName = 'DescricaoClasseBM'
+      Size = 50
+    end
+    object tbTrayClassesIDclasseMP: TIntegerField
+      FieldName = 'IDclasseMP'
+    end
+    object tbTrayClassesIDclasseMP_pai: TIntegerField
+      FieldName = 'IDclasseMP_pai'
+    end
+    object tbTrayClassesHash: TStringField
+      FieldName = 'Hash'
+      Size = 4
+    end
+    object tbTrayClassesultimo_status: TStringField
+      FieldName = 'ultimo_status'
+      Size = 5
+    end
+    object tbTrayClassesultima_atividade: TDateTimeField
+      FieldName = 'ultima_atividade'
+    end
+    object tbTrayClassesmensagem: TStringField
+      FieldName = 'mensagem'
+      Size = 200
+    end
+    object tbTrayClasseserro_codigo: TStringField
+      FieldName = 'erro_codigo'
+      Size = 5
+    end
+    object tbTrayClasseserro_json: TMemoField
+      FieldName = 'erro_json'
+      BlobType = ftMemo
+    end
+  end
+  object tbBMprodutos: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'TAB_PRODUTOS'
+    Left = 32
+    Top = 68
+  end
+  object tempTrayClientes: TDBISAMTable
+    DatabaseName = 'memory'
+    EngineVersion = '4.44 Build 3'
+    IndexDefs = <
+      item
+        Name = 'idx_nome'
+        Fields = 'razao_social'
+      end>
+    TableName = 'tempTrayClientes'
+    StoreDefs = True
+    Left = 736
+    Top = 489
+    object tempTrayClientesid: TIntegerField
+      FieldName = 'id'
+    end
+    object tempTrayClientesrazao_social: TStringField
+      FieldName = 'razao_social'
+      Size = 100
+    end
+    object tempTrayClientesnome_fantasia: TStringField
+      FieldName = 'nome_fantasia'
+      Size = 100
+    end
+    object tempTrayClientestipo: TStringField
+      FieldName = 'tipo'
+      Size = 1
+    end
+    object tempTrayClientescnpj: TStringField
+      FieldName = 'cnpj'
+      Size = 18
+    end
+    object tempTrayClientesinscricao_estadual: TStringField
+      FieldName = 'inscricao_estadual'
+      Size = 30
+    end
+    object tempTrayClientessuframa: TStringField
+      FieldName = 'suframa'
+    end
+    object tempTrayClientesrua: TStringField
+      FieldName = 'rua'
+      Size = 100
+    end
+    object tempTrayClientesnumero: TStringField
+      FieldName = 'numero'
+      Size = 100
+    end
+    object tempTrayClientescomplemento: TStringField
+      FieldName = 'complemento'
+      Size = 50
+    end
+    object tempTrayClientescep: TStringField
+      FieldName = 'cep'
+      Size = 9
+    end
+    object tempTrayClientesbairro: TStringField
+      FieldName = 'bairro'
+      Size = 30
+    end
+    object tempTrayClientescidade: TStringField
+      FieldName = 'cidade'
+      Size = 50
+    end
+    object tempTrayClientesestado: TStringField
+      FieldName = 'estado'
+      Size = 2
+    end
+    object tempTrayClientesobservacao: TStringField
+      FieldName = 'observacao'
+      Size = 500
+    end
+    object tempTrayClientesemail1: TStringField
+      FieldName = 'email1'
+      Size = 100
+    end
+    object tempTrayClientesemail2: TStringField
+      FieldName = 'email2'
+      Size = 100
+    end
+    object tempTrayClientesemail3: TStringField
+      FieldName = 'email3'
+      Size = 100
+    end
+    object tempTrayClientestelefone1: TStringField
+      FieldName = 'telefone1'
+    end
+    object tempTrayClientestelefone2: TStringField
+      FieldName = 'telefone2'
+    end
+    object tempTrayClientestelefone3: TStringField
+      FieldName = 'telefone3'
+    end
+    object tempTrayClientesnome_excecao_fiscal: TStringField
+      FieldName = 'nome_excecao_fiscal'
+    end
+    object tempTrayClientessegmento_id: TIntegerField
+      FieldName = 'segmento_id'
+    end
+    object tempTrayClientesrede_id: TIntegerField
+      FieldName = 'rede_id'
+    end
+    object tempTrayClientesexcluido: TBooleanField
+      FieldName = 'excluido'
+    end
+    object tempTrayClientesenderecos_adicionais: TStringField
+      FieldName = 'enderecos_adicionais'
+      Size = 500
+    end
+    object tempTrayClientesultima_alteracao: TDateTimeField
+      FieldName = 'ultima_alteracao'
+    end
+  end
+  object dtTempTrayClientes: TDataSource
+    DataSet = tempTrayClientes
+    Left = 1048
+    Top = 448
+  end
+  object tbTrayClientes: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    Exclusive = True
+    TableName = 'TAB_CLIENTES'
+    Left = 264
+    Top = 116
+    object tbTrayClientesid_cliente: TIntegerField
+      FieldName = 'id_cliente'
+    end
+    object tbTrayClientesname: TStringField
+      FieldName = 'name'
+      Size = 50
+    end
+    object tbTrayClientesrg: TStringField
+      FieldName = 'rg'
+      Size = 13
+    end
+    object tbTrayClientescpf: TStringField
+      FieldName = 'cpf'
+      Size = 14
+    end
+    object tbTrayClientesphone: TStringField
+      FieldName = 'phone'
+      Size = 17
+    end
+    object tbTrayClientescellphone: TStringField
+      FieldName = 'cellphone'
+      Size = 17
+    end
+    object tbTrayClientesbirth_date: TDateField
+      FieldName = 'birth_date'
+    end
+    object tbTrayClientesid_gender: TIntegerField
+      FieldName = 'id_gender'
+    end
+    object tbTrayClientesemail: TStringField
+      FieldName = 'email'
+      Size = 50
+    end
+    object tbTrayClientesnickname: TStringField
+      FieldName = 'nickname'
+    end
+    object tbTrayClientestoken: TStringField
+      FieldName = 'token'
+      Size = 50
+    end
+    object tbTrayClientestotal_orders: TIntegerField
+      FieldName = 'total_orders'
+    end
+    object tbTrayClientesobservation: TStringField
+      FieldName = 'observation'
+      Size = 500
+    end
+    object tbTrayClientesid_type: TIntegerField
+      FieldName = 'id_type'
+    end
+    object tbTrayClientescnpj: TStringField
+      FieldName = 'cnpj'
+      Size = 18
+    end
+    object tbTrayClientescompany_name: TStringField
+      FieldName = 'company_name'
+      Size = 500
+    end
+    object tbTrayClientesstate_inscription: TStringField
+      FieldName = 'state_inscription'
+      Size = 500
+    end
+    object tbTrayClientesreseller: TIntegerField
+      FieldName = 'reseller'
+    end
+    object tbTrayClientesdiscount: TFloatField
+      FieldName = 'discount'
+    end
+    object tbTrayClientesid_blocked: TIntegerField
+      FieldName = 'id_blocked'
+    end
+    object tbTrayClientescredit_limit: TFloatField
+      FieldName = 'credit_limit'
+    end
+    object tbTrayClientesindicator_id: TIntegerField
+      FieldName = 'indicator_id'
+    end
+    object tbTrayClientesprofile_customer_id: TIntegerField
+      FieldName = 'profile_customer_id'
+    end
+    object tbTrayClienteslast_sending_newsletter: TDateField
+      FieldName = 'last_sending_newsletter'
+    end
+    object tbTrayClienteslast_purchase: TDateField
+      FieldName = 'last_purchase'
+    end
+    object tbTrayClienteslast_visit: TDateField
+      FieldName = 'last_visit'
+    end
+    object tbTrayClienteslast_modification: TDateField
+      FieldName = 'last_modification'
+    end
+    object tbTrayClientesaddress: TStringField
+      FieldName = 'address'
+      Size = 100
+    end
+    object tbTrayClienteszip_code: TStringField
+      FieldName = 'zip_code'
+      Size = 9
+    end
+    object tbTrayClientesnumber_address: TIntegerField
+      FieldName = 'number_address'
+    end
+    object tbTrayClientescomplement: TStringField
+      FieldName = 'complement'
+      Size = 500
+    end
+    object tbTrayClientesneighborhood: TStringField
+      FieldName = 'neighborhood'
+      Size = 500
+    end
+    object tbTrayClientescity: TStringField
+      FieldName = 'city'
+      Size = 100
+    end
+    object tbTrayClientesstate: TStringField
+      FieldName = 'state'
+      Size = 100
+    end
+    object tbTrayClientesnewslatter: TIntegerField
+      FieldName = 'newslatter'
+    end
+    object tbTrayClientescreated: TDateField
+      FieldName = 'created'
+    end
+    object tbTrayClientesregistration_date: TDateField
+      FieldName = 'registration_date'
+    end
+    object tbTrayClientesmodifed: TDateField
+      FieldName = 'modifed'
+    end
+  end
+  object qrClientes: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT'
+      '  '#39'OK'#39' ATUALIZAR,'
+      '  ID,'
+      '  B.IDMP,'
+      '  NOME RAZAO_SOCIAL,'
+      '  FANTASIA NOME_FANTASIA,'
+      '  JURIDICAFISICA TIPO,'
+      '  CPFCNPJ CNPJ,'
+      '  IE INSCRICAO_ESTADUAL,'
+      '  SUFRAMA SUFRAMA,'
+      '  ENDERECO RUA,'
+      '  NUMERO NUMERO,'
+      '  COMPLEMENTO COMPLEMENTO,'
+      '  CEP CEP,'
+      '  BAIRRO BAIRRO,'
+      '  CIDADE CIDADE,'
+      '  UF ESTADO,'
+      '  OBS OBSERVACAO,'
+      '  EMAIL EMAIL1,'
+      '  CAST('#39#39' AS VARCHAR(100)) EMAIL2,'
+      '  CAST('#39#39' AS VARCHAR(100)) EMAIL3,'
+      '  FONE1 TELEFONE1,'
+      '  FONE2 TELEFONE2,'
+      '  CAST('#39#39' AS VARCHAR(20)) TELEFONE3,'
+      '  CAST('#39#39' AS VARCHAR(20)) NOME_EXCECAO_FISCAL,'
+      '  0 SEGMENTO_ID,'
+      '  0 REDE_ID,'
+      '  FALSE EXCLUIDO,'
+      '  CAST('#39#39' AS VARCHAR(500)) ENDERECOS_ADICIIONAIS,'
+      '  A.DATA_ALTER ULTIMA_ALTERACAO,'
+      '  B.HASH,'
+      '  CAST('#39#39' AS VARCHAR(4)) HASH_NOVO,'
+      '  B.ULTIMA_ATIVIDADE,'
+      '  B.MENSAGEM,'
+      '  B.ERRO_CODIGO,'
+      '  B.ERRO_JSON  '
+      '  '
+      'FROM PESSOAS A'
+      'LEFT JOIN Tray_CLIENTES B ON B.IDCLIENTE = A.ID'
+      ''
+      'WHERE PERFIL_CLI = TRUE'
+      ''
+      'ORDER BY A.NOME'
+      ''
+      '')
+    Params = <>
+    Left = 1048
+    Top = 200
+    object qrClientesATUALIZAR: TStringField
+      FieldName = 'ATUALIZAR'
+      Size = 2
+    end
+    object qrClientesID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object qrClientesIDMP: TIntegerField
+      FieldName = 'IDMP'
+    end
+    object qrClientesRAZAO_SOCIAL: TStringField
+      FieldName = 'RAZAO_SOCIAL'
+      Size = 60
+    end
+    object qrClientesNOME_FANTASIA: TStringField
+      FieldName = 'NOME_FANTASIA'
+      Size = 40
+    end
+    object qrClientesTIPO: TStringField
+      FieldName = 'TIPO'
+      Size = 1
+    end
+    object qrClientesCNPJ: TStringField
+      FieldName = 'CNPJ'
+      Size = 18
+    end
+    object qrClientesINSCRICAO_ESTADUAL: TStringField
+      FieldName = 'INSCRICAO_ESTADUAL'
+    end
+    object qrClientesSUFRAMA: TStringField
+      FieldName = 'SUFRAMA'
+      Size = 9
+    end
+    object qrClientesRUA: TStringField
+      FieldName = 'RUA'
+      Size = 60
+    end
+    object qrClientesNUMERO: TStringField
+      FieldName = 'NUMERO'
+      Size = 5
+    end
+    object qrClientesCOMPLEMENTO: TStringField
+      FieldName = 'COMPLEMENTO'
+      Size = 30
+    end
+    object qrClientesCEP: TStringField
+      FieldName = 'CEP'
+      Size = 8
+    end
+    object qrClientesBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Size = 25
+    end
+    object qrClientesCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Size = 30
+    end
+    object qrClientesESTADO: TStringField
+      FieldName = 'ESTADO'
+      Size = 2
+    end
+    object qrClientesOBSERVACAO: TMemoField
+      FieldName = 'OBSERVACAO'
+      BlobType = ftMemo
+    end
+    object qrClientesEMAIL1: TStringField
+      FieldName = 'EMAIL1'
+      Size = 100
+    end
+    object qrClientesEMAIL2: TStringField
+      FieldName = 'EMAIL2'
+      Size = 100
+    end
+    object qrClientesEMAIL3: TStringField
+      FieldName = 'EMAIL3'
+      Size = 100
+    end
+    object qrClientesTELEFONE1: TStringField
+      FieldName = 'TELEFONE1'
+      Size = 15
+    end
+    object qrClientesTELEFONE2: TStringField
+      FieldName = 'TELEFONE2'
+      Size = 15
+    end
+    object qrClientesTELEFONE3: TStringField
+      FieldName = 'TELEFONE3'
+    end
+    object qrClientesNOME_EXCECAO_FISCAL: TStringField
+      FieldName = 'NOME_EXCECAO_FISCAL'
+    end
+    object qrClientesSEGMENTO_ID: TIntegerField
+      FieldName = 'SEGMENTO_ID'
+    end
+    object qrClientesREDE_ID: TIntegerField
+      FieldName = 'REDE_ID'
+    end
+    object qrClientesEXCLUIDO: TBooleanField
+      FieldName = 'EXCLUIDO'
+    end
+    object qrClientesENDERECOS_ADICIIONAIS: TStringField
+      FieldName = 'ENDERECOS_ADICIIONAIS'
+      Size = 500
+    end
+    object qrClientesULTIMA_ALTERACAO: TDateField
+      FieldName = 'ULTIMA_ALTERACAO'
+    end
+    object qrClientesHASH: TStringField
+      FieldName = 'HASH'
+      Size = 4
+    end
+    object qrClientesHASH_NOVO: TStringField
+      FieldName = 'HASH_NOVO'
+      Size = 4
+    end
+    object qrClientesULTIMA_ATIVIDADE: TDateTimeField
+      FieldName = 'ULTIMA_ATIVIDADE'
+    end
+    object qrClientesMENSAGEM: TStringField
+      FieldName = 'MENSAGEM'
+      Size = 200
+    end
+    object qrClientesERRO_CODIGO: TStringField
+      FieldName = 'ERRO_CODIGO'
+      Size = 5
+    end
+    object qrClientesERRO_JSON: TMemoField
+      FieldName = 'ERRO_JSON'
+      BlobType = ftMemo
+    end
+  end
+  object tempTrayVendedores: TDBISAMTable
+    DatabaseName = 'memory'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'tempTrayVendedores'
+    Left = 624
+    Top = 489
+    object tempTrayVendedoresid: TIntegerField
+      FieldName = 'id'
+    end
+    object tempTrayVendedoresnome: TStringField
+      FieldName = 'nome'
+      Size = 100
+    end
+    object tempTrayVendedoresemail: TStringField
+      FieldName = 'email'
+      Size = 75
+    end
+    object tempTrayVendedorestelefone: TStringField
+      FieldName = 'telefone'
+      Size = 15
+    end
+    object tempTrayVendedoresadministrador: TBooleanField
+      FieldName = 'administrador'
+    end
+    object tempTrayVendedoresexcluido: TBooleanField
+      FieldName = 'excluido'
+    end
+    object tempTrayVendedoresultima_alteracao: TDateTimeField
+      FieldName = 'ultima_alteracao'
+    end
+  end
+  object dtTempTrayVendedores: TDataSource
+    DataSet = tempTrayVendedores
+    Left = 1052
+    Top = 400
+  end
+  object tbTrayMarcas: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'TAB_MARCA'
+    Left = 200
+    Top = 168
+    object tbTrayMarcasid_marca: TIntegerField
+      FieldName = 'id_marca'
+    end
+    object tbTrayMarcasslug: TStringField
+      FieldName = 'slug'
+      Size = 100
+    end
+    object tbTrayMarcasbrand: TStringField
+      FieldName = 'brand'
+      Size = 100
+    end
+  end
+  object tbTrayCategorias: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    Exclusive = True
+    TableName = 'TAB_CATEGORIAS'
+    Left = 112
+    Top = 64
+    object tbTrayCategoriasid_categoria: TIntegerField
+      FieldName = 'id_categoria'
+    end
+    object tbTrayCategoriasid_parent: TIntegerField
+      FieldName = 'id_parent'
+    end
+    object tbTrayCategoriasname: TStringField
+      FieldName = 'name'
+      Size = 100
+    end
+    object tbTrayCategoriasdescription: TStringField
+      FieldName = 'description'
+      Size = 500
+    end
+    object tbTrayCategoriassmall_description: TStringField
+      FieldName = 'small_description'
+      Size = 100
+    end
+    object tbTrayCategoriasslug: TStringField
+      FieldName = 'slug'
+      Size = 500
+    end
+    object tbTrayCategoriasorder: TIntegerField
+      FieldName = 'order'
+    end
+    object tbTrayCategoriashas_acceptance_term: TIntegerField
+      FieldName = 'has_acceptance_term'
+    end
+    object tbTrayCategoriasacceptance_term: TStringField
+      FieldName = 'acceptance_term'
+      Size = 500
+    end
+    object tbTrayCategoriashttp: TStringField
+      FieldName = 'http'
+      Size = 500
+    end
+    object tbTrayCategoriashttps: TStringField
+      FieldName = 'https'
+      Size = 500
+    end
+  end
+  object tbBMmarcas: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'ProdutosMarcas'
+    Left = 192
+    Top = 60
+    object tbBMmarcasMarca: TStringField
+      FieldName = 'Marca'
+      Size = 15
+    end
+  end
+  object dtBMmarcas: TDataSource
+    DataSet = tbBMmarcas
+    Left = 196
+    Top = 112
+  end
+  object dtTrayMarcas: TDataSource
+    DataSet = tbTrayMarcas
+    Left = 196
+    Top = 216
+  end
+  object dtBMclientes: TDataSource
+    DataSet = tbBMClientes
+    Left = 276
+    Top = 216
+  end
+  object qrBMclientes: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT'
+      ' '
+      'A.ID, '
+      'A.JURIDICAFISICA, '
+      'A.NOME, '
+      'A.RG, '
+      'A.CPFCNPJ, '
+      'A.FONE1, '
+      'A.CELULAR, '
+      'A.EMAIL, '
+      'A.LEMBRETE, '
+      'A.FANTASIA, '
+      'A.LIMITECREDITO, '
+      'A.ENDERECO, '
+      'A.CEP, '
+      'A.NUMERO, '
+      'A.COMPLEMENTO, '
+      'A.BAIRRO, '
+      'A.CIDADE, '
+      'A.UF'
+      'FROM PESSOAS AS A')
+    Params = <>
+    Left = 265
+    Top = 64
+    object qrBMclientesID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object qrBMclientesJURIDICAFISICA: TStringField
+      FieldName = 'JURIDICAFISICA'
+      Size = 1
+    end
+    object qrBMclientesNOME: TStringField
+      FieldName = 'NOME'
+      Size = 60
+    end
+    object qrBMclientesRG: TStringField
+      FieldName = 'RG'
+    end
+    object qrBMclientesCPFCNPJ: TStringField
+      FieldName = 'CPFCNPJ'
+      Size = 18
+    end
+    object qrBMclientesFONE1: TStringField
+      FieldName = 'FONE1'
+      Size = 15
+    end
+    object qrBMclientesCELULAR: TStringField
+      FieldName = 'CELULAR'
+      Size = 15
+    end
+    object qrBMclientesEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Size = 150
+    end
+    object qrBMclientesLEMBRETE: TStringField
+      FieldName = 'LEMBRETE'
+      Size = 80
+    end
+    object qrBMclientesFANTASIA: TStringField
+      FieldName = 'FANTASIA'
+      Size = 40
+    end
+    object qrBMclientesLIMITECREDITO: TCurrencyField
+      FieldName = 'LIMITECREDITO'
+    end
+    object qrBMclientesENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Size = 60
+    end
+    object qrBMclientesCEP: TStringField
+      FieldName = 'CEP'
+      Size = 8
+    end
+    object qrBMclientesNUMERO: TStringField
+      FieldName = 'NUMERO'
+      Size = 5
+    end
+    object qrBMclientesCOMPLEMENTO: TStringField
+      FieldName = 'COMPLEMENTO'
+      Size = 30
+    end
+    object qrBMclientesBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Size = 25
+    end
+    object qrBMclientesCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Size = 30
+    end
+    object qrBMclientesUF: TStringField
+      FieldName = 'UF'
+      Size = 2
+    end
+  end
+  object tbBMClientes: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    Exclusive = True
+    TableName = 'Pessoas'
+    Left = 272
+    Top = 168
+    object tbBMClientesID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object tbBMClientesJuridicaFisica: TStringField
+      FieldName = 'JuridicaFisica'
+      Size = 1
+    end
+    object tbBMClientesNome: TStringField
+      FieldName = 'Nome'
+      Size = 60
+    end
+    object tbBMClientesFantasia: TStringField
+      FieldName = 'Fantasia'
+      Size = 40
+    end
+    object tbBMClientesResponsavel: TStringField
+      FieldName = 'Responsavel'
+      Size = 40
+    end
+    object tbBMClientesEndereco: TStringField
+      FieldName = 'Endereco'
+      Size = 60
+    end
+    object tbBMClientesNumero: TStringField
+      FieldName = 'Numero'
+      Size = 5
+    end
+    object tbBMClientesComplemento: TStringField
+      FieldName = 'Complemento'
+      Size = 30
+    end
+    object tbBMClientesBairro: TStringField
+      FieldName = 'Bairro'
+      Size = 25
+    end
+    object tbBMClientesCEP: TStringField
+      FieldName = 'CEP'
+      Size = 8
+    end
+    object tbBMClientesCod_Cidade: TStringField
+      FieldName = 'Cod_Cidade'
+      Size = 7
+    end
+    object tbBMClientesCidade: TStringField
+      FieldName = 'Cidade'
+      Size = 30
+    end
+    object tbBMClientesUF: TStringField
+      FieldName = 'UF'
+      Size = 2
+    end
+    object tbBMClientesCod_Pais: TStringField
+      FieldName = 'Cod_Pais'
+      Size = 4
+    end
+    object tbBMClientesRegiao: TStringField
+      FieldName = 'Regiao'
+      Size = 5
+    end
+    object tbBMClientesRota: TStringField
+      FieldName = 'Rota'
+      Size = 2
+    end
+    object tbBMClientesID_Localidade: TIntegerField
+      FieldName = 'ID_Localidade'
+    end
+    object tbBMClientesID_TipoLogradouro: TIntegerField
+      FieldName = 'ID_TipoLogradouro'
+    end
+    object tbBMClientesFone1: TStringField
+      FieldName = 'Fone1'
+      Size = 15
+    end
+    object tbBMClientesFone2: TStringField
+      FieldName = 'Fone2'
+      Size = 15
+    end
+    object tbBMClientesCelular: TStringField
+      FieldName = 'Celular'
+      Size = 15
+    end
+    object tbBMClientesEmail: TStringField
+      FieldName = 'Email'
+      Size = 150
+    end
+    object tbBMClientesCPFCNPJ: TStringField
+      FieldName = 'CPFCNPJ'
+      Size = 18
+    end
+    object tbBMClientesIE: TStringField
+      FieldName = 'IE'
+    end
+    object tbBMClientesTipo_Contribuinte: TStringField
+      FieldName = 'Tipo_Contribuinte'
+      Size = 1
+    end
+    object tbBMClientesIM: TStringField
+      FieldName = 'IM'
+      Size = 14
+    end
+    object tbBMClientesCIDASC: TIntegerField
+      FieldName = 'CIDASC'
+    end
+    object tbBMClientesRG: TStringField
+      FieldName = 'RG'
+    end
+    object tbBMClientesI_PRural: TStringField
+      FieldName = 'I_PRural'
+    end
+    object tbBMClientesNomeOutroDoc: TStringField
+      FieldName = 'NomeOutroDoc'
+    end
+    object tbBMClientesOutroDoc: TStringField
+      FieldName = 'OutroDoc'
+    end
+    object tbBMClientesSuframa: TStringField
+      FieldName = 'Suframa'
+      Size = 9
+    end
+    object tbBMClientesCNAE: TStringField
+      FieldName = 'CNAE'
+      Size = 10
+    end
+    object tbBMClientesPracaPgtoEnd: TStringField
+      FieldName = 'PracaPgtoEnd'
+      Size = 60
+    end
+    object tbBMClientesPracaPgtoNum: TStringField
+      FieldName = 'PracaPgtoNum'
+      Size = 5
+    end
+    object tbBMClientesPracaPgtoCom: TStringField
+      FieldName = 'PracaPgtoCom'
+      Size = 30
+    end
+    object tbBMClientesPracaPgtoBai: TStringField
+      FieldName = 'PracaPgtoBai'
+      Size = 25
+    end
+    object tbBMClientesPracaPgtoCid: TStringField
+      FieldName = 'PracaPgtoCid'
+      Size = 30
+    end
+    object tbBMClientesPracaPgtoUF: TStringField
+      FieldName = 'PracaPgtoUF'
+      Size = 2
+    end
+    object tbBMClientesPracaPgtoCEP: TStringField
+      FieldName = 'PracaPgtoCEP'
+      Size = 8
+    end
+    object tbBMClientesID_Vendedor: TIntegerField
+      FieldName = 'ID_Vendedor'
+    end
+    object tbBMClientesID_Vendedor2: TIntegerField
+      FieldName = 'ID_Vendedor2'
+    end
+    object tbBMClientesComissaoVend1: TFloatField
+      FieldName = 'ComissaoVend1'
+    end
+    object tbBMClientesComissaoVend2: TFloatField
+      FieldName = 'ComissaoVend2'
+    end
+    object tbBMClientesID_Plano: TIntegerField
+      FieldName = 'ID_Plano'
+    end
+    object tbBMClientesID_Banco: TIntegerField
+      FieldName = 'ID_Banco'
+    end
+    object tbBMClientesID_Transp: TIntegerField
+      FieldName = 'ID_Transp'
+    end
+    object tbBMClientesEntrega_IDCliente: TIntegerField
+      FieldName = 'Entrega_IDCliente'
+    end
+    object tbBMClientesLimiteCredito: TCurrencyField
+      FieldName = 'LimiteCredito'
+    end
+    object tbBMClientesCrediario: TStringField
+      FieldName = 'Crediario'
+      Size = 1
+    end
+    object tbBMClientesTipo_Crediario: TStringField
+      FieldName = 'Tipo_Crediario'
+      Size = 1
+    end
+    object tbBMClientesPrazo: TIntegerField
+      FieldName = 'Prazo'
+    end
+    object tbBMClientesDia_Fixo: TIntegerField
+      FieldName = 'Dia_Fixo'
+    end
+    object tbBMClientesLiberado: TStringField
+      FieldName = 'Liberado'
+      Size = 1
+    end
+    object tbBMClientesDescontoMax_Liberado: TStringField
+      FieldName = 'DescontoMax_Liberado'
+      Size = 1
+    end
+    object tbBMClientesLembrete: TStringField
+      FieldName = 'Lembrete'
+      Size = 80
+    end
+    object tbBMClientesObs: TMemoField
+      FieldName = 'Obs'
+      BlobType = ftMemo
+    end
+    object tbBMClientesAtivo: TStringField
+      FieldName = 'Ativo'
+      Size = 1
+    end
+    object tbBMClientesData_Cadastro: TDateField
+      FieldName = 'Data_Cadastro'
+    end
+    object tbBMClientesID_Emp_Cad: TIntegerField
+      FieldName = 'ID_Emp_Cad'
+    end
+    object tbBMClientesID_User_Cad: TIntegerField
+      FieldName = 'ID_User_Cad'
+    end
+    object tbBMClientesData_Alter: TDateField
+      FieldName = 'Data_Alter'
+    end
+    object tbBMClientesID_Emp_Alt: TIntegerField
+      FieldName = 'ID_Emp_Alt'
+    end
+    object tbBMClientesID_User_Alt: TIntegerField
+      FieldName = 'ID_User_Alt'
+    end
+    object tbBMClientesFun_Aliq: TFloatField
+      FieldName = 'Fun_Aliq'
+    end
+    object tbBMClientesCSLL_Aliq: TFloatField
+      FieldName = 'CSLL_Aliq'
+    end
+    object tbBMClientesST_Calc: TStringField
+      FieldName = 'ST_Calc'
+      Size = 1
+    end
+    object tbBMClientesSimples: TStringField
+      FieldName = 'Simples'
+      Size = 1
+    end
+    object tbBMClientesTipo_Imposto: TStringField
+      FieldName = 'Tipo_Imposto'
+      Size = 1
+    end
+    object tbBMClientesIPI_Calc: TStringField
+      FieldName = 'IPI_Calc'
+      Size = 1
+    end
+    object tbBMClientesLista_Preco: TStringField
+      FieldName = 'Lista_Preco'
+      Size = 1
+    end
+    object tbBMClientesClassificacao: TStringField
+      FieldName = 'Classificacao'
+      Size = 1
+    end
+    object tbBMClientesID_Bloq: TIntegerField
+      FieldName = 'ID_Bloq'
+    end
+    object tbBMClientesCod_Integracao: TStringField
+      FieldName = 'Cod_Integracao'
+      Size = 15
+    end
+    object tbBMClientesCons_Generico: TStringField
+      FieldName = 'Cons_Generico'
+      Size = 1
+    end
+    object tbBMClientesCons_Final: TStringField
+      FieldName = 'Cons_Final'
+      Size = 1
+    end
+    object tbBMClientesNFSe_Especial: TStringField
+      FieldName = 'NFSe_Especial'
+      Size = 1
+    end
+    object tbBMClientesDesconto_Venda: TFloatField
+      FieldName = 'Desconto_Venda'
+    end
+    object tbBMClientesDesconto_Boleto: TFloatField
+      FieldName = 'Desconto_Boleto'
+    end
+    object tbBMClientesInstrucao_Boleto: TStringField
+      FieldName = 'Instrucao_Boleto'
+      Size = 80
+    end
+    object tbBMClientesJuros_Especial: TFloatField
+      FieldName = 'Juros_Especial'
+    end
+    object tbBMClientesCFPS: TStringField
+      FieldName = 'CFPS'
+      Size = 5
+    end
+    object tbBMClientesDocEstrangeiro: TStringField
+      FieldName = 'DocEstrangeiro'
+    end
+    object tbBMClientesGrupo: TStringField
+      FieldName = 'Grupo'
+      Size = 15
+    end
+    object tbBMClientesModo_Retencoes: TStringField
+      FieldName = 'Modo_Retencoes'
+      Size = 1
+    end
+    object tbBMClientesINSS_Calc: TStringField
+      FieldName = 'INSS_Calc'
+      Size = 1
+    end
+    object tbBMClientesINSS_NAOReter: TBooleanField
+      FieldName = 'INSS_NAOReter'
+    end
+    object tbBMClientesISS_Reter: TBooleanField
+      FieldName = 'ISS_Reter'
+    end
+    object tbBMClientesDesonera_ICMS: TBooleanField
+      FieldName = 'Desonera_ICMS'
+    end
+    object tbBMClientesDesonera_PISCOF: TBooleanField
+      FieldName = 'Desonera_PISCOF'
+    end
+    object tbBMClientesBenef_ProEmprego: TBooleanField
+      FieldName = 'Benef_ProEmprego'
+    end
+    object tbBMClientesPerfil_Cli: TBooleanField
+      FieldName = 'Perfil_Cli'
+    end
+    object tbBMClientesPerfil_For: TBooleanField
+      FieldName = 'Perfil_For'
+    end
+    object tbBMClientesPerfil_Tra: TBooleanField
+      FieldName = 'Perfil_Tra'
+    end
+    object tbBMClientesID_CCusto: TIntegerField
+      FieldName = 'ID_CCusto'
+    end
+    object tbBMClientesID_Conta: TIntegerField
+      FieldName = 'ID_Conta'
+    end
+    object tbBMClientesUsuarios: TStringField
+      FieldName = 'Usuarios'
+      Size = 40
+    end
+    object tbBMClientesTem_Foto: TBooleanField
+      FieldName = 'Tem_Foto'
+    end
+    object tbBMClientesFoto: TGraphicField
+      FieldName = 'Foto'
+      BlobType = ftGraphic
+    end
+    object tbBMClientesAssinatura: TGraphicField
+      FieldName = 'Assinatura'
+      BlobType = ftGraphic
+    end
+    object tbBMClientesID_GrupoPlanos: TIntegerField
+      FieldName = 'ID_GrupoPlanos'
+    end
+    object tbBMClientesTrans_Frete: TStringField
+      FieldName = 'Trans_Frete'
+      Size = 1
+    end
+    object tbBMClientesPPE: TBooleanField
+      FieldName = 'PPE'
+    end
+    object tbBMClientesTipos_Conjugados: TStringField
+      FieldName = 'Tipos_Conjugados'
+      Size = 10
+    end
+    object tbBMClientesDesconto_Fidelidade: TBooleanField
+      FieldName = 'Desconto_Fidelidade'
+    end
+    object tbBMClientescontrato_assinado: TBooleanField
+      FieldName = 'contrato_assinado'
+    end
+  end
+  object tbBMintaux: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'Integracoes_Aux'
+    Left = 360
+    Top = 180
+    object tbBMintauxID_Int: TStringField
+      FieldName = 'ID_Int'
+    end
+    object tbBMintauxID_BM: TIntegerField
+      FieldName = 'ID_BM'
+    end
+    object tbBMintauxTipo: TStringField
+      FieldName = 'Tipo'
+      Size = 3
+    end
+    object tbBMintauxHASH: TStringField
+      FieldName = 'HASH'
+      Size = 32
+    end
+  end
+  object dtBMintaux: TDataSource
+    DataSet = qrBMintaux
+    Left = 356
+    Top = 120
+  end
+  object qrBMintaux: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Integracoes_Aux'
+      'WHERE (Tipo = '#39'PRD'#39')'
+      '')
+    Params = <>
+    Left = 353
+    Top = 72
+    object qrBMintauxID_Int: TStringField
+      FieldName = 'ID_Int'
+    end
+    object qrBMintauxID_BM: TIntegerField
+      FieldName = 'ID_BM'
+    end
+    object qrBMintauxTipo: TStringField
+      FieldName = 'Tipo'
+      Size = 3
+    end
+    object qrBMintauxHASH: TStringField
+      FieldName = 'HASH'
+      Size = 32
+    end
+  end
+  object dtTrayClientes: TDataSource
+    DataSet = tbTrayClientes
+    Left = 364
+    Top = 240
+  end
+end

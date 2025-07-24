@@ -1,0 +1,2364 @@
+object frmpedidos: Tfrmpedidos
+  Left = 0
+  Top = 0
+  Caption = 'Pedidos'
+  ClientHeight = 606
+  ClientWidth = 1118
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 1118
+    Height = 493
+    Align = alClient
+    TabOrder = 0
+    object Panel3: TPanel
+      Left = 1
+      Top = 1
+      Width = 1116
+      Height = 424
+      Align = alTop
+      Caption = 'Panel3'
+      TabOrder = 0
+      object DBGrid1: TDBGrid
+        Left = 1
+        Top = 25
+        Width = 1114
+        Height = 398
+        Align = alClient
+        DataSource = dtTrayPedidos
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        OnKeyDown = DBGrid1KeyDown
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'Enviar'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'status'
+            Title.Caption = 'Status'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'id_pedidos'
+            Title.Caption = 'ID do Pedido'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'date'
+            Title.Caption = 'Data do Pedido'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 93
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'customer_id'
+            Title.Caption = 'ID do Cliente'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 80
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'partial_total'
+            Title.Caption = 'Valor Parcial'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 77
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'taxes'
+            Title.Caption = 'Taxas'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 67
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'discount'
+            Title.Caption = 'Desconto'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 67
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'shipment_value'
+            Title.Caption = 'Frete'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 61
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'shipment_date'
+            Title.Caption = 'Data de Envio'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 87
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'discount_coupon'
+            Title.Caption = 'Cupom de Desconto'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 130
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'payment_form'
+            Title.Caption = 'Forma de Pagamento'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 145
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'total'
+            Title.Caption = 'Valor Total do Pedido'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 141
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'payment_date'
+            Title.Caption = 'Data de Pagamento'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 132
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'estimated_delivery_date'
+            Title.Caption = 'Data Estimada de Entrega'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 164
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'description'
+            Title.Caption = 'Descri'#231#227'o'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 730
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'name'
+            Title.Caption = 'Nome Cliente'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'rg'
+            Title.Caption = 'RG'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cpf'
+            Title.Caption = 'CPF'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'phone'
+            Title.Caption = 'Telefone'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cellphone'
+            Title.Caption = 'Celular'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'email'
+            Title.Caption = 'Email'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'observation'
+            Title.Caption = 'Observa'#231#245'es'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'type_customer'
+            Title.Caption = 'Tipo de Cliente'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cnpj'
+            Title.Caption = 'CNPJ'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'credit_limit'
+            Title.Caption = 'Limite de Cr'#233'dito'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'address'
+            Title.Caption = 'Endere'#231'o'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'zip_code'
+            Title.Caption = 'CEP'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'number_address'
+            Title.Caption = 'N'#250'mero'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'complement'
+            Title.Caption = 'Complemento'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'neighborhood'
+            Title.Caption = 'Bairro'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'city'
+            Title.Caption = 'Cidade'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'state'
+            Title.Caption = 'Estado'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 64
+            Visible = True
+          end>
+      end
+      object Panel5: TPanel
+        Left = 1
+        Top = 1
+        Width = 1114
+        Height = 24
+        Align = alTop
+        Caption = 'Pedidos '
+        Color = 15770519
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 1
+      end
+    end
+    object Panel4: TPanel
+      Left = 1
+      Top = 425
+      Width = 1116
+      Height = 67
+      Align = alClient
+      Caption = 'Panel4'
+      TabOrder = 1
+      object DBGrid2: TDBGrid
+        Left = 1
+        Top = 25
+        Width = 1114
+        Height = 41
+        Align = alClient
+        DataSource = dtTrayPedidosProdutos
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'id_pedido'
+            Title.Caption = 'ID do Pedido'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 79
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'product_id'
+            Title.Caption = 'Id do Produto na Loja'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 128
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'quantity'
+            Title.Caption = 'Quantidade'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 72
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'id_product'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'name'
+            Title.Caption = 'Descri'#231#227'o Do Produto'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 303
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'original_name'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'ean'
+            Title.Caption = 'EAN'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 106
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'price'
+            Title.Caption = 'Pre'#231'o'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 69
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cost_price'
+            Title.Caption = 'Pre'#231'o de Custo'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 93
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'brand'
+            Title.Caption = 'Marca'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 107
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'reference'
+            Title.Caption = 'Refer'#234'ncia'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 123
+            Visible = True
+          end>
+      end
+      object Panel6: TPanel
+        Left = 1
+        Top = 1
+        Width = 1114
+        Height = 24
+        Align = alTop
+        Caption = 'Produtos do Pedido'
+        Color = 15770519
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 1
+      end
+    end
+  end
+  object JSONtray_pedidos_enviar: TRzMemo
+    AlignWithMargins = True
+    Left = 2
+    Top = 578
+    Width = 1114
+    Height = 26
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    BorderStyle = bsNone
+    Color = clInfoBk
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -8
+    Font.Name = 'Courier New'
+    Font.Style = []
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 1
+    WordWrap = False
+  end
+  object tray_refresh_enviar: TEdit
+    Left = 0
+    Top = 555
+    Width = 1118
+    Height = 21
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    TabOrder = 2
+  end
+  object tray_token_enviar: TEdit
+    Left = 0
+    Top = 534
+    Width = 1118
+    Height = 21
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    TabOrder = 3
+  end
+  object RzPanel15: TRzPanel
+    Left = 0
+    Top = 493
+    Width = 1118
+    Height = 41
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    BorderOuter = fsNone
+    BorderColor = 15770519
+    Color = 15770519
+    TabOrder = 4
+    object btspedidos: TButton
+      AlignWithMargins = True
+      Left = 265
+      Top = 3
+      Width = 88
+      Height = 35
+      Align = alLeft
+      Caption = 'Listar Pedidos'
+      TabOrder = 0
+      OnClick = btspedidosClick
+      ExplicitTop = 1
+    end
+    object btnGetProdutos: TButton
+      AlignWithMargins = True
+      Left = 359
+      Top = 3
+      Width = 90
+      Height = 35
+      Align = alLeft
+      Caption = 'Listar Produtos'
+      TabOrder = 1
+      OnClick = btnGetProdutosClick
+    end
+    object btnEnviarBM: TButton
+      AlignWithMargins = True
+      Left = 455
+      Top = 3
+      Width = 75
+      Height = 35
+      Align = alLeft
+      Caption = 'Enviar BM'
+      TabOrder = 2
+      OnClick = btnEnviarBMClick
+      ExplicitTop = 1
+    end
+    object Button4: TButton
+      AlignWithMargins = True
+      Left = 536
+      Top = 3
+      Width = 91
+      Height = 35
+      Align = alLeft
+      Caption = 'Marcar p/ Enviar'
+      TabOrder = 3
+      OnClick = Button4Click
+    end
+    object btnenviartodos: TButton
+      AlignWithMargins = True
+      Left = 730
+      Top = 3
+      Width = 91
+      Height = 35
+      Align = alLeft
+      Caption = 'Enviar Marcados'
+      TabOrder = 4
+      OnClick = btnenviartodosClick
+    end
+    object Panel2: TPanel
+      Left = 0
+      Top = 0
+      Width = 262
+      Height = 41
+      Align = alLeft
+      BevelOuter = bvNone
+      TabOrder = 5
+      object Label1: TLabel
+        AlignWithMargins = True
+        Left = 9
+        Top = 3
+        Width = 80
+        Height = 35
+        Margins.Left = 9
+        Align = alLeft
+        Caption = 'A partir da data:'
+        Layout = tlCenter
+        ExplicitHeight = 13
+      end
+      object edtdata: TDateTimePicker
+        AlignWithMargins = True
+        Left = 95
+        Top = 3
+        Width = 164
+        Height = 35
+        Align = alClient
+        Date = 0.720087824076472300
+        Time = 0.720087824076472300
+        TabOrder = 0
+      end
+    end
+    object btnmarcartodos: TButton
+      AlignWithMargins = True
+      Left = 633
+      Top = 3
+      Width = 91
+      Height = 35
+      Align = alLeft
+      Caption = 'Marcar Todos'
+      TabOrder = 6
+      OnClick = btnmarcartodosClick
+    end
+  end
+  object qrBMpedidos: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT '
+      ' '#39' '#39' as Enviar,'
+      ' A.ID, '
+      ' A.JURIDICAFISICA, '
+      ' A.NOME, '
+      ' A.RG, '
+      ' A.CPFCNPJ, '
+      ' A.FONE1, '
+      ' A.CELULAR, '
+      ' A.EMAIL, '
+      ' A.LEMBRETE, '
+      ' A.FANTASIA, '
+      ' A.LIMITECREDITO, '
+      ' A.ENDERECO, '
+      ' A.CEP, '
+      ' A.NUMERO, '
+      ' A.COMPLEMENTO, '
+      ' A.BAIRRO, '
+      ' A.CIDADE, '
+      ' A.UF'
+      'FROM PESSOAS AS A')
+    Params = <>
+    Left = 841
+    Top = 80
+    object qrBMpedidosEnviar: TStringField
+      FieldName = 'Enviar'
+      Size = 1
+    end
+    object qrBMpedidosID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object qrBMpedidosJURIDICAFISICA: TStringField
+      FieldName = 'JURIDICAFISICA'
+      Size = 1
+    end
+    object qrBMpedidosNOME: TStringField
+      FieldName = 'NOME'
+      Size = 60
+    end
+    object qrBMpedidosRG: TStringField
+      FieldName = 'RG'
+    end
+    object qrBMpedidosCPFCNPJ: TStringField
+      FieldName = 'CPFCNPJ'
+      Size = 18
+    end
+    object qrBMpedidosFONE1: TStringField
+      FieldName = 'FONE1'
+      Size = 15
+    end
+    object qrBMpedidosCELULAR: TStringField
+      FieldName = 'CELULAR'
+      Size = 15
+    end
+    object qrBMpedidosEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Size = 150
+    end
+    object qrBMpedidosLEMBRETE: TStringField
+      FieldName = 'LEMBRETE'
+      Size = 80
+    end
+    object qrBMpedidosFANTASIA: TStringField
+      FieldName = 'FANTASIA'
+      Size = 40
+    end
+    object qrBMpedidosLIMITECREDITO: TCurrencyField
+      FieldName = 'LIMITECREDITO'
+    end
+    object qrBMpedidosENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Size = 60
+    end
+    object qrBMpedidosCEP: TStringField
+      FieldName = 'CEP'
+      Size = 8
+    end
+    object qrBMpedidosNUMERO: TStringField
+      FieldName = 'NUMERO'
+      Size = 5
+    end
+    object qrBMpedidosCOMPLEMENTO: TStringField
+      FieldName = 'COMPLEMENTO'
+      Size = 30
+    end
+    object qrBMpedidosBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Size = 25
+    end
+    object qrBMpedidosCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Size = 30
+    end
+    object qrBMpedidosUF: TStringField
+      FieldName = 'UF'
+      Size = 2
+    end
+  end
+  object dtBMpedidos: TDataSource
+    DataSet = qrBMpedidos
+    Left = 844
+    Top = 128
+  end
+  object serverTray: TIdHTTP
+    AllowCookies = True
+    HandleRedirects = True
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.CacheControl = 'no-cache'
+    Request.ContentEncoding = 'utf-8'
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
+    Request.ContentType = 'application/json'
+    Request.Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Request.BasicAuthentication = False
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
+    HTTPOptions = [hoForceEncodeParams]
+    Left = 1059
+    Top = 349
+  end
+  object dtTrayPedidos: TDataSource
+    DataSet = tbTrayPedidos
+    OnDataChange = dtTrayPedidosDataChange
+    Left = 524
+    Top = 128
+  end
+  object tbTrayPedidos: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'TAB_PEDIDOS'
+    Left = 520
+    Top = 80
+    object tbTrayPedidosEnviar: TStringField
+      FieldName = 'Enviar'
+      Size = 1
+    end
+    object tbTrayPedidosid_pedidos: TIntegerField
+      FieldName = 'id_pedidos'
+    end
+    object tbTrayPedidosstatus: TStringField
+      FieldName = 'status'
+      Size = 50
+    end
+    object tbTrayPedidosdate: TDateField
+      FieldName = 'date'
+    end
+    object tbTrayPedidoscustomer_id: TIntegerField
+      FieldName = 'customer_id'
+    end
+    object tbTrayPedidospartial_total: TFloatField
+      FieldName = 'partial_total'
+    end
+    object tbTrayPedidostaxes: TFloatField
+      FieldName = 'taxes'
+    end
+    object tbTrayPedidosdiscount: TFloatField
+      FieldName = 'discount'
+    end
+    object tbTrayPedidosshipment_value: TFloatField
+      FieldName = 'shipment_value'
+    end
+    object tbTrayPedidosshipment_date: TDateField
+      FieldName = 'shipment_date'
+    end
+    object tbTrayPedidosdiscount_coupon: TStringField
+      FieldName = 'discount_coupon'
+      Size = 100
+    end
+    object tbTrayPedidospayment_method_rate: TFloatField
+      FieldName = 'payment_method_rate'
+    end
+    object tbTrayPedidosvalue_1: TFloatField
+      FieldName = 'value_1'
+    end
+    object tbTrayPedidospayment_form: TStringField
+      FieldName = 'payment_form'
+      Size = 100
+    end
+    object tbTrayPedidossending_code: TStringField
+      FieldName = 'sending_code'
+      Size = 100
+    end
+    object tbTrayPedidossession_id: TStringField
+      FieldName = 'session_id'
+      Size = 100
+    end
+    object tbTrayPedidostotal: TFloatField
+      FieldName = 'total'
+    end
+    object tbTrayPedidospayment_date: TDateField
+      FieldName = 'payment_date'
+    end
+    object tbTrayPedidosaccess_code: TStringField
+      FieldName = 'access_code'
+      Size = 300
+    end
+    object tbTrayPedidosshipment_integrator: TStringField
+      FieldName = 'shipment_integrator'
+      Size = 100
+    end
+    object tbTrayPedidosmodified: TDateField
+      FieldName = 'modified'
+    end
+    object tbTrayPedidosid_quotation: TStringField
+      FieldName = 'id_quotation'
+      Size = 100
+    end
+    object tbTrayPedidosestimated_delivery_date: TIntegerField
+      FieldName = 'estimated_delivery_date'
+    end
+    object tbTrayPedidostotal_comission: TFloatField
+      FieldName = 'total_comission'
+    end
+    object tbTrayPedidosis_traceable: TIntegerField
+      FieldName = 'is_traceable'
+    end
+    object tbTrayPedidosdefault: TIntegerField
+      FieldName = 'default'
+    end
+    object tbTrayPedidostype: TStringField
+      FieldName = 'type'
+      Size = 1
+    end
+    object tbTrayPedidosshow_backoffice: TIntegerField
+      FieldName = 'show_backoffice'
+    end
+    object tbTrayPedidosallow_edit_order: TIntegerField
+      FieldName = 'allow_edit_order'
+    end
+    object tbTrayPedidosdescription: TStringField
+      FieldName = 'description'
+      Size = 100
+    end
+    object tbTrayPedidosshow_status_central: TStringField
+      FieldName = 'show_status_central'
+      Size = 100
+    end
+    object tbTrayPedidosbackground: TStringField
+      FieldName = 'background'
+      Size = 100
+    end
+    object tbTrayPedidosname: TStringField
+      FieldName = 'name'
+      Size = 50
+    end
+    object tbTrayPedidosrg: TStringField
+      FieldName = 'rg'
+      Size = 15
+    end
+    object tbTrayPedidoscpf: TStringField
+      FieldName = 'cpf'
+      Size = 15
+    end
+    object tbTrayPedidosphone: TStringField
+      FieldName = 'phone'
+      Size = 12
+    end
+    object tbTrayPedidoscellphone: TStringField
+      FieldName = 'cellphone'
+      Size = 12
+    end
+    object tbTrayPedidosemail: TStringField
+      FieldName = 'email'
+    end
+    object tbTrayPedidosobservation: TStringField
+      FieldName = 'observation'
+      Size = 100
+    end
+    object tbTrayPedidostype_customer: TStringField
+      FieldName = 'type_customer'
+      Size = 1
+    end
+    object tbTrayPedidoscnpj: TStringField
+      FieldName = 'cnpj'
+    end
+    object tbTrayPedidoscredit_limit: TFloatField
+      FieldName = 'credit_limit'
+    end
+    object tbTrayPedidosaddress: TStringField
+      FieldName = 'address'
+      Size = 100
+    end
+    object tbTrayPedidoszip_code: TStringField
+      FieldName = 'zip_code'
+    end
+    object tbTrayPedidosnumber_address: TIntegerField
+      FieldName = 'number_address'
+    end
+    object tbTrayPedidoscomplement: TStringField
+      FieldName = 'complement'
+      Size = 100
+    end
+    object tbTrayPedidosneighborhood: TStringField
+      FieldName = 'neighborhood'
+      Size = 100
+    end
+    object tbTrayPedidoscity: TStringField
+      FieldName = 'city'
+      Size = 100
+    end
+    object tbTrayPedidosstate: TStringField
+      FieldName = 'state'
+      Size = 100
+    end
+  end
+  object tbTrayPedidosProdutos: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'TAB_PEDIDOS_PRODUTOS'
+    Left = 624
+    Top = 80
+    object tbTrayPedidosProdutosid_pedido: TIntegerField
+      FieldName = 'id_pedido'
+    end
+    object tbTrayPedidosProdutosproduct_kit_id: TIntegerField
+      FieldName = 'product_kit_id'
+    end
+    object tbTrayPedidosProdutosproduct_kit_id_kit: TIntegerField
+      FieldName = 'product_kit_id_kit'
+    end
+    object tbTrayPedidosProdutosproduct_id: TIntegerField
+      FieldName = 'product_id'
+    end
+    object tbTrayPedidosProdutosquantity: TIntegerField
+      FieldName = 'quantity'
+    end
+    object tbTrayPedidosProdutosid_product: TIntegerField
+      FieldName = 'id_product'
+    end
+    object tbTrayPedidosProdutosname: TStringField
+      FieldName = 'name'
+      Size = 100
+    end
+    object tbTrayPedidosProdutosoriginal_name: TStringField
+      FieldName = 'original_name'
+      Size = 100
+    end
+    object tbTrayPedidosProdutosean: TStringField
+      FieldName = 'ean'
+      Size = 100
+    end
+    object tbTrayPedidosProdutosprice: TFloatField
+      FieldName = 'price'
+    end
+    object tbTrayPedidosProdutoscost_price: TFloatField
+      FieldName = 'cost_price'
+    end
+    object tbTrayPedidosProdutosbrand: TStringField
+      FieldName = 'brand'
+      Size = 100
+    end
+    object tbTrayPedidosProdutosreference: TStringField
+      FieldName = 'reference'
+      Size = 100
+    end
+  end
+  object dtTrayPedidosProdutos: TDataSource
+    DataSet = tbTrayPedidosProdutos
+    Left = 628
+    Top = 128
+  end
+  object dtBMPedidos1: TDataSource
+    DataSet = tbBMPedidos1
+    Left = 444
+    Top = 128
+  end
+  object tbBMPedidos1: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'OrcamentoM'
+    Left = 440
+    Top = 80
+    object tbBMPedidos1ID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object tbBMPedidos1ID_Empresa: TIntegerField
+      FieldName = 'ID_Empresa'
+    end
+    object tbBMPedidos1Numero: TIntegerField
+      FieldName = 'Numero'
+    end
+    object tbBMPedidos1Geracao_Data: TDateField
+      FieldName = 'Geracao_Data'
+    end
+    object tbBMPedidos1Geracao_Hora: TTimeField
+      FieldName = 'Geracao_Hora'
+    end
+    object tbBMPedidos1Data: TDateField
+      FieldName = 'Data'
+    end
+    object tbBMPedidos1ID_Cliente: TIntegerField
+      FieldName = 'ID_Cliente'
+    end
+    object tbBMPedidos1Cliente_Nome: TStringField
+      FieldName = 'Cliente_Nome'
+      Size = 40
+    end
+    object tbBMPedidos1Cliente_Doc: TStringField
+      FieldName = 'Cliente_Doc'
+    end
+    object tbBMPedidos1ID_Plano: TIntegerField
+      FieldName = 'ID_Plano'
+    end
+    object tbBMPedidos1ID_Vendedor: TIntegerField
+      FieldName = 'ID_Vendedor'
+    end
+    object tbBMPedidos1ID_Vendedor2: TIntegerField
+      FieldName = 'ID_Vendedor2'
+    end
+    object tbBMPedidos1ID_Transp: TIntegerField
+      FieldName = 'ID_Transp'
+    end
+    object tbBMPedidos1Frete_Tipo: TStringField
+      FieldName = 'Frete_Tipo'
+      Size = 1
+    end
+    object tbBMPedidos1Pedido_Vendedor: TStringField
+      FieldName = 'Pedido_Vendedor'
+    end
+    object tbBMPedidos1Data_Fat: TDateField
+      FieldName = 'Data_Fat'
+    end
+    object tbBMPedidos1Contato: TStringField
+      FieldName = 'Contato'
+      Size = 30
+    end
+    object tbBMPedidos1Total_Produtos: TCurrencyField
+      FieldName = 'Total_Produtos'
+    end
+    object tbBMPedidos1Total_Servicos: TCurrencyField
+      FieldName = 'Total_Servicos'
+    end
+    object tbBMPedidos1Total_Bruto: TCurrencyField
+      FieldName = 'Total_Bruto'
+    end
+    object tbBMPedidos1Acrescimos_Valor: TCurrencyField
+      FieldName = 'Acrescimos_Valor'
+    end
+    object tbBMPedidos1Acrescimos_Perc: TFloatField
+      FieldName = 'Acrescimos_Perc'
+    end
+    object tbBMPedidos1Descontos_Valor: TCurrencyField
+      FieldName = 'Descontos_Valor'
+    end
+    object tbBMPedidos1Descontos_Perc: TFloatField
+      FieldName = 'Descontos_Perc'
+    end
+    object tbBMPedidos1Total_Frete: TFloatField
+      FieldName = 'Total_Frete'
+    end
+    object tbBMPedidos1Despesas_Valor: TFloatField
+      FieldName = 'Despesas_Valor'
+    end
+    object tbBMPedidos1Total_Liq: TCurrencyField
+      FieldName = 'Total_Liq'
+    end
+    object tbBMPedidos1Obs: TMemoField
+      FieldName = 'Obs'
+      BlobType = ftMemo
+    end
+    object tbBMPedidos1Obs_Int: TMemoField
+      FieldName = 'Obs_Int'
+      BlobType = ftMemo
+    end
+    object tbBMPedidos1Obs_Duplicatas: TMemoField
+      FieldName = 'Obs_Duplicatas'
+      BlobType = ftMemo
+    end
+    object tbBMPedidos1Tipo: TStringField
+      FieldName = 'Tipo'
+      Size = 1
+    end
+    object tbBMPedidos1Cancelado: TStringField
+      FieldName = 'Cancelado'
+      Size = 1
+    end
+    object tbBMPedidos1Alterando: TBooleanField
+      FieldName = 'Alterando'
+    end
+    object tbBMPedidos1Validado: TBooleanField
+      FieldName = 'Validado'
+    end
+    object tbBMPedidos1TpAcre: TStringField
+      FieldName = 'TpAcre'
+      Size = 1
+    end
+    object tbBMPedidos1TpDesc: TStringField
+      FieldName = 'TpDesc'
+      Size = 1
+    end
+    object tbBMPedidos1DupsModif: TBooleanField
+      FieldName = 'DupsModif'
+    end
+    object tbBMPedidos1Impressao: TStringField
+      FieldName = 'Impressao'
+      Size = 1
+    end
+    object tbBMPedidos1Caixa_Gerencial: TIntegerField
+      FieldName = 'Caixa_Gerencial'
+    end
+    object tbBMPedidos1COO_Gerencial: TIntegerField
+      FieldName = 'COO_Gerencial'
+    end
+    object tbBMPedidos1Caixa: TIntegerField
+      FieldName = 'Caixa'
+    end
+    object tbBMPedidos1COO: TIntegerField
+      FieldName = 'COO'
+    end
+    object tbBMPedidos1Cupom_Canc: TStringField
+      FieldName = 'Cupom_Canc'
+      Size = 1
+    end
+    object tbBMPedidos1Capturado: TStringField
+      FieldName = 'Capturado'
+      Size = 1
+    end
+    object tbBMPedidos1Mail_Enviado: TStringField
+      FieldName = 'Mail_Enviado'
+      Size = 1
+    end
+    object tbBMPedidos1Volumes: TIntegerField
+      FieldName = 'Volumes'
+    end
+    object tbBMPedidos1Especie: TStringField
+      FieldName = 'Especie'
+      Size = 10
+    end
+    object tbBMPedidos1Peso_Bruto: TFloatField
+      FieldName = 'Peso_Bruto'
+    end
+    object tbBMPedidos1Peso_Liquido: TFloatField
+      FieldName = 'Peso_Liquido'
+    end
+    object tbBMPedidos1Entrega_IDCliente: TIntegerField
+      FieldName = 'Entrega_IDCliente'
+    end
+    object tbBMPedidos1Entrega_IDEnder: TIntegerField
+      FieldName = 'Entrega_IDEnder'
+    end
+    object tbBMPedidos1ImportMP: TBooleanField
+      FieldName = 'ImportMP'
+    end
+    object tbBMPedidos1id_mp: TIntegerField
+      FieldName = 'id_mp'
+    end
+    object tbBMPedidos1id_carga: TIntegerField
+      FieldName = 'id_carga'
+    end
+    object tbBMPedidos1flag_carga: TStringField
+      FieldName = 'flag_carga'
+      Size = 1
+    end
+    object tbBMPedidos1web_status: TStringField
+      FieldName = 'web_status'
+      Size = 1
+    end
+    object tbBMPedidos1ID_CCustos: TIntegerField
+      FieldName = 'ID_CCustos'
+    end
+    object tbBMPedidos1Cod_Classific: TStringField
+      FieldName = 'Cod_Classific'
+      Size = 1
+    end
+    object tbBMPedidos1Complemento: TStringField
+      FieldName = 'Complemento'
+      Size = 50
+    end
+    object tbBMPedidos1Lista_Preco: TStringField
+      FieldName = 'Lista_Preco'
+      Size = 1
+    end
+    object tbBMPedidos1DH_Confirmado: TDateTimeField
+      FieldName = 'DH_Confirmado'
+    end
+    object tbBMPedidos1ID_Usuario: TIntegerField
+      FieldName = 'ID_Usuario'
+    end
+    object tbBMPedidos1HASH: TStringField
+      FieldName = 'HASH'
+      Size = 4
+    end
+  end
+  object dtBMPedidosProdutos: TDataSource
+    DataSet = tbBMPedidosProdutos
+    Left = 740
+    Top = 128
+  end
+  object tbBMPedidosProdutos: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'OrcamentoP'
+    Left = 736
+    Top = 80
+    object tbBMPedidosProdutosID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object tbBMPedidosProdutosItem: TIntegerField
+      FieldName = 'Item'
+    end
+    object tbBMPedidosProdutosID_Orc: TIntegerField
+      FieldName = 'ID_Orc'
+    end
+    object tbBMPedidosProdutosID_Produto: TIntegerField
+      FieldName = 'ID_Produto'
+    end
+    object tbBMPedidosProdutosID_Referencia: TIntegerField
+      FieldName = 'ID_Referencia'
+    end
+    object tbBMPedidosProdutosReferencia: TStringField
+      FieldName = 'Referencia'
+    end
+    object tbBMPedidosProdutosTipo_Produto: TStringField
+      FieldName = 'Tipo_Produto'
+      Size = 1
+    end
+    object tbBMPedidosProdutosData_Inclusao: TDateField
+      FieldName = 'Data_Inclusao'
+    end
+    object tbBMPedidosProdutosQtdade: TFloatField
+      FieldName = 'Qtdade'
+    end
+    object tbBMPedidosProdutosqtdade_original: TFloatField
+      FieldName = 'qtdade_original'
+    end
+    object tbBMPedidosProdutosqtdade_a_produzir: TFloatField
+      FieldName = 'qtdade_a_produzir'
+    end
+    object tbBMPedidosProdutosqtdade_produzida: TFloatField
+      FieldName = 'qtdade_produzida'
+    end
+    object tbBMPedidosProdutosPreco_Lista: TCurrencyField
+      FieldName = 'Preco_Lista'
+    end
+    object tbBMPedidosProdutosPreco_Venda: TCurrencyField
+      FieldName = 'Preco_Venda'
+    end
+    object tbBMPedidosProdutosPreco_Total_Bruto: TCurrencyField
+      FieldName = 'Preco_Total_Bruto'
+    end
+    object tbBMPedidosProdutosDesconto_Perc: TFloatField
+      FieldName = 'Desconto_Perc'
+    end
+    object tbBMPedidosProdutosDesconto_Valor: TCurrencyField
+      FieldName = 'Desconto_Valor'
+    end
+    object tbBMPedidosProdutosAcrescimo_Perc: TFloatField
+      FieldName = 'Acrescimo_Perc'
+    end
+    object tbBMPedidosProdutosAcrescimo_Valor: TFloatField
+      FieldName = 'Acrescimo_Valor'
+    end
+    object tbBMPedidosProdutosPreco_Total_Liq: TCurrencyField
+      FieldName = 'Preco_Total_Liq'
+    end
+    object tbBMPedidosProdutosPromocao: TStringField
+      FieldName = 'Promocao'
+      Size = 1
+    end
+    object tbBMPedidosProdutosPreco_Especial: TBooleanField
+      FieldName = 'Preco_Especial'
+    end
+    object tbBMPedidosProdutosLista_Preco: TStringField
+      FieldName = 'Lista_Preco'
+      Size = 1
+    end
+    object tbBMPedidosProdutosTexto: TMemoField
+      FieldName = 'Texto'
+      BlobType = ftMemo
+    end
+    object tbBMPedidosProdutosRecusado: TBooleanField
+      FieldName = 'Recusado'
+    end
+    object tbBMPedidosProdutosQtd_Recusada: TFloatField
+      FieldName = 'Qtd_Recusada'
+    end
+    object tbBMPedidosProdutosCancelado: TStringField
+      FieldName = 'Cancelado'
+      Size = 1
+    end
+    object tbBMPedidosProdutosPedido_Num: TStringField
+      FieldName = 'Pedido_Num'
+      Size = 15
+    end
+    object tbBMPedidosProdutosPedido_Item: TIntegerField
+      FieldName = 'Pedido_Item'
+    end
+    object tbBMPedidosProdutosPeso_Bruto: TFloatField
+      FieldName = 'Peso_Bruto'
+    end
+    object tbBMPedidosProdutosQtd_Prox_Ent: TFloatField
+      FieldName = 'Qtd_Prox_Ent'
+    end
+    object tbBMPedidosProdutosPreco_Negociado: TFloatField
+      FieldName = 'Preco_Negociado'
+    end
+    object tbBMPedidosProdutosTipo_Preco: TStringField
+      FieldName = 'Tipo_Preco'
+      Size = 3
+    end
+    object tbBMPedidosProdutosID_Conta: TIntegerField
+      FieldName = 'ID_Conta'
+    end
+    object tbBMPedidosProdutosLote: TBooleanField
+      FieldName = 'Lote'
+    end
+    object tbBMPedidosProdutosID_Depto: TIntegerField
+      FieldName = 'ID_Depto'
+    end
+    object tbBMPedidosProdutosID_Vendedor: TIntegerField
+      FieldName = 'ID_Vendedor'
+    end
+    object tbBMPedidosProdutosID_Vendedor2: TIntegerField
+      FieldName = 'ID_Vendedor2'
+    end
+    object tbBMPedidosProdutosData_Entrega: TDateField
+      FieldName = 'Data_Entrega'
+    end
+    object tbBMPedidosProdutosflag_carga: TStringField
+      FieldName = 'flag_carga'
+      Size = 1
+    end
+    object tbBMPedidosProdutosHASH: TStringField
+      FieldName = 'HASH'
+      Size = 4
+    end
+  end
+  object tbBMorcControl: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'OrcamentoControl'
+    Left = 352
+    Top = 80
+    object tbBMorcControlID_Empresa: TIntegerField
+      FieldName = 'ID_Empresa'
+    end
+    object tbBMorcControlNumero: TIntegerField
+      FieldName = 'Numero'
+    end
+  end
+  object tbBMintaux: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'Integracoes_Aux'
+    Left = 920
+    Top = 76
+    object tbBMintauxID_Int: TStringField
+      FieldName = 'ID_Int'
+    end
+    object tbBMintauxID_BM: TIntegerField
+      FieldName = 'ID_BM'
+    end
+    object tbBMintauxTipo: TStringField
+      FieldName = 'Tipo'
+      Size = 3
+    end
+    object tbBMintauxHASH: TStringField
+      FieldName = 'HASH'
+      Size = 32
+    end
+  end
+  object dtBMclientes: TDataSource
+    DataSet = qrBMclientes
+    Left = 100
+    Top = 176
+  end
+  object qrBMclientes: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT '
+      'A.ID, '
+      'A.JURIDICAFISICA, '
+      'A.NOME, '
+      'A.RG, '
+      'A.CPFCNPJ, '
+      'A.FONE1, '
+      'A.CELULAR, '
+      'A.EMAIL, '
+      'A.LEMBRETE, '
+      'A.FANTASIA, '
+      'A.LIMITECREDITO, '
+      'A.ENDERECO, '
+      'A.CEP, '
+      'A.NUMERO, '
+      'A.COMPLEMENTO, '
+      'A.BAIRRO, '
+      'A.CIDADE, '
+      'A.UF'
+      'FROM PESSOAS AS A')
+    Params = <>
+    Left = 97
+    Top = 128
+    object qrBMclientesID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object qrBMclientesJURIDICAFISICA: TStringField
+      FieldName = 'JURIDICAFISICA'
+      Size = 1
+    end
+    object qrBMclientesNOME: TStringField
+      FieldName = 'NOME'
+      Size = 60
+    end
+    object qrBMclientesRG: TStringField
+      FieldName = 'RG'
+    end
+    object qrBMclientesCPFCNPJ: TStringField
+      FieldName = 'CPFCNPJ'
+      Size = 18
+    end
+    object qrBMclientesFONE1: TStringField
+      FieldName = 'FONE1'
+      Size = 15
+    end
+    object qrBMclientesCELULAR: TStringField
+      FieldName = 'CELULAR'
+      Size = 15
+    end
+    object qrBMclientesEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Size = 150
+    end
+    object qrBMclientesLEMBRETE: TStringField
+      FieldName = 'LEMBRETE'
+      Size = 80
+    end
+    object qrBMclientesFANTASIA: TStringField
+      FieldName = 'FANTASIA'
+      Size = 40
+    end
+    object qrBMclientesLIMITECREDITO: TCurrencyField
+      FieldName = 'LIMITECREDITO'
+    end
+    object qrBMclientesENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Size = 60
+    end
+    object qrBMclientesCEP: TStringField
+      FieldName = 'CEP'
+      Size = 8
+    end
+    object qrBMclientesNUMERO: TStringField
+      FieldName = 'NUMERO'
+      Size = 5
+    end
+    object qrBMclientesCOMPLEMENTO: TStringField
+      FieldName = 'COMPLEMENTO'
+      Size = 30
+    end
+    object qrBMclientesBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Size = 25
+    end
+    object qrBMclientesCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Size = 30
+    end
+    object qrBMclientesUF: TStringField
+      FieldName = 'UF'
+      Size = 2
+    end
+  end
+  object tbBMClientes: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'Pessoas'
+    Left = 96
+    Top = 80
+    object tbBMClientesID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object tbBMClientesJuridicaFisica: TStringField
+      FieldName = 'JuridicaFisica'
+      Size = 1
+    end
+    object tbBMClientesNome: TStringField
+      FieldName = 'Nome'
+      Size = 60
+    end
+    object tbBMClientesFantasia: TStringField
+      FieldName = 'Fantasia'
+      Size = 40
+    end
+    object tbBMClientesResponsavel: TStringField
+      FieldName = 'Responsavel'
+      Size = 40
+    end
+    object tbBMClientesEndereco: TStringField
+      FieldName = 'Endereco'
+      Size = 60
+    end
+    object tbBMClientesNumero: TStringField
+      FieldName = 'Numero'
+      Size = 5
+    end
+    object tbBMClientesComplemento: TStringField
+      FieldName = 'Complemento'
+      Size = 30
+    end
+    object tbBMClientesBairro: TStringField
+      FieldName = 'Bairro'
+      Size = 25
+    end
+    object tbBMClientesCEP: TStringField
+      FieldName = 'CEP'
+      Size = 8
+    end
+    object tbBMClientesCod_Cidade: TStringField
+      FieldName = 'Cod_Cidade'
+      Size = 7
+    end
+    object tbBMClientesCidade: TStringField
+      FieldName = 'Cidade'
+      Size = 30
+    end
+    object tbBMClientesUF: TStringField
+      FieldName = 'UF'
+      Size = 2
+    end
+    object tbBMClientesCod_Pais: TStringField
+      FieldName = 'Cod_Pais'
+      Size = 4
+    end
+    object tbBMClientesRegiao: TStringField
+      FieldName = 'Regiao'
+      Size = 5
+    end
+    object tbBMClientesRota: TStringField
+      FieldName = 'Rota'
+      Size = 2
+    end
+    object tbBMClientesID_Localidade: TIntegerField
+      FieldName = 'ID_Localidade'
+    end
+    object tbBMClientesID_TipoLogradouro: TIntegerField
+      FieldName = 'ID_TipoLogradouro'
+    end
+    object tbBMClientesFone1: TStringField
+      FieldName = 'Fone1'
+      Size = 15
+    end
+    object tbBMClientesFone2: TStringField
+      FieldName = 'Fone2'
+      Size = 15
+    end
+    object tbBMClientesCelular: TStringField
+      FieldName = 'Celular'
+      Size = 15
+    end
+    object tbBMClientesEmail: TStringField
+      FieldName = 'Email'
+      Size = 150
+    end
+    object tbBMClientesCPFCNPJ: TStringField
+      FieldName = 'CPFCNPJ'
+      Size = 18
+    end
+    object tbBMClientesIE: TStringField
+      FieldName = 'IE'
+    end
+    object tbBMClientesTipo_Contribuinte: TStringField
+      FieldName = 'Tipo_Contribuinte'
+      Size = 1
+    end
+    object tbBMClientesIM: TStringField
+      FieldName = 'IM'
+      Size = 14
+    end
+    object tbBMClientesCIDASC: TIntegerField
+      FieldName = 'CIDASC'
+    end
+    object tbBMClientesRG: TStringField
+      FieldName = 'RG'
+    end
+    object tbBMClientesI_PRural: TStringField
+      FieldName = 'I_PRural'
+    end
+    object tbBMClientesNomeOutroDoc: TStringField
+      FieldName = 'NomeOutroDoc'
+    end
+    object tbBMClientesOutroDoc: TStringField
+      FieldName = 'OutroDoc'
+    end
+    object tbBMClientesSuframa: TStringField
+      FieldName = 'Suframa'
+      Size = 9
+    end
+    object tbBMClientesCNAE: TStringField
+      FieldName = 'CNAE'
+      Size = 10
+    end
+    object tbBMClientesPracaPgtoEnd: TStringField
+      FieldName = 'PracaPgtoEnd'
+      Size = 60
+    end
+    object tbBMClientesPracaPgtoNum: TStringField
+      FieldName = 'PracaPgtoNum'
+      Size = 5
+    end
+    object tbBMClientesPracaPgtoCom: TStringField
+      FieldName = 'PracaPgtoCom'
+      Size = 30
+    end
+    object tbBMClientesPracaPgtoBai: TStringField
+      FieldName = 'PracaPgtoBai'
+      Size = 25
+    end
+    object tbBMClientesPracaPgtoCid: TStringField
+      FieldName = 'PracaPgtoCid'
+      Size = 30
+    end
+    object tbBMClientesPracaPgtoUF: TStringField
+      FieldName = 'PracaPgtoUF'
+      Size = 2
+    end
+    object tbBMClientesPracaPgtoCEP: TStringField
+      FieldName = 'PracaPgtoCEP'
+      Size = 8
+    end
+    object tbBMClientesID_Vendedor: TIntegerField
+      FieldName = 'ID_Vendedor'
+    end
+    object tbBMClientesID_Vendedor2: TIntegerField
+      FieldName = 'ID_Vendedor2'
+    end
+    object tbBMClientesComissaoVend1: TFloatField
+      FieldName = 'ComissaoVend1'
+    end
+    object tbBMClientesComissaoVend2: TFloatField
+      FieldName = 'ComissaoVend2'
+    end
+    object tbBMClientesID_Plano: TIntegerField
+      FieldName = 'ID_Plano'
+    end
+    object tbBMClientesID_Banco: TIntegerField
+      FieldName = 'ID_Banco'
+    end
+    object tbBMClientesID_Transp: TIntegerField
+      FieldName = 'ID_Transp'
+    end
+    object tbBMClientesEntrega_IDCliente: TIntegerField
+      FieldName = 'Entrega_IDCliente'
+    end
+    object tbBMClientesLimiteCredito: TCurrencyField
+      FieldName = 'LimiteCredito'
+    end
+    object tbBMClientesCrediario: TStringField
+      FieldName = 'Crediario'
+      Size = 1
+    end
+    object tbBMClientesTipo_Crediario: TStringField
+      FieldName = 'Tipo_Crediario'
+      Size = 1
+    end
+    object tbBMClientesPrazo: TIntegerField
+      FieldName = 'Prazo'
+    end
+    object tbBMClientesDia_Fixo: TIntegerField
+      FieldName = 'Dia_Fixo'
+    end
+    object tbBMClientesLiberado: TStringField
+      FieldName = 'Liberado'
+      Size = 1
+    end
+    object tbBMClientesDescontoMax_Liberado: TStringField
+      FieldName = 'DescontoMax_Liberado'
+      Size = 1
+    end
+    object tbBMClientesLembrete: TStringField
+      FieldName = 'Lembrete'
+      Size = 80
+    end
+    object tbBMClientesObs: TMemoField
+      FieldName = 'Obs'
+      BlobType = ftMemo
+    end
+    object tbBMClientesAtivo: TStringField
+      FieldName = 'Ativo'
+      Size = 1
+    end
+    object tbBMClientesData_Cadastro: TDateField
+      FieldName = 'Data_Cadastro'
+    end
+    object tbBMClientesID_Emp_Cad: TIntegerField
+      FieldName = 'ID_Emp_Cad'
+    end
+    object tbBMClientesID_User_Cad: TIntegerField
+      FieldName = 'ID_User_Cad'
+    end
+    object tbBMClientesData_Alter: TDateField
+      FieldName = 'Data_Alter'
+    end
+    object tbBMClientesID_Emp_Alt: TIntegerField
+      FieldName = 'ID_Emp_Alt'
+    end
+    object tbBMClientesID_User_Alt: TIntegerField
+      FieldName = 'ID_User_Alt'
+    end
+    object tbBMClientesFun_Aliq: TFloatField
+      FieldName = 'Fun_Aliq'
+    end
+    object tbBMClientesCSLL_Aliq: TFloatField
+      FieldName = 'CSLL_Aliq'
+    end
+    object tbBMClientesST_Calc: TStringField
+      FieldName = 'ST_Calc'
+      Size = 1
+    end
+    object tbBMClientesSimples: TStringField
+      FieldName = 'Simples'
+      Size = 1
+    end
+    object tbBMClientesTipo_Imposto: TStringField
+      FieldName = 'Tipo_Imposto'
+      Size = 1
+    end
+    object tbBMClientesIPI_Calc: TStringField
+      FieldName = 'IPI_Calc'
+      Size = 1
+    end
+    object tbBMClientesLista_Preco: TStringField
+      FieldName = 'Lista_Preco'
+      Size = 1
+    end
+    object tbBMClientesClassificacao: TStringField
+      FieldName = 'Classificacao'
+      Size = 1
+    end
+    object tbBMClientesID_Bloq: TIntegerField
+      FieldName = 'ID_Bloq'
+    end
+    object tbBMClientesCod_Integracao: TStringField
+      FieldName = 'Cod_Integracao'
+      Size = 15
+    end
+    object tbBMClientesCons_Generico: TStringField
+      FieldName = 'Cons_Generico'
+      Size = 1
+    end
+    object tbBMClientesCons_Final: TStringField
+      FieldName = 'Cons_Final'
+      Size = 1
+    end
+    object tbBMClientesNFSe_Especial: TStringField
+      FieldName = 'NFSe_Especial'
+      Size = 1
+    end
+    object tbBMClientesDesconto_Venda: TFloatField
+      FieldName = 'Desconto_Venda'
+    end
+    object tbBMClientesDesconto_Boleto: TFloatField
+      FieldName = 'Desconto_Boleto'
+    end
+    object tbBMClientesInstrucao_Boleto: TStringField
+      FieldName = 'Instrucao_Boleto'
+      Size = 80
+    end
+    object tbBMClientesJuros_Especial: TFloatField
+      FieldName = 'Juros_Especial'
+    end
+    object tbBMClientesCFPS: TStringField
+      FieldName = 'CFPS'
+      Size = 5
+    end
+    object tbBMClientesDocEstrangeiro: TStringField
+      FieldName = 'DocEstrangeiro'
+    end
+    object tbBMClientesGrupo: TStringField
+      FieldName = 'Grupo'
+      Size = 15
+    end
+    object tbBMClientesModo_Retencoes: TStringField
+      FieldName = 'Modo_Retencoes'
+      Size = 1
+    end
+    object tbBMClientesINSS_Calc: TStringField
+      FieldName = 'INSS_Calc'
+      Size = 1
+    end
+    object tbBMClientesINSS_NAOReter: TBooleanField
+      FieldName = 'INSS_NAOReter'
+    end
+    object tbBMClientesISS_Reter: TBooleanField
+      FieldName = 'ISS_Reter'
+    end
+    object tbBMClientesDesonera_ICMS: TBooleanField
+      FieldName = 'Desonera_ICMS'
+    end
+    object tbBMClientesDesonera_PISCOF: TBooleanField
+      FieldName = 'Desonera_PISCOF'
+    end
+    object tbBMClientesBenef_ProEmprego: TBooleanField
+      FieldName = 'Benef_ProEmprego'
+    end
+    object tbBMClientesPerfil_Cli: TBooleanField
+      FieldName = 'Perfil_Cli'
+    end
+    object tbBMClientesPerfil_For: TBooleanField
+      FieldName = 'Perfil_For'
+    end
+    object tbBMClientesPerfil_Tra: TBooleanField
+      FieldName = 'Perfil_Tra'
+    end
+    object tbBMClientesID_CCusto: TIntegerField
+      FieldName = 'ID_CCusto'
+    end
+    object tbBMClientesID_Conta: TIntegerField
+      FieldName = 'ID_Conta'
+    end
+    object tbBMClientesUsuarios: TStringField
+      FieldName = 'Usuarios'
+      Size = 40
+    end
+    object tbBMClientesTem_Foto: TBooleanField
+      FieldName = 'Tem_Foto'
+    end
+    object tbBMClientesFoto: TGraphicField
+      FieldName = 'Foto'
+      BlobType = ftGraphic
+    end
+    object tbBMClientesAssinatura: TGraphicField
+      FieldName = 'Assinatura'
+      BlobType = ftGraphic
+    end
+    object tbBMClientesID_GrupoPlanos: TIntegerField
+      FieldName = 'ID_GrupoPlanos'
+    end
+    object tbBMClientesTrans_Frete: TStringField
+      FieldName = 'Trans_Frete'
+      Size = 1
+    end
+    object tbBMClientesPPE: TBooleanField
+      FieldName = 'PPE'
+    end
+    object tbBMClientesTipos_Conjugados: TStringField
+      FieldName = 'Tipos_Conjugados'
+      Size = 10
+    end
+    object tbBMClientesDesconto_Fidelidade: TBooleanField
+      FieldName = 'Desconto_Fidelidade'
+    end
+    object tbBMClientescontrato_assinado: TBooleanField
+      FieldName = 'contrato_assinado'
+    end
+  end
+  object tbBMprodutosref: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'ProdutosReferencia'
+    Left = 256
+    Top = 80
+    object tbBMprodutosrefID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object tbBMprodutosrefID_Produto: TIntegerField
+      FieldName = 'ID_Produto'
+    end
+    object tbBMprodutosrefReferencia: TStringField
+      FieldName = 'Referencia'
+    end
+    object tbBMprodutosrefEAN: TStringField
+      FieldName = 'EAN'
+    end
+    object tbBMprodutosrefDescricao: TStringField
+      FieldName = 'Descricao'
+      Size = 25
+    end
+    object tbBMprodutosrefCod_Fornec: TStringField
+      FieldName = 'Cod_Fornec'
+      Size = 60
+    end
+    object tbBMprodutosrefCod_Fornec_Ex: TStringField
+      FieldName = 'Cod_Fornec_Ex'
+      Size = 60
+    end
+    object tbBMprodutosrefqtdeti: TIntegerField
+      FieldName = 'qtdeti'
+    end
+    object tbBMprodutosrefAtivo: TStringField
+      FieldName = 'Ativo'
+      Size = 1
+    end
+    object tbBMprodutosrefHASH: TStringField
+      FieldName = 'HASH'
+      Size = 4
+    end
+  end
+  object tbBMprodutosprincipal: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'ProdutosPrincipal'
+    Left = 48
+    Top = 264
+    object tbBMprodutosprincipalID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object tbBMprodutosprincipalDescricao: TStringField
+      FieldName = 'Descricao'
+      Size = 80
+    end
+    object tbBMprodutosprincipalClasse: TStringField
+      FieldName = 'Classe'
+      Size = 30
+    end
+    object tbBMprodutosprincipalMarca: TStringField
+      FieldName = 'Marca'
+      Size = 15
+    end
+    object tbBMprodutosprincipalTipo: TStringField
+      FieldName = 'Tipo'
+      Size = 1
+    end
+    object tbBMprodutosprincipalPrecoVenda1: TFloatField
+      FieldName = 'PrecoVenda1'
+    end
+  end
+  object tbBMcidades: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'Cidades'
+    Left = 176
+    Top = 84
+    object tbBMcidadesCodigo: TStringField
+      FieldName = 'Codigo'
+      Size = 7
+    end
+    object tbBMcidadesNome: TStringField
+      FieldName = 'Nome'
+      Size = 28
+    end
+    object tbBMcidadesCEP_Ini: TStringField
+      FieldName = 'CEP_Ini'
+      Size = 8
+    end
+    object tbBMcidadesCEP_Fim: TStringField
+      FieldName = 'CEP_Fim'
+      Size = 8
+    end
+    object tbBMcidadesCodigo_UF: TStringField
+      FieldName = 'Codigo_UF'
+      Size = 2
+    end
+    object tbBMcidadesNome_UF: TStringField
+      FieldName = 'Nome_UF'
+      Size = 18
+    end
+    object tbBMcidadesSigla_UF: TStringField
+      FieldName = 'Sigla_UF'
+      Size = 2
+    end
+  end
+  object qrBMcidades: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT '
+      'A.CODIGO,'
+      'A.CEP_INI,'
+      'A.CEP_FIM,'
+      'A.NOME '
+      'FROM CIDADES AS A'
+      'WHERE  A.CEP_INI <= :CEP AND :CEP <= A.CEP_FIM ')
+    Params = <
+      item
+        DataType = ftString
+        Name = 'CEP'
+      end
+      item
+        DataType = ftString
+        Name = 'CEP'
+      end>
+    Left = 177
+    Top = 128
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'CEP'
+      end
+      item
+        DataType = ftString
+        Name = 'CEP'
+      end>
+    object qrBMcidadesCODIGO: TStringField
+      FieldName = 'CODIGO'
+      Size = 7
+    end
+    object qrBMcidadesCEP_INI: TStringField
+      FieldName = 'CEP_INI'
+      Size = 8
+    end
+    object qrBMcidadesCEP_FIM: TStringField
+      FieldName = 'CEP_FIM'
+      Size = 8
+    end
+    object qrBMcidadesNOME: TStringField
+      FieldName = 'NOME'
+      Size = 28
+    end
+  end
+  object dtTrayClientes: TDataSource
+    DataSet = tbTrayClientesx
+    Left = 996
+    Top = 128
+  end
+  object tbTrayClientesx: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'TAB_CLIENTES'
+    Left = 992
+    Top = 76
+    object tbTrayClientesxid_cliente: TIntegerField
+      FieldName = 'id_cliente'
+    end
+    object tbTrayClientesxname: TStringField
+      FieldName = 'name'
+      Size = 50
+    end
+    object tbTrayClientesxrg: TStringField
+      FieldName = 'rg'
+    end
+    object tbTrayClientesxcpf: TStringField
+      FieldName = 'cpf'
+      Size = 14
+    end
+    object tbTrayClientesxphone: TStringField
+      FieldName = 'phone'
+      Size = 17
+    end
+    object tbTrayClientesxcellphone: TStringField
+      FieldName = 'cellphone'
+      Size = 17
+    end
+    object tbTrayClientesxbirth_date: TDateField
+      FieldName = 'birth_date'
+    end
+    object tbTrayClientesxid_gender: TIntegerField
+      FieldName = 'id_gender'
+    end
+    object tbTrayClientesxemail: TStringField
+      FieldName = 'email'
+      Size = 50
+    end
+    object tbTrayClientesxnickname: TStringField
+      FieldName = 'nickname'
+    end
+    object tbTrayClientesxtoken: TStringField
+      FieldName = 'token'
+      Size = 50
+    end
+    object tbTrayClientesxtotal_orders: TIntegerField
+      FieldName = 'total_orders'
+    end
+    object tbTrayClientesxobservation: TStringField
+      FieldName = 'observation'
+      Size = 500
+    end
+    object tbTrayClientesxid_type: TStringField
+      FieldName = 'id_type'
+      Size = 1
+    end
+    object tbTrayClientesxcnpj: TStringField
+      FieldName = 'cnpj'
+      Size = 18
+    end
+    object tbTrayClientesxcompany_name: TStringField
+      FieldName = 'company_name'
+      Size = 500
+    end
+    object tbTrayClientesxstate_inscription: TStringField
+      FieldName = 'state_inscription'
+      Size = 500
+    end
+    object tbTrayClientesxreseller: TIntegerField
+      FieldName = 'reseller'
+    end
+    object tbTrayClientesxdiscount: TFloatField
+      FieldName = 'discount'
+    end
+    object tbTrayClientesxid_blocked: TIntegerField
+      FieldName = 'id_blocked'
+    end
+    object tbTrayClientesxcredit_limit: TFloatField
+      FieldName = 'credit_limit'
+    end
+    object tbTrayClientesxindicator_id: TIntegerField
+      FieldName = 'indicator_id'
+    end
+    object tbTrayClientesxprofile_customer_id: TIntegerField
+      FieldName = 'profile_customer_id'
+    end
+    object tbTrayClientesxlast_sending_newsletter: TDateField
+      FieldName = 'last_sending_newsletter'
+    end
+    object tbTrayClientesxlast_purchase: TDateField
+      FieldName = 'last_purchase'
+    end
+    object tbTrayClientesxlast_visit: TDateField
+      FieldName = 'last_visit'
+    end
+    object tbTrayClientesxlast_modification: TDateField
+      FieldName = 'last_modification'
+    end
+    object tbTrayClientesxaddress: TStringField
+      FieldName = 'address'
+      Size = 100
+    end
+    object tbTrayClientesxzip_code: TStringField
+      FieldName = 'zip_code'
+      Size = 9
+    end
+    object tbTrayClientesxcomplement: TStringField
+      FieldName = 'complement'
+      Size = 500
+    end
+    object tbTrayClientesxneighborhood: TStringField
+      FieldName = 'neighborhood'
+      Size = 500
+    end
+    object tbTrayClientesxcity: TStringField
+      FieldName = 'city'
+      Size = 100
+    end
+    object tbTrayClientesxstate: TStringField
+      FieldName = 'state'
+      Size = 100
+    end
+    object tbTrayClientesxnewslatter: TIntegerField
+      FieldName = 'newslatter'
+    end
+    object tbTrayClientesxcreated: TDateField
+      FieldName = 'created'
+    end
+    object tbTrayClientesxregistration_date: TDateField
+      FieldName = 'registration_date'
+    end
+    object tbTrayClientesxmodifed: TDateField
+      FieldName = 'modifed'
+    end
+    object tbTrayClientesxnumber_address: TStringField
+      FieldName = 'number_address'
+      Size = 500
+    end
+  end
+  object QDelPedidos: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'DELETE FROM TAB_PEDIDOS;'
+      'DELETE FROM TAB_PEDIDOS_PRODUTOS')
+    Params = <>
+    Left = 24
+    Top = 80
+  end
+  object tbTrayStatus: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'TAB_STATUS'
+    Left = 160
+    Top = 264
+    object tbTrayStatusid_status: TIntegerField
+      FieldName = 'id_status'
+    end
+    object tbTrayStatusstatus: TStringField
+      FieldName = 'status'
+      Size = 50
+    end
+    object tbTrayStatusflag: TStringField
+      FieldName = 'flag'
+      Size = 1
+    end
+  end
+end

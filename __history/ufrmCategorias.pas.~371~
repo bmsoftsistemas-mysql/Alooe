@@ -1,0 +1,534 @@
+unit ufrmCategorias;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, System.Json, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, RzEdit, RzButton,
+  Vcl.ExtCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, IdBaseComponent, IdComponent,
+  IdTCPConnection, IdTCPClient, IdHTTP, dbisamtb, RzPanel, REST.Types;
+
+type
+  TfrmContatos = class(TForm)
+    tray_token_enviar: TEdit;
+    tray_refresh_enviar: TEdit;
+    JSONtray_marcas_enviar: TRzMemo;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
+    serverTray: TIdHTTP;
+    tbBMintaux: TDBISAMTable;
+    tbBMintauxID_Int: TStringField;
+    tbBMintauxID_BM: TIntegerField;
+    tbBMintauxTipo: TStringField;
+    tbBMintauxHASH: TStringField;
+    dtBMPessoas: TDataSource;
+    qrBMPessoas: TDBISAMQuery;
+    dtBMintaux: TDataSource;
+    qrBMintaux: TDBISAMQuery;
+    tbTrayCategorias: TDBISAMTable;
+    tbTrayCategoriasid_categoria: TIntegerField;
+    tbTrayCategoriasid_parent: TIntegerField;
+    tbTrayCategoriasname: TStringField;
+    tbTrayCategoriasdescription: TStringField;
+    tbTrayCategoriassmall_description: TStringField;
+    tbTrayCategoriasslug: TStringField;
+    tbTrayCategoriasorder: TIntegerField;
+    tbTrayCategoriashas_acceptance_term: TIntegerField;
+    tbTrayCategoriasacceptance_term: TStringField;
+    tbTrayCategoriashttp: TStringField;
+    tbTrayCategoriashttps: TStringField;
+    qrBMintaux2: TDBISAMQuery;
+    dtBMintaux2: TDataSource;
+    qrBMintaux2ID_Int: TStringField;
+    qrBMintaux2ID_BM: TIntegerField;
+    qrBMintaux2Tipo: TStringField;
+    qrBMintaux2HASH: TStringField;
+    RzPanel15: TRzPanel;
+    btscategorias: TButton;
+    btnenviartodascat: TButton;
+    Panel1: TPanel;
+    Panel4: TPanel;
+    btnenviaruma: TButton;
+    tbBMauxerros: TDBISAMTable;
+    tbBMauxerrosid: TAutoIncField;
+    tbBMauxerrosid_tabela: TIntegerField;
+    tbBMauxerrostipo: TStringField;
+    tbBMauxerrosdescricao: TStringField;
+    tbBMauxerrosdatahora_registro: TDateTimeField;
+    tbBMauxerrostipo_metodo: TStringField;
+    qrBMcat2: TDBISAMQuery;
+    DtBMcat2: TDataSource;
+    qrBMcat2ID: TAutoIncField;
+    qrBMcat2Nivel: TStringField;
+    qrBMcat2Classe: TStringField;
+    qrBMcat2Descricao: TStringField;
+    qrBMcat2Cultura: TStringField;
+    qrBMcat2Dias_Giro: TIntegerField;
+    qrBMcat2Comissao: TStringField;
+    qrBMcat2PRural: TBooleanField;
+    qrBMcat2PrecoTabelado: TBooleanField;
+    qrBMcat2Estoque_Local: TStringField;
+    qrBMcat2Ativo: TBooleanField;
+    qrBMintaux3: TDBISAMQuery;
+    DtBMintaux3: TDataSource;
+    qrBMintaux3ID_Int: TStringField;
+    qrBMintaux3ID_BM: TIntegerField;
+    qrBMintaux3Tipo: TStringField;
+    qrBMintaux3HASH: TStringField;
+    qrBMPessoasID: TAutoIncField;
+    qrBMPessoasNOME: TStringField;
+    qrBMPessoasCELULAR: TStringField;
+    qrBMPessoasEMAIL: TStringField;
+    procedure FormResize(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btscategoriasClick(Sender: TObject);
+    procedure btnenviartodascatClick(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure btnenviarumaClick(Sender: TObject);
+  private
+
+    { Private declarations }
+  public
+    { Public declarations }
+    function analisaexistenciadate(o: TJsonObject; s: string): TDateTime;
+    function analisaexistenciafloat(o: TJsonObject; s: string): double;
+    function analisaexistenciainteger(o: TJsonObject; s: string): Integer;
+    function analisaexistenciastr(o: TJsonObject; s: string): string;
+    procedure ProcessaCategoria(jObjCategoria: TJsonObject);
+    function datatopadrao(s: string): string;
+  end;
+
+var
+  frmContatos: TfrmContatos;
+
+implementation
+
+{$R *.dfm}
+
+uses ufrmRequest, uMain, ufrmTabelas, uDD, Super, MD5, ufrmAviso, uprodutosfrm;
+
+//Abre todas as tebalas do FORM
+
+procedure TfrmContatos.btscategoriasClick(Sender: TObject);
+begin
+  try
+    tbBMintaux.Close;
+    tbBMintaux.Exclusive := false;
+    tbBMintaux.Open;
+    qrBMintaux2.Close;
+    qrBMPessoas.Close;
+    qrBMintaux2.Open;
+    qrBMPessoas.Open;
+    tbBMauxerros.Open;
+    tbBMauxerros.Close;
+    qrBMcat2.Close;
+    qrBMcat2.Open;
+    qrBMintaux3.Close;
+    qrBMintaux3.Open;
+
+  except
+    AvisoAtt('Não foi possível abrir as tabelas, favor fechar o sistema BM e reparar tabelas.', -5, -1);
+    frmMain.T.FecharTudo;
+    abort;
+  end;
+
+end;
+
+//Função utilizada para alterar datas que venham em branco ou com formato incorreto
+
+function TfrmContatos.datatopadrao(s: string): string;
+var
+  dia: string;
+  mes: string;
+  ano: string;
+  datacompleta: string;
+
+begin
+  if (s = '0000-00-00') or (s = '') then
+    s := '1980-01-01';
+
+  dia := copy(s, 9, 2);
+  mes := copy(s, 6, 2);
+  ano := copy(s, 1, 4);
+  datacompleta := dia + '/' + mes + '/' + ano;
+
+  result := datacompleta;
+
+end;
+
+//Função para analisar tipos String se estão no formato de envio correto
+
+function TfrmContatos.analisaexistenciastr(o: TJsonObject; s: string): string;
+begin
+  if o.GetValue(s) <> nil then
+    result := o.Get(s).JsonValue.Value
+  else
+    result := '';
+end;
+
+//Função para analisar tipos Date se estão no formato de envio correto
+
+function TfrmContatos.analisaexistenciadate(o: TJsonObject; s: string): TDateTime;
+begin
+
+  if (o.GetValue(s) <> nil) then
+    result := StrToDateTime(datatopadrao(o.Get(s).JsonValue.Value))
+  else
+    result := StrToDateTime(datatopadrao('0000-00-00'));
+
+end;
+
+//Função para analisar tipos Integer se estão no formato de envio correto
+
+function TfrmContatos.analisaexistenciainteger(o: TJsonObject; s: string): Integer;
+begin
+  if o.GetValue(s) <> nil then
+    result := StrToInt('0' + o.Get(s).JsonValue.Value)
+  else
+    result := 0;
+end;
+
+//Função para analisar tipos Float se estão no formato de envio correto
+
+function TfrmContatos.analisaexistenciafloat(o: TJsonObject; s: string): double;
+begin
+  if o.GetValue(s) <> nil then
+    result := StrToFloat(StringReplace(o.Get(s).JsonValue.Value, '.', ',', [rfReplaceAll]))
+  else
+    result := 0;
+end;
+
+//procedure responsável pelo Get de categorias
+
+procedure TfrmContatos.ProcessaCategoria(jObjCategoria: TJsonObject);
+var
+  jValue: TJsonValue;
+  jArrayChildren: TJsonArray;
+  jObjCampos, jObjLink, jObjChildrenCategoria, jObjCamposChildren: TJsonObject;
+  j: integer;
+begin
+  jObjCampos := jObjCategoria.Get('Category').JsonValue as TJsonObject;
+  jObjLink := jObjCampos.Get('link').JsonValue as TJSONObject;
+  tbTrayCategorias.Append;
+  tbTrayCategoriasid_categoria.AsString := analisaexistenciastr(jObjCampos, 'id');
+  tbTrayCategoriasslug.AsString := analisaexistenciastr(jObjCampos, 'slug');
+  tbTrayCategoriasid_parent.AsInteger := analisaexistenciainteger(jObjCampos, 'parent_id');
+  tbTrayCategoriasname.AsString := analisaexistenciastr(jObjCampos, 'name');
+  tbTrayCategoriasdescription.AsString := analisaexistenciastr(jObjCampos, 'description');
+  tbTrayCategoriassmall_description.AsString := analisaexistenciastr(jObjCampos, 'small_description');
+  tbTrayCategoriasorder.AsInteger := analisaexistenciainteger(jObjCampos, 'order');
+  tbTrayCategoriashas_acceptance_term.AsInteger := analisaexistenciainteger(jObjCampos, 'has_acceptance_term');
+  tbTrayCategoriasacceptance_term.AsString := analisaexistenciastr(jObjCampos, 'acceptance_term');
+  tbTrayCategoriashttp.AsString := analisaexistenciastr(jObjLink, 'http');
+  tbTrayCategoriashttps.AsString := analisaexistenciastr(jObjLink, 'https');
+  tbTrayCategorias.Post;
+  if jObjCampos.Get('children').ToJSON <> '"children":null' then
+
+  begin
+    jArrayChildren := jObjCampos.Get('children').JsonValue as TJSONArray;
+    for j := 0 to jArrayChildren.Size - 1 do
+    begin
+      jObjChildrenCategoria := jArrayChildren.Get(j) as TJsonObject;
+      jObjCamposChildren := jObjChildrenCategoria.Get('Category').JsonValue as TJsonObject;
+      ProcessaCategoria(jArrayChildren.Get(j) as TJsonObject);
+
+    end;
+  end;
+
+end;
+
+//procedure responsável por fazer o POST e PUT das categorias no tray
+
+procedure TfrmContatos.btnenviarumaClick(Sender: TObject);
+var
+  ObjPessoa, ObjCategoriaCategory, Objtelefone_id, ObjGmail_id, Objtelefone, ObjGmail, ObjResult, ObjID, ObjEmbededd: TJSONObject;
+  jArrayPessoas, jArrayCustomFields, jArrayTelefone, jArrayGmail, jArrayResult: TJsonArray;
+  FStream: TStringStream;
+  jValue: TJsonValue;
+  I, V: integer;
+  C, D, HASHPESSOA, Token, URL, Client, Client_ID: string;
+begin
+    tbBMintaux.Close;
+    tbBMintaux.Exclusive := false;
+    tbBMintaux.Open;
+    tbBMauxerros.Close;
+    tbBMauxerros.Open;
+
+    qrBMintaux2.Close;
+    qrBMintaux2.Open;
+
+    FreeAndNil(Objtelefone);
+    FreeAndNil(Objtelefone_id);
+    FreeAndNil(ObjGmail);
+    FreeAndNil(ObjGmail_id);
+    FreeAndNil(ObjEmbededd);
+    FreeAndNil(ObjID);
+
+    FreeAndNil(jArrayPessoas);
+    FreeAndNil(jArrayTelefone);
+    FreeAndNil(jArrayGmail);
+    FreeAndNil(jArrayCustomFields);
+    FreeAndNil(jArrayResult);
+
+    Objtelefone          := Nil;
+    Objtelefone_id       := Nil;
+    ObjGmail             := Nil;
+    ObjGmail_id          := Nil;
+    ObjEmbededd          := Nil;
+    ObjID                := Nil;
+
+    jArrayTelefone     := Nil;
+    jArrayGmail        := Nil;
+    jArrayCustomFields := Nil;
+    jArrayResult       := Nil;
+
+
+    if qrBMintaux2.Locate('ID_BM', qrBMPessoasID.AsInteger, []) then
+    begin
+
+     HASHPESSOA := MD5String(qrBMPessoasNOME.AsString + qrBMPessoasCELULAR.AsString);
+
+     if qrBMintaux2HASH.Value = HASHPESSOA then
+     begin
+       Exit;
+     end
+     else
+     begin
+     //PUT
+        ObjPessoa            := TJSONObject.Create;
+        ObjCategoriaCategory := TJSONObject.Create;
+        Objtelefone          := TJSONObject.Create;
+        Objtelefone_id       := TJSONObject.Create;
+        ObjGmail             := TJSONObject.Create;
+        ObjGmail_id          := TJSONObject.Create;
+        ObjEmbededd          := TJSONObject.Create;
+        ObjID                := TJSONObject.Create;
+
+        jArrayPessoas      := TJSONArray.Create;
+        jArrayTelefone     := TJSONArray.Create;
+        jArrayGmail        := TJSONArray.Create;
+        jArrayCustomFields := TJSONArray.Create;
+        jArrayResult       := TJSONArray.Create;
+
+        AddPairInt(ObjPessoa, 'id', qrBMintaux2ID_Int.AsInteger);
+        AddPairString(ObjPessoa, 'name', qrBMPessoasNOME.AsString);
+
+        AddPairInt(Objtelefone_id, 'field_id', 316134);
+        Objtelefone_id.AddPair('values', jArrayTelefone);
+
+        AddPairString(Objtelefone, 'value', qrBMPessoasCELULAR.AsString);
+        jArrayTelefone.Add(Objtelefone);
+
+        AddPairInt(ObjGmail_id, 'field_id', 316136);
+        ObjGmail_id.AddPair('values', jArrayGmail);
+
+        AddPairString(ObjGmail, 'value', qrBMPessoasEMAIL.AsString);
+        jArrayGmail.Add(ObjGmail);
+
+        jArrayCustomFields.Add(Objtelefone_id);
+        jArrayCustomFields.Add(ObjGmail_id);
+
+        ObjPessoa.AddPair('custom_fields_values', jArrayCustomFields);
+
+        jArrayPessoas.Add(ObjPessoa);
+        //StringToFile(jArrayPessoas.ToString, 'F:\Projetos Delphi\BM\Nova pasta\BM2Tray\extras\jsPessoas.json');
+        frmRequest.RESTRequestPessoasPut.ResetToDefaults;
+        frmRequest.RESTClientPessoasPut.ResetToDefaults;
+        frmRequest.RESTRequestPessoasPut.Params.Clear;
+
+        //setando dados para request
+        frmRequest.RESTClientPessoasPut.BaseURL := URL;
+
+        frmRequest.RESTRequestPessoasPut.Body.ClearBody;
+        frmRequest.RESTResponsePessoasPut.ContentType := 'application/json';
+        frmRequest.RESTClientPessoasPut.ContentType := 'application/json';
+        frmRequest.RESTRequestPessoasPut.AddParameter('Content-Type', 'application/json', TRESTRequestParameterKind.pkHTTPHEADER);
+
+        frmRequest.RESTRequestPessoasPut.AddBody(jArrayPessoas.ToJSON, TRESTContentType.ctAPPLICATION_JSON);
+        frmRequest.RESTRequestPessoasPut.Execute;
+
+        jValue := TJSONObject.ParseJSONValue(frmRequest.RESTResponsePessoasPut.Content.ToLower);
+
+        ObjResult := jValue as TJsonObject;
+        //showmessage(ObjResult.ToString);
+        //StringToFile(ObjResult.ToString, 'F:\Projetos Delphi\BM\Nova pasta\BM2Tray\extras\jsResult.json');
+
+        if not (ObjResult.Get('_embedded').JsonValue.Value <> '') then
+        begin
+            tbBMintaux.Edit;
+            tbBMintauxHASH.AsString := MD5String(qrBMPessoasNOME.AsString + qrBMPessoasCELULAR.AsString);
+            tbBMintaux.Post;
+
+            qrBMintaux2.Close;
+            qrBMintaux2.Open;
+        end
+        else
+        begin
+          Exit;
+        end;
+     end;
+    end
+    else
+    begin
+      //POST
+      ObjPessoa            := TJSONObject.Create;
+      ObjCategoriaCategory := TJSONObject.Create;
+      Objtelefone          := TJSONObject.Create;
+      Objtelefone_id       := TJSONObject.Create;
+      ObjGmail             := TJSONObject.Create;
+      ObjGmail_id          := TJSONObject.Create;
+      ObjEmbededd          := TJSONObject.Create;
+      ObjID                := TJSONObject.Create;
+
+      jArrayPessoas      := TJSONArray.Create;
+      jArrayTelefone     := TJSONArray.Create;
+      jArrayGmail        := TJSONArray.Create;
+      jArrayCustomFields := TJSONArray.Create;
+      jArrayResult       := TJSONArray.Create;
+
+      AddPairString(ObjPessoa, 'name', qrBMPessoasNOME.AsString);
+
+      AddPairInt(Objtelefone_id, 'field_id', 316134);
+      Objtelefone_id.AddPair('values', jArrayTelefone);
+
+      AddPairString(Objtelefone, 'value', qrBMPessoasCELULAR.AsString);
+      jArrayTelefone.Add(Objtelefone);
+
+      AddPairInt(ObjGmail_id, 'field_id', 316136);
+      ObjGmail_id.AddPair('values', jArrayGmail);
+
+      AddPairString(ObjGmail, 'value', qrBMPessoasEMAIL.AsString);
+      jArrayGmail.Add(ObjGmail);
+
+      jArrayCustomFields.Add(Objtelefone_id);
+      jArrayCustomFields.Add(ObjGmail_id);
+
+      ObjPessoa.AddPair('custom_fields_values', jArrayCustomFields);
+
+      jArrayPessoas.Add(ObjPessoa);
+
+      StringToFile(jArrayPessoas.ToString, 'F:\Projetos Delphi\BM\Nova pasta\BM2Tray\extras\jsPessoas.json');
+
+      frmRequest.RESTRequestPessoasPost.ResetToDefaults;
+      frmRequest.RESTClientPessoasPost.ResetToDefaults;
+      frmRequest.RESTRequestPessoasPost.Params.Clear;
+
+      //setando dados para request
+      frmRequest.RESTClientPessoasPost.BaseURL := URL;
+
+      frmRequest.RESTRequestPessoasPost.Body.ClearBody;
+      frmRequest.RESTResponsePessoasPost.ContentType := 'application/json';
+      frmRequest.RESTClientPessoasPost.ContentType := 'application/json';
+      frmRequest.RESTRequestPessoasPost.AddParameter('Content-Type', 'application/json', TRESTRequestParameterKind.pkHTTPHEADER);
+
+      frmRequest.RESTRequestPessoasPost.AddBody(jArrayPessoas.ToJSON, TRESTContentType.ctAPPLICATION_JSON);
+      frmRequest.RESTRequestPessoasPost.Execute;
+
+      jValue := TJSONObject.ParseJSONValue(frmRequest.RESTResponsePessoasPost.Content.ToLower);
+      ObjResult := jValue as TJsonObject;
+      //showmessage(ObjResult.ToString);
+
+      StringToFile(ObjResult.ToString, 'F:\Projetos Delphi\BM\Nova pasta\BM2Tray\extras\jsResult.json');
+
+      if ObjResult.TryGetValue('_embedded', jValue) and (jValue is TJSONObject) then
+      begin
+        ObjEmbededd := ObjResult.Get('_embedded').JsonValue as TJSONObject;
+        jArrayResult := ObjEmbededd.Get('contacts').JsonValue as TJSONArray;
+
+        if (jArrayResult.Count > 0) and (jArrayResult.Items[0] is TJSONObject) then
+        begin
+          ObjID := jArrayResult.Items[0] as TJSONObject;
+
+          tbBMintaux.Append;
+          tbBMintauxHASH.AsString := MD5String(qrBMPessoasNOME.AsString + qrBMPessoasCELULAR.AsString);
+          tbBMintauxTipo.AsString := 'PES';
+          tbBMintauxID_Int.AsString := ObjID.GetValue<Integer>('id').ToString;
+          tbBMintauxID_BM.Value := qrBMPessoasID.Value;
+          tbBMintaux.Post;
+
+          qrBMintaux2.Close;
+          qrBMintaux2.Open;
+        end;
+      end;
+    end;
+end;
+
+procedure TfrmContatos.Button3Click(Sender: TObject);
+begin
+  //tbBMintaux.EmptyTable;
+end;
+
+procedure TfrmContatos.btnenviartodascatClick(Sender: TObject);
+
+begin
+  qrBMPessoas.First;
+  tbBMintaux.Close;
+  tbBMintaux.Exclusive := false;
+  tbBMintaux.Open;
+
+  while not qrBMPessoas.Eof do
+  begin
+    btnenviaruma.Click;
+    qrBMPessoas.Next;
+  end;
+
+  AvisoAtt('Enviado todos os contatos.', -5, -1);
+end;
+
+//Limpa o FORM ao fechar
+
+procedure TfrmContatos.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  action := caFree;
+  frmContatos := nil;
+end;
+
+//Procedure responsável por pegar o access token e salvar em uma variável para ser usada em outros FORM's
+
+procedure TfrmContatos.FormCreate(Sender: TObject);
+var
+  ArrayAuth: TJSONObject;
+  json: string;
+  jv: TJSONValue;
+  jValue: TJsonValue;
+  Token, URL, Client, Client_ID: string;
+
+begin
+    Token := DD.config.ReadString('config', 'token', '');
+    URL := DD.config.ReadString('config', 'url', '');
+    Client := DD.config.ReadString('config', 'client', '');
+    Client_ID := DD.config.ReadString('config', 'client_id', '');
+
+    //setando dados para request
+    frmRequest.RESTClientPessoasPost.BaseURL := URL;
+    frmRequest.RESTClientPessoasPut.BaseURL := URL;
+
+    Token := DD.config.ReadString('config', 'code', '');
+    frmRequest.OAuth2Authenticator1.AccessToken := Token;
+    frmRequest.OAuth2Authenticator1.AuthorizationEndpoint := URL;
+    frmRequest.OAuth2Authenticator1.ClientID := Client_ID;
+    frmRequest.OAuth2Authenticator1.ClientSecret := Client;
+
+end;
+
+procedure TfrmContatos.FormResize(Sender: TObject);
+begin
+  try
+    Panel2.Width := Trunc(parent.Width / 2);
+  except
+
+  end;
+
+end;
+
+procedure TfrmContatos.FormShow(Sender: TObject);
+begin
+  Panel2.Width := Trunc(parent.Width / 2);
+end;
+
+end.
+

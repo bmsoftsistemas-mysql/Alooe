@@ -1,0 +1,847 @@
+object frmRequest: TfrmRequest
+  Left = 0
+  Top = 0
+  Caption = 'frmRequest'
+  ClientHeight = 668
+  ClientWidth = 1404
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RESTClientAuth: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 'https://dev-api.aloee.it'
+    ContentType = 'application/x-www-form-urlencoded'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 48
+  end
+  object RESTRequestAuth: TRESTRequest
+    Client = RESTClientAuth
+    Method = rmPOST
+    Params = <
+      item
+        name = 'consumer_key'
+        Value = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0'
+      end
+      item
+        name = 'consumer_secret'
+        Value = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526'
+      end
+      item
+        name = 'code'
+        Value = 'd6ef0a3fd271ef9ff9228aa29ae80d6edc06b5518ba8cf6145d57b632a96d6b0'
+      end>
+    Response = RESTResponseAuth
+    SynchronizedEvents = False
+    Left = 48
+    Top = 48
+  end
+  object RESTResponseAuth: TRESTResponse
+    ContentType = 'application/json'
+    Left = 48
+    Top = 96
+  end
+  object RESTClientMarcas: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'https://trayparceiros.commercesuite.com.br/web_api/products/bran' +
+      'ds'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 176
+  end
+  object RESTRequestMarcas: TRESTRequest
+    Client = RESTClientMarcas
+    Params = <
+      item
+        name = 'consumer_key'
+        Value = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0'
+      end
+      item
+        name = 'consumer_secret'
+        Value = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526'
+      end
+      item
+        name = 'code'
+        Value = 'd6ef0a3fd271ef9ff9228aa29ae80d6edc06b5518ba8cf6145d57b632a96d6b0'
+      end
+      item
+        name = 'access_token'
+        Value = 
+          'APP_ID-2286-adfe7d133bc33c56502dde4610f57491f1f200ee0786da634fad' +
+          '822e320d6962'
+      end
+      item
+        name = 'page'
+        Value = '1'
+      end>
+    Response = RESTResponseMarcas
+    SynchronizedEvents = False
+    Left = 176
+    Top = 48
+  end
+  object RESTResponseMarcas: TRESTResponse
+    ContentType = 'application/json'
+    Left = 176
+    Top = 96
+  end
+  object RESTClientCliente: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 'https://trayparceiros.commercesuite.com.br/web_api/customers'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 304
+  end
+  object RESTRequestCliente: TRESTRequest
+    Client = RESTClientCliente
+    Params = <
+      item
+        name = 'consumer_key'
+        Value = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0'
+      end
+      item
+        name = 'consumer_secret'
+        Value = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526'
+      end
+      item
+        name = 'code'
+        Value = 'd6ef0a3fd271ef9ff9228aa29ae80d6edc06b5518ba8cf6145d57b632a96d6b0'
+      end
+      item
+        name = 'access_token'
+        Value = 
+          'APP_ID-2286-38cb1f38a6b69b96afb119b90af32d8cc272b2f0622ef784b5ca' +
+          'dc1432d7e96b'
+      end
+      item
+        name = 'page'
+        Value = '1'
+      end>
+    Response = RESTResponseCliente
+    SynchronizedEvents = False
+    Left = 304
+    Top = 48
+  end
+  object RESTResponseCliente: TRESTResponse
+    ContentType = 'application/json'
+    Left = 304
+    Top = 96
+  end
+  object RESTClientCategorias: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'https://trayparceiros.commercesuite.com.br/web_api/categories/tr' +
+      'ee/:id'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 448
+  end
+  object RESTRequestCategorias: TRESTRequest
+    Client = RESTClientCategorias
+    Params = <
+      item
+        name = 'consumer_key'
+        Value = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0'
+      end
+      item
+        name = 'consumer_secret'
+        Value = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526'
+      end
+      item
+        name = 'code'
+        Value = 'd6ef0a3fd271ef9ff9228aa29ae80d6edc06b5518ba8cf6145d57b632a96d6b0'
+      end
+      item
+        name = 'access_token'
+        Value = 
+          'APP_ID-2286-d90166026365d7c32486a513122e49ac62d8ad45d97360a90a17' +
+          '14ac632545eb'
+      end>
+    Response = RESTResponseCategorias
+    SynchronizedEvents = False
+    Left = 448
+    Top = 48
+  end
+  object RESTResponseCategorias: TRESTResponse
+    ContentType = 'application/json'
+    Left = 448
+    Top = 96
+  end
+  object RESTClientProdutos: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 'https://trayparceiros.commercesuite.com.br/web_api/products'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 600
+  end
+  object RESTRequestProdutos: TRESTRequest
+    Client = RESTClientProdutos
+    Params = <
+      item
+        name = 'consumer_key'
+        Value = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0'
+      end
+      item
+        name = 'consumer_secret'
+        Value = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526'
+      end
+      item
+        name = 'code'
+        Value = 'd6ef0a3fd271ef9ff9228aa29ae80d6edc06b5518ba8cf6145d57b632a96d6b0'
+      end
+      item
+        name = 'access_token'
+        Value = 
+          'APP_ID-2286-37d2737961ff34a74e05d390972734136ba0d667b9e0cb8bce46' +
+          '6d33bd9ebbbd'
+      end
+      item
+        name = 'page'
+        Value = '1'
+      end>
+    Response = RESTResponseProdutos
+    SynchronizedEvents = False
+    Left = 600
+    Top = 48
+  end
+  object RESTResponseProdutos: TRESTResponse
+    ContentType = 'application/json'
+    Left = 600
+    Top = 96
+  end
+  object RESTClientMarcasPost: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'https://trayparceiros.commercesuite.com.br/web_api/products/bran' +
+      'ds?access_token=APP_ID-2286-06b69d045c2453f7d5aca8c5c005399a8938' +
+      '1f89f194914541088d3e3fc61e86'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 176
+    Top = 144
+  end
+  object RESTRequestMarcasPost: TRESTRequest
+    Client = RESTClientMarcasPost
+    Method = rmPOST
+    Params = <
+      item
+        Kind = pkREQUESTBODY
+        name = 'body'
+        ContentType = ctAPPLICATION_JSON
+      end>
+    Response = RESTResponseMarcasPost
+    SynchronizedEvents = False
+    Left = 176
+    Top = 192
+  end
+  object RESTResponseMarcasPost: TRESTResponse
+    ContentType = 'application/json'
+    Left = 176
+    Top = 240
+  end
+  object RESTClientCategoriasPost: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'https://trayparceiros.commercesuite.com.br/web_api/categories/?a' +
+      'ccess_token=APP_ID-2286-3807940457a795862d3ee5cf294451cdc89f98b8' +
+      'e9b17448e6f8138f70319233'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 448
+    Top = 144
+  end
+  object RESTRequestCategoriasPost: TRESTRequest
+    Client = RESTClientCategoriasPost
+    Method = rmPOST
+    Params = <
+      item
+        Kind = pkREQUESTBODY
+        name = 'body'
+        Options = [poDoNotEncode]
+        ContentType = ctAPPLICATION_JSON
+      end>
+    Response = RESTResponseCategoriasPost
+    SynchronizedEvents = False
+    Left = 448
+    Top = 192
+  end
+  object RESTResponseCategoriasPost: TRESTResponse
+    ContentType = 'application/json'
+    Left = 448
+    Top = 240
+  end
+  object RESTClientCategoriasPut2: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'https://trayparceiros.commercesuite.com.br/web_api/categories/?a' +
+      'ccess_token=APP_ID-2286-50b7c043325057b0830bb32fcad491640446d0e3' +
+      'cecf8d6cbf1acacd4a7dff7f'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 760
+    Top = 424
+  end
+  object RESTRequestCategoriasPut2: TRESTRequest
+    Client = RESTClientCategoriasPut2
+    Method = rmPOST
+    Params = <
+      item
+        Kind = pkREQUESTBODY
+        name = 'body'
+      end>
+    Response = RESTResponseCategoriasPut2
+    SynchronizedEvents = False
+    Left = 760
+    Top = 472
+  end
+  object RESTResponseCategoriasPut2: TRESTResponse
+    ContentType = 'application/json'
+    Left = 760
+    Top = 520
+  end
+  object RESTClientProdutosPost: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'https://trayparceiros.commercesuite.com.br/web_api/products/?acc' +
+      'ess_token=APP_ID-2286-7c38d8a4a12590cc63bf7fa7c7aceb63b6ecfde9fa' +
+      'b493f0db1a8ba5e01add55'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 600
+    Top = 144
+  end
+  object RESTRequestProdutosPost: TRESTRequest
+    Client = RESTClientProdutosPost
+    Method = rmPOST
+    Params = <
+      item
+        Kind = pkREQUESTBODY
+        name = 'body'
+        Options = [poDoNotEncode]
+        ContentType = ctAPPLICATION_JSON
+      end>
+    Response = RESTResponseProdutosPost
+    SynchronizedEvents = False
+    Left = 600
+    Top = 192
+  end
+  object RESTResponseProdutosPost: TRESTResponse
+    ContentType = 'application/json'
+    Left = 600
+    Top = 240
+  end
+  object RESTClientProdutosPut: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'https://trayparceiros.commercesuite.com.br/web_api/products/1265' +
+      '935067/?access_token=APP_ID-2286-c7f9759de0e9068aaf3f61ea1742e36' +
+      '0fc7d909c0c1be7f43ccaa885f4dd4953'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 600
+    Top = 288
+  end
+  object RESTRequestProdutosPut: TRESTRequest
+    Client = RESTClientProdutosPut
+    Method = rmPUT
+    Params = <
+      item
+        Kind = pkREQUESTBODY
+        name = 'body'
+        Options = [poDoNotEncode]
+        ContentType = ctAPPLICATION_JSON
+      end>
+    Response = RESTResponseProdutosPut
+    SynchronizedEvents = False
+    Left = 600
+    Top = 336
+  end
+  object RESTResponseProdutosPut: TRESTResponse
+    ContentType = 'application/json'
+    Left = 600
+    Top = 384
+  end
+  object RESTClientClientePost: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'https://trayparceiros.commercesuite.com.br/web_api/customers/?ac' +
+      'cess_token=APP_ID-2286-84750643e65aced24584b6a771c529b7e257822c8' +
+      '6f9ad9e4d21b718654126c1'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 304
+    Top = 144
+  end
+  object RESTRequestClientePost: TRESTRequest
+    Client = RESTClientClientePost
+    Method = rmPOST
+    Params = <
+      item
+        Kind = pkREQUESTBODY
+        name = 'body'
+        Options = [poDoNotEncode]
+        ContentType = ctAPPLICATION_JSON
+      end>
+    Response = RESTResponseClientePost
+    SynchronizedEvents = False
+    Left = 304
+    Top = 192
+  end
+  object RESTResponseClientePost: TRESTResponse
+    ContentType = 'application/json'
+    Left = 304
+    Top = 240
+  end
+  object RESTClientClientePut: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'https://trayparceiros.commercesuite.com.br/web_api/customers/334' +
+      '002489/?access_token=APP_ID-2286-84750643e65aced24584b6a771c529b' +
+      '7e257822c86f9ad9e4d21b718654126c1'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 304
+    Top = 288
+  end
+  object RESTRequestClientePut: TRESTRequest
+    Client = RESTClientClientePut
+    Method = rmPUT
+    Params = <
+      item
+        Kind = pkREQUESTBODY
+        name = 'body'
+        Options = [poDoNotEncode]
+        ContentType = ctAPPLICATION_JSON
+      end>
+    Response = RESTResponseClientePut
+    SynchronizedEvents = False
+    Left = 304
+    Top = 336
+  end
+  object RESTResponseClientePut: TRESTResponse
+    ContentType = 'application/json'
+    Left = 304
+    Top = 384
+  end
+  object RESTClientPedidos: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 'https://trayparceiros.commercesuite.com.br/web_api/orders'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 744
+  end
+  object RESTRequestPedidos: TRESTRequest
+    Client = RESTClientPedidos
+    Params = <
+      item
+        name = 'consumer_key'
+        Value = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0'
+      end
+      item
+        name = 'consumer_secret'
+        Value = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526'
+      end
+      item
+        name = 'code'
+        Value = 'd6ef0a3fd271ef9ff9228aa29ae80d6edc06b5518ba8cf6145d57b632a96d6b0'
+      end
+      item
+        name = 'refresh_token'
+        Value = 'da9289812d39dc080d94537c77e798e62eddccab2e2aad6048dd01c99fdae08f'
+      end
+      item
+        name = 'access_token'
+        Value = 
+          'APP_ID-2286-52fb78e27deeef0e110ff23a4f912cf5333edc2cbd5866175023' +
+          '0b6e0f3060b3'
+      end
+      item
+        name = 'date'
+      end
+      item
+        name = 'page'
+        Value = '1'
+      end>
+    Response = RESTResponsePedidos
+    SynchronizedEvents = False
+    Left = 744
+    Top = 48
+  end
+  object RESTResponsePedidos: TRESTResponse
+    ContentType = 'application/json'
+    Left = 744
+    Top = 96
+  end
+  object RESTClientPedidosProdutos: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'https://trayparceiros.commercesuite.com.br/web_api/orders/129469' +
+      '7/complete'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 744
+    Top = 144
+  end
+  object RESTRequestPedidosProdutos: TRESTRequest
+    Client = RESTClientPedidosProdutos
+    Params = <>
+    Response = RESTResponsePedidosProdutos
+    SynchronizedEvents = False
+    Left = 744
+    Top = 192
+  end
+  object RESTResponsePedidosProdutos: TRESTResponse
+    ContentType = 'application/json'
+    Left = 744
+    Top = 240
+  end
+  object RESTClientAuthx: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 'https://www.tetelestainailsshop.com.br/web_api/auth'
+    ContentType = 'application/x-www-form-urlencoded'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 16
+    Top = 336
+  end
+  object RESTRequestAuthx: TRESTRequest
+    Client = RESTClientAuthx
+    Method = rmPOST
+    Params = <
+      item
+        name = 'consumer_key'
+        Value = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0'
+      end
+      item
+        name = 'consumer_secret'
+        Value = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526'
+      end
+      item
+        name = 'code'
+        Value = 'b0bc6473acdc3f61aca890f985b76913abc27556ef8362dba6a4e6316dc36c1e'
+      end>
+    Response = RESTResponseAuthx
+    SynchronizedEvents = False
+    Left = 24
+    Top = 448
+  end
+  object RESTResponseAuthx: TRESTResponse
+    ContentType = 'application/json'
+    Left = 16
+    Top = 392
+  end
+  object RESTClientCategoriasPut: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'https://trayparceiros.commercesuite.com.br/web_api/categories/88' +
+      '8924701/?access_token=APP_ID-2286-4d1b31ac594f295fea72d1f6157987' +
+      '53810be911d742589b5cf0da045d2bde4c'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 448
+    Top = 288
+  end
+  object RESTRequestCategoriasPut: TRESTRequest
+    Client = RESTClientCategoriasPut
+    Method = rmPUT
+    Params = <
+      item
+        Kind = pkREQUESTBODY
+        name = 'body'
+        Options = [poDoNotEncode]
+        ContentType = ctAPPLICATION_JSON
+      end>
+    Response = RESTResponseCategoriasPut
+    SynchronizedEvents = False
+    Left = 448
+    Top = 336
+  end
+  object RESTResponseCategoriasPut: TRESTResponse
+    ContentType = 'application/json'
+    Left = 448
+    Top = 384
+  end
+  object RESTClientProdutosVarPut: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'https://www.sambasneakers.com.br/web_api/products/variants/1068/' +
+      '?access_token=APP_ID-2286-STORE_ID-1133220-2cbbc68da1d67350c1a1f' +
+      '8505ea187572a457ca40e014f73ff90b68f2e9d61b3'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 904
+    Top = 288
+  end
+  object RESTRequestProdutosVarPut: TRESTRequest
+    Client = RESTClientProdutosVarPut
+    Method = rmPUT
+    Params = <
+      item
+        Kind = pkREQUESTBODY
+        name = 'body'
+        Options = [poDoNotEncode]
+        ContentType = ctAPPLICATION_JSON
+      end>
+    Response = RESTResponseProdutosVarPut
+    SynchronizedEvents = False
+    Left = 904
+    Top = 344
+  end
+  object RESTResponseProdutosVarPut: TRESTResponse
+    ContentType = 'application/json'
+    Left = 904
+    Top = 392
+  end
+  object RESTClientProdutosVarPost: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'https://www.sambasneakers.com.br/web_api/products/variants/?acce' +
+      'ss_token=APP_ID-2286-STORE_ID-1133220-2cbbc68da1d67350c1a1f8505e' +
+      'a187572a457ca40e014f73ff90b68f2e9d61b3'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 904
+    Top = 144
+  end
+  object RESTRequestProdutosVarPost: TRESTRequest
+    Client = RESTClientProdutosVarPost
+    Method = rmPOST
+    Params = <
+      item
+        Kind = pkREQUESTBODY
+        name = 'body'
+        Options = [poDoNotEncode]
+        ContentType = ctAPPLICATION_JSON
+      end>
+    Response = RESTResponseProdutosVarPost
+    SynchronizedEvents = False
+    Left = 904
+    Top = 192
+  end
+  object RESTResponseProdutosVarPost: TRESTResponse
+    ContentType = 'application/json'
+    Left = 904
+    Top = 240
+  end
+  object RESTClientFotosProd: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'https://www.sambasneakers.com.br/web_api/products/237/images/?ac' +
+      'cess_token=APP_ID-2286-STORE_ID-1133220-71effc52f4c5adaba4e7fb6a' +
+      'a0c0094768a61773a3dc64f199bc66e283aff9d8'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 1048
+    Top = 144
+  end
+  object RESTRequestFotosProd: TRESTRequest
+    Client = RESTClientFotosProd
+    Method = rmPOST
+    Params = <
+      item
+        Kind = pkREQUESTBODY
+        name = 'body'
+        Options = [poDoNotEncode]
+        ContentType = ctAPPLICATION_JSON
+      end>
+    Response = RESTResponseFotosProd
+    SynchronizedEvents = False
+    Left = 1048
+    Top = 192
+  end
+  object RESTResponseFotosProd: TRESTResponse
+    ContentType = 'application/json'
+    Left = 1048
+    Top = 240
+  end
+  object RESTClientPessoasPost1: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 1256
+    Top = 128
+  end
+  object RESTRequestPessoasPost1: TRESTRequest
+    Client = RESTClientPessoasPost1
+    Method = rmPOST
+    Params = <
+      item
+        Kind = pkREQUESTBODY
+        name = 'body'
+      end>
+    Response = RESTResponsePessoasPost1
+    SynchronizedEvents = False
+    Left = 1256
+    Top = 176
+  end
+  object RESTResponsePessoasPost1: TRESTResponse
+    ContentType = 'application/json'
+    Left = 1256
+    Top = 224
+  end
+  object RESTClientPessoasPut1: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 1256
+    Top = 272
+  end
+  object RESTRequestPessoasPut1: TRESTRequest
+    Client = RESTClientPessoasPut1
+    Method = rmPATCH
+    Params = <
+      item
+        Kind = pkHTTPHEADER
+        name = 'body'
+      end>
+    Response = RESTResponsePessoasPut1
+    SynchronizedEvents = False
+    Left = 1256
+    Top = 320
+  end
+  object RESTResponsePessoasPut1: TRESTResponse
+    ContentType = 'application/json'
+    Left = 1256
+    Top = 368
+  end
+  object OAuth2Authenticator1: TOAuth2Authenticator
+    TokenType = ttBEARER
+    Left = 1248
+    Top = 432
+  end
+  object RESTClientPessoasPost: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 976
+    Top = 496
+  end
+  object RESTRequestPessoasPost: TRESTRequest
+    AutoCreateParams = False
+    Client = RESTClientPessoasPost
+    Method = rmPOST
+    Params = <>
+    Response = RESTResponsePessoasPost
+    SynchronizedEvents = False
+    Left = 976
+    Top = 544
+  end
+  object RESTResponsePessoasPost: TRESTResponse
+    ContentType = 'application/json'
+    Left = 976
+    Top = 600
+  end
+  object RESTClientPessoasPut: TRESTClient
+    Authenticator = OAuth2Authenticator1
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    ContentType = 'application/json'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 1232
+    Top = 496
+  end
+  object RESTRequestPessoasPut: TRESTRequest
+    AutoCreateParams = False
+    Client = RESTClientPessoasPut
+    Method = rmPATCH
+    Params = <>
+    Response = RESTResponsePessoasPut
+    SynchronizedEvents = False
+    Left = 1232
+    Top = 544
+  end
+  object RESTResponsePessoasPut: TRESTResponse
+    ContentType = 'application/json'
+    Left = 1232
+    Top = 600
+  end
+end

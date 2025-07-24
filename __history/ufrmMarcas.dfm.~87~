@@ -1,0 +1,808 @@
+object frmmarcas: Tfrmmarcas
+  Left = 0
+  Top = 0
+  Caption = 'Marcas'
+  ClientHeight = 699
+  ClientWidth = 1150
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnResize = FormResize
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel2: TPanel
+    Left = 0
+    Top = 0
+    Width = 569
+    Height = 586
+    Align = alLeft
+    TabOrder = 0
+    object DBGrid1: TDBGrid
+      Left = 1
+      Top = 25
+      Width = 567
+      Height = 560
+      Align = alClient
+      DataSource = dtBMmarcas
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'MARCA'
+          Title.Caption = 'Marcas'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 553
+          Visible = True
+        end>
+    end
+    object Panel1: TPanel
+      Left = 1
+      Top = 1
+      Width = 567
+      Height = 24
+      Align = alTop
+      Caption = 'Marcas da BM'
+      Color = 15770519
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 1
+    end
+  end
+  object Panel3: TPanel
+    Left = 569
+    Top = 0
+    Width = 581
+    Height = 586
+    Align = alClient
+    TabOrder = 1
+    object DBGrid2: TDBGrid
+      Left = 1
+      Top = 25
+      Width = 579
+      Height = 560
+      Align = alClient
+      DataSource = dtBMintaux
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'ID_Int'
+          Title.Caption = 'ID da Integra'#231#227'o'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 117
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'ID_BM'
+          Title.Caption = 'ID da BM'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 62
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Tipo'
+          Title.Caption = 'Caracteres de Identifica'#231#227'o'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 163
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'HASH'
+          Title.Caption = 'Caracteres de Controle'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 191
+          Visible = True
+        end>
+    end
+    object Panel4: TPanel
+      Left = 1
+      Top = 1
+      Width = 579
+      Height = 24
+      Align = alTop
+      Caption = 'Marcas Enviadas'
+      Color = 15770519
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 1
+    end
+  end
+  object JSONtray_marcas_enviar: TRzMemo
+    AlignWithMargins = True
+    Left = 2
+    Top = 671
+    Width = 1146
+    Height = 26
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    BorderStyle = bsNone
+    Color = clInfoBk
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -8
+    Font.Name = 'Courier New'
+    Font.Style = []
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 2
+    WordWrap = False
+  end
+  object tray_refresh_enviar: TEdit
+    Left = 0
+    Top = 648
+    Width = 1150
+    Height = 21
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    TabOrder = 3
+  end
+  object tray_token_enviar: TEdit
+    Left = 0
+    Top = 627
+    Width = 1150
+    Height = 21
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    TabOrder = 4
+  end
+  object RzPanel15: TRzPanel
+    Left = 0
+    Top = 586
+    Width = 1150
+    Height = 41
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    BorderOuter = fsNone
+    BorderColor = 15770519
+    BorderWidth = 3
+    Color = 15770519
+    TabOrder = 5
+    object btsmarcas: TButton
+      Left = 3
+      Top = 3
+      Width = 75
+      Height = 35
+      Align = alLeft
+      Caption = 'Abrir Tabelas'
+      TabOrder = 0
+      OnClick = btsmarcasClick
+    end
+    object Button6: TButton
+      Left = 169
+      Top = 3
+      Width = 91
+      Height = 35
+      Align = alLeft
+      Caption = 'Enviar Todas'
+      TabOrder = 1
+      OnClick = Button6Click
+    end
+    object btnenviarum: TButton
+      Left = 78
+      Top = 3
+      Width = 91
+      Height = 35
+      Align = alLeft
+      Caption = 'Enviar Marca'
+      TabOrder = 2
+      OnClick = btnenviarumClick
+    end
+  end
+  object tbTrayClientes: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    Exclusive = True
+    TableName = 'TAB_CLIENTES'
+    Left = 1064
+    Top = 212
+    object tbTrayClientesid_cliente: TIntegerField
+      FieldName = 'id_cliente'
+    end
+    object tbTrayClientesname: TStringField
+      FieldName = 'name'
+      Size = 50
+    end
+    object tbTrayClientesrg: TStringField
+      FieldName = 'rg'
+      Size = 13
+    end
+    object tbTrayClientescpf: TStringField
+      FieldName = 'cpf'
+      Size = 14
+    end
+    object tbTrayClientesphone: TStringField
+      FieldName = 'phone'
+      Size = 17
+    end
+    object tbTrayClientescellphone: TStringField
+      FieldName = 'cellphone'
+      Size = 17
+    end
+    object tbTrayClientesbirth_date: TDateField
+      FieldName = 'birth_date'
+    end
+    object tbTrayClientesid_gender: TIntegerField
+      FieldName = 'id_gender'
+    end
+    object tbTrayClientesemail: TStringField
+      FieldName = 'email'
+      Size = 50
+    end
+    object tbTrayClientesnickname: TStringField
+      FieldName = 'nickname'
+    end
+    object tbTrayClientestoken: TStringField
+      FieldName = 'token'
+      Size = 50
+    end
+    object tbTrayClientestotal_orders: TIntegerField
+      FieldName = 'total_orders'
+    end
+    object tbTrayClientesobservation: TStringField
+      FieldName = 'observation'
+      Size = 500
+    end
+    object tbTrayClientesid_type: TIntegerField
+      FieldName = 'id_type'
+    end
+    object tbTrayClientescnpj: TStringField
+      FieldName = 'cnpj'
+      Size = 18
+    end
+    object tbTrayClientescompany_name: TStringField
+      FieldName = 'company_name'
+      Size = 500
+    end
+    object tbTrayClientesstate_inscription: TStringField
+      FieldName = 'state_inscription'
+      Size = 500
+    end
+    object tbTrayClientesreseller: TIntegerField
+      FieldName = 'reseller'
+    end
+    object tbTrayClientesdiscount: TFloatField
+      FieldName = 'discount'
+    end
+    object tbTrayClientesid_blocked: TIntegerField
+      FieldName = 'id_blocked'
+    end
+    object tbTrayClientescredit_limit: TFloatField
+      FieldName = 'credit_limit'
+    end
+    object tbTrayClientesindicator_id: TIntegerField
+      FieldName = 'indicator_id'
+    end
+    object tbTrayClientesprofile_customer_id: TIntegerField
+      FieldName = 'profile_customer_id'
+    end
+    object tbTrayClienteslast_sending_newsletter: TDateField
+      FieldName = 'last_sending_newsletter'
+    end
+    object tbTrayClienteslast_purchase: TDateField
+      FieldName = 'last_purchase'
+    end
+    object tbTrayClienteslast_visit: TDateField
+      FieldName = 'last_visit'
+    end
+    object tbTrayClienteslast_modification: TDateField
+      FieldName = 'last_modification'
+    end
+    object tbTrayClientesaddress: TStringField
+      FieldName = 'address'
+      Size = 100
+    end
+    object tbTrayClienteszip_code: TStringField
+      FieldName = 'zip_code'
+      Size = 9
+    end
+    object tbTrayClientesnumber_address: TIntegerField
+      FieldName = 'number_address'
+    end
+    object tbTrayClientescomplement: TStringField
+      FieldName = 'complement'
+      Size = 500
+    end
+    object tbTrayClientesneighborhood: TStringField
+      FieldName = 'neighborhood'
+      Size = 500
+    end
+    object tbTrayClientescity: TStringField
+      FieldName = 'city'
+      Size = 100
+    end
+    object tbTrayClientesstate: TStringField
+      FieldName = 'state'
+      Size = 100
+    end
+    object tbTrayClientesnewslatter: TIntegerField
+      FieldName = 'newslatter'
+    end
+    object tbTrayClientescreated: TDateField
+      FieldName = 'created'
+    end
+    object tbTrayClientesregistration_date: TDateField
+      FieldName = 'registration_date'
+    end
+    object tbTrayClientesmodifed: TDateField
+      FieldName = 'modifed'
+    end
+  end
+  object tbTrayCategorias: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    Exclusive = True
+    TableName = 'TAB_CATEGORIAS'
+    Left = 1064
+    Top = 160
+    object tbTrayCategoriasid_categoria: TIntegerField
+      FieldName = 'id_categoria'
+    end
+    object tbTrayCategoriasid_parent: TIntegerField
+      FieldName = 'id_parent'
+    end
+    object tbTrayCategoriasname: TStringField
+      FieldName = 'name'
+      Size = 100
+    end
+    object tbTrayCategoriasdescription: TStringField
+      FieldName = 'description'
+      Size = 500
+    end
+    object tbTrayCategoriassmall_description: TStringField
+      FieldName = 'small_description'
+      Size = 100
+    end
+    object tbTrayCategoriasslug: TStringField
+      FieldName = 'slug'
+      Size = 500
+    end
+    object tbTrayCategoriasorder: TIntegerField
+      FieldName = 'order'
+    end
+    object tbTrayCategoriashas_acceptance_term: TIntegerField
+      FieldName = 'has_acceptance_term'
+    end
+    object tbTrayCategoriasacceptance_term: TStringField
+      FieldName = 'acceptance_term'
+      Size = 500
+    end
+    object tbTrayCategoriashttp: TStringField
+      FieldName = 'http'
+      Size = 500
+    end
+    object tbTrayCategoriashttps: TStringField
+      FieldName = 'https'
+      Size = 500
+    end
+  end
+  object tbTrayProdutos: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    Exclusive = True
+    TableName = 'TAB_PRODUTOS'
+    Left = 1068
+    Top = 112
+    object tbTrayProdutosid_produto: TIntegerField
+      FieldName = 'id_produto'
+    end
+    object tbTrayProdutosean: TStringField
+      FieldName = 'ean'
+      Size = 100
+    end
+    object tbTrayProdutosmodifield: TDateField
+      FieldName = 'modifield'
+    end
+    object tbTrayProdutosslug: TStringField
+      FieldName = 'slug'
+      Size = 100
+    end
+    object tbTrayProdutosncm: TStringField
+      FieldName = 'ncm'
+      Size = 100
+    end
+    object tbTrayProdutosname: TStringField
+      FieldName = 'name'
+      Size = 500
+    end
+    object tbTrayProdutostitle: TStringField
+      FieldName = 'title'
+      Size = 100
+    end
+    object tbTrayProdutosdescription: TStringField
+      FieldName = 'description'
+      Size = 500
+    end
+    object tbTrayProdutosdescription_small: TStringField
+      FieldName = 'description_small'
+      Size = 100
+    end
+    object tbTrayProdutosprice: TFloatField
+      FieldName = 'price'
+    end
+    object tbTrayProdutoscost_price: TFloatField
+      FieldName = 'cost_price'
+    end
+    object tbTrayProdutospromotional_price: TFloatField
+      FieldName = 'promotional_price'
+    end
+    object tbTrayProdutosstart_promotion: TDateField
+      FieldName = 'start_promotion'
+    end
+    object tbTrayProdutosend_promotion: TDateField
+      FieldName = 'end_promotion'
+    end
+    object tbTrayProdutosbrand: TStringField
+      FieldName = 'brand'
+      Size = 100
+    end
+    object tbTrayProdutosmodel: TStringField
+      FieldName = 'model'
+      Size = 100
+    end
+    object tbTrayProdutosweight: TIntegerField
+      FieldName = 'weight'
+    end
+    object tbTrayProdutoslength: TIntegerField
+      FieldName = 'length'
+    end
+    object tbTrayProdutoswidth: TIntegerField
+      FieldName = 'width'
+    end
+    object tbTrayProdutosheight: TIntegerField
+      FieldName = 'height'
+    end
+    object tbTrayProdutoscubic_weight: TIntegerField
+      FieldName = 'cubic_weight'
+    end
+    object tbTrayProdutosstock: TIntegerField
+      FieldName = 'stock'
+    end
+    object tbTrayProdutosid_categoria: TIntegerField
+      FieldName = 'id_categoria'
+    end
+    object tbTrayProdutosavailability: TStringField
+      FieldName = 'availability'
+      Size = 100
+    end
+    object tbTrayProdutosreference: TStringField
+      FieldName = 'reference'
+      Size = 100
+    end
+    object tbTrayProdutosadditional_button: TIntegerField
+      FieldName = 'additional_button'
+    end
+    object tbTrayProdutosadditional_message: TStringField
+      FieldName = 'additional_message'
+      Size = 500
+    end
+    object tbTrayProdutoswarranty: TStringField
+      FieldName = 'warranty'
+      Size = 500
+    end
+    object tbTrayProdutosrating: TIntegerField
+      FieldName = 'rating'
+    end
+    object tbTrayProdutoscount_rating: TIntegerField
+      FieldName = 'count_rating'
+    end
+    object tbTrayProdutosquantity_sold: TIntegerField
+      FieldName = 'quantity_sold'
+    end
+    object tbTrayProdutoscreated: TDateField
+      FieldName = 'created'
+    end
+    object tbTrayProdutospayment_option: TStringField
+      FieldName = 'payment_option'
+      Size = 500
+    end
+    object tbTrayProdutosrelease_date: TDateField
+      FieldName = 'release_date'
+    end
+    object tbTrayProdutosshortcut: TStringField
+      FieldName = 'shortcut'
+      Size = 100
+    end
+    object tbTrayProdutosminimum_stock: TIntegerField
+      FieldName = 'minimum_stock'
+    end
+    object tbTrayProdutosminimum_stocl_alert: TIntegerField
+      FieldName = 'minimum_stocl_alert'
+    end
+    object tbTrayProdutospromotion_id: TIntegerField
+      FieldName = 'promotion_id'
+    end
+    object tbTrayProdutosincluded_items: TStringField
+      FieldName = 'included_items'
+      Size = 500
+    end
+    object tbTrayProdutosrelated_products: TIntegerField
+      FieldName = 'related_products'
+    end
+    object tbTrayProdutoscurrent_price: TFloatField
+      FieldName = 'current_price'
+    end
+    object tbTrayProdutosipi: TFloatField
+      FieldName = 'ipi'
+    end
+    object tbTrayProdutosacceptance_term_option: TIntegerField
+      FieldName = 'acceptance_term_option'
+    end
+    object tbTrayProdutoswarranty_days: TIntegerField
+      FieldName = 'warranty_days'
+    end
+    object tbTrayProdutosavailability_days: TIntegerField
+      FieldName = 'availability_days'
+    end
+    object tbTrayProdutosid_matetag: TIntegerField
+      FieldName = 'id_matetag'
+    end
+    object tbTrayProdutosid_variant: TIntegerField
+      FieldName = 'id_variant'
+    end
+  end
+  object tbBMprodutos: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'TAB_PRODUTOS'
+    Left = 1064
+    Top = 268
+  end
+  object dtBMmarcas: TDataSource
+    DataSet = qrBMmarcas
+    Left = 628
+    Top = 168
+  end
+  object dtTrayMarcas: TDataSource
+    DataSet = tbTrayMarcas
+    Left = 1068
+    Top = 320
+  end
+  object tbTrayMarcas: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    Exclusive = True
+    TableName = 'TAB_MARCA'
+    Left = 1064
+    Top = 64
+    object tbTrayMarcasid_marca: TIntegerField
+      FieldName = 'id_marca'
+    end
+    object tbTrayMarcasslug: TStringField
+      FieldName = 'slug'
+      Size = 100
+    end
+    object tbTrayMarcasbrand: TStringField
+      FieldName = 'brand'
+      Size = 100
+    end
+  end
+  object serverTray: TIdHTTP
+    AllowCookies = True
+    HandleRedirects = True
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.CacheControl = 'no-cache'
+    Request.ContentEncoding = 'utf-8'
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
+    Request.ContentType = 'application/json'
+    Request.Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Request.BasicAuthentication = False
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
+    HTTPOptions = [hoForceEncodeParams]
+    Left = 700
+    Top = 77
+  end
+  object qrBMmarcas: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT'
+      'MARCA'
+      ''
+      'FROM PRODUTOSMARCAS'
+      'ORDER BY MARCA'
+      '')
+    Params = <>
+    Left = 625
+    Top = 120
+    object qrBMmarcasMARCA: TStringField
+      FieldName = 'MARCA'
+      Size = 15
+    end
+  end
+  object tbBMintaux: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'Integracoes_Aux'
+    Left = 768
+    Top = 76
+    object tbBMintauxID_Int: TStringField
+      FieldName = 'ID_Int'
+    end
+    object tbBMintauxID_BM: TIntegerField
+      FieldName = 'ID_BM'
+    end
+    object tbBMintauxTipo: TStringField
+      FieldName = 'Tipo'
+      Size = 3
+    end
+    object tbBMintauxHASH: TStringField
+      FieldName = 'HASH'
+      Size = 32
+    end
+  end
+  object qrBMintaux: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Integracoes_Aux'
+      'WHERE (Tipo = '#39'TM'#39') AND (HASH = :HASH)'
+      '')
+    Params = <
+      item
+        DataType = ftString
+        Name = 'HASH'
+      end>
+    Left = 697
+    Top = 120
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'HASH'
+      end>
+    object qrBMintauxID_Int: TStringField
+      FieldName = 'ID_Int'
+    end
+    object qrBMintauxID_BM: TIntegerField
+      FieldName = 'ID_BM'
+    end
+    object qrBMintauxTipo: TStringField
+      FieldName = 'Tipo'
+      Size = 3
+    end
+    object qrBMintauxHASH: TStringField
+      FieldName = 'HASH'
+      Size = 32
+    end
+  end
+  object dtBMintaux: TDataSource
+    DataSet = qrBMintaux2
+    Left = 700
+    Top = 168
+  end
+  object qrBMintaux2: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Integracoes_Aux'
+      'WHERE Tipo = '#39'TM'#39
+      '')
+    Params = <>
+    Left = 769
+    Top = 128
+    object StringField1: TStringField
+      FieldName = 'ID_Int'
+    end
+    object IntegerField1: TIntegerField
+      FieldName = 'ID_BM'
+    end
+    object StringField2: TStringField
+      FieldName = 'Tipo'
+      Size = 3
+    end
+    object StringField3: TStringField
+      FieldName = 'HASH'
+      Size = 32
+    end
+  end
+  object tbBMmarcas: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'ProdutosMarcas'
+    Left = 624
+    Top = 76
+    object tbBMmarcasMarca: TStringField
+      FieldName = 'Marca'
+      Size = 15
+    end
+  end
+  object tbBMauxerros: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'Integracao_erros'
+    Left = 840
+    Top = 80
+    object tbBMauxerrosid: TAutoIncField
+      FieldName = 'id'
+    end
+    object tbBMauxerrosid_tabela: TIntegerField
+      FieldName = 'id_tabela'
+    end
+    object tbBMauxerrostipo: TStringField
+      FieldName = 'tipo'
+      Size = 3
+    end
+    object tbBMauxerrosdescricao: TStringField
+      FieldName = 'descricao'
+      Size = 100
+    end
+    object tbBMauxerrosdatahora_registro: TDateTimeField
+      FieldName = 'datahora_registro'
+    end
+    object tbBMauxerrostipo_metodo: TStringField
+      FieldName = 'tipo_metodo'
+      Size = 4
+    end
+  end
+end

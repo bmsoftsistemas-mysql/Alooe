@@ -1,0 +1,450 @@
+unit uDD;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  Vcl.AppEvnts,
+  RzCommon,
+  cxStyles,
+  cxClasses,
+  dbisamtb,
+  Data.DB,
+  System.ImageList,
+  System.json,
+  Vcl.ImgList,
+  Vcl.Controls,
+  PngImageList,
+  Forms,
+  frxDesgn,
+  JPEG,
+  System.IniFiles,
+  IdBaseComponent,
+  IdCoder,
+  IdCoder3to4,
+  IdCoderMIME,
+  IdComponent,
+  IdTCPConnection,
+  IdTCPClient,
+  Dialogs,
+  IdHTTP, RzTray, IdAntiFreezeBase, IdAntiFreeze, IdExplicitTLSClientServerBase,
+  IdFTP, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error,
+  FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
+  FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Comp.Client,
+  FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef;
+
+type
+  TDD = class(TDataModule)
+    db1: TDBISAMDatabase;
+    frameErro: TRzFrameController;
+    Imagens16: TPngImageList;
+    tbEmp: TDBISAMTable;
+    tbEmpID: TAutoIncField;
+    tbEmpNomeContribuinte: TStringField;
+    tbEmpFantasia: TStringField;
+    tbEmpApelido: TStringField;
+    tbEmptipo: TStringField;
+    tbEmpLogradouro: TStringField;
+    tbEmpNumero: TIntegerField;
+    tbEmpComplemento: TStringField;
+    tbEmpBairro: TStringField;
+    tbEmpCEP: TStringField;
+    tbEmpCod_Cidade: TIntegerField;
+    tbEmpMunicipio: TStringField;
+    tbEmpUF: TStringField;
+    tbEmpFone: TStringField;
+    tbEmpFax: TStringField;
+    tbEmpCGCMF: TStringField;
+    tbEmpIE: TStringField;
+    qrTemp: TDBISAMQuery;
+    frameEdit: TRzFrameController;
+    imgGrids: TPngImageList;
+    frameNaoObrigatorio: TRzFrameController;
+    SR: TcxStyleRepository;
+    AzulClaro: TcxStyle;
+    AmareloClaro: TcxStyle;
+    AmareloForte: TcxStyle;
+    VermelhoFraco: TcxStyle;
+    Trebuchet10negrito: TcxStyle;
+    verdeFraco: TcxStyle;
+    cinzaClaro: TcxStyle;
+    II: TRzRegIniFile;
+    AE: TApplicationEvents;
+    FF1: TRzFrameController;
+    SX: TDBISAMSession;
+    Segoe8: TcxStyle;
+    Base64: TIdEncoderMIME;
+    serverTray: TIdHTTP;
+    ImageList1: TImageList;
+    IdFTPTray: TIdFTP;
+    IdAntiFreezeTray: TIdAntiFreeze;
+    config: TRzRegIniFile;
+    DB: TFDConnection;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+
+    { Private declarations }
+
+  public
+    { Public declarations }
+    i: TIniFile;
+    procedure exportaftp(foto: TMemoryStream; nomefoto: string);
+    procedure conectaftp;
+    procedure desconectaftp;
+  end;
+
+function BuscaRelat(s: string): string;
+function TiraEstranhos(A: string): string;
+function TiraAcento(A: string): string;
+function AddPairStringX(ALabel, ATexto: string): TJSONPair;
+
+function AddPairIntX(ALabel: string; AInteger: Integer): TJSONPair;
+function AddPairInt(JSONObj: TJSONObject; ALabel: string; AInteger: Integer): TJSONPair;
+function AddPairFloatX(ALabel: string; ADouble: Double): TJSONPair;
+function AddPairFloat(JSONObj: TJSONObject; ALabel: string; ADouble: Double): TJSONPair;
+procedure AguardaServidor(s: integer);
+procedure AjustaEnvio;
+
+procedure AddPairString(JSONObj: TJSONObject; ALabel, ATexto: string);
+procedure GravaLog(FArq, Texto: string);
+procedure Logar(s: string);
+
+const
+  defPathBase = 'Base\Dados';
+  defNomeServ = 'BMsoftSyncMPSvc';
+  defNomeIni = 'ConfMP.ini';
+  defExeServName = 'BMSyncMP.exe';
+  defAppTokenDesenvolvimento = '56254434-6b42-11e4-94bb-f23c91df94d9'; // app token desenvolvimento
+  defAppTokenProducao = '51ac38ed-b08f-11e4-a156-064a56311ffd'; // app token produÁ„o
+  defCompanyTokenBM = '05a5dd1c-6b41-11e4-be31-f23c91df94d9'; // company token da bm para desenvolvimento...
+  defContent = 'application/json';
+  defCache = 'no-cache';
+  defHostDesenvolvimento = 'https://trayparceiros.commerceresult.com.br/web_api'; // host usado para desenvolvimento
+  defHostProducao = 'https://trayparceiros.commerceresult.com.br/web_api'; // host producao
+  Consumer_Key = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0';
+  Consumer_Secret = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526';
+  defURLCli = '/api/v1/clientes/';
+  defURLCliVen = '/api/v1/usuarios_clientes/';
+  defURLProdutos = '/api/v1/produtos/';
+  defURLCategorias = '/api/v1/categorias/';
+  defURLImagens = '/api/v1/imagens_produto/';
+  defURLTabelasPrecos = '/api/v1/tabelas_preco/';
+  defURLTabProd = '/api/v1/produtos_tabela_preco/';
+  defURLPlanos = '/api/v1/condicoes_pagamento/';
+  defURLFormasPagto = '/api/v1/formas_pagamento/';
+  defURLPedidos = '/api/v1/pedidos/';
+  defURLVendedores = '/api/v1/usuarios/';
+  defURLVendedoresClientes = '/api/v1/usuarios_clientes/';
+  defURLCamposExtras = '/api/v1/campos_extras/';
+  defURLTransp = '/api/v1/transportadoras/';
+  defURLTitulos = '/api/v1/titulos_vencidos/';
+  defURLFatur = '/api/v1/faturamento/';
+  defURLmarcas = '/products/brands/';
+  defEncod = 'utf-8';
+  defRetHead = 'MeusPedidosID';
+  defLengthTok = 36;
+  defauth = '/auth';
+  defcategorias = '/categories';
+  defprodutos = '/products';
+  defpedidos = '/orders';
+  defmarcas = '/brands';
+  defclientes = '/customers';
+  defvariacoes = '/products/variants';
+
+  CR = #13 + #10;
+
+var
+  DD: TDD;
+
+  pubEmpresaAtiva: Integer;
+  pubUsuarioAtivo: Integer;
+  pubUsuarioAtivoNome: string;
+  pubDirEXE: string;
+
+  defHost: string;
+  defAppToken: string;
+  defCompanyToken: string;
+
+  defOperationType: string;
+
+  defLista2: string;
+  defLista3: string;
+  defUsaTitulosVencidos: string;
+  defUsaDefinirEmpresaPedido: string;
+  defusaPersonal: string;
+  defusaVenda4: string;
+  defusaDescricaoWeb: string;
+  defusaModelo: string;
+  defusaDisponibilidade: string;
+  defusaDestaque: string;
+  defusaLancamento: string;
+  defusaSEO: string;
+  defusaGarantia: string;
+  defusaenviofotos: string;
+
+  defTimerAtualizacao: integer;
+  defTimerAtualizacaoPedidos: integer;
+
+  pubTemMaisRegistros: boolean;
+  def_access_token: string;
+  defurl: string;
+  defcode: string;
+  def_erro: boolean;
+
+implementation
+
+uses
+  ufrmAviso,
+  uMain,
+  ufrmAguardaServidor, ufrmRequest;
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure AguardaServidor(s: integer);
+begin
+  frmAguardaServidor.Tag := s;
+  frmAguardaServidor.ShowModal;
+end;
+
+function BuscaRelat(s: string): string;
+begin
+
+  result := s;
+  if FileExists(pubDirEXE + 'personal' + s) then
+    result := pubDirEXE + 'personal' + s;
+
+end;
+
+procedure AjustaEnvio;
+begin
+
+  //  defHost := defHostDesenvolvimento;
+  //  defAppToken := defAppTokenDesenvolvimento;
+  //  defCompanyToken := defCompanyTokenBM;
+
+  dd.serverTray.Request.CacheControl := defCache;
+  dd.serverTray.Request.ContentType := defContent;
+
+  dd.serverTray.Request.ContentEncoding := defEncod;
+
+  dd.serverTray.Request.AcceptCharset := '';
+  dd.serverTray.Request.UserAgent := '';
+  dd.serverTray.Request.AcceptLanguage := '';
+
+  dd.serverTray.Request.CustomHeaders.Clear;
+  dd.serverTray.Request.CustomHeaders.AddValue('ApplicationToken', defAppToken);
+  dd.serverTray.Request.CustomHeaders.AddValue('CompanyToken', defCompanyToken);
+
+end;
+
+procedure TDD.DataModuleCreate(Sender: TObject);
+begin
+
+  db.Directory := '';
+  db.Directory := DD.config.ReadString('Config', 'Base', '');
+
+  db.Open;
+
+  pubEmpresaAtiva := StrToIntDef(DD.config.ReadString('Config', 'EmpresaAtiva', ''), 0); //StrToInt(ParamStr(2));
+
+  pubUsuarioAtivo := 1;//StrToInt(ParamStr(3));
+
+  pubUsuarioAtivoNome := '<<INDEFINIDO>>';
+
+  pubDirEXE := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)));
+  defurl := DD.config.ReadString('Config', 'url', '');
+  defcode := DD.config.ReadString('Config', 'code', '');
+  defusaPersonal := DD.config.ReadString('Config', 'usaPersonal', '');
+  defusaVenda4 := DD.config.ReadString('Config', 'usaVenda4', '');
+  defusaDescricaoWeb := DD.config.ReadString('Config', 'usaDescricaoWeb', '');
+  defusaModelo := DD.config.ReadString('Config', 'usaModelo', '');
+  defusaDisponibilidade := DD.config.ReadString('Config', 'usaDisponibilidade', '');
+  defusaDestaque := DD.config.ReadString('Config', 'usaDestaque', '');
+  defusaLancamento := DD.config.ReadString('Config', 'usaLancamento', '');
+  defusaGarantia := DD.config.ReadString('Config', 'usaGarantia', '');
+  defusaSEO := DD.config.ReadString('Config', 'usaSEO', '');
+  defTimerAtualizacao := DD.config.ReadInteger('config', 'TimerAtualizacaoSegundos', 900) * 1000; // 15 minutos por padr„o...
+  defusaenviofotos := DD.config.ReadString('Config', 'usaEnviodeFotos', '');
+
+
+  (*
+  i := TIniFile.Create(ChangeFileExt(Application.ExeName, '.ini'));
+
+  defLista2 := i.ReadString('config', 'lista2', 'S')[1];
+  defLista3 := i.ReadString('config', 'lista3', 'S')[1];
+  defUsaTitulosVencidos := i.ReadString('config', 'UsaTitulosVencidos', 'S')[1];
+  defUsaDefinirEmpresaPedido := i.ReadString('config', 'UsaDefinirEmpresaPedido', 'N')[1];
+  defOperationType := i.ReadString('config', 'operationtype', 'D')[1];
+  defTimerAtualizacao := i.ReadInteger('config', 'TimerAtualizacaoSegundos', 900); // 15 minutos por padr„o...
+  defTimerAtualizacaoPedidos := i.ReadInteger('config', 'TimerAtualizacaoSegundosPedidos', 15); // 15 segundos por padr„o...
+
+  if defOperationType = 'D' then // desenvolvimento...
+  begin
+    defHost := defHostDesenvolvimento;
+    defAppToken := defAppTokenDesenvolvimento;
+    defCompanyToken := defCompanyTokenBM;
+  end
+  else // producao...
+  begin
+    defHost := defHostProducao;
+    defAppToken := defAppTokenProducao;
+    defCompanyToken := i.ReadString('config', 'companytoken', '<<NULL>>');
+  end;
+   *)
+//  Application.CreateForm(TfrmMain, frmMain);
+//  Application.CreateForm(TfrmAviso, frmAviso);
+
+  //AvisoON;
+//
+//  AvisoOFF;
+
+end;
+
+procedure GravaLog(FArq, Texto: string);
+var
+  F: TextFile;
+  S: string;
+begin
+
+  AssignFile(F, FArq);
+  if FileExists(FArq) then
+    Append(F)
+  else
+    ReWrite(F);
+
+  S := FormatDateTime('dd/mm/yyyy hh:nn:ss', now) + ' | ' + Texto;
+
+  Writeln(F, S);
+
+  CloseFile(F);
+end;
+
+procedure Logar(s: string);
+begin
+
+  if FileExists('BM2Tray.logar') then
+    GravaLog('BM2Tray.log', s);
+
+end;
+
+function TiraEstranhos(A: string): string;
+var
+  I: Integer;
+  Caracteres: TSysCharSet;
+begin
+  Caracteres := [#32..#126];
+  if A <> '' then
+    for I := Length(A) downto 1 do
+    begin
+      if not (CharInSet(A[I], Caracteres)) then
+        Delete(A, I, 1);
+    end;
+
+  Result := A;
+end;
+
+function TiraAcento(A: string): string;
+const
+  ComAcento = '¡…Õ”⁄·ÈÌÛ˙¿»Ã“Ÿ‡ËÏÚ˘›˝√’„ı¬ Œ‘€‚ÍÓÙ˚ƒÀœ÷‹‰ÎÔˆ¸«Áˇ—Ò';
+  SemAcento = 'AEIOUaeiouAEIOUaeiouYyAOaoAEIOUaeiouAEIOUaeiouCcyNn';
+var
+  I: Integer;
+  X: Integer;
+begin
+  if A <> '' then
+    for I := 1 to Length(A) do
+    begin
+      X := pos(A[I], ComAcento);
+      if X > 0 then
+        A[I] := SemAcento[X];
+    end;
+
+  Result := A;
+end;
+
+function AddPairStringX(ALabel, ATexto: string): TJSONPair;
+var
+  str: TJSONString;
+
+begin
+  str := TJSONString.Create(TiraEstranhos(TiraAcento(ATexto)));
+  try
+    Result := TJSONPair.Create(ALabel, str);
+  finally
+    // str := nil;
+  end;
+
+end;
+
+procedure AddPairString(JSONObj: TJSONObject; ALabel, ATexto: string);
+var
+  str: TJSONString;
+
+begin
+  //  str := TJSONString.Create(TiraEstranhos(TiraAcento(ATexto)));
+  //  JSONObj.AddPair(TJSONPair.Create(ALabel, str));
+
+  str := TJSONString.Create(ATexto);
+  JSONObj.AddPair(TJSONPair.Create(ALabel, str));
+end;
+
+function AddPairIntX(ALabel: string; AInteger: Integer): TJSONPair;
+begin
+  Result := TJSONPair.Create(ALabel, TJSONNumber.Create(AInteger));
+end;
+
+function AddPairInt(JSONObj: TJSONObject; ALabel: string; AInteger: Integer): TJSONPair;
+begin
+  //  Result := TJSONPair.Create(ALabel, TJSONNumber.Create(AInteger));
+  JSONObj.AddPair(ALabel, TJSONNumber.Create(AInteger));
+end;
+
+function AddPairFloatX(ALabel: string; ADouble: Double): TJSONPair;
+var
+  dbl: TJSONNumber;
+
+begin
+  dbl := TJSONNumber.Create(ADouble);
+  try
+    Result := TJSONPair.Create(ALabel, dbl);
+  finally
+    // dbl := nil;
+  end;
+end;
+
+function AddPairFloat(JSONObj: TJSONObject; ALabel: string; ADouble: Double): TJSONPair;
+var
+  dbl: TJSONNumber;
+
+begin
+  dbl := TJSONNumber.Create(ADouble);
+  //    Result := TJSONPair.Create(ALabel, dbl);
+  JSONObj.AddPair(ALabel, dbl);
+end;
+
+procedure TDD.exportaftp(foto: TMemoryStream; nomefoto: string);
+
+begin
+  IdFTPTray.Put(foto, nomefoto);
+end;
+
+procedure TDD.conectaftp();
+begin
+  IdFTPTray.Host := 'bmrepositorio.tecnologia.ws';
+  IdFTPTray.Port := 21;
+  IdFTPTray.Username := 'bmrepositorio';
+  IdFTPTray.Password := 'bmrepo_7062';
+  IdFTPTray.Connect;
+  IdFTPTray.ChangeDir('/public_html/tray');
+end;
+
+procedure TDD.desconectaftp();
+begin
+  IdFTPTray.Disconnect;
+end;
+
+end.
+

@@ -1,0 +1,89 @@
+object frmRequest: TfrmRequest
+  Left = 0
+  Top = 0
+  Caption = 'frmRequest'
+  ClientHeight = 668
+  ClientWidth = 1404
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RESTClientAuth: TRESTClient
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 'https://dev-api.aloee.it'
+    ContentType = 'application/x-www-form-urlencoded'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 48
+  end
+  object RESTRequestAuth: TRESTRequest
+    Client = RESTClientAuth
+    Method = rmPOST
+    Params = <
+      item
+        name = 'consumer_key'
+        Value = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0'
+      end
+      item
+        name = 'consumer_secret'
+        Value = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526'
+      end
+      item
+        name = 'code'
+        Value = 'd6ef0a3fd271ef9ff9228aa29ae80d6edc06b5518ba8cf6145d57b632a96d6b0'
+      end>
+    Response = RESTResponseAuth
+    SynchronizedEvents = False
+    Left = 48
+    Top = 48
+  end
+  object RESTResponseAuth: TRESTResponse
+    Left = 48
+    Top = 96
+  end
+  object RESTClientModelo: TRESTClient
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 'https://dev-api.aloee.it'
+    ContentType = 'application/x-www-form-urlencoded'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 184
+    Top = 8
+  end
+  object RESTRequestModelo: TRESTRequest
+    Client = RESTClientModelo
+    Method = rmPOST
+    Params = <
+      item
+        name = 'consumer_key'
+        Value = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0'
+      end
+      item
+        name = 'consumer_secret'
+        Value = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526'
+      end
+      item
+        name = 'code'
+        Value = 'd6ef0a3fd271ef9ff9228aa29ae80d6edc06b5518ba8cf6145d57b632a96d6b0'
+      end>
+    Response = RESTResponseModelo
+    SynchronizedEvents = False
+    Left = 184
+    Top = 56
+  end
+  object RESTResponseModelo: TRESTResponse
+    ContentType = 'application/json'
+    Left = 184
+    Top = 104
+  end
+end

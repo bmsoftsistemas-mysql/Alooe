@@ -1,0 +1,627 @@
+object frmContatos: TfrmContatos
+  Left = 0
+  Top = 0
+  Caption = 'Contatos'
+  ClientHeight = 707
+  ClientWidth = 1135
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnResize = FormResize
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object tray_token_enviar: TEdit
+    Left = 0
+    Top = 635
+    Width = 1135
+    Height = 21
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    TabOrder = 0
+    Visible = False
+  end
+  object tray_refresh_enviar: TEdit
+    Left = 0
+    Top = 656
+    Width = 1135
+    Height = 21
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    TabOrder = 1
+    Visible = False
+  end
+  object JSONtray_marcas_enviar: TRzMemo
+    AlignWithMargins = True
+    Left = 2
+    Top = 679
+    Width = 1131
+    Height = 26
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    BorderStyle = bsNone
+    Color = clInfoBk
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -8
+    Font.Name = 'Courier New'
+    Font.Style = []
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 2
+    Visible = False
+    WordWrap = False
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 0
+    Width = 544
+    Height = 594
+    Align = alLeft
+    TabOrder = 3
+    object DBGrid1: TDBGrid
+      Left = 1
+      Top = 25
+      Width = 542
+      Height = 568
+      Align = alClient
+      DataSource = dtBMPessoas
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'ID'
+          Title.Caption = 'ID do Cliente'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 80
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'NOME'
+          Title.Caption = 'Cliente'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 250
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'CELULAR'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 100
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'EMAIL'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 150
+          Visible = True
+        end>
+    end
+    object Panel1: TPanel
+      Left = 1
+      Top = 1
+      Width = 542
+      Height = 24
+      Align = alTop
+      Caption = 'Categorias da BM'
+      Color = 15770519
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 1
+    end
+  end
+  object Panel3: TPanel
+    Left = 544
+    Top = 0
+    Width = 591
+    Height = 594
+    Align = alClient
+    TabOrder = 4
+    object DBGrid2: TDBGrid
+      Left = 1
+      Top = 25
+      Width = 589
+      Height = 568
+      Align = alClient
+      DataSource = dtBMintaux2
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'ID_Int'
+          Title.Caption = 'ID da Integra'#231#227'o'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'ID_BM'
+          Title.Caption = 'ID da BM'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Tipo'
+          Title.Caption = 'Caracteres de Identifica'#231#227'o'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'HASH'
+          Title.Caption = 'Caracteres de Controle'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 224
+          Visible = True
+        end>
+    end
+    object Panel4: TPanel
+      Left = 1
+      Top = 1
+      Width = 589
+      Height = 24
+      Align = alTop
+      Caption = 'Categorias Enviadas'
+      Color = 15770519
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 1
+    end
+  end
+  object RzPanel15: TRzPanel
+    Left = 0
+    Top = 594
+    Width = 1135
+    Height = 41
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    BorderOuter = fsNone
+    BorderColor = 15770519
+    BorderWidth = 3
+    Color = 15770519
+    TabOrder = 5
+    object btscategorias: TButton
+      Left = 3
+      Top = 3
+      Width = 78
+      Height = 35
+      Align = alLeft
+      Caption = 'Abrir Tabelas'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      Visible = False
+      OnClick = btscategoriasClick
+    end
+    object btnenviartodascat: TButton
+      Left = 185
+      Top = 3
+      Width = 104
+      Height = 35
+      Align = alLeft
+      Caption = 'Enviar Todos'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      OnClick = btnenviartodascatClick
+    end
+    object btnenviaruma: TButton
+      Left = 81
+      Top = 3
+      Width = 104
+      Height = 35
+      Align = alLeft
+      Caption = 'Enviar Contatos'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      OnClick = btnenviarumaClick
+    end
+    object Button1: TButton
+      Left = 289
+      Top = 3
+      Width = 104
+      Height = 35
+      Align = alLeft
+      Caption = 'Enviar Todos'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      OnClick = Button1Click
+      ExplicitLeft = 417
+      ExplicitTop = 1
+    end
+  end
+  object serverTray: TIdHTTP
+    AllowCookies = True
+    HandleRedirects = True
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.CacheControl = 'no-cache'
+    Request.ContentEncoding = 'utf-8'
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
+    Request.ContentType = 'application/json'
+    Request.Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Request.BasicAuthentication = False
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
+    HTTPOptions = [hoForceEncodeParams]
+    Left = 1084
+    Top = 117
+  end
+  object tbBMintaux: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'Integracoes_Aux'
+    Left = 1016
+    Top = 116
+    object tbBMintauxID_Int: TStringField
+      FieldName = 'ID_Int'
+    end
+    object tbBMintauxID_BM: TIntegerField
+      FieldName = 'ID_BM'
+    end
+    object tbBMintauxTipo: TStringField
+      FieldName = 'Tipo'
+      Size = 3
+    end
+    object tbBMintauxHASH: TStringField
+      FieldName = 'HASH'
+      Size = 32
+    end
+  end
+  object dtBMPessoas: TDataSource
+    DataSet = qrBMPessoas
+    Left = 644
+    Top = 472
+  end
+  object qrBMPessoas: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT'
+      'ID,'
+      'NOME,'
+      'CELULAR,'
+      'EMAIL'
+      ''
+      ''
+      'FROM PESSOAS'
+      'WHERE ID < 20'
+      'ORDER BY ID'
+      '')
+    Params = <>
+    Left = 641
+    Top = 416
+    object qrBMPessoasID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object qrBMPessoasNOME: TStringField
+      FieldName = 'NOME'
+      Size = 60
+    end
+    object qrBMPessoasCELULAR: TStringField
+      FieldName = 'CELULAR'
+      Size = 15
+    end
+    object qrBMPessoasEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Size = 150
+    end
+  end
+  object dtBMintaux: TDataSource
+    DataSet = tbBMintaux
+    Left = 1012
+    Top = 224
+  end
+  object qrBMintaux: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Integracoes_Aux'
+      'WHERE (Tipo = '#39'PES'#39') AND (HASH = :HASH)'
+      '')
+    Params = <
+      item
+        DataType = ftString
+        Name = 'HASH'
+      end>
+    Left = 1017
+    Top = 168
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'HASH'
+      end>
+  end
+  object tbTrayCategorias: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'TAB_CATEGORIAS'
+    Left = 784
+    Top = 96
+    object tbTrayCategoriasid_categoria: TIntegerField
+      FieldName = 'id_categoria'
+    end
+    object tbTrayCategoriasid_parent: TIntegerField
+      FieldName = 'id_parent'
+    end
+    object tbTrayCategoriasname: TStringField
+      FieldName = 'name'
+      Size = 100
+    end
+    object tbTrayCategoriasdescription: TStringField
+      FieldName = 'description'
+      Size = 500
+    end
+    object tbTrayCategoriassmall_description: TStringField
+      FieldName = 'small_description'
+      Size = 100
+    end
+    object tbTrayCategoriasslug: TStringField
+      FieldName = 'slug'
+      Size = 500
+    end
+    object tbTrayCategoriasorder: TIntegerField
+      FieldName = 'order'
+    end
+    object tbTrayCategoriashas_acceptance_term: TIntegerField
+      FieldName = 'has_acceptance_term'
+    end
+    object tbTrayCategoriasacceptance_term: TStringField
+      FieldName = 'acceptance_term'
+      Size = 500
+    end
+    object tbTrayCategoriashttp: TStringField
+      FieldName = 'http'
+      Size = 500
+    end
+    object tbTrayCategoriashttps: TStringField
+      FieldName = 'https'
+      Size = 500
+    end
+  end
+  object qrBMintaux2: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Integracoes_Aux'
+      'WHERE (Tipo = '#39'PES'#39')'
+      '')
+    Params = <>
+    Left = 761
+    Top = 392
+    object qrBMintaux2ID_Int: TStringField
+      FieldName = 'ID_Int'
+    end
+    object qrBMintaux2ID_BM: TIntegerField
+      FieldName = 'ID_BM'
+    end
+    object qrBMintaux2Tipo: TStringField
+      FieldName = 'Tipo'
+      Size = 3
+    end
+    object qrBMintaux2HASH: TStringField
+      FieldName = 'HASH'
+      Size = 32
+    end
+  end
+  object dtBMintaux2: TDataSource
+    DataSet = qrBMintaux2
+    Left = 764
+    Top = 456
+  end
+  object tbBMauxerros: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'Integracao_erros'
+    Left = 672
+    Top = 96
+    object tbBMauxerrosid: TAutoIncField
+      FieldName = 'id'
+    end
+    object tbBMauxerrosid_tabela: TIntegerField
+      FieldName = 'id_tabela'
+    end
+    object tbBMauxerrostipo: TStringField
+      FieldName = 'tipo'
+      Size = 3
+    end
+    object tbBMauxerrosdescricao: TStringField
+      FieldName = 'descricao'
+      Size = 100
+    end
+    object tbBMauxerrosdatahora_registro: TDateTimeField
+      FieldName = 'datahora_registro'
+    end
+    object tbBMauxerrostipo_metodo: TStringField
+      FieldName = 'tipo_metodo'
+      Size = 4
+    end
+  end
+  object qrBMcat2: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT*'
+      ''
+      'FROM PRODUTOSCLASSE'
+      'ORDER BY ID'
+      '')
+    Params = <>
+    Left = 825
+    Top = 240
+    object qrBMcat2ID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object qrBMcat2Nivel: TStringField
+      FieldName = 'Nivel'
+      Size = 1
+    end
+    object qrBMcat2Classe: TStringField
+      FieldName = 'Classe'
+      Size = 30
+    end
+    object qrBMcat2Descricao: TStringField
+      FieldName = 'Descricao'
+      Size = 50
+    end
+    object qrBMcat2Cultura: TStringField
+      FieldName = 'Cultura'
+      Size = 1
+    end
+    object qrBMcat2Dias_Giro: TIntegerField
+      FieldName = 'Dias_Giro'
+    end
+    object qrBMcat2Comissao: TStringField
+      FieldName = 'Comissao'
+      Size = 1
+    end
+    object qrBMcat2PRural: TBooleanField
+      FieldName = 'PRural'
+    end
+    object qrBMcat2PrecoTabelado: TBooleanField
+      FieldName = 'PrecoTabelado'
+    end
+    object qrBMcat2Estoque_Local: TStringField
+      FieldName = 'Estoque_Local'
+      Size = 15
+    end
+    object qrBMcat2Ativo: TBooleanField
+      FieldName = 'Ativo'
+    end
+  end
+  object DtBMcat2: TDataSource
+    DataSet = qrBMcat2
+    Left = 828
+    Top = 296
+  end
+  object qrBMintaux3: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Integracoes_Aux'
+      'WHERE (Tipo = '#39'PES'#39') and (ID_BM =:)'
+      '')
+    Params = <>
+    Left = 1081
+    Top = 288
+    object qrBMintaux3ID_Int: TStringField
+      FieldName = 'ID_Int'
+    end
+    object qrBMintaux3ID_BM: TIntegerField
+      FieldName = 'ID_BM'
+    end
+    object qrBMintaux3Tipo: TStringField
+      FieldName = 'Tipo'
+      Size = 3
+    end
+    object qrBMintaux3HASH: TStringField
+      FieldName = 'HASH'
+      Size = 32
+    end
+  end
+  object DtBMintaux3: TDataSource
+    DataSet = qrBMintaux3
+    Left = 1084
+    Top = 344
+  end
+end

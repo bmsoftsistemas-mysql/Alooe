@@ -1,0 +1,428 @@
+object frmProducao: TfrmProducao
+  Left = 0
+  Top = 0
+  Caption = 'Criar Produ'#231#227'o'
+  ClientHeight = 555
+  ClientWidth = 547
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel2: TPanel
+    Left = 0
+    Top = 0
+    Width = 547
+    Height = 555
+    Align = alClient
+    BevelOuter = bvNone
+    TabOrder = 0
+    ExplicitHeight = 514
+    object LabelModelo: TLabel
+      Left = 32
+      Top = 24
+      Width = 34
+      Height = 13
+      Caption = 'Modelo'
+    end
+    object LabelQuantidade: TLabel
+      Left = 199
+      Top = 73
+      Width = 104
+      Height = 13
+      Caption = 'Quantidade Esperada'
+    end
+    object LabelEntrega: TLabel
+      Left = 368
+      Top = 122
+      Width = 64
+      Height = 13
+      Caption = 'Data Entrega'
+    end
+    object LabelInicio: TLabel
+      Left = 32
+      Top = 122
+      Width = 25
+      Height = 13
+      Caption = 'In'#237'cio'
+    end
+    object LabelFim: TLabel
+      Left = 199
+      Top = 122
+      Width = 16
+      Height = 13
+      Caption = 'Fim'
+    end
+    object LabelStatus: TLabel
+      Left = 32
+      Top = 73
+      Width = 62
+      Height = 13
+      Caption = 'N'#176' do Pedido'
+    end
+    object LabelObs: TLabel
+      Left = 32
+      Top = 238
+      Width = 63
+      Height = 13
+      Caption = 'Observa'#231#245'es'
+    end
+    object LabelCor: TLabel
+      Left = 368
+      Top = 73
+      Width = 17
+      Height = 13
+      Caption = 'Cor'
+    end
+    object LabelCliente: TLabel
+      Left = 32
+      Top = 179
+      Width = 33
+      Height = 13
+      Caption = 'Cliente'
+    end
+    object EdtQuantidade: TEdit
+      Left = 199
+      Top = 88
+      Width = 121
+      Height = 22
+      TabOrder = 2
+      OnChange = EdtQuantidadeChange
+    end
+    object DtEntrega: TDateTimePicker
+      Left = 368
+      Top = 141
+      Width = 145
+      Height = 21
+      Date = 45809.467803564820000000
+      Time = 45809.467803564820000000
+      TabOrder = 4
+    end
+    object DtFim: TDateTimePicker
+      Left = 199
+      Top = 141
+      Width = 121
+      Height = 21
+      Date = 45809.467803564820000000
+      Time = 45809.467803564820000000
+      TabOrder = 3
+    end
+    object CbCor: TColorBox
+      Left = 368
+      Top = 88
+      Width = 145
+      Height = 22
+      TabOrder = 1
+      TabStop = False
+    end
+    object MmObs: TMemo
+      Left = 32
+      Top = 256
+      Width = 481
+      Height = 89
+      Lines.Strings = (
+        'MmObs')
+      TabOrder = 6
+    end
+    object EdtCliente: TEdit
+      Left = 32
+      Top = 198
+      Width = 481
+      Height = 21
+      TabOrder = 5
+    end
+    object EdtModelos: TEdit
+      Left = 32
+      Top = 40
+      Width = 481
+      Height = 21
+      TabOrder = 0
+      OnChange = EdtModelosChange
+      OnKeyDown = EdtModelosKeyDown
+    end
+    object lstSugestoes: TListBox
+      Left = 513
+      Top = 547
+      Width = 145
+      Height = 209
+      TabStop = False
+      ItemHeight = 13
+      TabOrder = 11
+      OnKeyDown = lstSugestoesKeyDown
+    end
+    object btnImage: TButton
+      Left = 32
+      Top = 490
+      Width = 75
+      Height = 25
+      Caption = 'Add Imagem'
+      TabOrder = 8
+      Visible = False
+      OnClick = btnImageClick
+    end
+    object FlowPanel1: TFlowPanel
+      Left = 32
+      Top = 366
+      Width = 481
+      Height = 118
+      BevelKind = bkFlat
+      BevelOuter = bvNone
+      TabOrder = 7
+      OnDblClick = btnImageClick
+    end
+    object btnEnviar: TButton
+      AlignWithMargins = True
+      Left = 438
+      Top = 523
+      Width = 75
+      Height = 31
+      Margins.Left = 5
+      Margins.Top = 5
+      Margins.Right = 5
+      Margins.Bottom = 5
+      Caption = 'Enviar'
+      TabOrder = 10
+      OnClick = btnEnviarClick
+    end
+    object btnCancelar: TButton
+      AlignWithMargins = True
+      Left = 338
+      Top = 523
+      Width = 90
+      Height = 31
+      Margins.Left = 5
+      Margins.Top = 5
+      Margins.Right = 5
+      Margins.Bottom = 5
+      Caption = 'Cancelar'
+      TabOrder = 9
+      OnClick = btnCancelarClick
+    end
+  end
+  object DtInicio: TDateTimePicker
+    Left = 32
+    Top = 141
+    Width = 121
+    Height = 21
+    Date = 45809.467803564820000000
+    Time = 45809.467803564820000000
+    TabOrder = 2
+    TabStop = False
+  end
+  object EdtNpedido: TEdit
+    Left = 32
+    Top = 88
+    Width = 121
+    Height = 22
+    TabOrder = 1
+    OnChange = EdtQuantidadeChange
+  end
+  object QrModelos: TFDQuery
+    Connection = DD.DB
+    SQL.Strings = (
+      'select'
+      'id,'
+      'href,'
+      'product_id,'
+      'product_name,'
+      'product_unit,'
+      'product_color,'
+      'nome_etiqueta,'
+      'quantidade_producao,'
+      'cliente,'
+      'cor_etiqueta'
+      ''
+      'from modelos_etiquetas_producao'
+      'WHERE nome_etiqueta LIKE :param')
+    Left = 240
+    Top = 8
+    ParamData = <
+      item
+        Name = 'PARAM'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end>
+    object QrModelosid: TStringField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 255
+    end
+    object QrModeloshref: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'href'
+      Origin = 'href'
+      Size = 255
+    end
+    object QrModelosproduct_id: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'product_id'
+      Origin = 'product_id'
+      Size = 255
+    end
+    object QrModelosproduct_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'product_name'
+      Origin = 'product_name'
+      Size = 255
+    end
+    object QrModelosproduct_unit: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'product_unit'
+      Origin = 'product_unit'
+      Size = 255
+    end
+    object QrModelosproduct_color: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'product_color'
+      Origin = 'product_color'
+      Size = 255
+    end
+    object QrModelosnome_etiqueta: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nome_etiqueta'
+      Origin = 'nome_etiqueta'
+      Size = 255
+    end
+    object QrModeloscliente: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cliente'
+      Origin = 'cliente'
+      Size = 255
+    end
+    object QrModeloscor_etiqueta: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cor_etiqueta'
+      Origin = 'cor_etiqueta'
+      Size = 255
+    end
+    object QrModelosquantidade_producao: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'quantidade_producao'
+      Origin = 'quantidade_producao'
+      Precision = 15
+    end
+  end
+  object DtModelos: TDataSource
+    DataSet = QrModelos
+    Left = 304
+    Top = 8
+  end
+  object QrSaveProd: TFDQuery
+    Connection = DD.DB
+    SQL.Strings = (
+      'SELECT'
+      '  id_producao,'
+      '  name,'
+      '  id_prod,'
+      '  expectedProductionQuantity,'
+      '  productionQuantityBalance,'
+      '  isFictitious,'
+      '  priority,'
+      '  deliveryDate,'
+      '  earlyStart,'
+      '  laterEnd,'
+      '  salesOrder,'
+      '  salesOrderDate,'
+      '  customer,'
+      '  color,'
+      '  progressStatus'
+      'FROM ordens_producao;')
+    Left = 504
+    Top = 280
+    object QrSaveProdid_producao: TStringField
+      FieldName = 'id_producao'
+      Origin = 'id_producao'
+      Required = True
+      Size = 255
+    end
+    object QrSaveProdid_prod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'id_prod'
+      Origin = 'id_prod'
+      Size = 255
+    end
+    object QrSaveProdexpectedProductionQuantity: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'expectedProductionQuantity'
+      Origin = 'expectedProductionQuantity'
+    end
+    object QrSaveProdproductionQuantityBalance: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'productionQuantityBalance'
+      Origin = 'productionQuantityBalance'
+    end
+    object QrSaveProdisFictitious: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'isFictitious'
+      Origin = 'isFictitious'
+    end
+    object QrSaveProdpriority: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'priority'
+      Origin = 'priority'
+    end
+    object QrSaveProddeliveryDate: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'deliveryDate'
+      Origin = 'deliveryDate'
+    end
+    object QrSaveProdearlyStart: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'earlyStart'
+      Origin = 'earlyStart'
+    end
+    object QrSaveProdlaterEnd: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'laterEnd'
+      Origin = 'laterEnd'
+    end
+    object QrSaveProdsalesOrder: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'salesOrder'
+      Origin = 'salesOrder'
+      Size = 255
+    end
+    object QrSaveProdsalesOrderDate: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'salesOrderDate'
+      Origin = 'salesOrderDate'
+    end
+    object QrSaveProdcustomer: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'customer'
+      Origin = 'customer'
+      Size = 255
+    end
+    object QrSaveProdcolor: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'color'
+      Origin = 'color'
+      Size = 255
+    end
+    object QrSaveProdprogressStatus: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'progressStatus'
+      Origin = 'progressStatus'
+      Size = 255
+    end
+    object QrSaveProdname: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'name'
+      Origin = '`name`'
+      Size = 50
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 528
+    Top = 376
+  end
+end

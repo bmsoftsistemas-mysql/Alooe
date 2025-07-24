@@ -1,0 +1,381 @@
+object frmerros: Tfrmerros
+  Left = 0
+  Top = 0
+  Caption = 'Produ'#231#245'es'
+  ClientHeight = 571
+  ClientWidth = 1011
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 1011
+    Height = 24
+    Align = alTop
+    BevelOuter = bvNone
+    Caption = 'Produ'#231#245'es Enviadas'
+    Color = 15770519
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 24
+    Width = 1011
+    Height = 547
+    Align = alClient
+    BevelOuter = bvNone
+    TabOrder = 1
+    object RzPanel15: TRzPanel
+      Left = 0
+      Top = 506
+      Width = 1011
+      Height = 41
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
+      Align = alBottom
+      BorderOuter = fsNone
+      BorderColor = 15770519
+      Color = 15770519
+      TabOrder = 0
+      ExplicitLeft = 1
+      ExplicitTop = 505
+      ExplicitWidth = 1009
+      object Label2: TLabel
+        AlignWithMargins = True
+        Left = 410
+        Top = 3
+        Width = 46
+        Height = 35
+        Margins.Left = 9
+        Align = alLeft
+        Caption = 'Data Fim:'
+        Layout = tlCenter
+        ExplicitLeft = 352
+        ExplicitHeight = 13
+      end
+      object btnFiltrar: TButton
+        AlignWithMargins = True
+        Left = 71
+        Top = 3
+        Width = 65
+        Height = 35
+        Align = alLeft
+        Caption = 'Filtrar'
+        TabOrder = 0
+        OnClick = btnFiltrarClick
+      end
+      object Panel3: TPanel
+        Left = 139
+        Top = 0
+        Width = 262
+        Height = 41
+        Align = alLeft
+        BevelOuter = bvNone
+        TabOrder = 1
+        ExplicitLeft = 81
+        object Label1: TLabel
+          AlignWithMargins = True
+          Left = 9
+          Top = 3
+          Width = 55
+          Height = 35
+          Margins.Left = 9
+          Align = alLeft
+          Caption = 'Data In'#237'cio:'
+          Layout = tlCenter
+          ExplicitHeight = 13
+        end
+        object dtinicio: TDateTimePicker
+          AlignWithMargins = True
+          Left = 70
+          Top = 10
+          Width = 164
+          Height = 21
+          Margins.Top = 10
+          Margins.Bottom = 10
+          Align = alLeft
+          Date = 0.720087824076472300
+          Time = 0.720087824076472300
+          TabOrder = 0
+          ExplicitLeft = 95
+          ExplicitTop = 3
+          ExplicitHeight = 35
+        end
+      end
+      object dtfim: TDateTimePicker
+        AlignWithMargins = True
+        Left = 462
+        Top = 10
+        Width = 164
+        Height = 21
+        Margins.Top = 10
+        Margins.Bottom = 10
+        Align = alLeft
+        Date = 0.720087824076472300
+        Time = 0.720087824076472300
+        TabOrder = 2
+        ExplicitLeft = 604
+        ExplicitTop = 6
+        ExplicitHeight = 35
+      end
+      object cbCampo: TComboBox
+        AlignWithMargins = True
+        Left = 632
+        Top = 10
+        Width = 145
+        Height = 21
+        Margins.Top = 10
+        Align = alLeft
+        Style = csDropDownList
+        Anchors = []
+        TabOrder = 3
+        Items.Strings = (
+          'In'#237'cio'
+          'T'#233'rmino'
+          'Data Entrega')
+      end
+      object btnTodos: TButton
+        AlignWithMargins = True
+        Left = 3
+        Top = 3
+        Width = 62
+        Height = 35
+        Align = alLeft
+        Caption = 'Mostrar Todos'
+        TabOrder = 4
+        WordWrap = True
+        OnClick = btnTodosClick
+      end
+    end
+    object DBGrid1: TDBGrid
+      Left = 0
+      Top = 40
+      Width = 1011
+      Height = 466
+      Align = alClient
+      DataSource = DtProducoes
+      TabOrder = 1
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      OnDrawColumnCell = DBGrid1DrawColumnCell
+      OnDblClick = DBGrid1DblClick
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'salesOrder'
+          ReadOnly = True
+          Title.Caption = 'N'#176' Pedido'
+          Width = 100
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'customer'
+          ReadOnly = True
+          Title.Caption = 'Cliente'
+          Width = 100
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'productionQuantityBalance'
+          ReadOnly = True
+          Title.Caption = 'Quantidade'
+          Width = 80
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'earlyStart'
+          ReadOnly = True
+          Title.Caption = 'Data In'#237'cio'
+          Width = 140
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'laterEnd'
+          ReadOnly = True
+          Title.Caption = 'Data Fim'
+          Width = 140
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'deliveryDate'
+          ReadOnly = True
+          Title.Caption = 'Data Entrega'
+          Width = 140
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'progressStatusPt'#10#10
+          ReadOnly = True
+          Title.Caption = 'Status'
+          Width = 130
+          Visible = True
+        end>
+    end
+    object Panel4: TPanel
+      Left = 0
+      Top = 0
+      Width = 1011
+      Height = 40
+      Align = alTop
+      BevelOuter = bvNone
+      Color = 15770519
+      ParentBackground = False
+      TabOrder = 2
+      ExplicitLeft = 1
+      ExplicitTop = 1
+      ExplicitWidth = 1009
+      object btnNovaOrdem: TButton
+        AlignWithMargins = True
+        Left = 3
+        Top = 3
+        Width = 133
+        Height = 34
+        Align = alLeft
+        Caption = 'Nova Ordem'
+        TabOrder = 0
+        OnClick = btnNovaOrdemClick
+        ExplicitLeft = 4
+        ExplicitTop = 4
+        ExplicitHeight = 32
+      end
+    end
+  end
+  object QrProducoes: TFDQuery
+    OnCalcFields = QrProducoesCalcFields
+    Connection = DD.DB
+    SQL.Strings = (
+      'SELECT'
+      '  id_producao,'
+      '  id_prod,'
+      '  expectedProductionQuantity,'
+      '  productionQuantityBalance,'
+      '  isFictitious,'
+      '  priority,'
+      '  deliveryDate,'
+      '  earlyStart,'
+      '  laterEnd,'
+      '  salesOrder,'
+      '  salesOrderDate,'
+      '  customer,'
+      '  color,'
+      '  progressStatus'
+      'FROM ordens_producao;')
+    Left = 776
+    Top = 304
+    object QrProducoesid_producao: TStringField
+      FieldName = 'id_producao'
+      Origin = 'id_producao'
+      Required = True
+      Size = 255
+    end
+    object QrProducoesid_prod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'id_prod'
+      Origin = 'id_prod'
+      Size = 255
+    end
+    object QrProducoesexpectedProductionQuantity: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'expectedProductionQuantity'
+      Origin = 'expectedProductionQuantity'
+    end
+    object QrProducoesproductionQuantityBalance: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'productionQuantityBalance'
+      Origin = 'productionQuantityBalance'
+    end
+    object QrProducoesisFictitious: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'isFictitious'
+      Origin = 'isFictitious'
+    end
+    object QrProducoespriority: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'priority'
+      Origin = 'priority'
+    end
+    object QrProducoesdeliveryDate: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'deliveryDate'
+      Origin = 'deliveryDate'
+    end
+    object QrProducoesearlyStart: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'earlyStart'
+      Origin = 'earlyStart'
+    end
+    object QrProducoeslaterEnd: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'laterEnd'
+      Origin = 'laterEnd'
+    end
+    object QrProducoessalesOrder: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'salesOrder'
+      Origin = 'salesOrder'
+      Size = 255
+    end
+    object QrProducoessalesOrderDate: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'salesOrderDate'
+      Origin = 'salesOrderDate'
+    end
+    object QrProducoescustomer: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'customer'
+      Origin = 'customer'
+      Size = 255
+    end
+    object QrProducoescolor: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'color'
+      Origin = 'color'
+      Size = 255
+    end
+    object QrProducoesprogressStatus: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'progressStatus'
+      Origin = 'progressStatus'
+      Size = 255
+    end
+    object QrProducoesprogressStatusPt: TStringField
+      DisplayLabel = 'progressStatusPt'
+      FieldKind = fkCalculated
+      FieldName = 'progressStatusPt'#10#10
+      Calculated = True
+    end
+  end
+  object DtProducoes: TDataSource
+    DataSet = QrProducoes
+    Left = 776
+    Top = 368
+  end
+end

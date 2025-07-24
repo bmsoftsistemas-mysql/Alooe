@@ -1,0 +1,72 @@
+unit frmconfiguracoes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask,
+  RzEdit, RzSpnEdt;
+
+type
+  Tfrmconfig = class(TForm)
+    Panel3: TPanel;
+    Panel1: TPanel;
+    Label1: TLabel;
+    Panel2: TPanel;
+    edt_code: TEdit;
+    Panel6: TPanel;
+    Label5: TLabel;
+    Panel7: TPanel;
+    edt_url: TEdit;
+    Panel8: TPanel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Panel9: TPanel;
+    btngravar: TButton;
+    edt_sync: TRzSpinEdit;
+    procedure btngravarClick(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmconfig: Tfrmconfig;
+
+implementation
+
+{$R *.dfm}
+
+uses uDD, ufuncoesGerais, UComps, UIntegridade, ULookup;
+
+procedure Tfrmconfig.btngravarClick(Sender: TObject);
+begin
+  DD.config.WriteInteger('config', 'TimerAtualizacaoSegundos', Trunc(edt_sync.Value * 60));
+  DD.config.WriteString('config', 'url', (edt_url.Text));
+  DD.config.WriteString('config', 'code', (edt_code.Text));
+  frmconfig.Close;
+
+end;
+
+procedure Tfrmconfig.FormCreate(Sender: TObject);
+begin
+  frmconfig.Height := 290;
+  frmconfig.Width := 620;
+  btngravar.Left := Trunc(frmconfig.Width / 2 - 49);
+  edt_sync.Value := Trunc(DD.config.ReadInteger('config', 'TimerAtualizacaoSegundos', 900) / 60);
+  edt_url.Text := DD.config.ReadString('config', 'url', 'https://trayparceiros.commercesuite.com.br/web_api');
+  edt_code.Text := DD.config.ReadString('config', 'code', 'd6ef0a3fd271ef9ff9228aa29ae80d6edc06b5518ba8cf6145d57b632a96d6b0');
+end;
+
+procedure Tfrmconfig.FormResize(Sender: TObject);
+begin
+  frmconfig.Height := 290;
+  frmconfig.Width := 620;
+  btngravar.Left := Trunc(frmconfig.Width / 2 - 49);
+end;
+
+end.
+

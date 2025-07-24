@@ -1,0 +1,95 @@
+unit ufrmRequest;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IPPeerClient, REST.Client,
+  Data.Bind.Components, Data.Bind.ObjectScope;
+
+type
+  TfrmRequest = class(TForm)
+    RESTClientAuth: TRESTClient;
+    RESTRequestAuth: TRESTRequest;
+    RESTResponseAuth: TRESTResponse;
+    RESTClientMarcas: TRESTClient;
+    RESTRequestMarcas: TRESTRequest;
+    RESTResponseMarcas: TRESTResponse;
+    RESTClientCliente: TRESTClient;
+    RESTRequestCliente: TRESTRequest;
+    RESTResponseCliente: TRESTResponse;
+    RESTClientCategorias: TRESTClient;
+    RESTRequestCategorias: TRESTRequest;
+    RESTResponseCategorias: TRESTResponse;
+    RESTClientProdutos: TRESTClient;
+    RESTRequestProdutos: TRESTRequest;
+    RESTResponseProdutos: TRESTResponse;
+    RESTClientMarcasPost: TRESTClient;
+    RESTRequestMarcasPost: TRESTRequest;
+    RESTResponseMarcasPost: TRESTResponse;
+    RESTClientCategoriasPost: TRESTClient;
+    RESTRequestCategoriasPost: TRESTRequest;
+    RESTResponseCategoriasPost: TRESTResponse;
+    RESTClientCategoriasPut2: TRESTClient;
+    RESTRequestCategoriasPut2: TRESTRequest;
+    RESTResponseCategoriasPut2: TRESTResponse;
+    RESTClientProdutosPost: TRESTClient;
+    RESTRequestProdutosPost: TRESTRequest;
+    RESTResponseProdutosPost: TRESTResponse;
+    RESTClientProdutosPut: TRESTClient;
+    RESTRequestProdutosPut: TRESTRequest;
+    RESTResponseProdutosPut: TRESTResponse;
+    RESTClientClientePost: TRESTClient;
+    RESTRequestClientePost: TRESTRequest;
+    RESTResponseClientePost: TRESTResponse;
+    RESTClientClientePut: TRESTClient;
+    RESTRequestClientePut: TRESTRequest;
+    RESTResponseClientePut: TRESTResponse;
+    RESTClientPedidos: TRESTClient;
+    RESTRequestPedidos: TRESTRequest;
+    RESTResponsePedidos: TRESTResponse;
+    RESTClientPedidosProdutos: TRESTClient;
+    RESTRequestPedidosProdutos: TRESTRequest;
+    RESTResponsePedidosProdutos: TRESTResponse;
+    RESTClientAuthx: TRESTClient;
+    RESTRequestAuthx: TRESTRequest;
+    RESTResponseAuthx: TRESTResponse;
+    RESTClientCategoriasPut: TRESTClient;
+    RESTRequestCategoriasPut: TRESTRequest;
+    RESTResponseCategoriasPut: TRESTResponse;
+    RESTClientProdutosVarPut: TRESTClient;
+    RESTRequestProdutosVarPut: TRESTRequest;
+    RESTResponseProdutosVarPut: TRESTResponse;
+    RESTClientProdutosVarPost: TRESTClient;
+    RESTRequestProdutosVarPost: TRESTRequest;
+    RESTResponseProdutosVarPost: TRESTResponse;
+    RESTClientFotosProd: TRESTClient;
+    RESTRequestFotosProd: TRESTRequest;
+    RESTResponseFotosProd: TRESTResponse;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRequest: TfrmRequest;
+
+implementation
+
+{$R *.dfm}
+
+uses uDD;
+
+procedure TfrmRequest.FormCreate(Sender: TObject);
+begin
+  RESTClientProdutos.BaseURL := defurl + defprodutos;
+  RESTRequestProdutos.Params[2].Value := defcode;
+  RESTRequestAuth.Params[2].Value := defcode;
+  RESTClientAuth.BaseURL := defurl + defauth;
+
+end;
+
+end.
+

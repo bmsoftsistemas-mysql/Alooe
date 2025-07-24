@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/04/22 14:02:16.000.809,=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+    <Transaction>2021/04/22 14:02:43.000.656,C:\bmsoft\BM2Tray\ufrmRequest.dfm=C:\bmsoft\BM2Tray\Unit1.dfm</Transaction>
+    <Transaction>2021/04/22 14:02:43.000.656,C:\bmsoft\BM2Tray\ufrmRequest.pas=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

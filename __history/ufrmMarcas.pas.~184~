@@ -1,0 +1,240 @@
+unit ufrmMarcas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, System.Json, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Data.DB, Vcl.StdCtrls,
+  Vcl.Grids, Vcl.DBGrids, dbisamtb, RzEdit, IdBaseComponent, IdComponent,
+  IdTCPConnection, IdTCPClient, IdHTTP, RzButton, RzPanel;
+
+type
+  Tfrmmarcas = class(TForm)
+    Panel2: TPanel;
+    Panel3: TPanel;
+    DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
+    dtBMmarcas: TDataSource;
+    JSONtray_marcas_enviar: TRzMemo;
+    tray_refresh_enviar: TEdit;
+    tray_token_enviar: TEdit;
+    serverTray: TIdHTTP;
+    qrBMmarcas: TDBISAMQuery;
+    qrBMmarcasMARCA: TStringField;
+    tbBMintaux: TDBISAMTable;
+    tbBMintauxID_Int: TStringField;
+    tbBMintauxID_BM: TIntegerField;
+    tbBMintauxTipo: TStringField;
+    tbBMintauxHASH: TStringField;
+    qrBMintaux: TDBISAMQuery;
+    dtBMintaux: TDataSource;
+    qrBMintauxID_Int: TStringField;
+    qrBMintauxID_BM: TIntegerField;
+    qrBMintauxTipo: TStringField;
+    qrBMintauxHASH: TStringField;
+    RzPanel15: TRzPanel;
+    btsmarcas: TButton;
+    btnenviartodasmarcas: TButton;
+    Panel1: TPanel;
+    Panel4: TPanel;
+    qrBMintaux2: TDBISAMQuery;
+    StringField1: TStringField;
+    IntegerField1: TIntegerField;
+    StringField2: TStringField;
+    StringField3: TStringField;
+    tbBMmarcas: TDBISAMTable;
+    tbBMmarcasMarca: TStringField;
+    btnenviarum: TButton;
+    tbBMauxerros: TDBISAMTable;
+    tbBMauxerrosid: TAutoIncField;
+    tbBMauxerrosid_tabela: TIntegerField;
+    tbBMauxerrostipo: TStringField;
+    tbBMauxerrosdescricao: TStringField;
+    tbBMauxerrosdatahora_registro: TDateTimeField;
+    tbBMauxerrostipo_metodo: TStringField;
+    procedure FormCreate(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure btsmarcasClick(Sender: TObject);
+    procedure btnenviartodasmarcasClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
+    procedure Button8Click(Sender: TObject);
+    procedure btnenviarumClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmmarcas: Tfrmmarcas;
+
+implementation
+
+{$R *.dfm}
+
+uses ufrmRequest, ufrmTabelas, uMain, uDD, ufrmAviso, uprodutosfrm;
+
+// procedure que abre todas as tabelas utilizadas no FORM
+procedure Tfrmmarcas.btsmarcasClick(Sender: TObject);
+begin
+  try
+    tbBMintaux.Close;
+    qrBMmarcas.Close;
+    qrBMintaux2.Close;
+    qrBMintaux2.Open;
+    tbBMintaux.Open;
+    qrBMmarcas.Open;
+    tbBMauxerros.Close;
+    tbBMauxerros.Open;
+  except
+
+    AvisoAtt('Não foi possível abrir as tabelas, favor fechar o sistema BM e reparar tabelas.', -5, -1);
+    frmMain.T.FecharTudo;
+    abort;
+  end;
+
+end;
+
+//procedure responsável por fazer o POST das marcas no tray uma por uma
+procedure Tfrmmarcas.btnenviarumClick(Sender: TObject);
+var
+  ObjMarca, ObjMarcaBrand, ObjResult, Objcauses, Objbrand: TJSONObject;
+  jArraySlug: TJSONArray;
+  FStream: TStringStream;
+  OValue: TJsonValue;
+
+begin
+  while not qrBMmarcas.Eof do
+  begin
+    qrBMintaux.Close;
+    //qrBMintaux.ParamByName('HASH').Value := qrBMmarcasMARCA.Value;
+    qrBMintaux.Open;
+    tbBMintaux.Close;
+    tbBMintaux.Open;
+    tbBMauxerros.Close;
+    tbBMauxerros.Open;
+    if not qrBMintaux2.Locate('HASH', qrBMmarcasMARCA.AsString, []) then
+    begin
+      //      if not qrBMintaux2.IsEmpty then
+      //        //      begin
+      //        //        AvisoAtt('Marca já cadastrada', 2, -2);
+      //        //        exit;
+      //        //      end;
+      ObjMarca := TJSONObject.Create;
+      ObjMarcaBrand := TJSONObject.Create;
+      AddPairString(ObjMarca, 'slug', qrBMmarcasMARCA.AsString);
+      AddPairString(ObjMarca, 'brand', qrBMmarcasMARCA.AsString);
+      ObjMarcaBrand.AddPair('Brand', ObjMarca);
+      //fazer post
+      frmRequest.RESTClientMarcasPost.BaseURL := defurl + defmarcas + '/?access_token=' +
+        def_access_token;
+      frmRequest.RESTRequestMarcasPost.Body.ClearBody;
+      frmRequest.RESTRequestMarcasPost.AddBody(ObjMarcaBrand);
+      frmRequest.RESTRequestMarcasPost.Execute;
+      OValue := TJSONObject.ParseJSONValue(frmRequest.RESTResponseMarcasPost.Content.ToLower);
+      ObjResult := OValue as TJSONObject;
+      if ObjResult.Get('code').JsonValue.Value.ToInteger <> 201 then
+      begin
+        Objcauses := ObjResult.Get('causes').JsonValue as TJSONObject;
+        Objbrand := Objcauses.Get('brand').JsonValue as TJSONObject;
+        jArraySlug := Objbrand.Get('slug').JsonValue as TJSONArray;
+        AvisoAtt('Não foi possível cadastrar a marca', -3, -1);
+
+        //        Logar(jArraySlug.ToString);
+        tbBMauxerros.append;
+        //tbBMauxerrosid_tabela.AsInteger := qrBMprodutosID.AsInteger;
+        tbBMauxerrosdescricao.AsString := frmMain.traduzir(jArraySlug.ToString);
+        tbBMauxerrostipo.AsString := 'TM';
+        tbBMauxerrostipo_metodo.AsString := 'POST';
+        tbBMauxerrosdatahora_registro.AsDateTime := now;
+        tbBMauxerros.post;
+        qrBMintaux2.Close;
+        qrBMintaux2.Open;
+        qrBMintaux2.Locate('HASH', qrBMmarcasMARCA.AsString, []);
+        exit;
+      end;
+
+      tbBMintaux.Append;
+      tbBMintauxHASH.AsString := qrBMmarcasMARCA.AsString;
+      tbBMintauxTipo.AsString := 'TM';
+      tbBMintauxID_Int.AsString := ObjResult.Get('id').JsonValue.Value;
+      tbBMintaux.Post;
+      qrBMintaux2.Close;
+      qrBMintaux2.Open;
+      qrBMintaux2.Locate('HASH', qrBMmarcasMARCA.AsString, []);
+      exit;
+    end
+    else
+    begin
+      AvisoAtt('Marca já cadastrada', 2, -1);
+      exit;
+    end;
+  end;
+
+end;
+
+//procedure responsável por fazer o POST das marcas no tray todas de uma vez
+procedure Tfrmmarcas.btnenviartodasmarcasClick(Sender: TObject);
+begin
+  qrBMmarcas.First;
+
+  while not qrBMmarcas.Eof do
+  begin
+    btnenviarum.Click;
+    qrBMmarcas.Next;
+  end;
+end;
+
+procedure Tfrmmarcas.Button8Click(Sender: TObject);
+begin
+  //  tbTrayMarcas.EmptyTable;
+end;
+
+//Limpa o FORM ao fechar
+procedure Tfrmmarcas.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  action := caFree;
+  frmmarcas := nil;
+end;
+
+//Procedure responsável por pegar o access token e salvar em uma variável para ser usada em outros FORM's
+procedure Tfrmmarcas.FormCreate(Sender: TObject);
+var
+  ArrayAuth: TJSONObject;
+  json: string;
+  jv: TJSONValue;
+  jValue: TJsonValue;
+
+begin
+  frmRequest.RESTRequestAuth.Execute;
+  JSONtray_marcas_enviar.Clear;
+  JSONtray_marcas_enviar.Text := frmRequest.RESTResponseAuth.Content;
+  json := JSONtray_marcas_enviar.Text;
+  ArrayAuth := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(json), 0) as TJSONObject;
+  jv := ArrayAuth.Get('access_token').JsonValue;
+  tray_token_enviar.Text := 'Access Token= ' + jv.Value;
+  def_access_token := jv.Value;
+  jv := ArrayAuth.Get('refresh_token').JsonValue;
+  tray_refresh_enviar.Text := 'Refresh Token= ' + jv.Value;
+  ArrayAuth.DisposeOf;
+
+end;
+
+procedure Tfrmmarcas.FormResize(Sender: TObject);
+begin
+  try
+    Panel2.Width := Trunc(parent.Width / 2);
+  except
+
+  end;
+
+end;
+
+procedure Tfrmmarcas.FormShow(Sender: TObject);
+begin
+  Panel2.Width := Trunc(parent.Width / 2);
+end;
+
+end.
+

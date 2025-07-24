@@ -1,0 +1,518 @@
+unit ufrmClientes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, System.Json, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, RzEdit, RzButton,
+  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, IdBaseComponent, IdComponent,
+  IdTCPConnection, IdTCPClient, IdHTTP, dbisamtb, RzPanel, REST.Types,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Datasnap.DBClient, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, System.DateUtils, REST.HttpClient;
+
+type
+  TfrmModelos = class(TForm)
+    Panel1: TPanel;
+    tray_token_enviar: TEdit;
+    tray_refresh_enviar: TEdit;
+    token_json: TRzMemo;
+    RzPanel15: TRzPanel;
+    lblpage: TLabel;
+    btnModelos: TRzButton;
+    btnToken: TRzButton;
+    btnProducoes: TRzButton;
+    DBGrid1: TDBGrid;
+    Panel2: TPanel;
+    QrModelos: TFDQuery;
+    DtModelos: TDataSource;
+    QrModelosid: TStringField;
+    QrModeloshref: TStringField;
+    QrModelosproduct_id: TStringField;
+    QrModelosproduct_name: TStringField;
+    QrModelosproduct_unit: TStringField;
+    QrModelosproduct_color: TStringField;
+    QrModelosnome_etiqueta: TStringField;
+    QrModeloscliente: TStringField;
+    QrModeloscor_etiqueta: TStringField;
+    QrModelosquantidade_producao: TBCDField;
+    QrProducoes: TFDQuery;
+    QrProducoesid_producao: TStringField;
+    QrProducoesid_prod: TStringField;
+    QrProducoesexpectedProductionQuantity: TIntegerField;
+    QrProducoesproductionQuantityBalance: TIntegerField;
+    QrProducoesisFictitious: TBooleanField;
+    QrProducoespriority: TIntegerField;
+    QrProducoesdeliveryDate: TDateTimeField;
+    QrProducoesearlyStart: TDateTimeField;
+    QrProducoeslaterEnd: TDateTimeField;
+    QrProducoessalesOrder: TStringField;
+    QrProducoessalesOrderDate: TDateTimeField;
+    QrProducoescustomer: TStringField;
+    QrProducoescolor: TStringField;
+    QrProducoesprogressStatus: TStringField;
+    QrProducoesname: TStringField;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnTokenClick(Sender: TObject);
+    procedure btnModelosClick(Sender: TObject);
+    procedure btnProducoesClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    function analisaexistenciadate(o: TJsonObject; s: string): TDateTime;
+    function analisaexistenciafloat(o: TJsonObject; s: string): double;
+    function analisaexistenciainteger(o: TJsonObject; s: string): Integer;
+    function analisaexistenciastr(o: TJsonObject; s: string): string;
+    function datatopadrao(s: string): string;
+    function ParseAPIDateTimeToLocal(const DataStr: string): TDateTime;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmModelos: TfrmModelos;
+  URL, Email, Senha: string;
+
+implementation
+
+{$R *.dfm}
+
+uses ufrmRequest, uDD, Super, MD5, ufrmAviso, uMain;
+
+//Função utilizada para alterar datas que venham em branco ou com formato incorreto
+function TfrmModelos.datatopadrao(s: string): string;
+var
+  dia: string;
+  mes: string;
+  ano: string;
+  datacompleta: string;
+
+begin
+  if (s = '0000-00-00') or (s = '') or (s = '0010-00-12') then
+    s := '1980-01-01';
+
+  dia := copy(s, 9, 2);
+  mes := copy(s, 6, 2);
+  ano := copy(s, 1, 4);
+  datacompleta := dia + '/' + mes + '/' + ano;
+
+  result := datacompleta;
+
+end;
+
+//Função para analisar tipos String se estão no formato de envio correto
+function TfrmModelos.analisaexistenciastr(o: TJsonObject; s: string): string;
+begin
+  if o.GetValue(s) <> nil then
+    result := o.Get(s).JsonValue.Value
+  else
+    result := '';
+end;
+
+//Função para analisar tipos Date se estão no formato de envio correto
+function TfrmModelos.analisaexistenciadate(o: TJsonObject; s: string): TDateTime;
+begin
+
+  if (o.GetValue(s) <> (nil)) then
+    result := StrToDateTime(datatopadrao(o.Get(s).JsonValue.Value))
+  else
+    result := StrToDateTime(datatopadrao('0001-01-01'));
+
+end;
+
+//Função para analisar tipos Integer se estão no formato de envio correto
+function TfrmModelos.analisaexistenciainteger(o: TJsonObject; s: string): Integer;
+begin
+  if o.GetValue(s) <> nil then
+    result := StrToInt('0' + o.Get(s).JsonValue.Value)
+  else
+    result := 0;
+end;
+
+//Função para analisar tipos Float se estão no formato de envio correto
+function TfrmModelos.analisaexistenciafloat(o: TJsonObject; s: string): double;
+begin
+  if o.GetValue(s) <> nil then
+    result := StrToFloat(StringReplace(o.Get(s).JsonValue.Value, '.', ',', [rfReplaceAll]))
+  else
+    result := 0;
+end;
+
+//Limpa o FORM ao fechar
+procedure TfrmModelos.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  action := caFree;
+  frmModelos := nil;
+end;
+
+procedure TfrmModelos.FormCreate(Sender: TObject);
+begin
+    URL := DD.config.ReadString('config', 'url', '');
+    Email := DD.config.ReadString('config', 'email', '');
+    Senha := DD.config.ReadString('config', 'senha', '');
+end;
+
+//procedure responsável por gravar os clientes na tabela da BM
+procedure TfrmModelos.btnProducoesClick(Sender: TObject);
+var
+  RootObj, CollectionObj, ItemObj, DataObj, ProductObj, DependencyObj: TJSONObject;
+  ItemsArray, DependencyArray: TJSONArray;
+  JsonStr: string;
+  // Variáveis principais
+  id, productId, name, deliveryDate, earlyStart, laterEnd: string;
+  salesOrder, salesOrderDate, customer, color, progressStatus, note: string;
+  priority: Integer;
+  expectedProductionQuantity, productionQuantityBalance : Double;
+  isFictitious: Boolean;
+  // Variáveis do objeto 'product'
+  prod_id, prod_name, prod_unit, prod_color: string;
+  // Variáveis da primeira dependência
+  dep_id, dep_productionOrderId, dep_previousProductionOrderId,
+  dep_previousProductionOrderName, dep_previousProductName: string;
+begin
+  //NotInitiated, Stopped, Running, Ended
+  QrProducoes.Close;
+  QrProducoes.Open;
+  QrProducoes.First;
+
+  while not QrProducoes.Eof do
+  begin
+    frmRequest.RESTRequestProdGet.ResetToDefaults;
+    frmRequest.RESTClientProdGet.ResetToDefaults;
+    frmRequest.RESTRequestProdGet.Params.Clear;
+
+    frmRequest.RESTRequestProdGet.Method := rmGET;
+    frmRequest.RESTClientProdGet.BaseURL := URL + defProducaoGet + QrProducoesid_producao.AsString;
+    frmRequest.RESTRequestProdGet.Params.AddItem('Authorization', 'Bearer ' + defAppToken, pkHTTPHEADER, [poDoNotEncode]);
+
+    frmRequest.RESTRequestProdGet.Execute;
+
+    try
+       frmRequest.RESTRequestProdGet.Execute;
+    except
+      on E: EHTTPProtocolException do
+      begin
+        ShowMessage('Erro HTTP: ' + E.Message);
+        Exit;
+      end;
+      on E: Exception do
+      begin
+        ShowMessage('Erro inesperado: ' + E.Message);
+        Exit;
+      end;
+    end;
+    JsonStr := frmRequest.RESTResponseProdGet.Content;
+
+    RootObj := TJSONObject.ParseJSONValue(JsonStr) as TJSONObject;
+    try
+      CollectionObj := RootObj.GetValue<TJSONObject>('collection');
+      ItemsArray := CollectionObj.GetValue<TJSONArray>('items');
+
+      if ItemsArray.Count > 0 then
+      begin
+        ItemObj := ItemsArray.Items[0] as TJSONObject;
+        DataObj := ItemObj.GetValue<TJSONObject>('data');
+
+        // Campos diretos
+        id := DataObj.GetValue<string>('id');
+        productId := DataObj.GetValue<string>('productId');
+        name := DataObj.GetValue<string>('name');
+        expectedProductionQuantity := DataObj.GetValue<Double>('expectedProductionQuantity');
+        productionQuantityBalance := DataObj.GetValue<Double>('productionQuantityBalance');
+        isFictitious := DataObj.GetValue<Boolean>('isFictitious');
+        priority := DataObj.GetValue<Integer>('priority');
+        deliveryDate := DataObj.GetValue<string>('deliveryDate');
+        earlyStart := DataObj.GetValue<string>('earlyStart');
+        laterEnd := DataObj.GetValue<string>('laterEnd');
+        salesOrder := DataObj.GetValue<string>('salesOrder');
+        salesOrderDate := DataObj.GetValue<string>('salesOrderDate');
+        customer := DataObj.GetValue<string>('customer');
+        color := DataObj.GetValue<string>('color');
+        progressStatus := DataObj.GetValue<string>('progressStatus');
+        note := DataObj.GetValue<string>('note');
+
+        // Produto interno
+        if DataObj.TryGetValue<TJSONObject>('product', ProductObj) then
+        begin
+          prod_id := ProductObj.GetValue<string>('id');
+          prod_name := ProductObj.GetValue<string>('name');
+          prod_unit := ProductObj.GetValue<string>('unit');
+          prod_color := ProductObj.GetValue<string>('color');
+        end;
+
+        // Dependência (pegar primeira, se existir)
+        if DataObj.TryGetValue<TJSONArray>('previousProductionOrdersDependency', DependencyArray) then
+        begin
+          if DependencyArray.Count > 0 then
+          begin
+            DependencyObj := DependencyArray.Items[0] as TJSONObject;
+            dep_id := DependencyObj.GetValue<string>('id');
+            dep_productionOrderId := DependencyObj.GetValue<string>('productionOrderId');
+            dep_previousProductionOrderId := DependencyObj.GetValue<string>('previousProductionOrderId');
+            dep_previousProductionOrderName := DependencyObj.GetValue<string>('previousProductionOrderName');
+            dep_previousProductName := DependencyObj.GetValue<string>('previousProductName');
+          end;
+        end;
+
+        // Salvando pedido
+        AvisoAtt('Salvando pedido...', 5, -1);
+
+        QrProducoes.Edit; ;
+        QrProducoesid_producao.AsString :=  id;
+        QrProducoesid_prod.AsString := productId;
+        QrProducoesname.AsString := name;
+        QrProducoesexpectedProductionQuantity.AsFloat := expectedProductionQuantity;
+        QrProducoesproductionQuantityBalance.AsFloat := productionQuantityBalance;
+        QrProducoesisFictitious.AsBoolean := isFictitious;
+        QrProducoespriority.AsInteger := priority;
+        QrProducoesdeliveryDate.AsDateTime := ParseAPIDateTimeToLocal(deliveryDate);
+        QrProducoesearlyStart.AsDateTime := ParseAPIDateTimeToLocal(earlyStart);
+        QrProducoeslaterEnd.AsDateTime := ParseAPIDateTimeToLocal(laterEnd);
+        QrProducoessalesOrder.AsString := salesOrder;
+        QrProducoessalesOrderDate.AsDateTime := ParseAPIDateTimeToLocal(salesOrderDate);
+        QrProducoescustomer.AsString := customer;
+        QrProducoescolor.AsString := color;
+        QrProducoesprogressStatus.AsString := progressStatus;
+        QrProducoes.Post;
+      end;
+
+    finally
+      RootObj.Free;
+    end;
+
+    QrProducoes.Next;
+  end;
+
+  QrModelos.Close;
+  QrModelos.Open;
+  AvisoAtt('Atualizado Produções...', 5, -1);
+end;
+
+function TfrmModelos.ParseAPIDateTimeToLocal(const DataStr: string): TDateTime;
+var
+  ISODateStr: string;
+  utcDateTime: TDateTime;
+begin
+  // Remove o 'Z' do final, se houver
+  ISODateStr := DataStr;
+  if ISODateStr.EndsWith('Z') then
+    ISODateStr := ISODateStr.Substring(0, ISODateStr.Length - 1);
+
+  // Substitui o 'T' por espaço
+  ISODateStr := StringReplace(ISODateStr, 'T', ' ', [rfReplaceAll]);
+
+  // Remove milissegundos, se houver
+  if Pos('.', ISODateStr) > 0 then
+    ISODateStr := Copy(ISODateStr, 1, Pos('.', ISODateStr) - 1);
+
+  // Força formato de data/hora padrão aceito
+  FormatSettings.DateSeparator := '-';
+  FormatSettings.TimeSeparator := ':';
+  FormatSettings.ShortDateFormat := 'yyyy-mm-dd';
+  FormatSettings.LongTimeFormat := 'hh:nn:ss';
+
+  if not TryStrToDateTime(ISODateStr, utcDateTime, FormatSettings) then
+    raise Exception.Create('Formato de data inválido: ' + DataStr);
+
+  // Converte para horário local
+  Result := TTimeZone.Local.ToLocalTime(utcDateTime);
+end;
+
+//procedure responsável pelo Get de clientes
+procedure TfrmModelos.btnModelosClick(Sender: TObject);
+var
+  JsonObj, DataObj, ProductObj, ItemData, ItemHref, ObjWExtra, ObjPagination: TJsonObject;
+  ItemsArray: TJSONArray;
+  CollectionObj: TJSONObject;
+  i,p: integer;
+  total: integer;
+  limit: integer;
+  n_paginas: integer;
+  n_pagina: integer;
+  n_paginas_total: integer;
+  JsonStr : string;
+begin
+  n_pagina := 1;
+
+  //pegar primeiro número de páginas
+  frmRequest.RESTRequestModelo.ResetToDefaults;
+  frmRequest.RESTClientModelo.ResetToDefaults;
+  frmRequest.RESTRequestModelo.Params.Clear;
+
+  frmRequest.RESTRequestModelo.Method := rmGET;
+  frmRequest.RESTClientModelo.BaseURL := URL + defModelos + n_pagina.ToString;
+  frmRequest.RESTRequestModelo.Params.AddItem('Authorization', 'Bearer ' + defAppToken, pkHTTPHEADER, [poDoNotEncode]);
+
+  frmRequest.RESTRequestModelo.Execute;
+  JsonStr := frmRequest.RESTResponseModelo.Content;
+  JsonObj := TJSONObject.ParseJSONValue(JsonStr) as TJSONObject;
+  CollectionObj := JsonObj.GetValue<TJSONObject>('collection');
+  ObjWExtra := CollectionObj.GetValue<TJSONObject>('WExtra');
+  ObjPagination := ObjWExtra.GetValue<TJSONObject>('pagination');
+  n_paginas_total := ObjPagination.GetValue<Integer>('pageCount');
+
+  for P := 1 to n_paginas_total do
+  begin
+      frmRequest.RESTRequestModelo.ResetToDefaults;
+      frmRequest.RESTClientModelo.ResetToDefaults;
+      frmRequest.RESTRequestModelo.Params.Clear;
+
+      frmRequest.RESTRequestModelo.Method := rmGET;
+      frmRequest.RESTClientModelo.BaseURL := URL + defModelos + n_pagina.ToString;
+      frmRequest.RESTRequestModelo.Params.AddItem('Authorization', 'Bearer ' + defAppToken, pkHTTPHEADER, [poDoNotEncode]);
+
+      frmRequest.RESTRequestModelo.Execute;
+
+      try
+        frmRequest.RESTRequestModelo.Execute;
+      except
+        on E: EHTTPProtocolException do
+        begin
+          ShowMessage('Erro HTTP: ' + E.Message);
+          Exit;
+        end;
+        on E: Exception do
+        begin
+          ShowMessage('Erro inesperado: ' + E.Message);
+          Exit;
+        end;
+      end;
+
+      JsonStr := frmRequest.RESTResponseModelo.Content;
+
+      //StringToFile(frmRequest.RESTResponseModelo.Content, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsModelo.json');
+
+      JsonObj := TJSONObject.ParseJSONValue(JsonStr) as TJSONObject;
+      CollectionObj := JsonObj.GetValue<TJSONObject>('collection');
+      ItemsArray := CollectionObj.GetValue<TJSONArray>('items');
+
+      for I := 0 to ItemsArray.Count - 1 do
+      begin
+        ItemData := ItemsArray.Items[I].GetValue<TJSONObject>('data');
+        ProductObj := ItemData.GetValue<TJSONObject>('product');
+        ItemHref := ItemsArray.Items[i] as TJSONObject;
+
+        try
+          if QrModelos.Locate('id', ItemData.GetValue<string>('id'), []) then
+          begin
+            QrModelos.Edit;
+          end
+          else
+          begin
+            QrModelos.Append;
+          end;
+          QrModelosid.AsString := ItemData.GetValue<string>('id');
+          QrModeloshref.AsString := ItemHref.GetValue('href').Value;
+          QrModelosproduct_id.AsString := ProductObj.GetValue<string>('id');
+          QrModelosproduct_name.AsString := ProductObj.GetValue<string>('name');
+
+          if ProductObj.GetValue('unit') = nil then
+            QrModelosproduct_unit.Clear
+          else
+            QrModelosproduct_unit.AsString := ProductObj.GetValue<string>('unit');
+
+          QrModelosproduct_color.AsString := ProductObj.GetValue<string>('color');
+          QrModelosnome_etiqueta.AsString := ProductObj.GetValue<string>('name');
+          QrModelosquantidade_producao.AsFloat := ItemData.GetValue<Double>('productionQuantity');
+
+          if ItemData.GetValue('customer') = nil then
+            QrModeloscliente.Clear
+          else
+            QrModeloscliente.AsString := ItemData.GetValue<string>('customer');
+
+          QrModeloscor_etiqueta.AsString := ItemData.GetValue<string>('color');
+
+          QrModelos.Post;
+        finally
+
+        end;
+      end;
+
+      n_pagina := n_pagina + 1;
+  end;
+    lblpage.Caption := 'Atualizado...';
+
+  QrModelos.Close;
+  QrModelos.Open;
+  AvisoAtt('Atualizado Modelos...', 5, -1);
+  end;
+
+//Procedure responsável por pegar o access token e salvar em uma variável para ser usada em outros FORM's
+procedure TfrmModelos.btnTokenClick(Sender: TObject);
+var
+  ArrayAuth, ObjBody, DataObject: TJSONObject;
+  json, Token: string;
+  jv: TJSONValue;
+  ItemsArray: TJSONArray;
+begin
+  Application.ProcessMessages;
+  QrModelos.Close;
+  QrModelos.Open;
+  if DD.config.ReadString('Config', 'data_token', '') < (DateToStr(now)) then
+  begin
+    ObjBody := TJSONObject.Create;
+
+    AddPairString(ObjBody, 'email', Email);
+    AddPairString(ObjBody, 'password', Senha);
+
+    frmRequest.RESTRequestAuth.ResetToDefaults;
+    frmRequest.RESTClientAuth.ResetToDefaults;
+    frmRequest.RESTRequestAuth.Params.Clear;
+
+    frmRequest.RESTRequestAuth.Method := rmPOST;
+    frmRequest.RESTClientAuth.BaseURL := URL + defLogin;
+    frmRequest.RESTRequestAuth.Body.ClearBody;
+
+    //StringToFile(ObjBody.ToString, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsResult.json');
+    frmRequest.RESTRequestAuth.AddBody(ObjBody);
+
+    try
+      frmRequest.RESTRequestAuth.Execute;
+    except
+      on E: Exception do
+      begin
+        ShowMessage('Erro do tipo: ' + E.ClassName + sLineBreak + E.Message);
+        Exit;
+      end;
+    end;
+
+    token_json.Clear;
+    token_json.Text := frmRequest.RESTResponseAuth.Content;
+    json := token_json.Text;
+
+    // Parseia o JSON
+    ArrayAuth := TJSONObject.ParseJSONValue(json) as TJSONObject;
+    try
+      if ArrayAuth <> nil then
+      begin
+        ItemsArray := ArrayAuth
+          .GetValue<TJSONObject>('collection')
+          .GetValue<TJSONArray>('items');
+
+        if (ItemsArray.Count > 0) then
+        begin
+          DataObject := ItemsArray.Items[0]
+            .GetValue<TJSONObject>('data');
+
+          Token := DataObject.GetValue<string>('token');
+          defAppToken := DataObject.GetValue<string>('token');
+          DD.config.WriteString('config', 'data_token', (DateToStr(now)));
+          DD.config.WriteString('config', 'token', (defAppToken));
+          //ShowMessage('Token: ' + Token);
+        end;
+      end;
+    finally
+      ArrayAuth.Free;
+    end;
+  end
+  else
+  begin
+    defAppToken :=  DD.config.ReadString('Config', 'token', '');
+  end;
+
+ //StringToFile(defAppToken, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsToken.txt');
+end;
+
+end.
+

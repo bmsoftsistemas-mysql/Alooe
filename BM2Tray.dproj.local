@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/04/22 14:02:16.000.809,=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+    <Transaction>2021/04/22 14:02:43.000.656,C:\bmsoft\BM2Tray\ufrmRequest.dfm=C:\bmsoft\BM2Tray\Unit1.dfm</Transaction>
+    <Transaction>2021/04/22 14:02:43.000.656,C:\bmsoft\BM2Tray\ufrmRequest.pas=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+    <Transaction>2021/05/03 10:26:04.000.910,=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+    <Transaction>2021/05/03 10:36:25.000.884,C:\bmsoft\BM2Tray\Unit1.dfm=C:\bmsoft\BM2Tray\ufrmMarcas.dfm</Transaction>
+    <Transaction>2021/05/03 10:36:25.000.884,C:\bmsoft\BM2Tray\Unit1.pas=C:\bmsoft\BM2Tray\ufrmMarcas.pas</Transaction>
+    <Transaction>2021/05/03 16:32:43.000.846,=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+    <Transaction>2021/05/03 16:33:15.000.134,C:\bmsoft\BM2Tray\Unit1.pas=C:\bmsoft\BM2Tray\ufrmMarcas2.pas</Transaction>
+    <Transaction>2021/05/03 16:33:15.000.134,C:\bmsoft\BM2Tray\Unit1.dfm=C:\bmsoft\BM2Tray\ufrmMarcas2.dfm</Transaction>
+    <Transaction>2021/05/05 14:34:34.000.404,=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+    <Transaction>2021/05/05 14:35:53.000.975,C:\bmsoft\BM2Tray\Unit1.pas=C:\bmsoft\BM2Tray\ufrmCategorias.pas</Transaction>
+    <Transaction>2021/05/05 14:35:53.000.975,C:\bmsoft\BM2Tray\Unit1.dfm=C:\bmsoft\BM2Tray\ufrmCategorias.dfm</Transaction>
+    <Transaction>2021/05/10 10:08:34.000.888,=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+    <Transaction>2021/05/10 10:13:55.000.429,=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+    <Transaction>2021/05/10 10:14:52.000.425,C:\bmsoft\BM2Tray\Unit1.pas=C:\bmsoft\BM2Tray\uprodutosfrm.pas</Transaction>
+    <Transaction>2021/05/10 10:14:52.000.425,C:\bmsoft\BM2Tray\Unit1.dfm=C:\bmsoft\BM2Tray\uprodutosfrm.dfm</Transaction>
+    <Transaction>2021/05/13 08:30:27.000.368,=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+    <Transaction>2021/05/13 08:34:09.000.815,C:\bmsoft\BM2Tray\Unit1.dfm=C:\bmsoft\BM2Tray\ufrmClientes.dfm</Transaction>
+    <Transaction>2021/05/13 08:34:09.000.815,C:\bmsoft\BM2Tray\Unit1.pas=C:\bmsoft\BM2Tray\ufrmClientes.pas</Transaction>
+    <Transaction>2021/05/13 16:08:41.000.370,=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+    <Transaction>2021/05/14 14:54:28.000.480,C:\bmsoft\BM2Tray\Unit1.pas=C:\bmsoft\BM2Tray\ufrmPedidos.pas</Transaction>
+    <Transaction>2021/05/14 14:54:28.000.480,C:\bmsoft\BM2Tray\Unit1.dfm=C:\bmsoft\BM2Tray\ufrmPedidos.dfm</Transaction>
+    <Transaction>2021/05/17 11:09:59.000.251,C:\bmsoft\BM2Tray\ufrmMarcas2.pas=</Transaction>
+    <Transaction>2021/05/25 14:32:11.000.352,=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+    <Transaction>2021/05/25 14:39:17.000.815,C:\bmsoft\BM2Tray\ufrmerros.pas=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+    <Transaction>2021/05/25 14:39:17.000.815,C:\bmsoft\BM2Tray\ufrmerros.dfm=C:\bmsoft\BM2Tray\Unit1.dfm</Transaction>
+    <Transaction>2021/07/02 08:31:02.000.909,=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+    <Transaction>2021/07/02 08:37:47.000.598,C:\bmsoft\BM2Tray\ufrmconfiguracoes.pas=C:\bmsoft\BM2Tray\Unit1.pas</Transaction>
+    <Transaction>2021/07/02 08:37:47.000.598,C:\bmsoft\BM2Tray\ufrmconfiguracoes.dfm=C:\bmsoft\BM2Tray\Unit1.dfm</Transaction>
+    <Transaction>2021/07/02 08:46:13.000.157,C:\bmsoft\BM2Tray\frmconfiguracoes.pas=C:\bmsoft\BM2Tray\ufrmconfiguracoes.pas</Transaction>
+    <Transaction>2021/07/02 08:46:13.000.157,C:\bmsoft\BM2Tray\frmconfiguracoes.dfm=C:\bmsoft\BM2Tray\ufrmconfiguracoes.dfm</Transaction>
+    <Transaction>2021/09/22 09:25:59.000.158,=D:\bmsoft\Units\Ro.pas</Transaction>
+    <Transaction>2021/09/22 09:26:47.000.027,=D:\bmsoft\Units\ufrmFundoModal.pas</Transaction>
+    <Transaction>2025/05/28 18:56:17.000.732,=F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\Unit1.pas</Transaction>
+    <Transaction>2025/05/28 18:57:00.000.275,F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\Unit1.dfm=F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\ufrmProducao.dfm</Transaction>
+    <Transaction>2025/05/28 18:57:00.000.275,F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\Unit1.pas=F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\ufrmProducao.pas</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="..\..\Outros Projetos"/>
+    <File Path="..\Units"/>
+    <File Path="..\Units\Ro.pas"/>
+    <File Path="..\Units\UComps.pas"/>
+    <File Path="..\Units\ufrmAviso.pas"/>
+    <File Path="..\Units\ufrmAviso.dfm"/>
+    <File Path="..\Units\ufrmFundoModal.pas"/>
+    <File Path="..\Units\ufrmFundoModal.dfm"/>
+    <File Path="..\Units\ufrmMsg.pas"/>
+    <File Path="..\Units\ufrmMsg.dfm"/>
+    <File Path="..\Units\ufuncoesGerais.pas"/>
+    <File Path="..\Units\ULookup.pas"/>
+    <File Path="uDD.pas"/>
+    <File Path="uDD.dfm"/>
+    <File Path="ufrmAguardaServidor.pas"/>
+    <File Path="ufrmAguardaServidor.dfm"/>
+    <File Path="ufrmCategorias.pas"/>
+    <File Path="ufrmCategorias.dfm"/>
+    <File Path="ufrmClientes.pas"/>
+    <File Path="ufrmClientes.dfm"/>
+    <File Path="ufrmMarcas.pas"/>
+    <File Path="ufrmMarcas.dfm"/>
+    <File Path="ufrmPedidos.pas"/>
+    <File Path="ufrmPedidos.dfm"/>
+    <File Path="ufrmRequest.pas"/>
+    <File Path="ufrmRequest.dfm"/>
+    <File Path="ufrmTabelas.pas"/>
+    <File Path="UIntegridade.pas"/>
+    <File Path="uMain.pas"/>
+    <File Path="uMain.dfm"/>
+    <File Path="uprodutosfrm.pas"/>
+    <File Path="uprodutosfrm.dfm"/>
+    <File Path="ufrmerros.pas"/>
+    <File Path="ufrmerros.dfm"/>
+    <File Path="frmconfiguracoes.pas"/>
+    <File Path="frmconfiguracoes.dfm"/>
+    <File Path="ufrmProducao.pas"/>
+    <File Path="ufrmProducao.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>

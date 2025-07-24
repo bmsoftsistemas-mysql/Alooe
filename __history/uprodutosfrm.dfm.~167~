@@ -1,0 +1,2152 @@
+object produtosfrm: Tprodutosfrm
+  Left = 0
+  Top = 0
+  Caption = 'Produtos'
+  ClientHeight = 638
+  ClientWidth = 1048
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnResize = FormResize
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object SpeedButton1: TSpeedButton
+    Left = 312
+    Top = 272
+    Width = 23
+    Height = 22
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 505
+    Height = 525
+    Align = alLeft
+    Caption = 'Panel1'
+    TabOrder = 0
+    object DBGrid1: TDBGrid
+      Left = 1
+      Top = 25
+      Width = 503
+      Height = 499
+      Align = alClient
+      DataSource = dtBMprodutos
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'ID_EMPRESA'
+          Title.Caption = 'ID da Empresa'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 90
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'ID'
+          Title.Caption = 'ID do Produto'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 90
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'DESCRICAO'
+          Title.Caption = 'Descri'#231#227'o'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 300
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'ESTOQUE'
+          Title.Caption = 'Estoque'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PESO_BRUTO'
+          Title.Caption = 'Peso'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 69
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'REFERENCIA'
+          Title.Caption = 'Refer'#234'ncia'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'MARCA'
+          Title.Caption = 'Marca'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'SINTEGRA_NCM'
+          Title.Caption = 'Sintegra NCM'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 88
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PRECOVENDA1'
+          Title.Caption = 'Pre'#231'o de Venda'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PRECO_PROMOCAO'
+          Title.Caption = 'Pre'#231'o Promo'#231#227'o'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PROMOCAO_DATA_INI'
+          Title.Caption = 'Data In'#237'cio Promo'#231#227'o'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PROMOCAO_DATA_FIM'
+          Title.Caption = 'Data Fim Promo'#231#227'o'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'VOLUME_CUBAGEM'
+          Title.Caption = 'Volume Cubagem'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'ATIVO'
+          Title.Caption = 'Ativo'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'DATA_CAD'
+          Title.Caption = 'Data Cadastro'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'EAN'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'ESTOQUE_MINIMO'
+          Title.Caption = 'Estoque Min'#237'mo'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'ID_1'
+          Visible = False
+        end
+        item
+          Expanded = False
+          FieldName = 'ID_INT'
+          Title.Caption = 'ID da Integra'#231#227'o'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PRECOCUSTO'
+          Title.Caption = 'Pre'#231'o de Custo'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end>
+    end
+    object Panel7: TPanel
+      Left = 1
+      Top = 1
+      Width = 503
+      Height = 24
+      Align = alTop
+      BiDiMode = bdLeftToRight
+      Caption = 'Produtos da BM'
+      Color = 15770519
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentBiDiMode = False
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 1
+    end
+    object DBGrid5: TDBGrid
+      Left = 1
+      Top = 25
+      Width = 503
+      Height = 499
+      Align = alClient
+      DataSource = dtTrayprodutos
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      TabOrder = 2
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      Visible = False
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'name'
+          Title.Caption = 'Nome'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 97
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'id_produto'
+          Title.Caption = 'ID do Produto'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'reference'
+          Title.Caption = 'Refer'#234'ncia'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 101
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'stock'
+          Title.Caption = 'Estoque'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'ean'
+          Title.Caption = 'EAN'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 44
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'description'
+          Title.Caption = 'Descri'#231#227'o'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 88
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'id_categoria'
+          Title.Caption = 'ID da categoria'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end>
+    end
+  end
+  object Panel3: TPanel
+    Left = 505
+    Top = 0
+    Width = 543
+    Height = 525
+    Align = alClient
+    Caption = 'Panel3'
+    TabOrder = 1
+    object DBGrid2: TDBGrid
+      Left = 1
+      Top = 1
+      Width = 541
+      Height = 523
+      Align = alClient
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+    end
+  end
+  object tray_token_enviar: TEdit
+    Left = 0
+    Top = 566
+    Width = 1048
+    Height = 21
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    TabOrder = 2
+    Visible = False
+  end
+  object tray_refresh_enviar: TEdit
+    Left = 0
+    Top = 587
+    Width = 1048
+    Height = 21
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    TabOrder = 3
+    Visible = False
+  end
+  object JSONtray_marcas_enviar: TRzMemo
+    AlignWithMargins = True
+    Left = 2
+    Top = 610
+    Width = 1044
+    Height = 26
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    BorderStyle = bsNone
+    Color = clInfoBk
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -8
+    Font.Name = 'Courier New'
+    Font.Style = []
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 4
+    Visible = False
+    WordWrap = False
+  end
+  object Panel2: TPanel
+    Left = 505
+    Top = 0
+    Width = 543
+    Height = 525
+    Align = alClient
+    TabOrder = 5
+    object DBGrid3: TDBGrid
+      Left = 1
+      Top = 1
+      Width = 541
+      Height = 523
+      Align = alClient
+      DataSource = dtBMintaux
+      TabOrder = 1
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+    end
+    object Panel6: TPanel
+      Left = 1
+      Top = 1
+      Width = 541
+      Height = 523
+      Align = alClient
+      TabOrder = 0
+      object DBGrid4: TDBGrid
+        Left = 1
+        Top = 24
+        Width = 539
+        Height = 498
+        Align = alClient
+        DataSource = dtBMintaux
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'ID_Int'
+            Title.Caption = 'ID da Integra'#231#227'o'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 109
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'ID_BM'
+            Title.Caption = 'ID da BM'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'Tipo'
+            Title.Caption = 'Caracteres de Identifica'#231#227'o'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 164
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'HASH'
+            Title.Caption = 'Caracteres de Controle'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 309
+            Visible = True
+          end>
+      end
+      object DBGrid6: TDBGrid
+        Left = 1
+        Top = 24
+        Width = 539
+        Height = 498
+        Align = alClient
+        DataSource = dtBMreferencia
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        TabOrder = 2
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        Visible = False
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'ID_Produto'
+            Title.Caption = 'ID do Produto'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 92
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'Referencia'
+            Title.Caption = 'Refer'#234'ncia'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Width = 129
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'EAN'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'Descricao'
+            Title.Caption = 'Descri'#231#227'o'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = [fsBold]
+            Visible = True
+          end>
+      end
+      object Panel4: TPanel
+        Left = 1
+        Top = 1
+        Width = 539
+        Height = 23
+        Align = alTop
+        BevelOuter = bvNone
+        BiDiMode = bdLeftToRight
+        Caption = 'Produtos Enviados'
+        Color = 15770519
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentBiDiMode = False
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 1
+        OnDblClick = Panel4DblClick
+      end
+    end
+  end
+  object RzPanel15: TRzPanel
+    Left = 0
+    Top = 525
+    Width = 1048
+    Height = 41
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alBottom
+    BorderOuter = fsNone
+    BorderColor = 15770519
+    BorderWidth = 3
+    Color = 15770519
+    TabOrder = 6
+    object lblpage: TLabel
+      AlignWithMargins = True
+      Left = 274
+      Top = 13
+      Width = 34
+      Height = 20
+      Margins.Top = 10
+      Margins.Bottom = 5
+      Align = alLeft
+      Caption = 'lblpage'
+      ExplicitHeight = 13
+    end
+    object btsprodutos: TButton
+      Left = 3
+      Top = 3
+      Width = 70
+      Height = 35
+      Align = alLeft
+      Caption = 'Abir Tabelas'
+      TabOrder = 0
+      Visible = False
+      OnClick = btsprodutosClick
+    end
+    object Panel5: TPanel
+      Left = 536
+      Top = 3
+      Width = 509
+      Height = 35
+      Align = alRight
+      BevelOuter = bvNone
+      BiDiMode = bdLeftToRight
+      ParentBiDiMode = False
+      ParentShowHint = False
+      ShowHint = False
+      TabOrder = 1
+      object btnenviartodos: TButton
+        Left = 105
+        Top = 0
+        Width = 105
+        Height = 35
+        Align = alLeft
+        Caption = 'Enviar Todos'
+        TabOrder = 0
+        OnClick = btnenviartodosClick
+      end
+      object Button2: TButton
+        Left = 210
+        Top = 0
+        Width = 91
+        Height = 35
+        Align = alLeft
+        Caption = 'Enviar Fotos'
+        TabOrder = 1
+        OnClick = Button2Click
+      end
+      object btnenviarum: TButton
+        Left = 0
+        Top = 0
+        Width = 105
+        Height = 35
+        Align = alLeft
+        Caption = 'Enviar Produto'
+        TabOrder = 2
+        OnClick = btnenviarumClick
+      end
+    end
+    object Button1: TButton
+      Left = 73
+      Top = 3
+      Width = 99
+      Height = 35
+      Align = alLeft
+      Caption = 'Puxar Produtos '
+      TabOrder = 2
+      Visible = False
+      OnClick = Button1Click
+    end
+    object Button3: TButton
+      Left = 172
+      Top = 3
+      Width = 99
+      Height = 35
+      Align = alLeft
+      Caption = 'Alterar no Bm'
+      TabOrder = 3
+      Visible = False
+      OnClick = Button3Click
+    end
+  end
+  object qrBMprodutos: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT '
+      'A.ID, '
+      'A.PESO_BRUTO, '
+      'A.MARCA, '
+      'A.SINTEGRA_NCM, '
+      'A.DESCRICAO, '
+      'A.PRECOVENDA1, '
+      'A.PRECOVENDA2,'
+      'A.PRECOVENDA4,'
+      'A.PRECO_PROMOCAO,'
+      'A.PROMOCAO_DATA_INI, '
+      'A.PROMOCAO_DATA_FIM, '
+      'A.VOLUME_CUBAGEM, '
+      'A.ATIVO, '
+      'A.DATA_CAD,'
+      'A.EXPORTAPALM,'
+      'A.EXPORTAINTEGRADOR,'
+      'A.COMPRIMENTO,'
+      'A.LARGURA,'
+      'A.ALTURA,'
+      'A.TEXTO,'
+      'B.ID as ID_PRODUTOSREFERENCIA,'
+      'B.EAN, '
+      'B.REFERENCIA, '
+      'B.DESCRICAO AS DESCRICAO_VAR,'
+      'C.ID_REF,'
+      'SUM(C.ESTOQUE) AS ESTOQUE, '
+      'C.ESTOQUE_MINIMO, '
+      'D.ID as ID_CLASSE, '
+      'E.ID_INT, '
+      'F.ID_PRODUTO,'
+      'F.PRECOCUSTO,'
+      'F.CUSTOMEDIO_TOTAL, '
+      'C.ID_EMPRESA'
+      ''
+      'FROM PRODUTOSPRINCIPAL AS A '
+      'LEFT JOIN PRODUTOSREFERENCIA AS B ON B.ID_PRODUTO = A.ID'
+      'LEFT JOIN PRODUTOSREFEMPRESA AS C ON C.ID_REF = B.ID'
+      'LEFT JOIN PRODUTOSCLASSE D ON D.CLASSE = A.CLASSE'
+      'LEFT JOIN INTEGRACOES_AUX E ON E.ID_BM = D.ID AND E.TIPO = '#39'CAT'#39
+      
+        'LEFT JOIN PROCUSTOSEMP F ON F.ID_PRODUTO = A.ID and F.CUSTOMEDIO' +
+        '_TOTAL > 0'
+      'where A.EXPORTAINTEGRADOR = '#39'S'#39
+      ''
+      'group by C.ID_REF, F.ID_PRODUTO')
+    Params = <>
+    Left = 49
+    Top = 144
+    object qrBMprodutosID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object qrBMprodutosPESO_BRUTO: TFloatField
+      FieldName = 'PESO_BRUTO'
+    end
+    object qrBMprodutosMARCA: TStringField
+      FieldName = 'MARCA'
+      Size = 15
+    end
+    object qrBMprodutosSINTEGRA_NCM: TStringField
+      FieldName = 'SINTEGRA_NCM'
+      Size = 8
+    end
+    object qrBMprodutosDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 80
+    end
+    object qrBMprodutosPRECOVENDA1: TFloatField
+      FieldName = 'PRECOVENDA1'
+    end
+    object qrBMprodutosPRECOVENDA2: TFloatField
+      FieldName = 'PRECOVENDA2'
+    end
+    object qrBMprodutosPRECOVENDA4: TFloatField
+      FieldName = 'PRECOVENDA4'
+    end
+    object qrBMprodutosPRECO_PROMOCAO: TFloatField
+      FieldName = 'PRECO_PROMOCAO'
+    end
+    object qrBMprodutosPROMOCAO_DATA_INI: TDateField
+      FieldName = 'PROMOCAO_DATA_INI'
+    end
+    object qrBMprodutosPROMOCAO_DATA_FIM: TDateField
+      FieldName = 'PROMOCAO_DATA_FIM'
+    end
+    object qrBMprodutosVOLUME_CUBAGEM: TFloatField
+      FieldName = 'VOLUME_CUBAGEM'
+    end
+    object qrBMprodutosATIVO: TStringField
+      FieldName = 'ATIVO'
+      Size = 1
+    end
+    object qrBMprodutosDATA_CAD: TDateField
+      FieldName = 'DATA_CAD'
+    end
+    object qrBMprodutosEXPORTAPALM: TStringField
+      FieldName = 'EXPORTAPALM'
+      Size = 1
+    end
+    object qrBMprodutosEXPORTAINTEGRADOR: TStringField
+      FieldName = 'EXPORTAINTEGRADOR'
+      Size = 1
+    end
+    object qrBMprodutosCOMPRIMENTO: TFloatField
+      FieldName = 'COMPRIMENTO'
+    end
+    object qrBMprodutosLARGURA: TFloatField
+      FieldName = 'LARGURA'
+    end
+    object qrBMprodutosALTURA: TFloatField
+      FieldName = 'ALTURA'
+    end
+    object qrBMprodutosTEXTO: TMemoField
+      FieldName = 'TEXTO'
+      BlobType = ftMemo
+    end
+    object qrBMprodutosID_PRODUTOSREFERENCIA: TAutoIncField
+      FieldName = 'ID_PRODUTOSREFERENCIA'
+    end
+    object qrBMprodutosEAN: TStringField
+      FieldName = 'EAN'
+    end
+    object qrBMprodutosREFERENCIA: TStringField
+      FieldName = 'REFERENCIA'
+    end
+    object qrBMprodutosID_REF: TIntegerField
+      FieldName = 'ID_REF'
+    end
+    object qrBMprodutosESTOQUE: TFloatField
+      FieldName = 'ESTOQUE'
+    end
+    object qrBMprodutosESTOQUE_MINIMO: TFloatField
+      FieldName = 'ESTOQUE_MINIMO'
+    end
+    object qrBMprodutosID_CLASSE: TAutoIncField
+      FieldName = 'ID_CLASSE'
+    end
+    object qrBMprodutosID_INT: TStringField
+      FieldName = 'ID_INT'
+    end
+    object qrBMprodutosID_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+    end
+    object qrBMprodutosPRECOCUSTO: TFloatField
+      FieldName = 'PRECOCUSTO'
+    end
+    object qrBMprodutosCUSTOMEDIO_TOTAL: TFloatField
+      FieldName = 'CUSTOMEDIO_TOTAL'
+    end
+    object qrBMprodutosID_EMPRESA: TIntegerField
+      FieldName = 'ID_EMPRESA'
+    end
+    object qrBMprodutosDESCRICAO_VAR: TStringField
+      FieldName = 'DESCRICAO_VAR'
+      Size = 25
+    end
+  end
+  object qrBMintaux: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Integracoes_Aux'
+      'WHERE (Tipo = '#39'PRD'#39')'
+      '')
+    Params = <>
+    Left = 649
+    Top = 144
+    object qrBMintauxID_Int: TStringField
+      FieldName = 'ID_Int'
+    end
+    object qrBMintauxID_BM: TIntegerField
+      FieldName = 'ID_BM'
+    end
+    object qrBMintauxTipo: TStringField
+      FieldName = 'Tipo'
+      Size = 3
+    end
+    object qrBMintauxHASH: TStringField
+      FieldName = 'HASH'
+      Size = 32
+    end
+  end
+  object dtBMprodutos: TDataSource
+    DataSet = qrBMprodutos
+    Left = 52
+    Top = 200
+  end
+  object dtBMintaux: TDataSource
+    DataSet = qrBMintaux
+    Left = 652
+    Top = 192
+  end
+  object tbTrayProdutos: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'TAB_PRODUTOS'
+    Left = 400
+    Top = 88
+    object tbTrayProdutosid_produto: TIntegerField
+      FieldName = 'id_produto'
+    end
+    object tbTrayProdutosean: TStringField
+      FieldName = 'ean'
+      Size = 100
+    end
+    object tbTrayProdutosmodifield: TDateField
+      FieldName = 'modifield'
+    end
+    object tbTrayProdutosslug: TStringField
+      FieldName = 'slug'
+      Size = 100
+    end
+    object tbTrayProdutosncm: TStringField
+      FieldName = 'ncm'
+      Size = 100
+    end
+    object tbTrayProdutosname: TStringField
+      FieldName = 'name'
+      Size = 500
+    end
+    object tbTrayProdutostitle: TStringField
+      FieldName = 'title'
+      Size = 100
+    end
+    object tbTrayProdutosdescription: TStringField
+      FieldName = 'description'
+      Size = 500
+    end
+    object tbTrayProdutosdescription_small: TStringField
+      FieldName = 'description_small'
+      Size = 100
+    end
+    object tbTrayProdutosprice: TFloatField
+      FieldName = 'price'
+    end
+    object tbTrayProdutoscost_price: TFloatField
+      FieldName = 'cost_price'
+    end
+    object tbTrayProdutospromotional_price: TFloatField
+      FieldName = 'promotional_price'
+    end
+    object tbTrayProdutosstart_promotion: TDateField
+      FieldName = 'start_promotion'
+    end
+    object tbTrayProdutosend_promotion: TDateField
+      FieldName = 'end_promotion'
+    end
+    object tbTrayProdutosbrand: TStringField
+      FieldName = 'brand'
+      Size = 100
+    end
+    object tbTrayProdutosmodel: TStringField
+      FieldName = 'model'
+      Size = 100
+    end
+    object tbTrayProdutosweight: TIntegerField
+      FieldName = 'weight'
+    end
+    object tbTrayProdutoslength: TIntegerField
+      FieldName = 'length'
+    end
+    object tbTrayProdutoswidth: TIntegerField
+      FieldName = 'width'
+    end
+    object tbTrayProdutosheight: TIntegerField
+      FieldName = 'height'
+    end
+    object tbTrayProdutoscubic_weight: TIntegerField
+      FieldName = 'cubic_weight'
+    end
+    object tbTrayProdutosstock: TIntegerField
+      FieldName = 'stock'
+    end
+    object tbTrayProdutosid_categoria: TIntegerField
+      FieldName = 'id_categoria'
+    end
+    object tbTrayProdutosavailability: TStringField
+      FieldName = 'availability'
+      Size = 100
+    end
+    object tbTrayProdutosreference: TStringField
+      FieldName = 'reference'
+      Size = 100
+    end
+    object tbTrayProdutosadditional_button: TIntegerField
+      FieldName = 'additional_button'
+    end
+    object tbTrayProdutosadditional_message: TStringField
+      FieldName = 'additional_message'
+      Size = 500
+    end
+    object tbTrayProdutoswarranty: TStringField
+      FieldName = 'warranty'
+      Size = 500
+    end
+    object tbTrayProdutosrating: TIntegerField
+      FieldName = 'rating'
+    end
+    object tbTrayProdutoscount_rating: TIntegerField
+      FieldName = 'count_rating'
+    end
+    object tbTrayProdutosquantity_sold: TIntegerField
+      FieldName = 'quantity_sold'
+    end
+    object tbTrayProdutoscreated: TDateField
+      FieldName = 'created'
+    end
+    object tbTrayProdutospayment_option: TStringField
+      FieldName = 'payment_option'
+      Size = 500
+    end
+    object tbTrayProdutosrelease_date: TDateField
+      FieldName = 'release_date'
+    end
+    object tbTrayProdutosshortcut: TStringField
+      FieldName = 'shortcut'
+      Size = 100
+    end
+    object tbTrayProdutosminimum_stock: TIntegerField
+      FieldName = 'minimum_stock'
+    end
+    object tbTrayProdutosminimum_stocl_alert: TIntegerField
+      FieldName = 'minimum_stocl_alert'
+    end
+    object tbTrayProdutospromotion_id: TIntegerField
+      FieldName = 'promotion_id'
+    end
+    object tbTrayProdutosincluded_items: TStringField
+      FieldName = 'included_items'
+      Size = 500
+    end
+    object tbTrayProdutosrelated_products: TIntegerField
+      FieldName = 'related_products'
+    end
+    object tbTrayProdutoscurrent_price: TFloatField
+      FieldName = 'current_price'
+    end
+    object tbTrayProdutosipi: TFloatField
+      FieldName = 'ipi'
+    end
+    object tbTrayProdutosacceptance_term_option: TIntegerField
+      FieldName = 'acceptance_term_option'
+    end
+    object tbTrayProdutoswarranty_days: TIntegerField
+      FieldName = 'warranty_days'
+    end
+    object tbTrayProdutosavailability_days: TIntegerField
+      FieldName = 'availability_days'
+    end
+    object tbTrayProdutosid_matetag: TIntegerField
+      FieldName = 'id_matetag'
+    end
+    object tbTrayProdutosid_variant: TIntegerField
+      FieldName = 'id_variant'
+    end
+    object tbTrayProdutostitulo: TStringField
+      FieldName = 'titulo'
+      Size = 250
+    end
+    object tbTrayProdutosdescricaosimplificada: TStringField
+      FieldName = 'descricaosimplificada'
+      Size = 250
+    end
+    object tbTrayProdutospalavrachave: TStringField
+      FieldName = 'palavrachave'
+      Size = 250
+    end
+  end
+  object tbBMintaux: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'Integracoes_Aux'
+    Left = 648
+    Top = 89
+    object tbBMintauxID_Int: TStringField
+      FieldName = 'ID_Int'
+    end
+    object tbBMintauxID_BM: TIntegerField
+      FieldName = 'ID_BM'
+    end
+    object tbBMintauxTipo: TStringField
+      FieldName = 'Tipo'
+      Size = 3
+    end
+    object tbBMintauxHASH: TStringField
+      FieldName = 'HASH'
+      Size = 32
+    end
+    object tbBMintauxObservacoes: TStringField
+      FieldName = 'Observacoes'
+      Size = 120
+    end
+  end
+  object serverTray: TIdHTTP
+    AllowCookies = True
+    HandleRedirects = True
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.CacheControl = 'no-cache'
+    Request.ContentEncoding = 'utf-8'
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
+    Request.ContentType = 'application/json'
+    Request.Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Request.BasicAuthentication = False
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
+    HTTPOptions = [hoForceEncodeParams]
+    Left = 971
+    Top = 445
+  end
+  object tbTrayFotos: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'ProFotos'
+    Left = 568
+    Top = 88
+    object tbTrayFotosID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object tbTrayFotosID_Produto: TIntegerField
+      FieldName = 'ID_Produto'
+    end
+    object tbTrayFotosFoto: TGraphicField
+      FieldName = 'Foto'
+      BlobType = ftGraphic
+    end
+  end
+  object tbBMauxerros: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'Integracao_erros'
+    Left = 488
+    Top = 88
+    object tbBMauxerrosid: TAutoIncField
+      FieldName = 'id'
+    end
+    object tbBMauxerrosid_tabela: TIntegerField
+      FieldName = 'id_tabela'
+    end
+    object tbBMauxerrostipo: TStringField
+      FieldName = 'tipo'
+      Size = 3
+    end
+    object tbBMauxerrosdescricao: TStringField
+      FieldName = 'descricao'
+      Size = 100
+    end
+    object tbBMauxerrosdatahora_registro: TDateTimeField
+      FieldName = 'datahora_registro'
+    end
+    object tbBMauxerrostipo_metodo: TStringField
+      FieldName = 'tipo_metodo'
+      Size = 4
+    end
+  end
+  object tbBMprodutos: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'ProdutosPrincipal'
+    Left = 48
+    Top = 88
+    object tbBMprodutosID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object tbBMprodutosDescricao: TStringField
+      FieldName = 'Descricao'
+      Size = 80
+    end
+    object tbBMprodutosClasse: TStringField
+      FieldName = 'Classe'
+      Size = 30
+    end
+    object tbBMprodutosMarca: TStringField
+      FieldName = 'Marca'
+      Size = 15
+    end
+    object tbBMprodutosTipo: TStringField
+      FieldName = 'Tipo'
+      Size = 1
+    end
+    object tbBMprodutosOrigem: TStringField
+      FieldName = 'Origem'
+      Size = 1
+    end
+    object tbBMprodutosFonte: TStringField
+      FieldName = 'Fonte'
+      Size = 1
+    end
+    object tbBMprodutosID_Trib: TIntegerField
+      FieldName = 'ID_Trib'
+    end
+    object tbBMprodutosPrecoVenda1: TFloatField
+      FieldName = 'PrecoVenda1'
+    end
+    object tbBMprodutosPrecoVenda2: TFloatField
+      FieldName = 'PrecoVenda2'
+    end
+    object tbBMprodutosPrecoVenda3: TFloatField
+      FieldName = 'PrecoVenda3'
+    end
+    object tbBMprodutosPrecoVenda4: TFloatField
+      FieldName = 'PrecoVenda4'
+    end
+    object tbBMprodutosPrecoVenda5: TFloatField
+      FieldName = 'PrecoVenda5'
+    end
+    object tbBMprodutosPrecoVenda6: TFloatField
+      FieldName = 'PrecoVenda6'
+    end
+    object tbBMprodutosRelacao1_2: TFloatField
+      FieldName = 'Relacao1_2'
+    end
+    object tbBMprodutosRelacao1_3: TFloatField
+      FieldName = 'Relacao1_3'
+    end
+    object tbBMprodutosRelacao1_4: TFloatField
+      FieldName = 'Relacao1_4'
+    end
+    object tbBMprodutosRelacao1_5: TFloatField
+      FieldName = 'Relacao1_5'
+    end
+    object tbBMprodutosRelacao1_6: TFloatField
+      FieldName = 'Relacao1_6'
+    end
+    object tbBMprodutosPreco_Minimo: TFloatField
+      FieldName = 'Preco_Minimo'
+    end
+    object tbBMprodutosPreco_Promocao: TFloatField
+      FieldName = 'Preco_Promocao'
+    end
+    object tbBMprodutosPromocao_Data_Ini: TDateField
+      FieldName = 'Promocao_Data_Ini'
+    end
+    object tbBMprodutosPromocao_Data_Fim: TDateField
+      FieldName = 'Promocao_Data_Fim'
+    end
+    object tbBMprodutosPromocao_Hora_Ini: TStringField
+      FieldName = 'Promocao_Hora_Ini'
+      Size = 5
+    end
+    object tbBMprodutosPromocao_Hora_Fim: TStringField
+      FieldName = 'Promocao_Hora_Fim'
+      Size = 5
+    end
+    object tbBMprodutosPromocao_Semana: TStringField
+      FieldName = 'Promocao_Semana'
+      Size = 7
+    end
+    object tbBMprodutosUNCompra: TStringField
+      FieldName = 'UNCompra'
+      Size = 6
+    end
+    object tbBMprodutosConv_Operador: TStringField
+      FieldName = 'Conv_Operador'
+      Size = 1
+    end
+    object tbBMprodutosUNConversao: TFloatField
+      FieldName = 'UNConversao'
+    end
+    object tbBMprodutosUNVenda: TStringField
+      FieldName = 'UNVenda'
+      Size = 6
+    end
+    object tbBMprodutosID_Embalagem: TIntegerField
+      FieldName = 'ID_Embalagem'
+    end
+    object tbBMprodutosVolume_Qtd: TIntegerField
+      FieldName = 'Volume_Qtd'
+    end
+    object tbBMprodutosVolume_Unit: TIntegerField
+      FieldName = 'Volume_Unit'
+    end
+    object tbBMprodutosID_Volume: TIntegerField
+      FieldName = 'ID_Volume'
+    end
+    object tbBMprodutosVolume_Cubagem: TFloatField
+      FieldName = 'Volume_Cubagem'
+    end
+    object tbBMprodutosMultiplo_Venda: TFloatField
+      FieldName = 'Multiplo_Venda'
+    end
+    object tbBMprodutosPeso_Liquido: TFloatField
+      FieldName = 'Peso_Liquido'
+    end
+    object tbBMprodutosPeso_Bruto: TFloatField
+      FieldName = 'Peso_Bruto'
+    end
+    object tbBMprodutosComissao: TStringField
+      FieldName = 'Comissao'
+      Size = 1
+    end
+    object tbBMprodutosLucro_Venda_P1: TFloatField
+      FieldName = 'Lucro_Venda_P1'
+    end
+    object tbBMprodutosLucro_Venda_P2: TFloatField
+      FieldName = 'Lucro_Venda_P2'
+    end
+    object tbBMprodutosLucro_Venda_P3: TFloatField
+      FieldName = 'Lucro_Venda_P3'
+    end
+    object tbBMprodutosLucro_Venda_P4: TFloatField
+      FieldName = 'Lucro_Venda_P4'
+    end
+    object tbBMprodutosLucro_Venda_P5: TFloatField
+      FieldName = 'Lucro_Venda_P5'
+    end
+    object tbBMprodutosLucro_Venda_P6: TFloatField
+      FieldName = 'Lucro_Venda_P6'
+    end
+    object tbBMprodutosISS: TFloatField
+      FieldName = 'ISS'
+    end
+    object tbBMprodutosNFSe_TribEsp: TStringField
+      FieldName = 'NFSe_TribEsp'
+      Size = 1
+    end
+    object tbBMprodutosIRRF: TFloatField
+      FieldName = 'IRRF'
+    end
+    object tbBMprodutosINSS: TFloatField
+      FieldName = 'INSS'
+    end
+    object tbBMprodutosINSS_Base: TFloatField
+      FieldName = 'INSS_Base'
+    end
+    object tbBMprodutosAplicacao: TStringField
+      FieldName = 'Aplicacao'
+      Size = 120
+    end
+    object tbBMprodutosTexto: TMemoField
+      FieldName = 'Texto'
+      BlobType = ftMemo
+    end
+    object tbBMprodutosLembrete: TMemoField
+      FieldName = 'Lembrete'
+      BlobType = ftMemo
+    end
+    object tbBMprodutosSintegra_NCM: TStringField
+      FieldName = 'Sintegra_NCM'
+      Size = 8
+    end
+    object tbBMprodutosNCM_Sub: TStringField
+      FieldName = 'NCM_Sub'
+      Size = 1
+    end
+    object tbBMprodutosCodigo_NBS: TStringField
+      FieldName = 'Codigo_NBS'
+      Size = 9
+    end
+    object tbBMprodutosECF_Busca: TStringField
+      FieldName = 'ECF_Busca'
+      Size = 1
+    end
+    object tbBMprodutosID_PISCOF: TIntegerField
+      FieldName = 'ID_PISCOF'
+    end
+    object tbBMprodutosEstoque_Local: TStringField
+      FieldName = 'Estoque_Local'
+      Size = 15
+    end
+    object tbBMprodutosEstoque_PercMaxVenda: TFloatField
+      FieldName = 'Estoque_PercMaxVenda'
+    end
+    object tbBMprodutosBalanca: TStringField
+      FieldName = 'Balanca'
+      Size = 1
+    end
+    object tbBMprodutosReceita: TStringField
+      FieldName = 'Receita'
+      Size = 1
+    end
+    object tbBMprodutosAtivo: TStringField
+      FieldName = 'Ativo'
+      Size = 1
+    end
+    object tbBMprodutosData_Cad: TDateField
+      FieldName = 'Data_Cad'
+    end
+    object tbBMprodutosID_Emp_Cad: TIntegerField
+      FieldName = 'ID_Emp_Cad'
+    end
+    object tbBMprodutosID_User_Cad: TIntegerField
+      FieldName = 'ID_User_Cad'
+    end
+    object tbBMprodutosData_Alt: TDateField
+      FieldName = 'Data_Alt'
+    end
+    object tbBMprodutosID_Emp_Alt: TIntegerField
+      FieldName = 'ID_Emp_Alt'
+    end
+    object tbBMprodutosID_User_Alt: TIntegerField
+      FieldName = 'ID_User_Alt'
+    end
+    object tbBMprodutosCod_Integracao: TStringField
+      FieldName = 'Cod_Integracao'
+      Size = 25
+    end
+    object tbBMprodutosID_Integracao: TIntegerField
+      FieldName = 'ID_Integracao'
+    end
+    object tbBMprodutosPAF_IAT: TStringField
+      FieldName = 'PAF_IAT'
+      Size = 1
+    end
+    object tbBMprodutosPAF_IPPT: TStringField
+      FieldName = 'PAF_IPPT'
+      Size = 1
+    end
+    object tbBMprodutosCod_Genero: TStringField
+      FieldName = 'Cod_Genero'
+      Size = 2
+    end
+    object tbBMprodutosCod_Servico: TStringField
+      FieldName = 'Cod_Servico'
+      Size = 4
+    end
+    object tbBMprodutosCNAE: TStringField
+      FieldName = 'CNAE'
+      Size = 10
+    end
+    object tbBMprodutosANP: TStringField
+      FieldName = 'ANP'
+      Size = 9
+    end
+    object tbBMprodutospGLP: TFloatField
+      FieldName = 'pGLP'
+    end
+    object tbBMprodutospGNn: TFloatField
+      FieldName = 'pGNn'
+    end
+    object tbBMprodutospGNi: TFloatField
+      FieldName = 'pGNi'
+    end
+    object tbBMprodutosvPart: TFloatField
+      FieldName = 'vPart'
+    end
+    object tbBMprodutosSeries_Aceitas: TStringField
+      FieldName = 'Series_Aceitas'
+    end
+    object tbBMprodutosControle_Lote: TStringField
+      FieldName = 'Controle_Lote'
+      Size = 1
+    end
+    object tbBMprodutosID_Justif: TIntegerField
+      FieldName = 'ID_Justif'
+    end
+    object tbBMprodutosID_Conta: TIntegerField
+      FieldName = 'ID_Conta'
+    end
+    object tbBMprodutosUltima_Compra: TDateField
+      FieldName = 'Ultima_Compra'
+    end
+    object tbBMprodutosID_For_Ultima_Compra: TIntegerField
+      FieldName = 'ID_For_Ultima_Compra'
+    end
+    object tbBMprodutosExportaPalm: TStringField
+      FieldName = 'ExportaPalm'
+      Size = 1
+    end
+    object tbBMprodutosExportaIntegrador: TStringField
+      FieldName = 'ExportaIntegrador'
+      Size = 1
+    end
+    object tbBMprodutosUn_Alternativa: TStringField
+      FieldName = 'Un_Alternativa'
+    end
+    object tbBMprodutosID_UnRelat: TIntegerField
+      FieldName = 'ID_UnRelat'
+    end
+    object tbBMprodutosun_menor_qtd: TFloatField
+      FieldName = 'un_menor_qtd'
+    end
+    object tbBMprodutosID_Sim: TIntegerField
+      FieldName = 'ID_Sim'
+    end
+    object tbBMprodutosValidade: TIntegerField
+      FieldName = 'Validade'
+    end
+    object tbBMprodutosArquivo_Foto: TStringField
+      FieldName = 'Arquivo_Foto'
+      Size = 1
+    end
+    object tbBMprodutosNovo_Preco: TFloatField
+      FieldName = 'Novo_Preco'
+    end
+    object tbBMprodutosCusto_Reposicao: TFloatField
+      FieldName = 'Custo_Reposicao'
+    end
+    object tbBMprodutosVeiculo_Novo: TStringField
+      FieldName = 'Veiculo_Novo'
+      Size = 1
+    end
+    object tbBMprodutosOP_Dimensoes: TIntegerField
+      FieldName = 'OP_Dimensoes'
+    end
+    object tbBMprodutosOP_Conversao: TFloatField
+      FieldName = 'OP_Conversao'
+    end
+    object tbBMprodutosOP_Unidade: TStringField
+      FieldName = 'OP_Unidade'
+      Size = 3
+    end
+    object tbBMprodutosOP_EPI: TStringField
+      FieldName = 'OP_EPI'
+      Size = 1
+    end
+    object tbBMprodutosOP_EPI_Tipo: TStringField
+      FieldName = 'OP_EPI_Tipo'
+      Size = 1
+    end
+    object tbBMprodutosOP_EPI_CA: TStringField
+      FieldName = 'OP_EPI_CA'
+      Size = 10
+    end
+    object tbBMprodutosTax_Fed: TFloatField
+      FieldName = 'Tax_Fed'
+    end
+    object tbBMprodutosTax_Est: TFloatField
+      FieldName = 'Tax_Est'
+    end
+    object tbBMprodutosTax_Mun: TFloatField
+      FieldName = 'Tax_Mun'
+    end
+    object tbBMprodutosNVE: TStringField
+      FieldName = 'NVE'
+      Size = 60
+    end
+    object tbBMprodutosFicha_FCI: TMemoField
+      FieldName = 'Ficha_FCI'
+      BlobType = ftMemo
+    end
+    object tbBMprodutosHASH: TStringField
+      FieldName = 'HASH'
+      Size = 4
+    end
+    object tbBMprodutosComprimento: TFloatField
+      FieldName = 'Comprimento'
+    end
+    object tbBMprodutosLargura: TFloatField
+      FieldName = 'Largura'
+    end
+    object tbBMprodutosAltura: TFloatField
+      FieldName = 'Altura'
+    end
+  end
+  object tbBMreferencia: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'ProdutosReferencia'
+    Left = 128
+    Top = 88
+    object tbBMreferenciaID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object tbBMreferenciaID_Produto: TIntegerField
+      FieldName = 'ID_Produto'
+    end
+    object tbBMreferenciaReferencia: TStringField
+      FieldName = 'Referencia'
+    end
+    object tbBMreferenciaEAN: TStringField
+      FieldName = 'EAN'
+    end
+    object tbBMreferenciaDescricao: TStringField
+      FieldName = 'Descricao'
+      Size = 25
+    end
+    object tbBMreferenciaCod_Fornec: TStringField
+      FieldName = 'Cod_Fornec'
+    end
+    object tbBMreferenciaCod_Fornec_Ex: TStringField
+      FieldName = 'Cod_Fornec_Ex'
+    end
+    object tbBMreferenciaqtdeti: TIntegerField
+      FieldName = 'qtdeti'
+    end
+    object tbBMreferenciaAtivo: TStringField
+      FieldName = 'Ativo'
+      Size = 1
+    end
+    object tbBMreferenciaHASH: TStringField
+      FieldName = 'HASH'
+      Size = 4
+    end
+  end
+  object tbBMrefempresa: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'ProdutosRefEmpresa'
+    Left = 208
+    Top = 88
+    object tbBMrefempresaID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object tbBMrefempresaID_Empresa: TIntegerField
+      FieldName = 'ID_Empresa'
+    end
+    object tbBMrefempresaID_Ref: TIntegerField
+      FieldName = 'ID_Ref'
+    end
+    object tbBMrefempresaEstoque: TFloatField
+      FieldName = 'Estoque'
+    end
+    object tbBMrefempresaEstoque_PosseTer: TFloatField
+      FieldName = 'Estoque_PosseTer'
+    end
+    object tbBMrefempresaEstoque_PropTer: TFloatField
+      FieldName = 'Estoque_PropTer'
+    end
+    object tbBMrefempresaData_Estoque: TDateField
+      FieldName = 'Data_Estoque'
+    end
+    object tbBMrefempresaResv_DAV: TFloatField
+      FieldName = 'Resv_DAV'
+    end
+    object tbBMrefempresaResv_OS: TFloatField
+      FieldName = 'Resv_OS'
+    end
+    object tbBMrefempresaResv_PV: TFloatField
+      FieldName = 'Resv_PV'
+    end
+    object tbBMrefempresaResv_EF: TFloatField
+      FieldName = 'Resv_EF'
+    end
+    object tbBMrefempresaEstoque_Minimo: TFloatField
+      FieldName = 'Estoque_Minimo'
+    end
+    object tbBMrefempresaEstoque_Maximo: TFloatField
+      FieldName = 'Estoque_Maximo'
+    end
+    object tbBMrefempresaHASH: TStringField
+      FieldName = 'HASH'
+      Size = 4
+    end
+  end
+  object tbBMclasse: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'ProdutosClasse'
+    Left = 280
+    Top = 88
+    object tbBMclasseID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object tbBMclasseNivel: TStringField
+      FieldName = 'Nivel'
+      Size = 1
+    end
+    object tbBMclasseClasse: TStringField
+      FieldName = 'Classe'
+      Size = 30
+    end
+    object tbBMclasseDescricao: TStringField
+      FieldName = 'Descricao'
+      Size = 50
+    end
+    object tbBMclasseCultura: TStringField
+      FieldName = 'Cultura'
+      Size = 1
+    end
+    object tbBMclasseDias_Giro: TIntegerField
+      FieldName = 'Dias_Giro'
+    end
+    object tbBMclasseComissao: TStringField
+      FieldName = 'Comissao'
+      Size = 1
+    end
+    object tbBMclassePRural: TBooleanField
+      FieldName = 'PRural'
+    end
+    object tbBMclassePrecoTabelado: TBooleanField
+      FieldName = 'PrecoTabelado'
+    end
+    object tbBMclasseEstoque_Local: TStringField
+      FieldName = 'Estoque_Local'
+      Size = 15
+    end
+    object tbBMclasseAtivo: TBooleanField
+      FieldName = 'Ativo'
+    end
+  end
+  object tbBMemp: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'ProCustosEmp'
+    Left = 336
+    Top = 88
+    object tbBMempID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object tbBMempID_Empresa: TIntegerField
+      FieldName = 'ID_Empresa'
+    end
+    object tbBMempID_Produto: TIntegerField
+      FieldName = 'ID_Produto'
+    end
+    object tbBMempPrecoCusto: TFloatField
+      FieldName = 'PrecoCusto'
+    end
+    object tbBMempCustoReal: TFloatField
+      FieldName = 'CustoReal'
+    end
+    object tbBMempCustoTotal: TFloatField
+      FieldName = 'CustoTotal'
+    end
+    object tbBMempCustoMedio_Real: TFloatField
+      FieldName = 'CustoMedio_Real'
+    end
+    object tbBMempCustoMedio_Total: TFloatField
+      FieldName = 'CustoMedio_Total'
+    end
+    object tbBMemppIPI_Compra: TFloatField
+      FieldName = 'pIPI_Compra'
+    end
+    object tbBMemppFrete_Compra: TFloatField
+      FieldName = 'pFrete_Compra'
+    end
+    object tbBMemppSeguro_Compra: TFloatField
+      FieldName = 'pSeguro_Compra'
+    end
+    object tbBMemppDespesas_Compra: TFloatField
+      FieldName = 'pDespesas_Compra'
+    end
+    object tbBMemppDescontos_Compra: TFloatField
+      FieldName = 'pDescontos_Compra'
+    end
+    object tbBMempSTBase_Compra: TFloatField
+      FieldName = 'STBase_Compra'
+    end
+    object tbBMempSTValor_Compra: TFloatField
+      FieldName = 'STValor_Compra'
+    end
+    object tbBMempSTPorc_Compra: TFloatField
+      FieldName = 'STPorc_Compra'
+    end
+    object tbBMempICMSBase_Compra: TFloatField
+      FieldName = 'ICMSBase_Compra'
+    end
+    object tbBMempICMSAliq_Compra: TFloatField
+      FieldName = 'ICMSAliq_Compra'
+    end
+    object tbBMemppPIS_Compra: TFloatField
+      FieldName = 'pPIS_Compra'
+    end
+    object tbBMemppCOFINS_Compra: TFloatField
+      FieldName = 'pCOFINS_Compra'
+    end
+    object tbBMemppPIS_Venda: TFloatField
+      FieldName = 'pPIS_Venda'
+    end
+    object tbBMemppCOFINS_Venda: TFloatField
+      FieldName = 'pCOFINS_Venda'
+    end
+    object tbBMempop_CustoProcessos: TFloatField
+      FieldName = 'op_CustoProcessos'
+    end
+    object tbBMempop_SomaPrecoVenda1: TFloatField
+      FieldName = 'op_SomaPrecoVenda1'
+    end
+    object tbBMempICMSBase_Venda: TFloatField
+      FieldName = 'ICMSBase_Venda'
+    end
+    object tbBMempICMSBase_Venda2: TFloatField
+      FieldName = 'ICMSBase_Venda2'
+    end
+    object tbBMempICMSBase_Venda3: TFloatField
+      FieldName = 'ICMSBase_Venda3'
+    end
+    object tbBMempICMSBase_Venda4: TFloatField
+      FieldName = 'ICMSBase_Venda4'
+    end
+    object tbBMempICMSBase_Venda5: TFloatField
+      FieldName = 'ICMSBase_Venda5'
+    end
+    object tbBMempICMSBase_Venda6: TFloatField
+      FieldName = 'ICMSBase_Venda6'
+    end
+    object tbBMempICMSAliq_Venda: TFloatField
+      FieldName = 'ICMSAliq_Venda'
+    end
+    object tbBMempICMSAliq_Venda2: TFloatField
+      FieldName = 'ICMSAliq_Venda2'
+    end
+    object tbBMempICMSAliq_Venda3: TFloatField
+      FieldName = 'ICMSAliq_Venda3'
+    end
+    object tbBMempICMSAliq_Venda4: TFloatField
+      FieldName = 'ICMSAliq_Venda4'
+    end
+    object tbBMempICMSAliq_Venda5: TFloatField
+      FieldName = 'ICMSAliq_Venda5'
+    end
+    object tbBMempICMSAliq_Venda6: TFloatField
+      FieldName = 'ICMSAliq_Venda6'
+    end
+    object tbBMemppDespesas_Venda: TFloatField
+      FieldName = 'pDespesas_Venda'
+    end
+    object tbBMemppDespesas_Venda2: TFloatField
+      FieldName = 'pDespesas_Venda2'
+    end
+    object tbBMemppDespesas_Venda3: TFloatField
+      FieldName = 'pDespesas_Venda3'
+    end
+    object tbBMemppDespesas_Venda4: TFloatField
+      FieldName = 'pDespesas_Venda4'
+    end
+    object tbBMemppDespesas_Venda5: TFloatField
+      FieldName = 'pDespesas_Venda5'
+    end
+    object tbBMemppDespesas_Venda6: TFloatField
+      FieldName = 'pDespesas_Venda6'
+    end
+    object tbBMemppComissao_Venda: TFloatField
+      FieldName = 'pComissao_Venda'
+    end
+    object tbBMemppComissao_Venda2: TFloatField
+      FieldName = 'pComissao_Venda2'
+    end
+    object tbBMemppComissao_Venda3: TFloatField
+      FieldName = 'pComissao_Venda3'
+    end
+    object tbBMemppComissao_Venda4: TFloatField
+      FieldName = 'pComissao_Venda4'
+    end
+    object tbBMemppComissao_Venda5: TFloatField
+      FieldName = 'pComissao_Venda5'
+    end
+    object tbBMemppComissao_Venda6: TFloatField
+      FieldName = 'pComissao_Venda6'
+    end
+  end
+  object qrBMmontaraux: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'select*'
+      'from tab_produtos as A'
+      'left join produtosreferencia as B on B.Referencia = A.reference'
+      'left join integracoes_aux as C on C.ID_BM = B.ID_Produto'
+      'where C.ID_BM = B.ID_Produto AND C.Tipo = '#39'PRD'#39)
+    Params = <>
+    Left = 889
+    Top = 144
+    object AutoIncField1: TAutoIncField
+      FieldName = 'ID'
+    end
+    object FloatField1: TFloatField
+      FieldName = 'PESO_BRUTO'
+    end
+    object StringField1: TStringField
+      FieldName = 'MARCA'
+      Size = 15
+    end
+    object StringField2: TStringField
+      FieldName = 'SINTEGRA_NCM'
+      Size = 8
+    end
+    object StringField3: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 80
+    end
+    object FloatField2: TFloatField
+      FieldName = 'PRECOVENDA1'
+    end
+    object FloatField3: TFloatField
+      FieldName = 'PRECO_PROMOCAO'
+    end
+    object DateField1: TDateField
+      FieldName = 'PROMOCAO_DATA_INI'
+    end
+    object DateField2: TDateField
+      FieldName = 'PROMOCAO_DATA_FIM'
+    end
+    object FloatField4: TFloatField
+      FieldName = 'VOLUME_CUBAGEM'
+    end
+    object StringField4: TStringField
+      FieldName = 'ATIVO'
+      Size = 1
+    end
+    object DateField3: TDateField
+      FieldName = 'DATA_CAD'
+    end
+    object StringField5: TStringField
+      FieldName = 'EAN'
+    end
+    object StringField6: TStringField
+      FieldName = 'REFERENCIA'
+    end
+    object FloatField5: TFloatField
+      FieldName = 'ESTOQUE'
+    end
+    object FloatField6: TFloatField
+      FieldName = 'ESTOQUE_MINIMO'
+    end
+    object AutoIncField2: TAutoIncField
+      FieldName = 'ID_1'
+    end
+    object StringField7: TStringField
+      FieldName = 'ID_INT'
+    end
+    object FloatField7: TFloatField
+      FieldName = 'PRECOCUSTO'
+    end
+    object IntegerField1: TIntegerField
+      FieldName = 'ID_EMPRESA'
+    end
+  end
+  object dtTrayprodutos: TDataSource
+    DataSet = tbTrayProdutos
+    Left = 396
+    Top = 200
+  end
+  object dtBMreferencia: TDataSource
+    DataSet = tbBMreferencia
+    Left = 132
+    Top = 200
+  end
+  object qrBMProduto: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'select '
+      'A.ID, '
+      'A.DESCRICAO, '
+      'A.PRECOVENDA1,'
+      'A.PRECOVENDA2'
+      ''
+      'from produtosprincipal as A'
+      'where ID = :ID_Produto'
+      '')
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID_Produto'
+      end>
+    Left = 721
+    Top = 144
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'ID_Produto'
+      end>
+    object qrBMProdutoID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object qrBMProdutoDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 80
+    end
+    object qrBMProdutoPRECOVENDA1: TFloatField
+      FieldName = 'PRECOVENDA1'
+    end
+    object qrBMProdutoPRECOVENDA2: TFloatField
+      FieldName = 'PRECOVENDA2'
+    end
+  end
+  object QDelProdutos: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'DELETE FROM TAB_PRODUTOS')
+    Params = <>
+    Left = 952
+    Top = 88
+  end
+  object TbPersonal: TDBISAMTable
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    TableName = 'ProdutosPersonal'
+    Left = 296
+    Top = 256
+    object TbPersonalID: TAutoIncField
+      FieldName = 'ID'
+    end
+    object TbPersonalID_Produto: TIntegerField
+      FieldName = 'ID_Produto'
+    end
+    object TbPersonalModelo: TStringField
+      FieldName = 'Modelo'
+      Size = 100
+    end
+    object TbPersonalReferencia: TStringField
+      FieldName = 'Referencia'
+      Size = 100
+    end
+    object TbPersonalDisponibilidade: TStringField
+      FieldName = 'Disponibilidade'
+      Size = 200
+    end
+    object TbPersonalGarantia: TStringField
+      FieldName = 'Garantia'
+      Size = 200
+    end
+    object TbPersonalLancamento: TStringField
+      FieldName = 'Lancamento'
+      Size = 3
+    end
+    object TbPersonalDestaque: TStringField
+      FieldName = 'Destaque'
+      Size = 3
+    end
+    object TbPersonalPromocao: TStringField
+      FieldName = 'Promocao'
+      Size = 3
+    end
+    object TbPersonalTituloPagina: TStringField
+      FieldName = 'TituloPagina'
+      Size = 250
+    end
+    object TbPersonalDescricaoSimplificada: TStringField
+      FieldName = 'DescricaoSimplificada'
+      Size = 250
+    end
+    object TbPersonalPalavraChave: TStringField
+      FieldName = 'PalavraChave'
+      Size = 250
+    end
+    object TbPersonalItensInclusos: TStringField
+      FieldName = 'ItensInclusos'
+      Size = 250
+    end
+  end
+  object QrPersonal: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'select *'
+      ''
+      'from produtospersonal as A'
+      ''
+      '')
+    Params = <>
+    Left = 385
+    Top = 264
+  end
+  object QrProdVar: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Integracoes_Aux'
+      'WHERE (Tipo = '#39'PRD'#39') and (ID_BM =:ID_BM)'
+      '')
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID_BM'
+      end>
+    Left = 705
+    Top = 296
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'ID_BM'
+      end>
+    object QrProdVarID_Int: TStringField
+      FieldName = 'ID_Int'
+    end
+    object QrProdVarID_BM: TIntegerField
+      FieldName = 'ID_BM'
+    end
+    object QrProdVarTipo: TStringField
+      FieldName = 'Tipo'
+      Size = 3
+    end
+    object QrProdVarHASH: TStringField
+      FieldName = 'HASH'
+      Size = 32
+    end
+    object QrProdVarObservacoes: TStringField
+      FieldName = 'Observacoes'
+      Size = 120
+    end
+  end
+  object QrProdVarBusca: TDBISAMQuery
+    DatabaseName = 'db'
+    EngineVersion = '4.44 Build 3'
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Integracoes_Aux'
+      'WHERE (Tipo = '#39'PRV'#39')')
+    Params = <>
+    Left = 713
+    Top = 352
+    object QrProdVarBuscaID_Int: TStringField
+      FieldName = 'ID_Int'
+    end
+    object QrProdVarBuscaID_BM: TIntegerField
+      FieldName = 'ID_BM'
+    end
+    object QrProdVarBuscaTipo: TStringField
+      FieldName = 'Tipo'
+      Size = 3
+    end
+    object QrProdVarBuscaHASH: TStringField
+      FieldName = 'HASH'
+      Size = 32
+    end
+    object QrProdVarBuscaObservacoes: TStringField
+      FieldName = 'Observacoes'
+      Size = 120
+    end
+  end
+end

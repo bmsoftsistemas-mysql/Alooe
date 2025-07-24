@@ -1,0 +1,400 @@
+unit uMain;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.Json,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  RzForms,
+  System.ImageList,
+  Vcl.ImgList,
+  System.StrUtils,
+  PngImageList,
+  RzStatus,
+  TabForms,
+  RzTabs,
+  RzPanel,
+  RzButton,
+  Vcl.ExtCtrls,
+  RzCommon,
+  RzBckgnd,
+  Vcl.Menus,
+  Vcl.StdCtrls,
+  RzLabel, Data.DB, dbisamtb, RzTray, Vcl.Buttons;
+
+type
+  TfrmMain = class(TForm)
+    P: TRzPageControl;
+    T: TTabForms;
+    V: TRzVersionInfo;
+    I32: TPngImageList;
+    RzSeparator1: TRzSeparator;
+    I16: TPngImageList;
+    RzStatusBar1: TRzStatusBar;
+    fVersao: TRzFieldStatus;
+    fCompilacao: TRzFieldStatus;
+    fBase: TRzFieldStatus;
+    fHost: TRzFieldStatus;
+    F: TRzFormState;
+    btnTabelas: TRzToolbar;
+    btnProducoes: TRzToolButton;
+    RzSpacer2: TRzSpacer;
+    btnAtualizacaoAutomaticaTudo: TRzToolButton;
+    RzToolButton2: TRzToolButton;
+    RzToolButton3: TRzToolButton;
+    btnSair: TRzToolButton;
+    tmprocessa: TTimer;
+    PopupMenu1: TPopupMenu;
+    Configuraes1: TMenuItem;
+    BM2TrayIntegrador1: TMenuItem;
+    Sair1: TMenuItem;
+    tmprocessaini: TTimer;
+    TrayIcon1: TTrayIcon;
+    procedure btnSairClick(Sender: TObject);
+    procedure btnProducoesClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btnAtualizacaoAutomaticaTudoClick(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure RzToolButton1Click(Sender: TObject);
+    procedure RzToolButton2Click(Sender: TObject);
+    procedure tmprocessaTimer(Sender: TObject);
+    procedure BM2TrayIntegrador1Click(Sender: TObject);
+    procedure Sair1Click(Sender: TObject);
+    procedure tmprocessainiTimer(Sender: TObject);
+    procedure Configuraes1Click(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure fVersaoDblClick(Sender: TObject);
+  private
+
+    { Private declarations }
+  public
+    procedure fechartodasabas(Sender: TObject);
+    { Public declarations }
+  end;
+
+var
+  frmMain: TfrmMain;
+
+implementation
+
+uses
+  uDD,
+  ufrmAviso,
+  ufrmMsg,
+  ufuncoesGerais,
+  ufrmTabelas, ufrmRequest, ufrmMarcas, ufrmMarcas2, ufrmCategorias,
+  uprodutosfrm, ufrmClientes, ufrmPedidos, ufrmerros, frmconfiguracoes;
+
+{$R *.dfm}
+
+procedure PararTimer;
+begin
+
+end;
+
+procedure PausarTimer;
+begin
+end;
+
+procedure PararTimerPedidos;
+begin
+end;
+
+procedure PausarTimerPedidos;
+begin
+end;
+
+procedure IniciarTimer;
+begin
+end;
+
+procedure ContinuarTimer;
+begin
+end;
+
+procedure IniciarTimerPedidos;
+begin
+end;
+
+procedure ContinuarTimerPedidos;
+begin
+end;
+
+procedure TfrmMain.btnProducoesClick(Sender: TObject);
+begin
+  T.Exibe(Tfrmerros, frmerros);
+end;
+
+procedure TfrmMain.Configuraes1Click(Sender: TObject);
+begin
+  if not Assigned(frmconfig) then
+    Application.CreateForm(Tfrmconfig, frmconfig);
+  frmconfig.Show;
+end;
+
+procedure TfrmMain.fechartodasabas(Sender: TObject);
+begin
+end;
+
+procedure TfrmMain.btnSairClick(Sender: TObject);
+begin
+  frmMain.Hide;
+  frmMain.WindowState := wsMinimized;
+
+end;
+
+procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  CanClose := false;
+  frmMain.Hide;
+  frmMain.WindowState := wsMinimized;
+
+end;
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+var
+  H: HWND;
+begin
+  fVersao.Caption := Copy(V.FileVersion, 1, RPos('.', V.FileVersion) - 1);
+  fCompilacao.Caption := Copy(V.FileVersion, RPos('.', V.FileVersion) + 1, 3);
+  fBase.Caption := ParamStr(1);
+  fHost.Caption := defHost;
+  Application.ShowMainForm := True;
+end;
+
+procedure TfrmMain.FormResize(Sender: TObject);
+begin
+  if frmMain.Width < 800 then
+    frmMain.Width := 800;
+  if frmMain.Height < 800 then
+    frmMain.Height := 800
+end;
+
+procedure TfrmMain.fVersaoDblClick(Sender: TObject);
+begin
+  if tmprocessa.Enabled = false then
+    frmMain.T.FecharTudo;
+
+  btnTabelas.Enabled := false;
+  AvisoON;
+
+  AvisoAtt('Inicio de sincronização...', 5, -1);
+  T.Exibe(TfrmModelos, frmModelos);
+end;
+
+procedure TfrmMain.RzToolButton1Click(Sender: TObject);
+begin
+  T.Exibe(TfrmTabelas, frmTabelas);
+end;
+
+procedure TfrmMain.RzToolButton2Click(Sender: TObject);
+var
+  frmModelos: TfrmModelos;
+begin
+  if tmprocessa.Enabled = false then
+    frmMain.T.FecharTudo;
+
+  btnTabelas.Enabled := false;
+  AvisoON;
+
+  frmModelos := TfrmModelos.Create(nil);
+  try
+    AvisoAtt('Obtendo Token...', 5, -1);
+    frmModelos.btnToken.Click;
+
+    AvisoAtt('Atualizando Modelos...', 5, -1);
+    frmModelos.btnModelos.Click;
+
+    AvisoAtt('Atualizando Produções...', 5, -1);
+    frmModelos.btnProducoes.Click;
+  finally
+    frmModelos.Free;
+  end;
+
+  btnProducoes.Click;
+//  //
+//  AvisoAtt('Sincronizando pedidos...', 5, -1);
+//  T.Exibe(Tfrmpedidos, frmpedidos);
+//  frmpedidos.btspedidos.Click;
+//  Application.ProcessMessages;
+//  frmpedidos.btnmarcartodos.Click;
+//  frmpedidos.btnenviartodos.Click;
+//    //
+//  AvisoAtt('Sincronizando marcas...', 5, -1);
+//  T.Exibe(Tfrmmarcas, frmmarcas);
+//  frmmarcas.btsmarcas.Click;
+//  Application.ProcessMessages;
+//  frmmarcas.btnenviartodasmarcas.Click;
+  //
+//  AvisoAtt('Sincronizando Contatos...', 5, -1);
+//  T.Exibe(TfrmContatos, frmContatos);
+//  frmContatos.btscategorias.Click;
+//  Application.ProcessMessages;
+//  frmContatos.btnenviartodascat.Click;
+//  frmContatos.btnenviartodascat.Click;
+  //  //
+//  AvisoAtt('Sincronizando produtos...', 5, -1);
+//  T.Exibe(Tprodutosfrm, produtosfrm);
+//  produtosfrm.btsprodutos.Click;
+//  Application.ProcessMessages;
+//  def_erro := false;
+//  produtosfrm.Button2.Click;
+//  produtosfrm.btnenviartodos.Click;
+
+  //  AvisoAtt('Sincronização efetuada com sucesso.', 5, -1);
+
+  btnTabelas.Enabled := true;
+
+  //btnTabelasIntegracao.Enabled := false;
+  RzToolButton2.Enabled := false;
+  RzToolButton3.Enabled := false;
+
+  if tmprocessa.Enabled = false then
+    btnAtualizacaoAutomaticaTudo.Click;
+end;
+
+procedure TfrmMain.Sair1Click(Sender: TObject);
+begin
+  application.Terminate;
+  //  frmMain.WindowState := wsMinimized;
+end;
+
+procedure TfrmMain.tmprocessainiTimer(Sender: TObject);
+begin
+  tmprocessaini.Enabled := false;
+  AvisoON;
+  RzToolButton2.Click;
+  BM2TrayIntegrador1.Click;
+  tmprocessa.Enabled := true;
+
+end;
+
+procedure TfrmMain.tmprocessaTimer(Sender: TObject);
+var
+  tempo_falta: integer;
+
+begin
+  tmprocessa.Tag := tmprocessa.Tag + 1;
+  tempo_falta := Trunc((defTimerAtualizacao / 1000) - tmprocessa.Tag);
+  //AvisoAtt('Faltam: ' + tempo_falta.ToString + ' segundos para proxíma atualização');
+  if Trunc(defTimerAtualizacao / 1000) = tmprocessa.Tag then
+  begin
+    tmprocessa.Enabled := false;
+    RzToolButton2.Click;
+    tmprocessa.Tag := 0;
+    tmprocessa.Enabled := true;
+  end;
+
+  if tmprocessa.Tag = Trunc((defTimerAtualizacao / 1000) - 2) then
+  begin
+    frmMain.T.FecharTudo;
+  end;
+
+end;
+
+procedure TfrmMain.BM2TrayIntegrador1Click(Sender: TObject);
+begin
+  if frmMain.WindowState = wsMinimized then
+  begin
+    Application.ShowMainForm := True;
+    frmMain.WindowState := wsMaximized;
+    frmMain.Show;
+  end;
+//  else
+//  begin
+//    frmMain.Hide;
+//    frmMain.WindowState := wsMinimized;
+//    Application.ShowMainForm := True;
+//  end;
+
+end;
+
+procedure TfrmMain.btnAtualizacaoAutomaticaTudoClick(Sender: TObject);
+begin
+  if tmprocessa.Enabled = true then
+  begin
+    tmprocessa.Enabled := false;
+    //btnTabelasIntegracao.Enabled := true;
+    RzToolButton2.Enabled := true;
+    RzToolButton3.Enabled := true;
+    btnSair.Enabled := true;
+    btnAtualizacaoAutomaticaTudo.Caption := 'Ativar Atualização';
+    AvisoAtt('Desativado o modo de atualização automático', 3, -2);
+  end
+  else
+  begin
+    tmprocessa.Enabled := true;
+    //btnTabelasIntegracao.Enabled := false;
+    RzToolButton2.Enabled := false;
+    RzToolButton3.Enabled := false;
+    //btnSair.Enabled := false;
+    btnAtualizacaoAutomaticaTudo.Caption := 'Desativar Atualização';
+    //AvisoAtt('Ativado o modo de atualização automático', 3, -2);
+  end;
+
+  //    PararTimer;
+  //    PausarTimerPedidos;
+  //
+  //    btnAtualizacaoAutomaticaTudo.Tag := 1;
+  //
+  //    btnTabelasIntegracao.Click;
+  //    frmProdutos.pTabelasSincronizacao.ActivePageIndex := 0;
+  //    application.ProcessMessages;
+  //    frmProdutos.btnAlterarTudoProdutos.Click;
+  //
+  //    frmProdutos.pTabelasSincronizacao.ActivePageIndex := 1;
+  //    application.ProcessMessages;
+  //    frmProdutos.btnAlterarTudoImagens.Click;
+  //
+  //    frmProdutos.pTabelasSincronizacao.ActivePageIndex := 2;
+  //    application.ProcessMessages;
+  //    frmProdutos.btnAlterarTudoCategorias.Click;
+  //
+  //    frmProdutos.pTabelasSincronizacao.ActivePageIndex := 4;
+  //    application.ProcessMessages;
+  //    frmProdutos.btnAlterarTudoClientes.Click;
+  //
+  //    frmProdutos.pTabelasSincronizacao.ActivePageIndex := 6;
+  //    application.ProcessMessages;
+  //    frmProdutos.btnAlterarTudoVendedoresClientes.Click;
+  //
+  //    frmProdutos.pTabelasSincronizacao.ActivePageIndex := 7;
+  //    application.ProcessMessages;
+  //    frmProdutos.btnAlterarTudoTransp.Click;
+  //
+  //    frmProdutos.pTabelasSincronizacao.ActivePageIndex := 8;
+  //    application.ProcessMessages;
+  //    frmProdutos.btnAlterarTudoPlano.Click;
+  //
+  //    frmProdutos.pTabelasSincronizacao.ActivePageIndex := 12;
+  //    application.ProcessMessages;
+  //    frmProdutos.btnAlterarTudoFatur.Click;
+  //
+  //    if defUsaTitulosVencidos = 'S' then
+  //    begin
+  //      frmProdutos.pTabelasSincronizacao.ActivePageIndex := 10;
+  //      application.ProcessMessages;
+  //      frmProdutos.btnAlterarTudoTitulos.Click;
+  //    end;
+  //
+  //    //  frmProdutos.pTabelasSincronizacao.ActivePageIndex := 11;
+  //    //  application.ProcessMessages;
+  //    //  frmProdutos.btnAlterarTudoPedidos.Click;
+  //
+  //    btnAtualizacaoAutomaticaTudo.Tag := 0;
+  //
+  //    ContinuarTimerPedidos;
+  //    IniciarTimer;
+
+end;
+
+end.
+

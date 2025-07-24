@@ -1,0 +1,47 @@
+unit ufrmRequest;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IPPeerClient, REST.Client,
+  Data.Bind.Components, Data.Bind.ObjectScope, REST.Authenticator.OAuth;
+
+type
+  TfrmRequest = class(TForm)
+    RESTClientAuth: TRESTClient;
+    RESTRequestAuth: TRESTRequest;
+    RESTResponseAuth: TRESTResponse;
+    RESTClientModelo: TRESTClient;
+    RESTRequestModelo: TRESTRequest;
+    RESTResponseModelo: TRESTResponse;
+    RESTClientProd: TRESTClient;
+    RESTRequestProd: TRESTRequest;
+    RESTResponseProd: TRESTResponse;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRequest: TfrmRequest;
+
+implementation
+
+{$R *.dfm}
+
+uses uDD;
+
+procedure TfrmRequest.FormCreate(Sender: TObject);
+begin
+//  RESTClientProdutos.BaseURL := defurl + defprodutos;
+//  RESTRequestProdutos.Params[2].Value := defcode;
+//  RESTRequestAuth.Params[2].Value := defcode;
+//  RESTClientAuth.BaseURL := defurl + defauth;
+
+end;
+
+end.
+

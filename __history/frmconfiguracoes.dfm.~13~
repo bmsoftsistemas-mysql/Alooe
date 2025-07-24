@@ -1,0 +1,206 @@
+object frmconfig: Tfrmconfig
+  Left = 0
+  Top = 0
+  Caption = 'Configura'#231#245'es'
+  ClientHeight = 247
+  ClientWidth = 609
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnResize = FormResize
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel3: TPanel
+    Left = 0
+    Top = 0
+    Width = 609
+    Height = 247
+    Align = alClient
+    TabOrder = 0
+    ExplicitTop = -8
+    ExplicitWidth = 635
+    ExplicitHeight = 299
+    object Panel1: TPanel
+      Left = 1
+      Top = 129
+      Width = 607
+      Height = 64
+      Align = alTop
+      TabOrder = 0
+      ExplicitLeft = 2
+      ExplicitTop = 9
+      ExplicitWidth = 633
+      object Label1: TLabel
+        Left = 16
+        Top = 35
+        Width = 88
+        Height = 16
+        Caption = 'Code da Loja:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Panel2: TPanel
+        Left = 1
+        Top = 1
+        Width = 605
+        Height = 24
+        Align = alTop
+        Caption = 'Code Loja'
+        Color = 15770519
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        ExplicitWidth = 631
+      end
+      object edt_code: TEdit
+        Left = 151
+        Top = 31
+        Width = 443
+        Height = 21
+        TabOrder = 1
+      end
+    end
+    object Panel6: TPanel
+      Left = 1
+      Top = 65
+      Width = 607
+      Height = 64
+      Align = alTop
+      TabOrder = 1
+      ExplicitLeft = 2
+      ExplicitTop = 9
+      ExplicitWidth = 633
+      object Label5: TLabel
+        Left = 16
+        Top = 35
+        Width = 126
+        Height = 16
+        Caption = 'Url da Loja no Tray:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Panel7: TPanel
+        Left = 1
+        Top = 1
+        Width = 605
+        Height = 24
+        Align = alTop
+        Caption = 'URL Loja'
+        Color = 15770519
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        ExplicitWidth = 631
+      end
+      object edt_url: TEdit
+        Left = 151
+        Top = 31
+        Width = 443
+        Height = 21
+        TabOrder = 1
+      end
+    end
+    object Panel8: TPanel
+      Left = 1
+      Top = 1
+      Width = 607
+      Height = 64
+      Align = alTop
+      TabOrder = 2
+      ExplicitLeft = 2
+      ExplicitTop = 9
+      ExplicitWidth = 633
+      object Label7: TLabel
+        Left = 16
+        Top = 35
+        Width = 196
+        Height = 16
+        Caption = 'Sincroniza'#231#227'o Autom'#225'tica em:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label8: TLabel
+        Left = 271
+        Top = 35
+        Width = 55
+        Height = 16
+        Caption = 'minutos.'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Panel9: TPanel
+        Left = 1
+        Top = 1
+        Width = 605
+        Height = 24
+        Align = alTop
+        Caption = 'Tempo de Atualiza'#231#227'o '
+        Color = 15770519
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        ExplicitWidth = 631
+      end
+      object edt_sync: TRzSpinEdit
+        Left = 218
+        Top = 31
+        Width = 47
+        Height = 21
+        Max = 100.000000000000000000
+        TabOrder = 1
+      end
+    end
+    object btngravar: TButton
+      AlignWithMargins = True
+      Left = 289
+      Top = 207
+      Width = 89
+      Height = 29
+      Caption = 'Gravar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      OnClick = btngravarClick
+    end
+  end
+end

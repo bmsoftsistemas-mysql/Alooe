@@ -1,0 +1,43 @@
+program BM2Tray;
+
+uses
+  Vcl.Forms,
+  uMain in 'uMain.pas' {frmMain},
+  uDD in 'uDD.pas' {DD: TDataModule},
+  ufrmAviso in '..\Units\ufrmAviso.pas' {frmAviso},
+  ufrmMsg in '..\Units\ufrmMsg.pas' {frmMsg},
+  UComps in '..\Units\UComps.pas',
+  ULookup in '..\Units\ULookup.pas',
+  UIntegridade in 'UIntegridade.pas',
+  ufrmProdutos in 'ufrmTabelas.pas' {frmProdutos},
+  ufrmAguardaServidor in 'ufrmAguardaServidor.pas' {frmAguardaServidor},
+  ufuncoesGerais in '..\Units\ufuncoesGerais.pas',
+  ufrmRequest in 'ufrmRequest.pas' {frmRequest},
+  ufrmMarcas in 'ufrmMarcas.pas' {frmmarcas},
+  ufrmCategorias in 'ufrmCategorias.pas' {frmcategorias},
+  uprodutosfrm in 'uprodutosfrm.pas' {produtosfrm},
+  ufrmClientes in 'ufrmClientes.pas' {frmclientes},
+  ufrmPedidos in 'ufrmPedidos.pas' {frmpedidos},
+  ufrmerros in 'ufrmerros.pas' {frmerros},
+  frmconfiguracoes in 'frmconfiguracoes.pas' {frmconfig},
+  Ro in '..\Units\Ro.pas',
+  ufrmFundoModal in '..\Units\ufrmFundoModal.pas' {frmFundoModal},
+  Vcl.Themes,
+  Vcl.Styles;
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Amakrits');
+  Application.Title := 'Teste';
+  Application.CreateForm(TDD, DD);
+  Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmMsg, frmMsg);
+  Application.CreateForm(TfrmAguardaServidor, frmAguardaServidor);
+  Application.CreateForm(TfrmRequest, frmRequest);
+  Application.CreateForm(TfrmAviso, frmAviso);
+  Application.CreateForm(TfrmFundoModal, frmFundoModal);
+  Application.Run;
+end.
