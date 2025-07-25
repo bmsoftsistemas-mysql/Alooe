@@ -224,7 +224,7 @@ object frmModelagem: TfrmModelagem
       Top = 196
       Width = 699
       Height = 499
-      ActivePage = CRACK
+      ActivePage = TabSheet2
       TabOrder = 13
       object ENFESTO: TTabSheet
         Caption = 'ENFESTO'
@@ -636,7 +636,7 @@ object frmModelagem: TfrmModelagem
           Height = 13
           Caption = 'QTD. DE CHAPAS'
         end
-        object Edit26: TEdit
+        object edt_crack_tam: TEdit
           Left = 121
           Top = 21
           Width = 57
@@ -645,14 +645,16 @@ object frmModelagem: TfrmModelagem
           ReadOnly = True
           TabOrder = 0
         end
-        object Edit27: TEdit
+        object edt_crack_area1: TEdit
           Left = 121
           Top = 48
           Width = 57
           Height = 21
           TabOrder = 1
+          Text = '450'
+          OnChange = edt_crack_area1Change
         end
-        object Edit28: TEdit
+        object edt_crack_hv1: TEdit
           Left = 121
           Top = 68
           Width = 57
@@ -661,7 +663,7 @@ object frmModelagem: TfrmModelagem
           ReadOnly = True
           TabOrder = 2
         end
-        object Edit29: TEdit
+        object edt_crack_chapa1: TEdit
           Left = 121
           Top = 88
           Width = 57
@@ -670,7 +672,7 @@ object frmModelagem: TfrmModelagem
           ReadOnly = True
           TabOrder = 3
         end
-        object Edit30: TEdit
+        object edt_crack_pc: TEdit
           Left = 121
           Top = 107
           Width = 119
@@ -679,7 +681,7 @@ object frmModelagem: TfrmModelagem
           ReadOnly = True
           TabOrder = 4
         end
-        object Edit31: TEdit
+        object edt_crack_qc: TEdit
           Left = 121
           Top = 126
           Width = 119
@@ -688,14 +690,16 @@ object frmModelagem: TfrmModelagem
           ReadOnly = True
           TabOrder = 5
         end
-        object Edit38: TEdit
+        object edt_crack_area2: TEdit
           Left = 184
           Top = 48
           Width = 57
           Height = 21
           TabOrder = 6
+          Text = '350'
+          OnChange = edt_crack_area2Change
         end
-        object Edit39: TEdit
+        object edt_crack_hv2: TEdit
           Left = 184
           Top = 68
           Width = 57
@@ -704,7 +708,7 @@ object frmModelagem: TfrmModelagem
           ReadOnly = True
           TabOrder = 7
         end
-        object Edit40: TEdit
+        object edt_crack_chapa2: TEdit
           Left = 184
           Top = 88
           Width = 57
@@ -731,7 +735,7 @@ object frmModelagem: TfrmModelagem
           Caption = 'MATERIAL 2'
         end
         object Label50: TLabel
-          Left = 77
+          Left = 80
           Top = 40
           Width = 103
           Height = 13
@@ -787,7 +791,7 @@ object frmModelagem: TfrmModelagem
           Caption = 'LAZER G'
         end
         object Label58: TLabel
-          Left = 369
+          Left = 372
           Top = 40
           Width = 103
           Height = 13
@@ -836,7 +840,7 @@ object frmModelagem: TfrmModelagem
           Caption = 'LAZER M'
         end
         object Label65: TLabel
-          Left = 77
+          Left = 80
           Top = 192
           Width = 103
           Height = 13
@@ -885,7 +889,7 @@ object frmModelagem: TfrmModelagem
           Caption = 'LAZER P'
         end
         object Label72: TLabel
-          Left = 77
+          Left = 80
           Top = 336
           Width = 103
           Height = 13
@@ -934,7 +938,7 @@ object frmModelagem: TfrmModelagem
           Caption = 'LAZER M'
         end
         object Label79: TLabel
-          Left = 369
+          Left = 372
           Top = 192
           Width = 103
           Height = 13
@@ -983,7 +987,7 @@ object frmModelagem: TfrmModelagem
           Caption = 'LAZER P'
         end
         object Label86: TLabel
-          Left = 369
+          Left = 372
           Top = 336
           Width = 103
           Height = 13
@@ -1024,382 +1028,503 @@ object frmModelagem: TfrmModelagem
           Height = 13
           Caption = 'AREA MAQUINA'
         end
-        object Edit41: TEdit
+        object edt_laserg1_tam: TEdit
           Left = 185
           Top = 37
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 0
         end
-        object Edit42: TEdit
+        object edt_laserg1_area1: TEdit
           Left = 185
           Top = 60
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 1
+          Text = '1350'
+          OnChange = edt_laserg1_area1Change
         end
-        object Edit43: TEdit
+        object edt_laserg1_qc: TEdit
           Left = 185
           Top = 138
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 2
         end
-        object Edit44: TEdit
+        object edt_laserg1_pc: TEdit
           Left = 185
           Top = 119
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 3
         end
-        object Edit45: TEdit
+        object edt_laserg1_chapa1: TEdit
           Left = 185
           Top = 100
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 4
         end
-        object Edit46: TEdit
+        object edt_laserg1_hv1: TEdit
           Left = 185
           Top = 80
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 5
         end
-        object Edit47: TEdit
+        object edt_laserg1_area2: TEdit
           Left = 248
           Top = 60
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 6
+          Text = '1000'
+          OnChange = edt_laserg1_area2Change
         end
-        object Edit48: TEdit
+        object edt_laserg1_hv2: TEdit
           Left = 248
           Top = 80
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 7
         end
-        object Edit49: TEdit
+        object edt_laserg1_chapa2: TEdit
           Left = 248
           Top = 100
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 8
         end
-        object Edit50: TEdit
+        object edt_laserg2_tam: TEdit
           Left = 477
           Top = 37
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 9
         end
-        object Edit51: TEdit
+        object edt_laserg2_area1: TEdit
           Left = 477
           Top = 60
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 10
+          Text = '1350'
+          OnChange = edt_laserg2_area1Change
         end
-        object Edit52: TEdit
+        object edt_laserg2_hv1: TEdit
           Left = 477
           Top = 80
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 11
         end
-        object Edit68: TEdit
+        object edt_laserg2_chapa1: TEdit
           Left = 477
           Top = 100
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 12
         end
-        object Edit69: TEdit
+        object edt_laserg2_area2: TEdit
           Left = 540
           Top = 60
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 13
+          Text = '1000'
+          OnChange = edt_laserg2_area2Change
         end
-        object Edit70: TEdit
+        object edt_laserg2_hv2: TEdit
           Left = 540
           Top = 80
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 14
         end
-        object Edit71: TEdit
+        object edt_laserg2_chapa2: TEdit
           Left = 540
           Top = 100
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 15
         end
-        object Edit72: TEdit
+        object edt_laserg2_pc: TEdit
           Left = 477
           Top = 119
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 16
         end
-        object Edit73: TEdit
+        object edt_laserg2_qc: TEdit
           Left = 477
           Top = 138
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 17
         end
-        object Edit74: TEdit
+        object edt_laserm1_tam: TEdit
           Left = 185
           Top = 189
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 18
         end
-        object Edit75: TEdit
+        object edt_laserm1_area1: TEdit
           Left = 185
           Top = 212
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 19
+          Text = '760'
+          OnChange = edt_laserm1_area1Change
         end
-        object Edit76: TEdit
+        object edt_laserm1_hv1: TEdit
           Left = 185
           Top = 232
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 20
         end
-        object Edit77: TEdit
+        object edt_laserm1_chapa1: TEdit
           Left = 185
           Top = 252
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 21
         end
-        object Edit78: TEdit
+        object edt_laserm1_area2: TEdit
           Left = 248
           Top = 212
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 22
+          Text = '450'
+          OnChange = edt_laserm1_area2Change
         end
-        object Edit79: TEdit
+        object edt_laserm1_hv2: TEdit
           Left = 248
           Top = 232
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 23
         end
-        object Edit80: TEdit
+        object edt_laserm1_chapa2: TEdit
           Left = 248
           Top = 252
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 24
         end
-        object Edit81: TEdit
+        object edt_laserm1_pc: TEdit
           Left = 185
           Top = 271
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 25
         end
-        object Edit82: TEdit
+        object edt_laserm1_qc: TEdit
           Left = 185
           Top = 290
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 26
         end
-        object Edit83: TEdit
+        object edt_laserp1_tam: TEdit
           Left = 185
           Top = 333
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 27
         end
-        object Edit84: TEdit
+        object edt_laserp1_area1: TEdit
           Left = 185
           Top = 356
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 28
+          Text = '570'
+          OnChange = edt_laserp1_area1Change
         end
-        object Edit85: TEdit
+        object edt_laserp1_hv1: TEdit
           Left = 185
           Top = 376
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 29
         end
-        object Edit86: TEdit
+        object edt_laserp1_chapa1: TEdit
           Left = 185
           Top = 396
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 30
         end
-        object Edit87: TEdit
+        object edt_laserp1_area2: TEdit
           Left = 248
           Top = 356
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 31
+          Text = '400'
+          OnChange = edt_laserp1_area2Change
         end
-        object Edit88: TEdit
+        object edt_laserp1_hv2: TEdit
           Left = 248
           Top = 376
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 32
         end
-        object Edit89: TEdit
+        object edt_laserp1_chapa2: TEdit
           Left = 248
           Top = 396
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 33
         end
-        object Edit90: TEdit
+        object edt_laserp1_pc: TEdit
           Left = 185
           Top = 415
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 34
         end
-        object Edit91: TEdit
+        object edt_laserp1_qc: TEdit
           Left = 185
           Top = 434
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 35
         end
-        object Edit92: TEdit
+        object edt_laserm2_tam: TEdit
           Left = 477
           Top = 189
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 36
+          OnChange = edt_laserm2_tamChange
         end
-        object Edit93: TEdit
+        object edt_laserm2_area1: TEdit
           Left = 477
           Top = 212
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 37
+          Text = '760'
+          OnChange = edt_laserm2_area1Change
         end
-        object Edit94: TEdit
+        object edt_laserm2_hv1: TEdit
           Left = 477
           Top = 232
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 38
         end
-        object Edit95: TEdit
+        object edt_laserm2_chapa1: TEdit
           Left = 477
           Top = 252
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 39
         end
-        object Edit96: TEdit
+        object edt_laserm2_area2: TEdit
           Left = 540
           Top = 212
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 40
+          Text = '450'
+          OnChange = edt_laserm2_area2Change
         end
-        object Edit97: TEdit
+        object edt_laserm2_hv2: TEdit
           Left = 540
           Top = 232
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 41
         end
-        object Edit98: TEdit
+        object edt_laserm2_chapa2: TEdit
           Left = 540
           Top = 252
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 42
         end
-        object Edit99: TEdit
+        object edt_laserm2_pc: TEdit
           Left = 477
           Top = 271
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 43
         end
-        object Edit100: TEdit
+        object edt_laserm2_qc: TEdit
           Left = 477
           Top = 290
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 44
         end
-        object Edit101: TEdit
+        object edt_laserp2_tam: TEdit
           Left = 477
           Top = 333
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 45
         end
-        object Edit102: TEdit
+        object edt_laserp2_area1: TEdit
           Left = 477
           Top = 356
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 46
+          Text = '570'
+          OnChange = edt_laserp2_area1Change
         end
-        object Edit103: TEdit
+        object edt_laserp2_hv1: TEdit
           Left = 477
           Top = 376
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 47
         end
-        object Edit104: TEdit
+        object edt_laserp2_chapa1: TEdit
           Left = 477
           Top = 396
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 48
         end
-        object Edit105: TEdit
+        object edt_laserp2_area2: TEdit
           Left = 540
           Top = 356
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 49
+          Text = '400'
+          OnChange = edt_laserp2_area2Change
         end
-        object Edit106: TEdit
+        object edt_laserp2_hv2: TEdit
           Left = 540
           Top = 376
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 50
         end
-        object Edit107: TEdit
+        object edt_laserp2_chapa2: TEdit
           Left = 540
           Top = 396
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 51
         end
-        object Edit108: TEdit
+        object edt_laserp2_pc: TEdit
           Left = 477
           Top = 415
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 52
         end
-        object Edit109: TEdit
+        object edt_laserp2_qc: TEdit
           Left = 477
           Top = 434
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 53
         end
       end
@@ -1419,13 +1544,6 @@ object frmModelagem: TfrmModelagem
           Width = 41
           Height = 13
           Caption = 'LAZER G'
-        end
-        object Label94: TLabel
-          Left = 85
-          Top = 48
-          Width = 103
-          Height = 13
-          Caption = 'TAMANHO ETIQUETA'
         end
         object Label95: TLabel
           Left = 88
@@ -1475,13 +1593,6 @@ object frmModelagem: TfrmModelagem
           Width = 41
           Height = 13
           Caption = 'LAZER G'
-        end
-        object Label102: TLabel
-          Left = 377
-          Top = 48
-          Width = 103
-          Height = 13
-          Caption = 'TAMANHO ETIQUETA'
         end
         object Label103: TLabel
           Left = 380
@@ -1560,215 +1671,243 @@ object frmModelagem: TfrmModelagem
           Height = 13
           Caption = 'QDT. ETQ. QUADR.'
         end
-        object Edit53: TEdit
+        object edt_lasermontg1_qc: TEdit
           Left = 193
-          Top = 45
-          Width = 57
+          Top = 207
+          Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 0
         end
-        object Edit54: TEdit
+        object edt_lasermontg1_pc: TEdit
           Left = 193
-          Top = 207
+          Top = 127
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 1
         end
-        object Edit55: TEdit
+        object edt_lasermontg1_chapa1: TEdit
           Left = 193
-          Top = 127
-          Width = 119
+          Top = 108
+          Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 2
         end
-        object Edit56: TEdit
+        object edt_lasermontg1_hv1: TEdit
           Left = 193
-          Top = 108
+          Top = 88
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 3
         end
-        object Edit57: TEdit
-          Left = 193
-          Top = 88
-          Width = 57
-          Height = 21
-          TabOrder = 4
-        end
-        object Edit58: TEdit
+        object edt_lasermontg1_area1: TEdit
           Left = 193
           Top = 68
           Width = 57
           Height = 21
-          TabOrder = 5
+          NumbersOnly = True
+          TabOrder = 4
+          Text = '1350'
+          OnChange = edt_lasermontg1_area1Change
         end
-        object Edit59: TEdit
+        object edt_lasermontg1_area2: TEdit
           Left = 256
           Top = 68
           Width = 57
           Height = 21
+          NumbersOnly = True
+          TabOrder = 5
+          Text = '1000'
+          OnChange = edt_lasermontg1_area2Change
+        end
+        object edt_lasermontg1_hv2: TEdit
+          Left = 256
+          Top = 88
+          Width = 57
+          Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 6
         end
-        object Edit60: TEdit
-          Left = 256
-          Top = 88
-          Width = 57
-          Height = 21
-          TabOrder = 7
-        end
-        object Edit61: TEdit
+        object edt_lasermontg1_chapa2: TEdit
           Left = 256
           Top = 108
           Width = 57
           Height = 21
-          TabOrder = 8
+          NumbersOnly = True
+          ReadOnly = True
+          TabOrder = 7
         end
-        object Edit62: TEdit
-          Left = 485
-          Top = 45
-          Width = 57
-          Height = 21
-          TabOrder = 9
-        end
-        object Edit63: TEdit
+        object edt_lasermontg2_qc: TEdit
           Left = 485
           Top = 207
           Width = 119
           Height = 21
-          TabOrder = 10
+          NumbersOnly = True
+          ReadOnly = True
+          TabOrder = 8
         end
-        object Edit64: TEdit
+        object edt_lasermontg2_pc: TEdit
           Left = 485
           Top = 127
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
+          TabOrder = 9
+        end
+        object edt_lasermontg2_chapa1: TEdit
+          Left = 485
+          Top = 108
+          Width = 57
+          Height = 21
+          NumbersOnly = True
+          ReadOnly = True
+          TabOrder = 10
+        end
+        object edt_lasermontg2_hv1: TEdit
+          Left = 485
+          Top = 88
+          Width = 57
+          Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 11
         end
-        object Edit65: TEdit
-          Left = 485
-          Top = 108
-          Width = 57
-          Height = 21
-          TabOrder = 12
-        end
-        object Edit66: TEdit
-          Left = 485
-          Top = 88
-          Width = 57
-          Height = 21
-          TabOrder = 13
-        end
-        object Edit67: TEdit
+        object edt_lasermontg2_area1: TEdit
           Left = 485
           Top = 68
           Width = 57
           Height = 21
+          NumbersOnly = True
+          TabOrder = 12
+          Text = '1350'
+          OnChange = edt_lasermontg2_area1Change
+        end
+        object edt_lasermontg2_area2: TEdit
+          Left = 548
+          Top = 68
+          Width = 57
+          Height = 21
+          NumbersOnly = True
+          TabOrder = 13
+          Text = '1000'
+          OnChange = edt_lasermontg2_area2Change
+        end
+        object edt_lasermontg2_hv2: TEdit
+          Left = 548
+          Top = 88
+          Width = 57
+          Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 14
         end
-        object Edit110: TEdit
-          Left = 548
-          Top = 68
-          Width = 57
-          Height = 21
-          TabOrder = 15
-        end
-        object Edit111: TEdit
-          Left = 548
-          Top = 88
-          Width = 57
-          Height = 21
-          TabOrder = 16
-        end
-        object Edit112: TEdit
+        object edt_lasermontg2_chapa2: TEdit
           Left = 548
           Top = 108
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
+          TabOrder = 15
+        end
+        object edt_lasermontg1_recorte1: TEdit
+          Left = 193
+          Top = 146
+          Width = 57
+          Height = 21
+          NumbersOnly = True
+          ReadOnly = True
+          TabOrder = 16
+        end
+        object edt_lasermontg1_recorte2: TEdit
+          Left = 256
+          Top = 146
+          Width = 57
+          Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 17
         end
-        object Edit113: TEdit
-          Left = 256
-          Top = 45
-          Width = 57
-          Height = 21
-          TabOrder = 18
-        end
-        object Edit114: TEdit
-          Left = 548
-          Top = 45
-          Width = 57
-          Height = 21
-          TabOrder = 19
-        end
-        object Edit115: TEdit
+        object edt_lasermontg1_hvrec1: TEdit
           Left = 193
-          Top = 146
+          Top = 165
           Width = 57
           Height = 21
+          NumbersOnly = True
+          TabOrder = 18
+          OnChange = edt_lasermontg1_hvrec1Change
+        end
+        object edt_lasermontg1_hvrec2: TEdit
+          Left = 256
+          Top = 165
+          Width = 57
+          Height = 21
+          NumbersOnly = True
+          TabOrder = 19
+          OnChange = edt_lasermontg1_hvrec2Change
+        end
+        object edt_lasermontg1_qeq: TEdit
+          Left = 193
+          Top = 186
+          Width = 119
+          Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 20
         end
-        object Edit116: TEdit
-          Left = 256
+        object edt_lasermontg2_recorte2: TEdit
+          Left = 547
           Top = 146
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 21
         end
-        object Edit117: TEdit
-          Left = 193
-          Top = 165
+        object edt_lasermontg2_recorte1: TEdit
+          Left = 484
+          Top = 146
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 22
         end
-        object Edit118: TEdit
-          Left = 256
+        object edt_lasermontg2_hvrec1: TEdit
+          Left = 484
           Top = 165
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 23
+          OnChange = edt_lasermontg2_hvrec1Change
         end
-        object Edit119: TEdit
-          Left = 193
-          Top = 186
-          Width = 119
+        object edt_lasermontg2_hvrec2: TEdit
+          Left = 547
+          Top = 165
+          Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 24
+          OnChange = edt_lasermontg2_hvrec2Change
         end
-        object Edit120: TEdit
-          Left = 547
-          Top = 146
-          Width = 57
-          Height = 21
-          TabOrder = 25
-        end
-        object Edit121: TEdit
-          Left = 484
-          Top = 146
-          Width = 57
-          Height = 21
-          TabOrder = 26
-        end
-        object Edit122: TEdit
-          Left = 484
-          Top = 165
-          Width = 57
-          Height = 21
-          TabOrder = 27
-        end
-        object Edit123: TEdit
-          Left = 547
-          Top = 165
-          Width = 57
-          Height = 21
-          TabOrder = 28
-        end
-        object Edit124: TEdit
+        object edt_lasermontg2_qeq: TEdit
           Left = 484
           Top = 186
           Width = 119
           Height = 21
-          TabOrder = 29
+          NumbersOnly = True
+          ReadOnly = True
+          TabOrder = 25
         end
       end
       object TabSheet4: TTabSheet
@@ -1830,74 +1969,94 @@ object frmModelagem: TfrmModelagem
           Height = 13
           Caption = 'TAMANHO GALVO'
         end
-        object Edit125: TEdit
+        object edt_galvo_tg2: TEdit
           Left = 191
           Top = 170
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 0
+          OnChange = edt_galvo_tg2Change
         end
-        object Edit126: TEdit
+        object edt_galvo_tg1: TEdit
           Left = 128
           Top = 170
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 1
+          OnChange = edt_galvo_tg1Change
         end
-        object Edit127: TEdit
+        object edt_galvo_etpt: TEdit
           Left = 128
           Top = 149
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 2
         end
-        object Edit128: TEdit
+        object edt_galvo_etqpp: TEdit
           Left = 128
           Top = 130
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 3
         end
-        object Edit131: TEdit
+        object edt_galvo_desloc: TEdit
           Left = 128
           Top = 111
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 4
         end
-        object Edit132: TEdit
+        object edt_galvo_hv2: TEdit
           Left = 191
           Top = 92
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 5
         end
-        object Edit136: TEdit
+        object edt_galvo_tam: TEdit
           Left = 128
           Top = 29
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 6
         end
-        object Edit137: TEdit
+        object edt_galvo_altura: TEdit
           Left = 128
           Top = 52
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 7
         end
-        object Edit138: TEdit
+        object edt_galvo_qt: TEdit
           Left = 128
           Top = 72
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 8
         end
-        object Edit139: TEdit
+        object edt_galvo_hv1: TEdit
           Left = 128
           Top = 92
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 9
         end
       end
@@ -1967,109 +2126,139 @@ object frmModelagem: TfrmModelagem
           Height = 13
           Caption = 'QTD. DE CHAPAS'
         end
-        object Edit129: TEdit
+        object edt_crackchapado_etc: TEdit
           Left = 136
           Top = 178
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 0
         end
-        object Edit133: TEdit
+        object edt_crackchapado_chapa1: TEdit
           Left = 136
           Top = 157
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 1
         end
-        object Edit134: TEdit
+        object edt_crackchapado_hv12: TEdit
           Left = 136
           Top = 138
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 2
         end
-        object Edit135: TEdit
+        object edt_crackchapado_area1crack: TEdit
           Left = 136
           Top = 119
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 3
         end
-        object Edit140: TEdit
+        object edt_crackchapado_qts2: TEdit
           Left = 199
           Top = 100
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 4
         end
-        object Edit141: TEdit
+        object edt_crackchapado_qts1: TEdit
           Left = 136
           Top = 100
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 5
         end
-        object Edit142: TEdit
+        object edt_crackchapado_hv1: TEdit
           Left = 136
           Top = 80
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 6
         end
-        object Edit143: TEdit
+        object edt_crackchapado_area1: TEdit
           Left = 136
-          Top = 60
+          Top = 59
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 7
+          OnChange = edt_crackchapado_area1Change
         end
-        object Edit144: TEdit
+        object edt_crackchapado_tam: TEdit
           Left = 136
           Top = 37
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 8
         end
-        object Edit145: TEdit
+        object edt_crackchapado_qtc: TEdit
           Left = 136
           Top = 197
           Width = 120
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 9
         end
-        object Edit130: TEdit
+        object edt_crackchapado_area2crack: TEdit
           Left = 199
           Top = 118
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 10
         end
-        object Edit146: TEdit
+        object edt_crackchapado_hv2: TEdit
           Left = 199
           Top = 80
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 11
         end
-        object Edit147: TEdit
+        object edt_crackchapado_area2: TEdit
           Left = 199
           Top = 60
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 12
+          OnChange = edt_crackchapado_area2Change
         end
-        object Edit148: TEdit
+        object edt_crackchapado_hv22: TEdit
           Left = 199
           Top = 138
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 13
         end
-        object Edit149: TEdit
+        object edt_crackchapado_chapa2: TEdit
           Left = 199
           Top = 157
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 14
         end
       end
@@ -2139,109 +2328,139 @@ object frmModelagem: TfrmModelagem
           Height = 13
           Caption = 'QTD. DE CHAPAS'
         end
-        object Edit150: TEdit
+        object edt_crackchapadosemfaca_tam: TEdit
           Left = 144
           Top = 45
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 0
         end
-        object Edit151: TEdit
+        object edt_crackchapadosemfaca_qtc: TEdit
           Left = 144
           Top = 205
           Width = 120
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 1
         end
-        object Edit152: TEdit
+        object edt_crackchapadosemfaca_etc: TEdit
           Left = 144
           Top = 186
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 2
         end
-        object Edit153: TEdit
+        object edt_crackchapadosemfaca_chapa1: TEdit
           Left = 144
           Top = 165
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 3
         end
-        object Edit154: TEdit
+        object edt_crackchapadosemfaca_hv12: TEdit
           Left = 144
           Top = 146
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 4
         end
-        object Edit155: TEdit
+        object edt_crackchapadosemfaca_area1laser: TEdit
           Left = 144
           Top = 127
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 5
         end
-        object Edit156: TEdit
+        object edt_crackchapadosemfaca_qts1: TEdit
           Left = 144
           Top = 108
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 6
         end
-        object Edit157: TEdit
+        object edt_crackchapadosemfaca_hv1: TEdit
           Left = 144
           Top = 88
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 7
         end
-        object Edit158: TEdit
+        object edt_crackchapadosemfaca_area1: TEdit
           Left = 144
           Top = 68
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 8
+          OnChange = edt_crackchapadosemfaca_area1Change
         end
-        object Edit159: TEdit
+        object edt_crackchapadosemfaca_area2: TEdit
           Left = 207
           Top = 68
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 9
+          OnChange = edt_crackchapadosemfaca_area2Change
         end
-        object Edit160: TEdit
+        object edt_crackchapadosemfaca_hv2: TEdit
           Left = 207
           Top = 88
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 10
         end
-        object Edit161: TEdit
+        object edt_crackchapadosemfaca_qts2: TEdit
           Left = 207
           Top = 108
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 11
         end
-        object Edit162: TEdit
+        object edt_crackchapadosemfaca_area2laser: TEdit
           Left = 207
           Top = 126
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 12
         end
-        object Edit163: TEdit
+        object edt_crackchapadosemfaca_hv22: TEdit
           Left = 207
           Top = 146
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 13
         end
-        object Edit164: TEdit
+        object edt_crackchapadosemfaca_chapa2: TEdit
           Left = 207
           Top = 165
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 14
         end
       end

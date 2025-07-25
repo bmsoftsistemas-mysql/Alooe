@@ -224,7 +224,7 @@ object frmModelagem: TfrmModelagem
       Top = 196
       Width = 699
       Height = 499
-      ActivePage = TabSheet3
+      ActivePage = TabSheet5
       TabOrder = 13
       object ENFESTO: TTabSheet
         Caption = 'ENFESTO'
@@ -1692,7 +1692,6 @@ object frmModelagem: TfrmModelagem
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 3
-          OnChange = edt_lasermontg1_hv1Change
         end
         object edt_lasermontg1_area1: TEdit
           Left = 193
@@ -1701,6 +1700,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           NumbersOnly = True
           TabOrder = 4
+          OnChange = edt_lasermontg1_area1Change
         end
         object edt_lasermontg1_area2: TEdit
           Left = 256
@@ -1772,6 +1772,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           NumbersOnly = True
           TabOrder = 12
+          OnChange = edt_lasermontg2_area1Change
         end
         object edt_lasermontg2_area2: TEdit
           Left = 548
@@ -1780,6 +1781,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           NumbersOnly = True
           TabOrder = 13
+          OnChange = edt_lasermontg2_area2Change
         end
         object edt_lasermontg2_hv2: TEdit
           Left = 548
@@ -1945,74 +1947,94 @@ object frmModelagem: TfrmModelagem
           Height = 13
           Caption = 'TAMANHO GALVO'
         end
-        object Edit125: TEdit
+        object edt_galvo_tg2: TEdit
           Left = 191
           Top = 170
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 0
+          OnChange = edt_galvo_tg2Change
         end
-        object Edit126: TEdit
+        object edt_galvo_tg1: TEdit
           Left = 128
           Top = 170
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 1
+          OnChange = edt_galvo_tg1Change
         end
-        object Edit127: TEdit
+        object edt_galvo_etpt: TEdit
           Left = 128
           Top = 149
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 2
         end
-        object Edit128: TEdit
+        object edt_galvo_etqpp: TEdit
           Left = 128
           Top = 130
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 3
         end
-        object Edit131: TEdit
+        object edt_galvo_desloc: TEdit
           Left = 128
           Top = 111
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 4
         end
-        object Edit132: TEdit
+        object edt_galvo_hv2: TEdit
           Left = 191
           Top = 92
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 5
         end
-        object Edit136: TEdit
+        object edt_galvo_tam: TEdit
           Left = 128
           Top = 29
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 6
         end
-        object Edit137: TEdit
+        object edt_galvo_altura: TEdit
           Left = 128
           Top = 52
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 7
         end
-        object Edit138: TEdit
+        object edt_galvo_qt: TEdit
           Left = 128
           Top = 72
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 8
         end
-        object Edit139: TEdit
+        object edt_galvo_hv1: TEdit
           Left = 128
           Top = 92
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 9
         end
       end
@@ -2082,109 +2104,138 @@ object frmModelagem: TfrmModelagem
           Height = 13
           Caption = 'QTD. DE CHAPAS'
         end
-        object Edit129: TEdit
+        object edt_crackchapado_etc: TEdit
           Left = 136
           Top = 178
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 0
         end
-        object Edit133: TEdit
+        object edt_crackchapado_chapa1: TEdit
           Left = 136
           Top = 157
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 1
         end
-        object Edit134: TEdit
+        object edt_crackchapado_hv12: TEdit
           Left = 136
           Top = 138
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 2
         end
-        object Edit135: TEdit
+        object edt_crackchapado_area1crack: TEdit
           Left = 136
           Top = 119
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 3
         end
-        object Edit140: TEdit
+        object edt_crackchapado_qts2: TEdit
           Left = 199
           Top = 100
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 4
         end
-        object Edit141: TEdit
+        object edt_crackchapado_qts1: TEdit
           Left = 136
           Top = 100
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 5
         end
-        object Edit142: TEdit
+        object edt_crackchapado_hv1: TEdit
           Left = 136
           Top = 80
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 6
         end
-        object Edit143: TEdit
+        object edt_crackchapado_area1: TEdit
           Left = 136
           Top = 60
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 7
+          OnChange = edt_crackchapado_area1Change
         end
-        object Edit144: TEdit
+        object edt_crackchapado_tam: TEdit
           Left = 136
           Top = 37
           Width = 119
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 8
         end
-        object Edit145: TEdit
+        object edt_crackchapado_qtc: TEdit
           Left = 136
           Top = 197
           Width = 120
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 9
         end
-        object Edit130: TEdit
+        object edt_crackchapado_area2crack: TEdit
           Left = 199
           Top = 118
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 10
         end
-        object Edit146: TEdit
+        object edt_crackchapado_hv2: TEdit
           Left = 199
           Top = 80
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 11
         end
-        object Edit147: TEdit
+        object edt_crackchapado_area2: TEdit
           Left = 199
           Top = 60
           Width = 57
           Height = 21
+          NumbersOnly = True
           TabOrder = 12
         end
-        object Edit148: TEdit
+        object edt_crackchapado_hv22: TEdit
           Left = 199
           Top = 138
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 13
         end
-        object Edit149: TEdit
+        object edt_crackchapado_chapa2: TEdit
           Left = 199
           Top = 157
           Width = 57
           Height = 21
+          NumbersOnly = True
+          ReadOnly = True
           TabOrder = 14
         end
       end

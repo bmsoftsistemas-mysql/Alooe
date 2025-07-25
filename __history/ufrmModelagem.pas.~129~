@@ -257,16 +257,16 @@ type
     Label119: TLabel;
     Label120: TLabel;
     Label121: TLabel;
-    Edit125: TEdit;
-    Edit126: TEdit;
-    Edit127: TEdit;
-    Edit128: TEdit;
-    Edit131: TEdit;
-    Edit132: TEdit;
-    Edit136: TEdit;
-    Edit137: TEdit;
-    Edit138: TEdit;
-    Edit139: TEdit;
+    edt_galvo_tg2: TEdit;
+    edt_galvo_tg1: TEdit;
+    edt_galvo_etpt: TEdit;
+    edt_galvo_etqpp: TEdit;
+    edt_galvo_desloc: TEdit;
+    edt_galvo_hv2: TEdit;
+    edt_galvo_tam: TEdit;
+    edt_galvo_altura: TEdit;
+    edt_galvo_qt: TEdit;
+    edt_galvo_hv1: TEdit;
     Label122: TLabel;
     Label123: TLabel;
     Label124: TLabel;
@@ -275,24 +275,24 @@ type
     Label127: TLabel;
     Label128: TLabel;
     Label129: TLabel;
-    Edit129: TEdit;
-    Edit133: TEdit;
-    Edit134: TEdit;
-    Edit135: TEdit;
-    Edit140: TEdit;
-    Edit141: TEdit;
-    Edit142: TEdit;
-    Edit143: TEdit;
-    Edit144: TEdit;
+    edt_crackchapado_etc: TEdit;
+    edt_crackchapado_chapa1: TEdit;
+    edt_crackchapado_hv12: TEdit;
+    edt_crackchapado_area1crack: TEdit;
+    edt_crackchapado_qts2: TEdit;
+    edt_crackchapado_qts1: TEdit;
+    edt_crackchapado_hv1: TEdit;
+    edt_crackchapado_area1: TEdit;
+    edt_crackchapado_tam: TEdit;
     Label130: TLabel;
-    Edit145: TEdit;
-    Edit130: TEdit;
-    Edit146: TEdit;
-    Edit147: TEdit;
-    Edit148: TEdit;
-    Edit149: TEdit;
+    edt_crackchapado_qtc: TEdit;
+    edt_crackchapado_area2crack: TEdit;
+    edt_crackchapado_hv2: TEdit;
+    edt_crackchapado_area2: TEdit;
+    edt_crackchapado_hv22: TEdit;
+    edt_crackchapado_chapa2: TEdit;
     Label131: TLabel;
-    Edit150: TEdit;
+    edt_crackchapadosemfaca_tam: TEdit;
     Label132: TLabel;
     Label133: TLabel;
     Label134: TLabel;
@@ -301,20 +301,39 @@ type
     Label137: TLabel;
     Label138: TLabel;
     Label139: TLabel;
-    Edit151: TEdit;
-    Edit152: TEdit;
-    Edit153: TEdit;
-    Edit154: TEdit;
-    Edit155: TEdit;
-    Edit156: TEdit;
-    Edit157: TEdit;
-    Edit158: TEdit;
-    Edit159: TEdit;
-    Edit160: TEdit;
-    Edit161: TEdit;
-    Edit162: TEdit;
-    Edit163: TEdit;
-    Edit164: TEdit;
+    edt_crackchapadosemfaca_qtc: TEdit;
+    edt_crackchapadosemfaca_etc: TEdit;
+    edt_crackchapadosemfaca_chapa1: TEdit;
+    edt_crackchapadosemfaca_hv12: TEdit;
+    edt_crackchapadosemfaca_area1laser: TEdit;
+    edt_crackchapadosemfaca_qts1: TEdit;
+    edt_crackchapadosemfaca_hv1: TEdit;
+    edt_crackchapadosemfaca_area1: TEdit;
+    edt_crackchapadosemfaca_area2: TEdit;
+    edt_crackchapadosemfaca_hv2: TEdit;
+    edt_crackchapadosemfaca_qts2: TEdit;
+    edt_crackchapadosemfaca_area2laser: TEdit;
+    edt_crackchapadosemfaca_hv22: TEdit;
+    edt_crackchapadosemfaca_chapa2: TEdit;
+    TabSheet7: TTabSheet;
+    Label4: TLabel;
+    edt_galvofinal_tam: TEdit;
+    Label94: TLabel;
+    Label102: TLabel;
+    Label140: TLabel;
+    Label141: TLabel;
+    Label142: TLabel;
+    Label143: TLabel;
+    Label144: TLabel;
+    edt_galvofinal_tg1: TEdit;
+    edt_galvofinal_tg2: TEdit;
+    edt_galvofinal_etpt: TEdit;
+    edt_galvofinal_etqpp: TEdit;
+    edt_galvofinal_desloc: TEdit;
+    edt_galvofinal_hv1: TEdit;
+    edt_galvofinal_hv2: TEdit;
+    edt_galvofinal_qt: TEdit;
+    edt_galvofinal_altura: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure edt_medida_maior1Change(Sender: TObject);
     procedure edt_medida_maior2Change(Sender: TObject);
@@ -340,6 +359,21 @@ type
     procedure edt_laserm2_area2Change(Sender: TObject);
     procedure edt_lasermontg1_area2Change(Sender: TObject);
     procedure edt_lasermontg1_area1Change(Sender: TObject);
+    procedure edt_lasermontg2_area1Change(Sender: TObject);
+    procedure edt_lasermontg2_area2Change(Sender: TObject);
+    procedure edt_galvo_tg1Change(Sender: TObject);
+    procedure edt_galvo_tg2Change(Sender: TObject);
+    procedure edt_crackchapado_area1Change(Sender: TObject);
+    procedure edt_crackchapado_area2Change(Sender: TObject);
+    procedure edt_crackchapadosemfaca_area1Change(Sender: TObject);
+    procedure edt_crackchapadosemfaca_area2Change(Sender: TObject);
+    procedure edt_lasermontg1_hvrec1Change(Sender: TObject);
+    procedure edt_lasermontg1_hvrec2Change(Sender: TObject);
+    procedure edt_lasermontg2_hvrec1Change(Sender: TObject);
+    procedure edt_lasermontg2_hvrec2Change(Sender: TObject);
+    procedure edt_galvofinal_tg2Change(Sender: TObject);
+    procedure edt_galvofinal_hv1Change(Sender: TObject);
+    procedure edt_galvofinal_hv2Change(Sender: TObject);
   private
     function GetEditIntValue(Edit: TEdit): Double;
     { Private declarations }
@@ -718,7 +752,7 @@ begin
 
         if (CA2 > 0) and (T3 > 0) then
         begin
-          T5 := Trunc(CA1 / (T3 + 1));
+          T5 := Trunc(CA2 / (T3 + 1));
           edt_lasermontg1_hv2.Text :=  FloatToStr(T5);
         end;
 
@@ -732,7 +766,7 @@ begin
      edt_lasermontg1_pc.Text := FloatToStr(T4*T5*T1);
 
      if (MA > 0) and ((T4*T5*T1) > 0) then
-       T8 := MA / (T4*T5*T1);
+       T8 := RoundTo(MA / (T4*T5*T1), -2);
 
      edt_lasermontg1_qc.Text := FloatToStr(T8);
    end
@@ -754,6 +788,138 @@ procedure TfrmModelagem.edt_lasermontg1_area2Change(Sender: TObject);
 begin
   if Assigned(edt_lasermontg1_area1.OnChange) then
     edt_lasermontg1_area1.OnChange(edt_lasermontg1_area1);
+end;
+
+procedure TfrmModelagem.edt_lasermontg1_hvrec1Change(Sender: TObject);
+begin
+  if Assigned(edt_lasermontg1_area1.OnChange) then
+    edt_lasermontg1_area1.OnChange(edt_lasermontg1_area1);
+end;
+
+procedure TfrmModelagem.edt_lasermontg1_hvrec2Change(Sender: TObject);
+begin
+  if Assigned(edt_lasermontg1_area1.OnChange) then
+    edt_lasermontg1_area1.OnChange(edt_lasermontg1_area1);
+end;
+
+procedure TfrmModelagem.edt_lasermontg2_area1Change(Sender: TObject);
+var
+A1LG1, A1LG2, CQC, CA1, CA2, LR1, MM, MN, CH1, CH2:DOUBLE;
+CHREC1, CHREC2, EQ, CP, MA, T1, T2, T3, T4, T5, T6, T7, T8:DOUBLE;
+begin
+   T1 := 0;
+   T2 := 0;
+   T3 := 0;
+   T4 := 0;
+   T5 := 0;
+   T6 := 0;
+   T7 := 0;
+   T8 := 0;
+
+   if (edt_lasermontg2_hvrec1.Text <> '') and (edt_lasermontg2_hvrec1.Text <> '') then
+   begin
+     CHREC1 := GetEditIntValue(edt_lasermontg2_hvrec1);
+     CHREC2 := GetEditIntValue(edt_lasermontg2_hvrec2);
+     MM := GetEditIntValue(edt_medida_maior1);
+     MN := GetEditIntValue(edt_medida_menor1);
+     MA := GetEditIntValue(edt_max_aceitavel);
+
+     T1 :=  CHREC1 * CHREC2;
+     T2 :=  (MM * CHREC1)+6+(3*(CHREC1-1));
+     T3 :=  (MN*CHREC2)+6+(3*(CHREC2-1));
+
+
+     edt_lasermontg2_qeq.Text := FloatToStr(T1);
+     edt_lasermontg2_recorte1.Text := FloatToStr(T2);
+     edt_lasermontg2_recorte2.Text := FloatToStr(T3);
+
+     EQ := T1;
+
+     if EQ = 1 then
+     begin
+       A1LG1 := GetEditIntValue(edt_laserg2_area1);
+       A1LG2 := GetEditIntValue(edt_laserg2_area2);
+       CQC := GetEditIntValue(edt_crack_qc);
+
+       if (A1LG1 > 0) and (CQC > 0) then
+       begin
+         T4 := Trunc(A1LG1 / (CQC + 1));
+         edt_lasermontg2_hv1.Text :=  FloatToStr(T4);
+       end;
+
+       if (A1LG2 > 0) and (CQC > 0) then
+       begin
+         T5 := Trunc(A1LG2 / (CQC + 1));
+         edt_lasermontg2_hv2.Text :=  FloatToStr(T5);
+       end;
+
+       T6 :=  (T4 * (T2 + 1)) + 10;
+       edt_lasermontg2_chapa1.Text := FloatToStr(T6);
+
+       T7 := (T5 * (MN + 1)) + 10;
+       edt_lasermontg2_chapa2.Text := FloatToStr(T7);
+     end
+     else
+     begin
+        CA1 :=  GetEditIntValue(edt_lasermontg2_area1);
+        CA2 :=  GetEditIntValue(edt_lasermontg2_area2);
+
+        if (CA1 > 0) and (T2 > 0) then
+        begin
+          T4 := Trunc(CA1 / (T2 + 1));
+          edt_lasermontg2_hv1.Text :=  FloatToStr(T4);
+        end;
+
+        if (CA2 > 0) and (T3 > 0) then
+        begin
+          T5 := Trunc(CA2 / (T3 + 1));
+          edt_lasermontg2_hv2.Text :=  FloatToStr(T5);
+        end;
+
+        T6 :=  (T4 * (T2 + 1)) + 10;
+        edt_lasermontg2_chapa1.Text := FloatToStr(T6);
+
+        T7 := (T5 * (T3 + 1)) + 10;
+        edt_lasermontg2_chapa2.Text := FloatToStr(T7);
+     end;
+
+     edt_lasermontg2_pc.Text := FloatToStr(T4*T5*T1);
+
+     if (MA > 0) and ((T4*T5*T1) > 0) then
+       T8 :=  RoundTo(MA / (T4*T5*T1), -2);
+
+     edt_lasermontg2_qc.Text := FloatToStr(T8);
+   end
+   else
+   begin
+     edt_lasermontg2_hv1.Text := FloatToStr(0);
+     edt_lasermontg2_hv2.Text := FloatToStr(0);
+     edt_lasermontg2_chapa1.Text := FloatToStr(0);
+     edt_lasermontg2_chapa2.Text := FloatToStr(0);
+     edt_lasermontg2_pc.Text := FloatToStr(0);
+     edt_lasermontg2_recorte1.Text := FloatToStr(0);
+     edt_lasermontg2_recorte2.Text := FloatToStr(0);
+     edt_lasermontg2_qeq.Text := FloatToStr(0);
+     edt_lasermontg2_qc.Text := FloatToStr(0);
+   end;
+end;
+
+procedure TfrmModelagem.edt_lasermontg2_area2Change(Sender: TObject);
+begin
+  if Assigned(edt_lasermontg2_area1.OnChange) then
+    edt_lasermontg2_area1.OnChange(edt_lasermontg2_area1);
+end;
+
+procedure TfrmModelagem.edt_lasermontg2_hvrec1Change(Sender: TObject);
+begin
+  if Assigned(edt_lasermontg2_area1.OnChange) then
+    edt_lasermontg2_area1.OnChange(edt_lasermontg2_area1);
+end;
+
+procedure TfrmModelagem.edt_lasermontg2_hvrec2Change(Sender: TObject);
+begin
+  if Assigned(edt_lasermontg2_area1.OnChange) then
+    edt_lasermontg2_area1.OnChange(edt_lasermontg2_area1);
 end;
 
 procedure TfrmModelagem.edt_laserp1_area1Change(Sender: TObject);
@@ -975,6 +1141,190 @@ begin
   end;
 end;
 
+procedure TfrmModelagem.edt_crackchapadosemfaca_area1Change(Sender: TObject);
+var
+ALT, QT, CH1, CH2, DESC, ETQPP, ETPT, TG1, TG2, MM, MN, MA:DOUBLE;
+T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, AL1, AL2:DOUBLE;
+begin
+   T1 := 0;
+   T2 := 0;
+   T3 := 0;
+   T4 := 0;
+   T5 := 0;
+   T6 := 0;
+   T7 := 0;
+   T8 := 0;
+   T9 := 0;
+   T10 := 0;
+   AL1 := 760;
+   AL2 := 460;
+
+   if (edt_crackchapadosemfaca_area1.Text <> '') and (edt_crackchapadosemfaca_area2.Text <> '') then
+   begin
+     MM := GetEditIntValue(edt_medida_maior1);
+     MN := GetEditIntValue(edt_medida_menor1);
+     MA := GetEditIntValue(edt_max_aceitavel);
+     TG1 := GetEditIntValue(edt_crackchapadosemfaca_area1);
+     TG2 := GetEditIntValue(edt_crackchapadosemfaca_area2);
+
+     T1 :=  Trunc((TG1 / (MM + 1)));
+     T2 :=  Trunc((TG2 / (MN + 1)));
+
+     if (T1 > 0) and (T2 > 0) then
+     begin
+       edt_crackchapadosemfaca_hv1.Text := FloatToStr(T1);
+       edt_crackchapadosemfaca_hv2.Text := FloatToStr(T2);
+
+       T3 := (T1 * (MM + 1) + 10);
+
+       edt_crackchapadosemfaca_qts1.Text := FloatToStr(T3);
+
+       T4 := (T2 * (MN + 1) + 10);
+
+       edt_crackchapadosemfaca_qts2.Text := FloatToStr(T4);
+       edt_crackchapadosemfaca_area1laser.Text := FloatToStr(AL1);
+       edt_crackchapadosemfaca_area2laser.Text := FloatToStr(AL2);
+
+       T5 := Trunc( AL1/ (T3 + 1));
+
+       edt_crackchapadosemfaca_hv12.Text := FloatToStr(T5);
+
+       T6 := Trunc(AL2 / (T3 + 1));
+
+       edt_crackchapadosemfaca_hv22.Text := FloatToStr(T6);
+
+       T7 := (T5 * (T3 + 1)) + 10;
+
+       edt_crackchapadosemfaca_chapa1.Text := FloatToStr(T7);
+
+       T8 := (T6 * (T4 + 1)) + 10;
+
+       edt_crackchapadosemfaca_chapa2.Text := FloatToStr(T8);
+
+       T9 := (T1 * T2 * T5 * T6);
+
+       edt_crackchapadosemfaca_etc.Text := FloatToStr(T9);
+
+       T10 := RoundTo(MA / T9, -2);
+
+       edt_crackchapadosemfaca_qtc.Text := FloatToStr(T10);
+     end;
+   end
+   else
+   begin
+     edt_crackchapadosemfaca_hv1.Text := FloatToStr(0);
+     edt_crackchapadosemfaca_hv2.Text := FloatToStr(0);
+     edt_crackchapadosemfaca_qts1.Text := FloatToStr(0);
+     edt_crackchapadosemfaca_qts2.Text := FloatToStr(0);
+     edt_crackchapadosemfaca_area1laser.Text := FloatToStr(0);
+     edt_crackchapadosemfaca_area2laser.Text := FloatToStr(0);
+     edt_crackchapadosemfaca_hv12.Text := FloatToStr(0);
+     edt_crackchapadosemfaca_hv22.Text := FloatToStr(0);
+     edt_crackchapadosemfaca_chapa1.Text := FloatToStr(0);
+     edt_crackchapadosemfaca_chapa2.Text := FloatToStr(0);
+     edt_crackchapadosemfaca_etc.Text := FloatToStr(0);
+     edt_crackchapadosemfaca_qtc.Text := FloatToStr(0);
+   end;
+end;
+
+procedure TfrmModelagem.edt_crackchapadosemfaca_area2Change(Sender: TObject);
+begin
+  if Assigned(edt_crackchapadosemfaca_area1.OnChange) then
+    edt_crackchapadosemfaca_area1.OnChange(edt_crackchapadosemfaca_area1);
+end;
+
+procedure TfrmModelagem.edt_crackchapado_area1Change(Sender: TObject);
+var
+ALT, QT, CH1, CH2, DESC, ETQPP, ETPT, TG1, TG2, MM, MN, MA:DOUBLE;
+T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, AC1, AC2:DOUBLE;
+begin
+   T1 := 0;
+   T2 := 0;
+   T3 := 0;
+   T4 := 0;
+   T5 := 0;
+   T6 := 0;
+   T7 := 0;
+   T8 := 0;
+   T9 := 0;
+   T10 := 0;
+   AC1 := 450;
+   AC2 := 350;
+
+   if (edt_crackchapado_area1.Text <> '') and (edt_crackchapado_area2.Text <> '') then
+   begin
+     MM := GetEditIntValue(edt_medida_maior1);
+     MN := GetEditIntValue(edt_medida_menor1);
+     MA := GetEditIntValue(edt_max_aceitavel);
+     TG1 := GetEditIntValue(edt_crackchapado_area1);
+     TG2 := GetEditIntValue(edt_crackchapado_area2);
+
+     T1 :=  Trunc((TG1 / (MM + 1)));
+     T2 :=  Trunc((TG2 / (MN + 1)));
+
+     if (T1 > 0) and (T2 > 0) then
+     begin
+       edt_crackchapado_hv1.Text := FloatToStr(T1);
+       edt_crackchapado_hv2.Text := FloatToStr(T2);
+
+       T3 := (T1 * (MM + 1) + 10);
+
+       edt_crackchapado_qts1.Text := FloatToStr(T3);
+
+       T4 := (T2 * (MN + 1) + 10);
+
+       edt_crackchapado_qts2.Text := FloatToStr(T4);
+       edt_crackchapado_area1crack.Text := FloatToStr(AC1);
+       edt_crackchapado_area2crack.Text := FloatToStr(AC2);
+
+       T5 := Trunc(AC1 / (T3 + 1));
+
+       edt_crackchapado_hv12.Text := FloatToStr(T5);
+
+       T6 := Trunc(AC2 / (T3 + 1));
+
+       edt_crackchapado_hv22.Text := FloatToStr(T6);
+
+       T7 := (T5 * (T3 + 1)) + 10;
+
+       edt_crackchapado_chapa1.Text := FloatToStr(T7);
+
+       T8 := (T6 * (T4 + 1)) + 10;
+
+       edt_crackchapado_chapa2.Text := FloatToStr(T8);
+
+       T9 := (T1 * T2 * T5 * T6);
+
+       edt_crackchapado_etc.Text := FloatToStr(T9);
+
+       T10 := RoundTo(MA / T9, -2);
+
+       edt_crackchapado_qtc.Text := FloatToStr(T10);
+     end;
+   end
+   else
+   begin
+     edt_crackchapado_hv1.Text := FloatToStr(0);
+     edt_crackchapado_hv2.Text := FloatToStr(0);
+     edt_crackchapado_qts1.Text := FloatToStr(0);
+     edt_crackchapado_qts2.Text := FloatToStr(0);
+     edt_crackchapado_area1crack.Text := FloatToStr(0);
+     edt_crackchapado_area2crack.Text := FloatToStr(0);
+     edt_crackchapado_hv12.Text := FloatToStr(0);
+     edt_crackchapado_hv22.Text := FloatToStr(0);
+     edt_crackchapado_chapa1.Text := FloatToStr(0);
+     edt_crackchapado_chapa2.Text := FloatToStr(0);
+     edt_crackchapado_etc.Text := FloatToStr(0);
+     edt_crackchapado_qtc.Text := FloatToStr(0);
+   end;
+end;
+
+procedure TfrmModelagem.edt_crackchapado_area2Change(Sender: TObject);
+begin
+  if Assigned(edt_crackchapado_area1.OnChange) then
+    edt_crackchapado_area1.OnChange(edt_crackchapado_area1);
+end;
+
 procedure TfrmModelagem.edt_crack_area1Change(Sender: TObject);
 var
 CA, CA2, MM, MN, CH1, CH2, CC, CP, MA, T1, T2, T3, T4, T5, T6:DOUBLE;
@@ -1099,6 +1449,151 @@ begin
    end;
 end;
 
+procedure TfrmModelagem.edt_galvofinal_hv1Change(Sender: TObject);
+var
+ALT, QT, CH1, CH2, DESC, ETQPP, ETPT, TG1, TG2, MM, MN, MA:DOUBLE;
+T1, T2, T3, T4, T5, T6, T7, T8:DOUBLE;
+begin
+   T1 := 0;
+   T2 := 0;
+   T3 := 0;
+   T4 := 0;
+   T5 := 0;
+   T6 := 0;
+   T7 := 0;
+   T8 := 0;
+
+   if (edt_galvofinal_tg1.Text <> '') and (edt_galvofinal_tg2.Text <> '') then
+   begin
+     MM := GetEditIntValue(edt_medida_maior1);
+     MN := GetEditIntValue(edt_medida_menor1);
+     MA := GetEditIntValue(edt_max_aceitavel);
+     TG1 := GetEditIntValue(edt_galvofinal_hv1);
+     TG2 := GetEditIntValue(edt_galvofinal_hv2);
+
+     T1 :=  Trunc(((TG1 + 5) * (MM + 1)));
+     T2 :=  Trunc(((TG2 + 5) * (MN + 1)));
+
+     if (T1 > 0) and (T2 > 0) then
+     begin
+       edt_galvofinal_hv1.Text := FloatToStr(T1);
+       edt_galvofinal_hv2.Text := FloatToStr(T2);
+
+       T3 := (TG2 * (MN + 1) + 5);
+
+       edt_galvofinal_altura.Text := FloatToStr(T3);
+
+       T4 :=  RoundTo((TG1 * (MM + 1)) + 5, -2);
+
+       edt_galvofinal_desloc.Text := FloatToStr(T4);
+
+       T5 := TG1 * TG2;
+
+       edt_galvofinal_etqpp.Text := FloatToStr(T5);
+
+       T6 := Trunc((1400 / (T1 + 3) * T5));
+
+       edt_galvofinal_etpt.Text := FloatToStr(T6);
+
+       T7 := RoundTo(MA / T6, -2);
+
+       edt_galvofinal_qt.Text := FloatToStr(T7);
+     end;
+   end
+   else
+   begin
+     edt_galvofinal_tg1.Text := FloatToStr(0);
+     edt_galvofinal_tg2.Text := FloatToStr(0);
+     edt_galvofinal_altura.Text := FloatToStr(0);
+     edt_galvofinal_desloc.Text := FloatToStr(0);
+     edt_galvofinal_etqpp.Text := FloatToStr(0);
+     edt_galvofinal_etpt.Text := FloatToStr(0);
+     edt_galvofinal_qt.Text := FloatToStr(0);
+   end;
+end;
+
+procedure TfrmModelagem.edt_galvofinal_hv2Change(Sender: TObject);
+begin
+  if Assigned(edt_galvofinal_hv1.OnChange) then
+    edt_galvofinal_hv1.OnChange(edt_galvofinal_hv1);
+end;
+
+procedure TfrmModelagem.edt_galvofinal_tg2Change(Sender: TObject);
+begin
+  if Assigned(edt_galvofinal_tg1.OnChange) then
+    edt_galvofinal_tg1.OnChange(edt_galvofinal_tg1);
+end;
+
+procedure TfrmModelagem.edt_galvo_tg1Change(Sender: TObject);
+var
+ALT, QT, CH1, CH2, DESC, ETQPP, ETPT, TG1, TG2, MM, MN, MA:DOUBLE;
+T1, T2, T3, T4, T5, T6, T7, T8:DOUBLE;
+begin
+   T1 := 0;
+   T2 := 0;
+   T3 := 0;
+   T4 := 0;
+   T5 := 0;
+   T6 := 0;
+   T7 := 0;
+   T8 := 0;
+
+   if (edt_galvo_tg1.Text <> '') and (edt_galvo_tg2.Text <> '') then
+   begin
+     MM := GetEditIntValue(edt_medida_maior1);
+     MN := GetEditIntValue(edt_medida_menor1);
+     MA := GetEditIntValue(edt_max_aceitavel);
+     TG1 := GetEditIntValue(edt_galvo_tg1);
+     TG2 := GetEditIntValue(edt_galvo_tg2);
+
+     T1 :=  Trunc((TG1 / (MM + 1)));
+     T2 :=  Trunc((TG2 / (MN + 1)));
+
+     if (T1 > 0) and (T2 > 0) then
+     begin
+       edt_galvo_hv1.Text := FloatToStr(T1);
+       edt_galvo_hv2.Text := FloatToStr(T2);
+
+       T3 := (T2 * (MN + 1) + 10) / 10;
+
+       edt_galvo_altura.Text := FloatToStr(T3);
+
+       T4 :=  RoundTo((T1 * (MM + 1)) + 3, -2);
+
+
+       edt_galvo_desloc.Text := FloatToStr(T4);
+
+       T5 := T1 * T2;
+
+       edt_galvo_etqpp.Text := FloatToStr(T5);
+
+       T6 := Trunc((1400 / T4) * T5);
+
+       edt_galvo_etpt.Text := FloatToStr(T6);
+
+       T7 := RoundTo(MA / T6, -2);
+
+       edt_galvo_qt.Text := FloatToStr(T7);
+     end;
+   end
+   else
+   begin
+     edt_galvo_hv1.Text := FloatToStr(0);
+     edt_galvo_hv2.Text := FloatToStr(0);
+     edt_galvo_altura.Text := FloatToStr(0);
+     edt_galvo_desloc.Text := FloatToStr(0);
+     edt_galvo_etqpp.Text := FloatToStr(0);
+     edt_galvo_etpt.Text := FloatToStr(0);
+     edt_galvo_qt.Text := FloatToStr(0);
+   end;
+end;
+
+procedure TfrmModelagem.edt_galvo_tg2Change(Sender: TObject);
+begin
+  if Assigned(edt_galvo_tg1.OnChange) then
+    edt_galvo_tg1.OnChange(edt_galvo_tg1);
+end;
+
 function TfrmModelagem.GetEditIntValue(Edit: TEdit): Double;
 begin
   if not TryStrToFloat(Trim(Edit.Text), Result) then
@@ -1130,6 +1625,30 @@ begin
 
   if Assigned(edt_lasermontg1_area1.OnChange) then
     edt_lasermontg1_area1.OnChange(edt_lasermontg1_area1);
+
+  if Assigned(edt_lasermontg2_area1.OnChange) then
+    edt_lasermontg2_area1.OnChange(edt_lasermontg2_area1);
+
+  if Assigned(edt_galvo_tg1.OnChange) then
+    edt_galvo_tg1.OnChange(edt_galvo_tg1);
+
+  if Assigned(edt_crackchapado_area1.OnChange) then
+    edt_crackchapado_area1.OnChange(edt_crackchapado_area1);
+
+  if Assigned(edt_crackchapadosemfaca_area1.OnChange) then
+    edt_crackchapadosemfaca_area1.OnChange(edt_crackchapadosemfaca_area1);
+
+  if Assigned(edt_laserg2_area1.OnChange) then
+    edt_laserg2_area1.OnChange(edt_laserg2_area1);
+
+  if Assigned(edt_laserm2_area1.OnChange) then
+    edt_laserm2_area1.OnChange(edt_laserm2_area1);
+
+  if Assigned(edt_laserp2_area1.OnChange) then
+    edt_laserp2_area1.OnChange(edt_laserp2_area1);
+
+  if Assigned(edt_galvofinal_tg1.OnChange) then
+    edt_galvofinal_tg1.OnChange(edt_galvofinal_tg1);
 end;
 
 procedure TfrmModelagem.edt_medida_maior1Change(Sender: TObject);
@@ -1140,6 +1659,9 @@ begin
   edt_laserg1_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
   edt_laserm1_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
   edt_laserp1_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_galvo_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_crackchapado_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_crackchapadosemfaca_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
 
   if Assigned(edt_balancin_cod_faca1.OnChange) then
     edt_balancin_cod_faca1.OnChange(edt_balancin_cod_faca1);
@@ -1152,6 +1674,18 @@ begin
 
   if Assigned(edt_lasermontg1_area1.OnChange) then
     edt_lasermontg1_area1.OnChange(edt_lasermontg1_area1);
+
+  if Assigned(edt_lasermontg2_area1.OnChange) then
+    edt_lasermontg2_area1.OnChange(edt_lasermontg2_area1);
+
+  if Assigned(edt_crackchapado_area1.OnChange) then
+    edt_crackchapado_area1.OnChange(edt_crackchapado_area1);
+
+  if Assigned(edt_crackchapadosemfaca_area1.OnChange) then
+    edt_crackchapadosemfaca_area1.OnChange(edt_crackchapadosemfaca_area1);
+
+  if Assigned(edt_galvofinal_tg1.OnChange) then
+    edt_galvofinal_tg1.OnChange(edt_galvofinal_tg1);
 end;
 
 procedure TfrmModelagem.edt_medida_maior2Change(Sender: TObject);
@@ -1181,6 +1715,9 @@ begin
   edt_laserg1_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
   edt_laserm1_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
   edt_laserp1_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_galvo_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_crackchapado_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_crackchapadosemfaca_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
 
     if Assigned(edt_balancin_cod_faca1.OnChange) then
       edt_balancin_cod_faca1.OnChange(edt_balancin_cod_faca1);
@@ -1202,6 +1739,18 @@ begin
 
     if Assigned(edt_lasermontg1_area1.OnChange) then
       edt_lasermontg1_area1.OnChange(edt_lasermontg1_area1);
+
+    if Assigned(edt_lasermontg2_area1.OnChange) then
+      edt_lasermontg2_area1.OnChange(edt_lasermontg2_area1);
+
+    if Assigned(edt_crackchapado_area1.OnChange) then
+      edt_crackchapado_area1.OnChange(edt_crackchapado_area1);
+
+    if Assigned(edt_crackchapadosemfaca_area1.OnChange) then
+      edt_crackchapadosemfaca_area1.OnChange(edt_crackchapadosemfaca_area1);
+
+    if Assigned(edt_galvofinal_tg1.OnChange) then
+      edt_galvofinal_tg1.OnChange(edt_galvofinal_tg1);
 end;
 
 procedure TfrmModelagem.edt_medida_menor2Change(Sender: TObject);
