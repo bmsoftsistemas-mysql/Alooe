@@ -1,9 +1,11 @@
 object frmconfig: Tfrmconfig
   Left = 0
   Top = 0
+  BorderIcons = []
+  BorderStyle = bsDialog
   Caption = 'Configura'#231#245'es'
-  ClientHeight = 296
-  ClientWidth = 610
+  ClientHeight = 306
+  ClientWidth = 620
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,19 +21,21 @@ object frmconfig: Tfrmconfig
   object Panel3: TPanel
     Left = 0
     Top = 0
-    Width = 610
-    Height = 296
+    Width = 620
+    Height = 306
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 374
+    ExplicitWidth = 610
+    ExplicitHeight = 296
     object Panel1: TPanel
       Left = 1
       Top = 129
-      Width = 608
+      Width = 618
       Height = 64
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
+      ExplicitWidth = 608
       object Label1: TLabel
         Left = 16
         Top = 35
@@ -56,7 +60,7 @@ object frmconfig: Tfrmconfig
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 602
+        Width = 612
         Height = 24
         Align = alTop
         Caption = 'Email Alooe'
@@ -69,19 +73,18 @@ object frmconfig: Tfrmconfig
         ParentBackground = False
         ParentFont = False
         TabOrder = 1
-        ExplicitLeft = 1
-        ExplicitTop = 1
-        ExplicitWidth = 606
+        ExplicitWidth = 602
       end
     end
     object Panel6: TPanel
       Left = 1
       Top = 65
-      Width = 608
+      Width = 618
       Height = 64
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 1
+      ExplicitWidth = 608
       object Label5: TLabel
         Left = 16
         Top = 35
@@ -99,7 +102,7 @@ object frmconfig: Tfrmconfig
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 602
+        Width = 612
         Height = 24
         Align = alTop
         Caption = 'URL Alooe'
@@ -112,9 +115,7 @@ object frmconfig: Tfrmconfig
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        ExplicitLeft = 1
-        ExplicitTop = 1
-        ExplicitWidth = 606
+        ExplicitWidth = 602
       end
       object edt_url: TEdit
         Left = 111
@@ -127,12 +128,12 @@ object frmconfig: Tfrmconfig
     object Panel8: TPanel
       Left = 1
       Top = 1
-      Width = 608
+      Width = 618
       Height = 64
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 2
-      ExplicitTop = -1
+      ExplicitWidth = 608
       object Label7: TLabel
         Left = 16
         Top = 35
@@ -163,7 +164,7 @@ object frmconfig: Tfrmconfig
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 602
+        Width = 612
         Height = 24
         Align = alTop
         Caption = 'Tempo de Atualiza'#231#227'o '
@@ -176,9 +177,7 @@ object frmconfig: Tfrmconfig
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        ExplicitLeft = 1
-        ExplicitTop = 1
-        ExplicitWidth = 606
+        ExplicitWidth = 602
       end
       object edt_sync: TRzSpinEdit
         Left = 218
@@ -208,11 +207,12 @@ object frmconfig: Tfrmconfig
     object Panel10: TPanel
       Left = 1
       Top = 193
-      Width = 608
+      Width = 618
       Height = 64
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 4
+      ExplicitWidth = 608
       object Label3: TLabel
         Left = 16
         Top = 35
@@ -230,7 +230,7 @@ object frmconfig: Tfrmconfig
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 602
+        Width = 612
         Height = 24
         Align = alTop
         Caption = 'Senha Alooe'
@@ -243,9 +243,7 @@ object frmconfig: Tfrmconfig
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        ExplicitLeft = 1
-        ExplicitTop = 1
-        ExplicitWidth = 606
+        ExplicitWidth = 602
       end
       object edt_senha: TEdit
         Left = 109

@@ -28,7 +28,11 @@ uses
   RzBckgnd,
   Vcl.Menus,
   Vcl.StdCtrls,
-  RzLabel, Data.DB, dbisamtb, RzTray, Vcl.Buttons;
+  RzLabel, Data.DB, dbisamtb, RzTray, Vcl.Buttons, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait,
+  FireDAC.Comp.Client;
 
 type
   TfrmMain = class(TForm)
@@ -58,6 +62,7 @@ type
     Sair1: TMenuItem;
     tmprocessaini: TTimer;
     TrayIcon1: TTrayIcon;
+    bm_alooe: TFDConnection;
     procedure btnSairClick(Sender: TObject);
     procedure btnProducoesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);

@@ -148,7 +148,7 @@ end;
 
 procedure TfrmModelos.FormCreate(Sender: TObject);
 begin
-    URL := DD.config.ReadString('config', 'url', '');
+    URL   := DD.config.ReadString('config', 'url', '');
     Email := DD.config.ReadString('config', 'email', '');
     Senha := DD.config.ReadString('config', 'senha', '');
 end;
@@ -215,29 +215,29 @@ begin
         DataObj := ItemObj.GetValue<TJSONObject>('data');
 
         // Campos diretos
-        id := DataObj.GetValue<string>('id');
-        productId := DataObj.GetValue<string>('productId');
-        name := DataObj.GetValue<string>('name');
+        id                         := DataObj.GetValue<string>('id');
+        productId                  := DataObj.GetValue<string>('productId');
+        name                       := DataObj.GetValue<string>('name');
         expectedProductionQuantity := DataObj.GetValue<Double>('expectedProductionQuantity');
-        productionQuantityBalance := DataObj.GetValue<Double>('productionQuantityBalance');
-        isFictitious := DataObj.GetValue<Boolean>('isFictitious');
-        priority := DataObj.GetValue<Integer>('priority');
-        deliveryDate := DataObj.GetValue<string>('deliveryDate');
-        earlyStart := DataObj.GetValue<string>('earlyStart');
-        laterEnd := DataObj.GetValue<string>('laterEnd');
-        salesOrder := DataObj.GetValue<string>('salesOrder');
-        salesOrderDate := DataObj.GetValue<string>('salesOrderDate');
-        customer := DataObj.GetValue<string>('customer');
-        color := DataObj.GetValue<string>('color');
-        progressStatus := DataObj.GetValue<string>('progressStatus');
-        note := DataObj.GetValue<string>('note');
+        productionQuantityBalance  := DataObj.GetValue<Double>('productionQuantityBalance');
+        isFictitious               := DataObj.GetValue<Boolean>('isFictitious');
+        priority                   := DataObj.GetValue<Integer>('priority');
+        deliveryDate               := DataObj.GetValue<string>('deliveryDate');
+        earlyStart                 := DataObj.GetValue<string>('earlyStart');
+        laterEnd                   := DataObj.GetValue<string>('laterEnd');
+        salesOrder                 := DataObj.GetValue<string>('salesOrder');
+        salesOrderDate             := DataObj.GetValue<string>('salesOrderDate');
+        customer                   := DataObj.GetValue<string>('customer');
+        color                      := DataObj.GetValue<string>('color');
+        progressStatus             := DataObj.GetValue<string>('progressStatus');
+        note                       := DataObj.GetValue<string>('note');
 
         // Produto interno
         if DataObj.TryGetValue<TJSONObject>('product', ProductObj) then
         begin
-          prod_id := ProductObj.GetValue<string>('id');
-          prod_name := ProductObj.GetValue<string>('name');
-          prod_unit := ProductObj.GetValue<string>('unit');
+          prod_id    := ProductObj.GetValue<string>('id');
+          prod_name  := ProductObj.GetValue<string>('name');
+          prod_unit  := ProductObj.GetValue<string>('unit');
           prod_color := ProductObj.GetValue<string>('color');
         end;
 
@@ -246,12 +246,12 @@ begin
         begin
           if DependencyArray.Count > 0 then
           begin
-            DependencyObj := DependencyArray.Items[0] as TJSONObject;
-            dep_id := DependencyObj.GetValue<string>('id');
-            dep_productionOrderId := DependencyObj.GetValue<string>('productionOrderId');
-            dep_previousProductionOrderId := DependencyObj.GetValue<string>('previousProductionOrderId');
+            DependencyObj                   := DependencyArray.Items[0] as TJSONObject;
+            dep_id                          := DependencyObj.GetValue<string>('id');
+            dep_productionOrderId           := DependencyObj.GetValue<string>('productionOrderId');
+            dep_previousProductionOrderId   := DependencyObj.GetValue<string>('previousProductionOrderId');
             dep_previousProductionOrderName := DependencyObj.GetValue<string>('previousProductionOrderName');
-            dep_previousProductName := DependencyObj.GetValue<string>('previousProductName');
+            dep_previousProductName         := DependencyObj.GetValue<string>('previousProductName');
           end;
         end;
 
@@ -259,21 +259,21 @@ begin
         AvisoAtt('Salvando pedido...', 5, -1);
 
         QrProducoes.Edit; ;
-        QrProducoesid_producao.AsString :=  id;
-        QrProducoesid_prod.AsString := productId;
-        QrProducoesname.AsString := name;
+        QrProducoesid_producao.AsString               :=  id;
+        QrProducoesid_prod.AsString                   := productId;
+        QrProducoesname.AsString                      := name;
         QrProducoesexpectedProductionQuantity.AsFloat := expectedProductionQuantity;
-        QrProducoesproductionQuantityBalance.AsFloat := productionQuantityBalance;
-        QrProducoesisFictitious.AsBoolean := isFictitious;
-        QrProducoespriority.AsInteger := priority;
-        QrProducoesdeliveryDate.AsDateTime := ParseAPIDateTimeToLocal(deliveryDate);
-        QrProducoesearlyStart.AsDateTime := ParseAPIDateTimeToLocal(earlyStart);
-        QrProducoeslaterEnd.AsDateTime := ParseAPIDateTimeToLocal(laterEnd);
-        QrProducoessalesOrder.AsString := salesOrder;
-        QrProducoessalesOrderDate.AsDateTime := ParseAPIDateTimeToLocal(salesOrderDate);
-        QrProducoescustomer.AsString := customer;
-        QrProducoescolor.AsString := color;
-        QrProducoesprogressStatus.AsString := progressStatus;
+        QrProducoesproductionQuantityBalance.AsFloat  := productionQuantityBalance;
+        QrProducoesisFictitious.AsBoolean             := isFictitious;
+        QrProducoespriority.AsInteger                 := priority;
+        QrProducoesdeliveryDate.AsDateTime            := ParseAPIDateTimeToLocal(deliveryDate);
+        QrProducoesearlyStart.AsDateTime              := ParseAPIDateTimeToLocal(earlyStart);
+        QrProducoeslaterEnd.AsDateTime                := ParseAPIDateTimeToLocal(laterEnd);
+        QrProducoessalesOrder.AsString                := salesOrder;
+        QrProducoessalesOrderDate.AsDateTime          := ParseAPIDateTimeToLocal(salesOrderDate);
+        QrProducoescustomer.AsString                  := customer;
+        QrProducoescolor.AsString                     := color;
+        QrProducoesprogressStatus.AsString            := progressStatus;
         QrProducoes.Post;
       end;
 
@@ -307,10 +307,10 @@ begin
     ISODateStr := Copy(ISODateStr, 1, Pos('.', ISODateStr) - 1);
 
   // Força formato de data/hora padrão aceito
-  FormatSettings.DateSeparator := '-';
-  FormatSettings.TimeSeparator := ':';
+  FormatSettings.DateSeparator   := '-';
+  FormatSettings.TimeSeparator   := ':';
   FormatSettings.ShortDateFormat := 'yyyy-mm-dd';
-  FormatSettings.LongTimeFormat := 'hh:nn:ss';
+  FormatSettings.LongTimeFormat  := 'hh:nn:ss';
 
   if not TryStrToDateTime(ISODateStr, utcDateTime, FormatSettings) then
     raise Exception.Create('Formato de data inválido: ' + DataStr);
@@ -412,9 +412,9 @@ begin
           begin
             QrModelos.Append;
           end;
-          QrModelosid.AsString := ItemData.GetValue<string>('id');
-          QrModeloshref.AsString := ItemHref.GetValue('href').Value;
-          QrModelosproduct_id.AsString := ProductObj.GetValue<string>('id');
+          QrModelosid.AsString           := ItemData.GetValue<string>('id');
+          QrModeloshref.AsString         := ItemHref.GetValue('href').Value;
+          QrModelosproduct_id.AsString   := ProductObj.GetValue<string>('id');
           QrModelosproduct_name.AsString := ProductObj.GetValue<string>('name');
 
           if ProductObj.GetValue('unit') = nil then
@@ -422,8 +422,8 @@ begin
           else
             QrModelosproduct_unit.AsString := ProductObj.GetValue<string>('unit');
 
-          QrModelosproduct_color.AsString := ProductObj.GetValue<string>('color');
-          QrModelosnome_etiqueta.AsString := ProductObj.GetValue<string>('name');
+          QrModelosproduct_color.AsString      := ProductObj.GetValue<string>('color');
+          QrModelosnome_etiqueta.AsString      := ProductObj.GetValue<string>('name');
           QrModelosquantidade_producao.AsFloat := ItemData.GetValue<Double>('productionQuantity');
 
           if ItemData.GetValue('customer') = nil then

@@ -112,97 +112,98 @@ procedure GravaLog(FArq, Texto: string);
 procedure Logar(s: string);
 
 const
-  defPathBase = 'Base\Dados';
-  defNomeServ = 'BMsoftSyncMPSvc';
-  defNomeIni = 'ConfMP.ini';
-  defExeServName = 'BMSyncMP.exe';
+  defPathBase                = 'Base\Dados';
+  defNomeServ                = 'BMsoftSyncMPSvc';
+  defNomeIni                 = 'ConfMP.ini';
+  defExeServName             = 'BMSyncMP.exe';
   defAppTokenDesenvolvimento = '56254434-6b42-11e4-94bb-f23c91df94d9'; // app token desenvolvimento
-  defAppTokenProducao = '51ac38ed-b08f-11e4-a156-064a56311ffd'; // app token produção
-  defCompanyTokenBM = '05a5dd1c-6b41-11e4-be31-f23c91df94d9'; // company token da bm para desenvolvimento...
-  defContent = 'application/json';
-  defCache = 'no-cache';
-  defHostDesenvolvimento = 'https://trayparceiros.commerceresult.com.br/web_api'; // host usado para desenvolvimento
-  defHostProducao = 'https://trayparceiros.commerceresult.com.br/web_api'; // host producao
-  Consumer_Key = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0';
-  Consumer_Secret = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526';
-  defURLCli = '/api/v1/clientes/';
-  defURLCliVen = '/api/v1/usuarios_clientes/';
-  defURLProdutos = '/api/v1/produtos/';
-  defURLCategorias = '/api/v1/categorias/';
-  defURLImagens = '/api/v1/imagens_produto/';
-  defURLTabelasPrecos = '/api/v1/tabelas_preco/';
-  defURLTabProd = '/api/v1/produtos_tabela_preco/';
-  defURLPlanos = '/api/v1/condicoes_pagamento/';
-  defURLFormasPagto = '/api/v1/formas_pagamento/';
-  defURLPedidos = '/api/v1/pedidos/';
-  defURLVendedores = '/api/v1/usuarios/';
-  defURLVendedoresClientes = '/api/v1/usuarios_clientes/';
-  defURLCamposExtras = '/api/v1/campos_extras/';
-  defURLTransp = '/api/v1/transportadoras/';
-  defURLTitulos = '/api/v1/titulos_vencidos/';
-  defURLFatur = '/api/v1/faturamento/';
-  defURLmarcas = '/products/brands/';
-  defEncod = 'utf-8';
-  defRetHead = 'MeusPedidosID';
-  defLengthTok = 36;
-  defauth = '/auth';
-  defcategorias = '/categories';
-  defprodutos = '/products';
-  defpedidos = '/orders';
-  defmarcas = '/brands';
-  defclientes = '/customers';
-  defvariacoes = '/products/variants';
-  defModelos = '/v1/ProductionOrderTemplate?PageNumber=';
-  defLogin = '/v1/Login';
-  defProducao ='/v1/ProductionOrder/Template/';
-  defProducaoGet = '/v1/ProductionOrder/';
+  defAppTokenProducao        = '51ac38ed-b08f-11e4-a156-064a56311ffd'; // app token produção
+  defCompanyTokenBM          = '05a5dd1c-6b41-11e4-be31-f23c91df94d9'; // company token da bm para desenvolvimento...
+  defContent                 = 'application/json';
+  defCache                   = 'no-cache';
+  defHostDesenvolvimento     = 'https://trayparceiros.commerceresult.com.br/web_api'; // host usado para desenvolvimento
+  defHostProducao            = 'https://trayparceiros.commerceresult.com.br/web_api'; // host producao
+  Consumer_Key               = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0';
+  Consumer_Secret            = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526';
+  defURLCli                  = '/api/v1/clientes/';
+  defURLCliVen               = '/api/v1/usuarios_clientes/';
+  defURLProdutos             = '/api/v1/produtos/';
+  defURLCategorias           = '/api/v1/categorias/';
+  defURLImagens              = '/api/v1/imagens_produto/';
+  defURLTabelasPrecos        = '/api/v1/tabelas_preco/';
+  defURLTabProd              = '/api/v1/produtos_tabela_preco/';
+  defURLPlanos               = '/api/v1/condicoes_pagamento/';
+  defURLFormasPagto          = '/api/v1/formas_pagamento/';
+  defURLPedidos              = '/api/v1/pedidos/';
+  defURLVendedores           = '/api/v1/usuarios/';
+  defURLVendedoresClientes   = '/api/v1/usuarios_clientes/';
+  defURLCamposExtras         = '/api/v1/campos_extras/';
+  defURLTransp               = '/api/v1/transportadoras/';
+  defURLTitulos              = '/api/v1/titulos_vencidos/';
+  defURLFatur                = '/api/v1/faturamento/';
+  defURLmarcas               = '/products/brands/';
+  defEncod                   = 'utf-8';
+  defRetHead                 = 'MeusPedidosID';
+  defLengthTok               = 36;
+  defauth                    = '/auth';
+  defcategorias              = '/categories';
+  defprodutos                = '/products';
+  defpedidos                 = '/orders';
+  defmarcas                  = '/brands';
+  defclientes                = '/customers';
+  defvariacoes               = '/products/variants';
+  defModelos                 = '/v1/ProductionOrderTemplate?PageNumber=';
+  defLogin                   = '/v1/Login';
+  defProducao                ='/v1/ProductionOrder/Template/';
+  defProducaoPut             = '/v1/ProductionOrder';
+  defProducaoGet             = '/v1/ProductionOrder/';
 
   CR = #13 + #10;
 
 var
-  DD: TDD;
+  DD                         : TDD;
 
-  pubEmpresaAtiva: Integer;
-  pubUsuarioAtivo: Integer;
-  pubUsuarioAtivoNome: string;
-  pubDirEXE: string;
+  pubEmpresaAtiva            : Integer;
+  pubUsuarioAtivo            : Integer;
+  pubUsuarioAtivoNome        : string;
+  pubDirEXE                  : string;
 
-  defHost: string;
-  defAppToken: string;
-  defCompanyToken: string;
+  defHost                    : string;
+  defAppToken                : string;
+  defCompanyToken            : string;
 
-  defOperationType: string;
+  defOperationType           : string;
 
-  defLista2: string;
-  defLista3: string;
-  defUsaTitulosVencidos: string;
-  defUsaDefinirEmpresaPedido: string;
-  defusaPersonal: string;
-  defusaVenda4: string;
-  defusaDescricaoWeb: string;
-  defusaModelo: string;
-  defusaDisponibilidade: string;
-  defusaDestaque: string;
-  defusaLancamento: string;
-  defusaSEO: string;
-  defusaGarantia: string;
-  defusaenviofotos: string;
+  defLista2                  : string;
+  defLista3                  : string;
+  defUsaTitulosVencidos      : string;
+  defUsaDefinirEmpresaPedido : string;
+  defusaPersonal             : string;
+  defusaVenda4               : string;
+  defusaDescricaoWeb         : string;
+  defusaModelo               : string;
+  defusaDisponibilidade      : string;
+  defusaDestaque             : string;
+  defusaLancamento           : string;
+  defusaSEO                  : string;
+  defusaGarantia             : string;
+  defusaenviofotos           : string;
 
-  defTimerAtualizacao: integer;
-  defTimerAtualizacaoPedidos: integer;
+  defTimerAtualizacao        : integer;
+  defTimerAtualizacaoPedidos : integer;
 
-  pubTemMaisRegistros: boolean;
-  def_access_token: string;
-  defurl: string;
-  defcode: string;
-  def_erro: boolean;
+  pubTemMaisRegistros        : boolean;
+  def_access_token           : string;
+  defurl                     : string;
+  defcode                    : string;
+  def_erro                   : boolean;
 
 implementation
 
 uses
   ufrmAviso,
   uMain,
-  ufrmAguardaServidor, ufrmRequest;
+  ufrmAguardaServidor, ufrmRequest, frmconfiguracoes;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
@@ -230,14 +231,14 @@ begin
   //  defAppToken := defAppTokenDesenvolvimento;
   //  defCompanyToken := defCompanyTokenBM;
 
-  dd.serverTray.Request.CacheControl := defCache;
-  dd.serverTray.Request.ContentType := defContent;
+  dd.serverTray.Request.CacheControl    := defCache;
+  dd.serverTray.Request.ContentType     := defContent;
 
   dd.serverTray.Request.ContentEncoding := defEncod;
 
-  dd.serverTray.Request.AcceptCharset := '';
-  dd.serverTray.Request.UserAgent := '';
-  dd.serverTray.Request.AcceptLanguage := '';
+  dd.serverTray.Request.AcceptCharset   := '';
+  dd.serverTray.Request.UserAgent       := '';
+  dd.serverTray.Request.AcceptLanguage  := '';
 
   dd.serverTray.Request.CustomHeaders.Clear;
   dd.serverTray.Request.CustomHeaders.AddValue('ApplicationToken', defAppToken);
@@ -246,28 +247,44 @@ begin
 end;
 
 procedure TDD.DataModuleCreate(Sender: TObject);
+var
+  CaminhoINI: string;
 begin
 
-  pubEmpresaAtiva := StrToIntDef(DD.config.ReadString('Config', 'EmpresaAtiva', ''), 0); //StrToInt(ParamStr(2));
+  CaminhoINI := ExtractFilePath(ParamStr(0)) + 'BM2Alooe.ini'; // substitua pelo nome do seu .ini
 
-  pubUsuarioAtivo := 1;//StrToInt(ParamStr(3));
+  if not FileExists(CaminhoINI) then
+  begin
+    if not Assigned(frmconfig) then
+    begin
+      Application.CreateForm(Tfrmconfig, frmconfig);
+    end;
 
-  pubUsuarioAtivoNome := '<<INDEFINIDO>>';
+    frmconfig.ShowModal;  // <== espera até o usuário fechar
 
-  pubDirEXE := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)));
-  defurl := DD.config.ReadString('Config', 'url', '');
-  defcode := DD.config.ReadString('Config', 'code', '');
-  defusaPersonal := DD.config.ReadString('Config', 'usaPersonal', '');
-  defusaVenda4 := DD.config.ReadString('Config', 'usaVenda4', '');
-  defusaDescricaoWeb := DD.config.ReadString('Config', 'usaDescricaoWeb', '');
-  defusaModelo := DD.config.ReadString('Config', 'usaModelo', '');
+    FreeAndNil(frmconfig);  // opcional: libera da memória após fechar
+  end;
+
+  pubEmpresaAtiva       := StrToIntDef(DD.config.ReadString('Config', 'EmpresaAtiva', ''), 0); //StrToInt(ParamStr(2));
+
+  pubUsuarioAtivo       := 1;//StrToInt(ParamStr(3));
+
+  pubUsuarioAtivoNome   := '<<INDEFINIDO>>';
+
+  pubDirEXE             := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)));
+  defurl                := DD.config.ReadString('Config', 'url', '');
+  defcode               := DD.config.ReadString('Config', 'code', '');
+  defusaPersonal        := DD.config.ReadString('Config', 'usaPersonal', '');
+  defusaVenda4          := DD.config.ReadString('Config', 'usaVenda4', '');
+  defusaDescricaoWeb    := DD.config.ReadString('Config', 'usaDescricaoWeb', '');
+  defusaModelo          := DD.config.ReadString('Config', 'usaModelo', '');
   defusaDisponibilidade := DD.config.ReadString('Config', 'usaDisponibilidade', '');
-  defusaDestaque := DD.config.ReadString('Config', 'usaDestaque', '');
-  defusaLancamento := DD.config.ReadString('Config', 'usaLancamento', '');
-  defusaGarantia := DD.config.ReadString('Config', 'usaGarantia', '');
-  defusaSEO := DD.config.ReadString('Config', 'usaSEO', '');
-  defTimerAtualizacao := DD.config.ReadInteger('config', 'TimerAtualizacaoSegundos', 900) * 1000; // 15 minutos por padrão...
-  defusaenviofotos := DD.config.ReadString('Config', 'usaEnviodeFotos', '');
+  defusaDestaque        := DD.config.ReadString('Config', 'usaDestaque', '');
+  defusaLancamento      := DD.config.ReadString('Config', 'usaLancamento', '');
+  defusaGarantia        := DD.config.ReadString('Config', 'usaGarantia', '');
+  defusaSEO             := DD.config.ReadString('Config', 'usaSEO', '');
+  defTimerAtualizacao   := DD.config.ReadInteger('config', 'TimerAtualizacaoSegundos', 900) * 1000; // 15 minutos por padrão...
+  defusaenviofotos      := DD.config.ReadString('Config', 'usaEnviodeFotos', '');
 end;
 
 procedure GravaLog(FArq, Texto: string);
@@ -400,8 +417,8 @@ end;
 
 procedure TDD.conectaftp();
 begin
-  IdFTPTray.Host := 'bmrepositorio.tecnologia.ws';
-  IdFTPTray.Port := 21;
+  IdFTPTray.Host     := 'bmrepositorio.tecnologia.ws';
+  IdFTPTray.Port     := 21;
   IdFTPTray.Username := 'bmrepositorio';
   IdFTPTray.Password := 'bmrepo_7062';
   IdFTPTray.Connect;

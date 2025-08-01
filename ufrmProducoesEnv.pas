@@ -61,6 +61,8 @@ type
 
 var
   frmProducoesEnv: TfrmProducoesEnv;
+  EditOrd : Boolean;
+  IDPROD : string;
 
 implementation
 
@@ -121,6 +123,7 @@ end;
 //Limpar a tabela de erros completamente
 procedure TfrmProducoesEnv.btnNovaOrdemClick(Sender: TObject);
 begin
+    IDPROD := '';
     frmProducao := TfrmProducao.Create(Application);
     frmProducao.ShowModal;
     frmProducao.Free;
@@ -142,22 +145,24 @@ end;
 
 procedure TfrmProducoesEnv.DBGrid1DblClick(Sender: TObject);
 begin
-//  frmProducao := TfrmProducao.Create(Application);
-//  try
-//    frmProducao.Visualizacao := True;
-//
-//    // aqui você pode passar os dados selecionados do grid para os campos do form:
-////    frmProducao.EditNome.Text := DataSource1.DataSet.FieldByName('name').AsString;
-////    frmProducao.EditQuantidade.Text := DataSource1.DataSet.FieldByName('expectedProductionQuantity').AsString;
-//
-//
-//    if frmProducao.Visualizacao then
-//      frmProducao.BloquearCampos;
-//
-//    frmProducao.ShowModal;
-//  finally
-//    frmProducao.Free;
-//  end;
+  if QrProducoesprogressStatus.AsString = 'NotInitiated' then
+  begin
+    frmProducao := TfrmProducao.Create(Application);
+    EditOrd := True;
+    IDPROD := QrProducoesid_producao.AsString;
+    frmProducao.ShowModal;
+    frmProducao.Free;
+
+    QrProducoes.Close;
+    QrProducoes.Open;
+    QrProducoes.Last;
+    EditOrd := False;
+  end
+  else
+  begin
+    TaskMessageDlg('Aviso', 'A produção já foi INICIADA.', mtInformation, [mbOK], 0)
+  end;
+
 end;
 
 procedure TfrmProducoesEnv.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
@@ -213,27 +218,27 @@ end;
 procedure TfrmProducoesEnv.FormShow(Sender: TObject);
 begin
   // Estilização do botão Nova Ordem
-  btnNovaOrdem.Caption := '➕ Nova Produção';
-  btnNovaOrdem.Font.Size := 10;
-  btnNovaOrdem.Font.Style := [fsBold];
-  btnNovaOrdem.Font.Color := clWhite;
+  btnNovaOrdem.Caption             := '➕ Nova Produção';
+  btnNovaOrdem.Font.Size           := 10;
+  btnNovaOrdem.Font.Style          := [fsBold];
+  btnNovaOrdem.Font.Color          := clWhite;
 
     // Exemplo de estilização das colunas do grid
   DBGrid1.Columns[0].Title.Caption := 'Nº Pedido';
   DBGrid1.Columns[1].Title.Caption := 'Cliente';
   DBGrid1.Columns[2].Title.Caption := 'Quantidade';
-  DBGrid1.Columns[2].Alignment := taRightJustify;
+  DBGrid1.Columns[2].Alignment     := taRightJustify;
   DBGrid1.Columns[3].Title.Caption := 'Data Início';
-  DBGrid1.Columns[3].Alignment := taCenter;
+  DBGrid1.Columns[3].Alignment     := taCenter;
   DBGrid1.Columns[4].Title.Caption := 'Data Fim';
-  DBGrid1.Columns[4].Alignment := taCenter;
+  DBGrid1.Columns[4].Alignment     := taCenter;
   DBGrid1.Columns[5].Title.Caption := 'Data Entrega';
-  DBGrid1.Columns[5].Alignment := taCenter;
+  DBGrid1.Columns[5].Alignment     := taCenter;
   DBGrid1.Columns[6].Title.Caption := 'Status';
 
 
-  dtinicio.DateTime := now;
-  dtfim.DateTime := now;
+  dtinicio.DateTime                := now;
+  dtfim.DateTime                   := now;
 end;
 
 procedure TfrmProducoesEnv.QrProducoesCalcFields(DataSet: TDataSet);

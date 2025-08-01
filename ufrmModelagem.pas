@@ -4,7 +4,11 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.StdCtrls, Math;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.StdCtrls, Math,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, UtilsRz, RzCmboBx;
 
 type
   TfrmModelagem = class(TForm)
@@ -12,7 +16,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    edt_qtd_etiquetas: TLabel;
+    Label2222: TLabel;
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
@@ -25,7 +29,7 @@ type
     edt_pedido: TEdit;
     edt_comb: TEdit;
     edt_qtd_modelos: TEdit;
-    Edit4: TEdit;
+    edt_qtd_etiquetas: TEdit;
     edt_max_aceitavel: TEdit;
     edt_metragem_compra1: TEdit;
     edt_metragem_compra2: TEdit;
@@ -334,6 +338,59 @@ type
     edt_galvofinal_hv2: TEdit;
     edt_galvofinal_qt: TEdit;
     edt_galvofinal_altura: TEdit;
+    Label145: TLabel;
+    EdtMedida1: TEdit;
+    EdtMedida2: TEdit;
+    Label146: TLabel;
+    Label147: TLabel;
+    EdtCodigo: TEdit;
+    QrFacas: TFDQuery;
+    QrFacasmedida_1: TIntegerField;
+    QrFacasmedida_2: TIntegerField;
+    QrFacascodigo: TStringField;
+    CbTipoFaca: TRzComboBox;
+    QrFacastipo: TIntegerField;
+    Panel1: TPanel;
+    btnEnviar: TButton;
+    QrModelagem: TFDQuery;
+    QrModelagemPEDIDO: TIntegerField;
+    QrModelagemCOMBINACAO: TStringField;
+    QrModelagemQTD_MODELOS: TStringField;
+    QrModelagemQTD_ETIQUETAS: TBCDField;
+    QrModelagemMAX_ACEITAVEL: TIntegerField;
+    QrModelagemMATERIAL_1: TStringField;
+    QrModelagemMATERIAL_2: TStringField;
+    QrModelagemMEDIDA_MAIOR_1: TIntegerField;
+    QrModelagemMEDIDA_MAIOR_2: TIntegerField;
+    QrModelagemMEDIDA_MENOR_1: TIntegerField;
+    QrModelagemMEDIDA_MENOR_2: TIntegerField;
+    QrModelagemENFESTO_LM_1: TIntegerField;
+    QrModelagemENFESTO_LM_2: TIntegerField;
+    QrModelagemBALANCIM_QEV_1: TIntegerField;
+    QrModelagemBALANCIM_QEV_2: TIntegerField;
+    QrModelagemBALANCIM_QEQ_1: TIntegerField;
+    QrModelagemBALANCIM_QEQ_2: TIntegerField;
+    QrModelagemLM_HVM_11: TIntegerField;
+    QrModelagemLM_HVM_12: TIntegerField;
+    QrModelagemLM_HVM_21: TIntegerField;
+    QrModelagemLM_HVM_22: TIntegerField;
+    QrModelagemGALVO_T1: TIntegerField;
+    QrModelagemGALVO_T2: TIntegerField;
+    QrModelagemGALVO_CORTE_T1: TIntegerField;
+    QrModelagemGALVO_CORTE_T2: TIntegerField;
+    QrModelagemCRACK_SC_SERIGRAFIA_1: TIntegerField;
+    QrModelagemCRACK_SC_SERIGRAFIA_2: TIntegerField;
+    QrModelagemETQ_SC_SERIGRAFIA_1: TIntegerField;
+    QrModelagemETQ_SC_SERIGRAFIA_2: TIntegerField;
+    QrModelagemID: TFDAutoIncField;
+    QrModelagemFACA_ID: TIntegerField;
+    QrFacasid: TFDAutoIncField;
+    QrFacasEdt: TFDQuery;
+    QrFacasEdtid: TFDAutoIncField;
+    QrFacasEdtmedida_1: TIntegerField;
+    QrFacasEdtmedida_2: TIntegerField;
+    QrFacasEdtcodigo: TStringField;
+    QrFacasEdttipo: TIntegerField;
     procedure FormCreate(Sender: TObject);
     procedure edt_medida_maior1Change(Sender: TObject);
     procedure edt_medida_maior2Change(Sender: TObject);
@@ -374,8 +431,15 @@ type
     procedure edt_galvofinal_tg2Change(Sender: TObject);
     procedure edt_galvofinal_hv1Change(Sender: TObject);
     procedure edt_galvofinal_hv2Change(Sender: TObject);
+    procedure EdtMedida1Change(Sender: TObject);
+    procedure EdtMedida2Change(Sender: TObject);
+    procedure CbTipoFacaChange(Sender: TObject);
+    procedure btnEnviarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     function GetEditIntValue(Edit: TEdit): Double;
+    function SafeStrToFloat(const S: string): Double;
+    function SafeStrToInt(const S: string): Integer;
     { Private declarations }
   public
     { Public declarations }
@@ -387,6 +451,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses uMain, ufrmProducao;
 
 procedure TfrmModelagem.edt_laserg1_area1Change(Sender: TObject);
 var
@@ -401,15 +467,15 @@ begin
 
    if edt_laserg1_area1.Text <> '' then
    begin
-     CA := GetEditIntValue(edt_laserg1_area1);
+     CA  := GetEditIntValue(edt_laserg1_area1);
      CA2 := GetEditIntValue(edt_laserg1_area2);
-     MM := GetEditIntValue(edt_medida_maior1);
-     MN := GetEditIntValue(edt_medida_menor1);
+     MM  := GetEditIntValue(edt_medida_maior1);
+     MN  := GetEditIntValue(edt_medida_menor1);
      CH1 := GetEditIntValue(edt_laserg1_hv1);
      CH2 := GetEditIntValue(edt_laserg1_hv2);
-     CC := GetEditIntValue(edt_laserg1_chapa1);
-     CP := GetEditIntValue(edt_laserg1_pc);
-     MA := GetEditIntValue(edt_max_aceitavel);
+     CC  := GetEditIntValue(edt_laserg1_chapa1);
+     CP  := GetEditIntValue(edt_laserg1_pc);
+     MA  := GetEditIntValue(edt_max_aceitavel);
 
      if (CA <> 0) and (MM <> 0) then
      begin
@@ -434,23 +500,23 @@ begin
        T6 := RoundTo(MA / T5, -2);
      end;
 
-     edt_laserg1_hv1.Text := FloatToStr(T1);
+     edt_laserg1_hv1.Text    := FloatToStr(T1);
      edt_laserg1_chapa1.Text := FloatToStr(T3);
-     edt_laserg1_hv2.Text := FloatToStr(T2);
+     edt_laserg1_hv2.Text    := FloatToStr(T2);
      edt_laserg1_chapa2.Text := FloatToStr(T4);
-     edt_laserg1_pc.Text := FloatToStr(T5);
+     edt_laserg1_pc.Text     := FloatToStr(T5);
 
      if MA <> 0 then
        edt_laserg1_qc.Text := FloatToStr(T6);
    end
    else
    begin
-     edt_laserg1_hv1.Text := FloatToStr(0);
+     edt_laserg1_hv1.Text    := FloatToStr(0);
      edt_laserg1_chapa1.Text := FloatToStr(0);
-     edt_laserg1_hv2.Text := FloatToStr(0);
+     edt_laserg1_hv2.Text    := FloatToStr(0);
      edt_laserg1_chapa2.Text := FloatToStr(0);
-     edt_laserg1_pc.Text := FloatToStr(0);
-     edt_laserg1_qc.Text := FloatToStr(0);
+     edt_laserg1_pc.Text     := FloatToStr(0);
+     edt_laserg1_qc.Text     := FloatToStr(0);
    end;
 end;
 
@@ -473,15 +539,15 @@ begin
 
    if edt_laserg2_area1.Text <> '' then
    begin
-     CA := GetEditIntValue(edt_laserg2_area1);
+     CA  := GetEditIntValue(edt_laserg2_area1);
      CA2 := GetEditIntValue(edt_laserg2_area2);
-     MM := GetEditIntValue(edt_medida_maior2);
-     MN := GetEditIntValue(edt_medida_menor2);
+     MM  := GetEditIntValue(edt_medida_maior2);
+     MN  := GetEditIntValue(edt_medida_menor2);
      CH1 := GetEditIntValue(edt_laserg2_hv1);
      CH2 := GetEditIntValue(edt_laserg2_hv2);
-     CC := GetEditIntValue(edt_laserg2_chapa1);
-     CP := GetEditIntValue(edt_laserg2_pc);
-     MA := GetEditIntValue(edt_max_aceitavel);
+     CC  := GetEditIntValue(edt_laserg2_chapa1);
+     CP  := GetEditIntValue(edt_laserg2_pc);
+     MA  := GetEditIntValue(edt_max_aceitavel);
 
      if (CA <> 0) and (MM <> 0) then
      begin
@@ -506,23 +572,23 @@ begin
        T6 := RoundTo(MA / T5, -2);
      end;
 
-     edt_laserg2_hv1.Text := FloatToStr(T1);
+     edt_laserg2_hv1.Text    := FloatToStr(T1);
      edt_laserg2_chapa1.Text := FloatToStr(T3);
-     edt_laserg2_hv2.Text := FloatToStr(T2);
+     edt_laserg2_hv2.Text    := FloatToStr(T2);
      edt_laserg2_chapa2.Text := FloatToStr(T4);
-     edt_laserg2_pc.Text := FloatToStr(T5);
+     edt_laserg2_pc.Text     := FloatToStr(T5);
 
      if MA <> 0 then
        edt_laserg2_qc.Text := FloatToStr(T6);
    end
    else
    begin
-     edt_laserg2_hv1.Text := FloatToStr(0);
+     edt_laserg2_hv1.Text    := FloatToStr(0);
      edt_laserg2_chapa1.Text := FloatToStr(0);
-     edt_laserg2_hv2.Text := FloatToStr(0);
+     edt_laserg2_hv2.Text    := FloatToStr(0);
      edt_laserg2_chapa2.Text := FloatToStr(0);
-     edt_laserg2_pc.Text := FloatToStr(0);
-     edt_laserg2_qc.Text := FloatToStr(0);
+     edt_laserg2_pc.Text     := FloatToStr(0);
+     edt_laserg2_qc.Text     := FloatToStr(0);
    end;
 end;
 
@@ -545,15 +611,15 @@ begin
 
    if edt_laserm1_area1.Text <> '' then
    begin
-     CA := GetEditIntValue(edt_laserm1_area1);
+     CA  := GetEditIntValue(edt_laserm1_area1);
      CA2 := GetEditIntValue(edt_laserm1_area2);
-     MM := GetEditIntValue(edt_medida_maior1);
-     MN := GetEditIntValue(edt_medida_menor1);
+     MM  := GetEditIntValue(edt_medida_maior1);
+     MN  := GetEditIntValue(edt_medida_menor1);
      CH1 := GetEditIntValue(edt_laserm1_hv1);
      CH2 := GetEditIntValue(edt_laserm1_hv2);
-     CC := GetEditIntValue(edt_laserm1_chapa1);
-     CP := GetEditIntValue(edt_laserm1_pc);
-     MA := GetEditIntValue(edt_max_aceitavel);
+     CC  := GetEditIntValue(edt_laserm1_chapa1);
+     CP  := GetEditIntValue(edt_laserm1_pc);
+     MA  := GetEditIntValue(edt_max_aceitavel);
 
      if (CA <> 0) and (MM <> 0) then
      begin
@@ -578,23 +644,23 @@ begin
        T6 := RoundTo(MA / T5, -2);
      end;
 
-     edt_laserm1_hv1.Text := FloatToStr(T1);
+     edt_laserm1_hv1.Text    := FloatToStr(T1);
      edt_laserm1_chapa1.Text := FloatToStr(T3);
-     edt_laserm1_hv2.Text := FloatToStr(T2);
+     edt_laserm1_hv2.Text    := FloatToStr(T2);
      edt_laserm1_chapa2.Text := FloatToStr(T4);
-     edt_laserm1_pc.Text := FloatToStr(T5);
+     edt_laserm1_pc.Text     := FloatToStr(T5);
 
      if MA <> 0 then
        edt_laserm1_qc.Text := FloatToStr(T6);
    end
    else
    begin
-     edt_laserm1_hv1.Text := FloatToStr(0);
+     edt_laserm1_hv1.Text    := FloatToStr(0);
      edt_laserm1_chapa1.Text := FloatToStr(0);
-     edt_laserm1_hv2.Text := FloatToStr(0);
+     edt_laserm1_hv2.Text    := FloatToStr(0);
      edt_laserm1_chapa2.Text := FloatToStr(0);
-     edt_laserm1_pc.Text := FloatToStr(0);
-     edt_laserm1_qc.Text := FloatToStr(0);
+     edt_laserm1_pc.Text     := FloatToStr(0);
+     edt_laserm1_qc.Text     := FloatToStr(0);
    end;
 end;
 
@@ -617,15 +683,15 @@ begin
 
    if edt_laserm2_area1.Text <> '' then
    begin
-     CA := GetEditIntValue(edt_laserm2_area1);
+     CA  := GetEditIntValue(edt_laserm2_area1);
      CA2 := GetEditIntValue(edt_laserm2_area2);
-     MM := GetEditIntValue(edt_medida_maior2);
-     MN := GetEditIntValue(edt_medida_menor2);
+     MM  := GetEditIntValue(edt_medida_maior2);
+     MN  := GetEditIntValue(edt_medida_menor2);
      CH1 := GetEditIntValue(edt_laserm2_hv1);
      CH2 := GetEditIntValue(edt_laserm2_hv2);
-     CC := GetEditIntValue(edt_laserm2_chapa1);
-     CP := GetEditIntValue(edt_laserm2_pc);
-     MA := GetEditIntValue(edt_max_aceitavel);
+     CC  := GetEditIntValue(edt_laserm2_chapa1);
+     CP  := GetEditIntValue(edt_laserm2_pc);
+     MA  := GetEditIntValue(edt_max_aceitavel);
 
      if (CA <> 0) and (MM <> 0) then
      begin
@@ -650,11 +716,11 @@ begin
        T6 := RoundTo(MA / T5, -2);
      end;
 
-     edt_laserm2_hv1.Text := FloatToStr(T1);
+     edt_laserm2_hv1.Text    := FloatToStr(T1);
      edt_laserm2_chapa1.Text := FloatToStr(T3);
-     edt_laserm2_hv2.Text := FloatToStr(T2);
+     edt_laserm2_hv2.Text    := FloatToStr(T2);
      edt_laserm2_chapa2.Text := FloatToStr(T4);
-     edt_laserm2_pc.Text := FloatToStr(T5);
+     edt_laserm2_pc.Text     := FloatToStr(T5);
 
      if MA <> 0 then
        edt_laserm2_qc.Text := FloatToStr(T6);
@@ -700,16 +766,16 @@ begin
    begin
      CHREC1 := GetEditIntValue(edt_lasermontg1_hvrec1);
      CHREC2 := GetEditIntValue(edt_lasermontg1_hvrec2);
-     MM := GetEditIntValue(edt_medida_maior1);
-     MN := GetEditIntValue(edt_medida_menor1);
-     MA := GetEditIntValue(edt_max_aceitavel);
+     MM     := GetEditIntValue(edt_medida_maior1);
+     MN     := GetEditIntValue(edt_medida_menor1);
+     MA     := GetEditIntValue(edt_max_aceitavel);
 
      T1 :=  CHREC1 * CHREC2;
      T2 :=  (MM * CHREC1)+6+(3*(CHREC1-1));
      T3 :=  (MN*CHREC2)+6+(3*(CHREC2-1));
 
 
-     edt_lasermontg1_qeq.Text := FloatToStr(T1);
+     edt_lasermontg1_qeq.Text      := FloatToStr(T1);
      edt_lasermontg1_recorte1.Text := FloatToStr(T2);
      edt_lasermontg1_recorte2.Text := FloatToStr(T3);
 
@@ -719,7 +785,7 @@ begin
      begin
        A1LG1 := GetEditIntValue(edt_laserg1_area1);
        A1LG2 := GetEditIntValue(edt_laserg1_area2);
-       CQC := GetEditIntValue(edt_crack_qc);
+       CQC   := GetEditIntValue(edt_crack_qc);
 
        if (A1LG1 > 0) and (CQC > 0) then
        begin
@@ -772,15 +838,15 @@ begin
    end
    else
    begin
-     edt_lasermontg1_hv1.Text := FloatToStr(0);
-     edt_lasermontg1_hv2.Text := FloatToStr(0);
-     edt_lasermontg1_chapa1.Text := FloatToStr(0);
-     edt_lasermontg1_chapa2.Text := FloatToStr(0);
-     edt_lasermontg1_pc.Text := FloatToStr(0);
+     edt_lasermontg1_hv1.Text      := FloatToStr(0);
+     edt_lasermontg1_hv2.Text      := FloatToStr(0);
+     edt_lasermontg1_chapa1.Text   := FloatToStr(0);
+     edt_lasermontg1_chapa2.Text   := FloatToStr(0);
+     edt_lasermontg1_pc.Text       := FloatToStr(0);
      edt_lasermontg1_recorte1.Text := FloatToStr(0);
      edt_lasermontg1_recorte2.Text := FloatToStr(0);
-     edt_lasermontg1_qeq.Text := FloatToStr(0);
-     edt_lasermontg1_qc.Text := FloatToStr(0);
+     edt_lasermontg1_qeq.Text      := FloatToStr(0);
+     edt_lasermontg1_qc.Text       := FloatToStr(0);
    end;
 end;
 
@@ -820,16 +886,16 @@ begin
    begin
      CHREC1 := GetEditIntValue(edt_lasermontg2_hvrec1);
      CHREC2 := GetEditIntValue(edt_lasermontg2_hvrec2);
-     MM := GetEditIntValue(edt_medida_maior1);
-     MN := GetEditIntValue(edt_medida_menor1);
-     MA := GetEditIntValue(edt_max_aceitavel);
+     MM     := GetEditIntValue(edt_medida_maior1);
+     MN     := GetEditIntValue(edt_medida_menor1);
+     MA     := GetEditIntValue(edt_max_aceitavel);
 
      T1 :=  CHREC1 * CHREC2;
      T2 :=  (MM * CHREC1)+6+(3*(CHREC1-1));
      T3 :=  (MN*CHREC2)+6+(3*(CHREC2-1));
 
 
-     edt_lasermontg2_qeq.Text := FloatToStr(T1);
+     edt_lasermontg2_qeq.Text      := FloatToStr(T1);
      edt_lasermontg2_recorte1.Text := FloatToStr(T2);
      edt_lasermontg2_recorte2.Text := FloatToStr(T3);
 
@@ -892,15 +958,15 @@ begin
    end
    else
    begin
-     edt_lasermontg2_hv1.Text := FloatToStr(0);
-     edt_lasermontg2_hv2.Text := FloatToStr(0);
-     edt_lasermontg2_chapa1.Text := FloatToStr(0);
-     edt_lasermontg2_chapa2.Text := FloatToStr(0);
-     edt_lasermontg2_pc.Text := FloatToStr(0);
+     edt_lasermontg2_hv1.Text      := FloatToStr(0);
+     edt_lasermontg2_hv2.Text      := FloatToStr(0);
+     edt_lasermontg2_chapa1.Text   := FloatToStr(0);
+     edt_lasermontg2_chapa2.Text   := FloatToStr(0);
+     edt_lasermontg2_pc.Text       := FloatToStr(0);
      edt_lasermontg2_recorte1.Text := FloatToStr(0);
      edt_lasermontg2_recorte2.Text := FloatToStr(0);
-     edt_lasermontg2_qeq.Text := FloatToStr(0);
-     edt_lasermontg2_qc.Text := FloatToStr(0);
+     edt_lasermontg2_qeq.Text      := FloatToStr(0);
+     edt_lasermontg2_qc.Text       := FloatToStr(0);
    end;
 end;
 
@@ -935,15 +1001,15 @@ begin
 
    if edt_laserp1_area1.Text <> '' then
    begin
-     CA := GetEditIntValue(edt_laserp1_area1);
+     CA  := GetEditIntValue(edt_laserp1_area1);
      CA2 := GetEditIntValue(edt_laserp1_area2);
-     MM := GetEditIntValue(edt_medida_maior1);
-     MN := GetEditIntValue(edt_medida_menor1);
+     MM  := GetEditIntValue(edt_medida_maior1);
+     MN  := GetEditIntValue(edt_medida_menor1);
      CH1 := GetEditIntValue(edt_laserp1_hv1);
      CH2 := GetEditIntValue(edt_laserp1_hv2);
-     CC := GetEditIntValue(edt_laserp1_chapa1);
-     CP := GetEditIntValue(edt_laserp1_pc);
-     MA := GetEditIntValue(edt_max_aceitavel);
+     CC  := GetEditIntValue(edt_laserp1_chapa1);
+     CP  := GetEditIntValue(edt_laserp1_pc);
+     MA  := GetEditIntValue(edt_max_aceitavel);
 
      if (CA <> 0) and (MM <> 0) then
      begin
@@ -968,23 +1034,23 @@ begin
        T6 := RoundTo(MA / T5, -2);
      end;
 
-     edt_laserp1_hv1.Text := FloatToStr(T1);
+     edt_laserp1_hv1.Text    := FloatToStr(T1);
      edt_laserp1_chapa1.Text := FloatToStr(T3);
-     edt_laserp1_hv2.Text := FloatToStr(T2);
+     edt_laserp1_hv2.Text    := FloatToStr(T2);
      edt_laserp1_chapa2.Text := FloatToStr(T4);
-     edt_laserp1_pc.Text := FloatToStr(T5);
+     edt_laserp1_pc.Text     := FloatToStr(T5);
 
      if MA <> 0 then
        edt_laserp1_qc.Text := FloatToStr(T6);
    end
    else
    begin
-     edt_laserp1_hv1.Text := FloatToStr(0);
+     edt_laserp1_hv1.Text    := FloatToStr(0);
      edt_laserp1_chapa1.Text := FloatToStr(0);
-     edt_laserp1_hv2.Text := FloatToStr(0);
+     edt_laserp1_hv2.Text    := FloatToStr(0);
      edt_laserp1_chapa2.Text := FloatToStr(0);
-     edt_laserp1_pc.Text := FloatToStr(0);
-     edt_laserp1_qc.Text := FloatToStr(0);
+     edt_laserp1_pc.Text     := FloatToStr(0);
+     edt_laserp1_qc.Text     := FloatToStr(0);
    end;
 end;
 
@@ -1007,15 +1073,15 @@ begin
 
    if edt_laserp2_area1.Text <> '' then
    begin
-     CA := GetEditIntValue(edt_laserp2_area1);
+     CA  := GetEditIntValue(edt_laserp2_area1);
      CA2 := GetEditIntValue(edt_laserp2_area2);
-     MM := GetEditIntValue(edt_medida_maior2);
-     MN := GetEditIntValue(edt_medida_menor2);
+     MM  := GetEditIntValue(edt_medida_maior2);
+     MN  := GetEditIntValue(edt_medida_menor2);
      CH1 := GetEditIntValue(edt_laserp2_hv1);
      CH2 := GetEditIntValue(edt_laserp2_hv2);
-     CC := GetEditIntValue(edt_laserp2_chapa1);
-     CP := GetEditIntValue(edt_laserp2_pc);
-     MA := GetEditIntValue(edt_max_aceitavel);
+     CC  := GetEditIntValue(edt_laserp2_chapa1);
+     CP  := GetEditIntValue(edt_laserp2_pc);
+     MA  := GetEditIntValue(edt_max_aceitavel);
 
      if (CA <> 0) and (MM <> 0) then
      begin
@@ -1040,23 +1106,23 @@ begin
        T6 := RoundTo(MA / T5, -2);
      end;
 
-     edt_laserp2_hv1.Text := FloatToStr(T1);
+     edt_laserp2_hv1.Text    := FloatToStr(T1);
      edt_laserp2_chapa1.Text := FloatToStr(T3);
-     edt_laserp2_hv2.Text := FloatToStr(T2);
+     edt_laserp2_hv2.Text    := FloatToStr(T2);
      edt_laserp2_chapa2.Text := FloatToStr(T4);
-     edt_laserp2_pc.Text := FloatToStr(T5);
+     edt_laserp2_pc.Text     := FloatToStr(T5);
 
      if MA <> 0 then
        edt_laserp2_qc.Text := FloatToStr(T6);
    end
    else
    begin
-     edt_laserp2_hv1.Text := FloatToStr(0);
+     edt_laserp2_hv1.Text    := FloatToStr(0);
      edt_laserp2_chapa1.Text := FloatToStr(0);
-     edt_laserp2_hv2.Text := FloatToStr(0);
+     edt_laserp2_hv2.Text    := FloatToStr(0);
      edt_laserp2_chapa2.Text := FloatToStr(0);
-     edt_laserp2_pc.Text := FloatToStr(0);
-     edt_laserp2_qc.Text := FloatToStr(0);
+     edt_laserp2_pc.Text     := FloatToStr(0);
+     edt_laserp2_qc.Text     := FloatToStr(0);
    end;
 end;
 
@@ -1066,16 +1132,112 @@ begin
     edt_laserp2_area1.OnChange(edt_laserp2_area1);
 end;
 
+procedure TfrmModelagem.btnEnviarClick(Sender: TObject);
+begin
+  //validações
+
+  //gravação
+  QrModelagem.Close;
+  QrModelagem.ParamByName('ID').AsInteger := ID;
+  QrModelagem.Open;
+  if Edit then
+  begin
+    QrModelagem.Edit;
+  end
+  else
+  begin
+    QrModelagem.Append;
+  end;
+
+  QrModelagemPEDIDO.AsInteger                := SafeStrToInt(edt_pedido.Text);
+  QrModelagemCOMBINACAO.AsString             := edt_comb.Text;
+  QrModelagemQTD_MODELOS.AsString            := edt_qtd_modelos.Text;
+  QrModelagemQTD_ETIQUETAS.AsFloat           := SafeStrToFloat(edt_qtd_etiquetas.Text);
+  QrModelagemMAX_ACEITAVEL.AsInteger         := SafeStrToInt(edt_max_aceitavel.Text);
+  QrModelagemMATERIAL_1.AsString             := edt_material1.Text;
+  QrModelagemMATERIAL_2.AsString             := edt_material2.Text;
+  QrModelagemMEDIDA_MAIOR_1.AsInteger        := SafeStrToInt(edt_medida_maior1.Text);
+  QrModelagemMEDIDA_MAIOR_2.AsInteger        := SafeStrToInt(edt_medida_maior2.Text);
+  QrModelagemMEDIDA_MENOR_1.AsInteger        := SafeStrToInt(edt_medida_menor1.Text);
+  QrModelagemMEDIDA_MENOR_2.AsInteger        := SafeStrToInt(edt_medida_menor2.Text);
+  QrModelagemENFESTO_LM_1.AsInteger          := SafeStrToInt(edt_enfesto_largura1.Text);
+  QrModelagemENFESTO_LM_2.AsInteger          := SafeStrToInt(edt_enfesto_largura2.Text);
+  QrModelagemBALANCIM_QEV_1.AsInteger        := SafeStrToInt(edt_balancin_qtd_vert1.Text);
+  QrModelagemBALANCIM_QEV_2.AsInteger        := SafeStrToInt(edt_balancin_qtd_vert2.Text);
+  QrModelagemBALANCIM_QEQ_1.AsInteger        := SafeStrToInt(edt_balancin_qtd_qdr1.Text);
+  QrModelagemBALANCIM_QEQ_2.AsInteger        := SafeStrToInt(edt_balancin_qtd_qdr2.Text);
+  QrModelagemLM_HVM_11.AsInteger             := SafeStrToInt(edt_lasermontg1_hvrec1.Text);
+  QrModelagemLM_HVM_12.AsInteger             := SafeStrToInt(edt_lasermontg1_hvrec2.Text);
+  QrModelagemLM_HVM_21.AsInteger             := SafeStrToInt(edt_lasermontg2_hvrec1.Text);
+  QrModelagemLM_HVM_22.AsInteger             := SafeStrToInt(edt_lasermontg2_hvrec2.Text);
+  QrModelagemGALVO_T1.AsInteger              := SafeStrToInt(edt_galvo_tg1.Text);
+  QrModelagemGALVO_T2.AsInteger              := SafeStrToInt(edt_galvo_tg2.Text);
+  QrModelagemGALVO_CORTE_T1.AsInteger        := SafeStrToInt(edt_galvofinal_hv1.Text);
+  QrModelagemGALVO_CORTE_T2.AsInteger        := SafeStrToInt(edt_galvofinal_hv2.Text);
+  QrModelagemCRACK_SC_SERIGRAFIA_1.AsInteger := SafeStrToInt(edt_crackchapado_qts1.Text);
+  QrModelagemCRACK_SC_SERIGRAFIA_2.AsInteger := SafeStrToInt(edt_crackchapado_qts2.Text);
+  QrModelagemETQ_SC_SERIGRAFIA_1.AsInteger   := SafeStrToInt(edt_crackchapadosemfaca_qts1.Text);
+  QrModelagemETQ_SC_SERIGRAFIA_2.AsInteger   := SafeStrToInt(edt_crackchapadosemfaca_qts2.Text);
+  QrModelagemFACA_ID.AsInteger               := (QrFacasid.AsInteger);
+  QrModelagem.Post;
+
+  ID := QrModelagemID.AsInteger;
+
+
+  ModalResult := mrOk;
+end;
+
+function TfrmModelagem.SafeStrToFloat(const S: string): Double;
+begin
+  if TryStrToFloat(S, Result) = False then
+    Result := 0; // ou um valor padrão
+end;
+
+function TfrmModelagem.SafeStrToInt(const S: string): Integer;
+begin
+  if TryStrToInt(S, Result) = False then
+    Result := 0; // ou um valor padrão
+end;
+
+procedure TfrmModelagem.CbTipoFacaChange(Sender: TObject);
+begin
+  if Assigned(EdtMedida1.OnChange) then
+    EdtMedida1.OnChange(EdtMedida1);
+end;
+
+procedure TfrmModelagem.EdtMedida1Change(Sender: TObject);
+begin
+  if (EdtMedida1.Text <> '') and (EdtMedida2.Text <> '') and (CbTipoFaca.Value <> '') then
+  begin
+    QrFacas.Close;
+    QrFacas.ParamByName('medida_1').AsInteger := StrToInt(EdtMedida1.Text);
+    QrFacas.ParamByName('medida_2').AsInteger := StrToInt(EdtMedida2.Text);
+    QrFacas.ParamByName('Tipo').AsInteger     := StrToInt(CbTipoFaca.Value);
+
+    QrFacas.Open;
+
+    EdtCodigo.Text              := QrFacascodigo.AsString;
+    edt_balancin_cod_faca1.Text := QrFacascodigo.AsString;
+    edt_balancin_cod_faca2.Text := QrFacascodigo.AsString;
+  end;
+end;
+
+procedure TfrmModelagem.EdtMedida2Change(Sender: TObject);
+begin
+  if Assigned(EdtMedida1.OnChange) then
+    EdtMedida1.OnChange(EdtMedida1);
+end;
+
 procedure TfrmModelagem.edt_balancin_cod_faca1Change(Sender: TObject);
 var
 L, M, Q, V, T, MA, M1, V1, T1, T2, ME:DOUBLE;
 begin
   if (edt_balancin_cod_faca1.Text <> '') then
   begin
-    L := GetEditIntValue(edt_enfesto_largura1);
-    M := GetEditIntValue(edt_balancin_med_menor1);
-    Q := GetEditIntValue(edt_balancin_qtd_qdr1);
-    V := GetEditIntValue(edt_balancin_qtd_vert1);
+    L  := GetEditIntValue(edt_enfesto_largura1);
+    M  := GetEditIntValue(edt_balancin_med_menor1);
+    Q  := GetEditIntValue(edt_balancin_qtd_qdr1);
+    V  := GetEditIntValue(edt_balancin_qtd_vert1);
     MA := GetEditIntValue(edt_max_aceitavel);
 
     if (((M + 4) * Q) <> 0) and (M <> 0) then
@@ -1097,9 +1259,9 @@ begin
       T2 := RoundTo(MA/T, -2);
     ME := RoundTo((T1 * T2)/100, -2);
 
-    edt_enfesto_altura1.Text := FloatToStr(T1);
+    edt_enfesto_altura1.Text    := FloatToStr(T1);
     edt_enfesto_qtd_tiras1.Text := FloatToStr(T2);
-    edt_metragem_compra1.Text := FloatToStr(ME);
+    edt_metragem_compra1.Text   := FloatToStr(ME);
   end;
 end;
 
@@ -1109,10 +1271,10 @@ L, M, Q, V, T, MA, M1, V1, T1, T2, ME:DOUBLE;
 begin
     if (edt_balancin_cod_faca2.Text <> '') then
   begin
-    L := GetEditIntValue(edt_enfesto_largura2);
-    M := GetEditIntValue(edt_balancin_med_menor2);
-    Q := GetEditIntValue(edt_balancin_qtd_qdr2);
-    V := GetEditIntValue(edt_balancin_qtd_vert2);
+    L  := GetEditIntValue(edt_enfesto_largura2);
+    M  := GetEditIntValue(edt_balancin_med_menor2);
+    Q  := GetEditIntValue(edt_balancin_qtd_qdr2);
+    V  := GetEditIntValue(edt_balancin_qtd_vert2);
     MA := GetEditIntValue(edt_max_aceitavel);
 
     if (((M + 4) * Q) <> 0) and (M <> 0) then
@@ -1135,9 +1297,9 @@ begin
 
     ME := RoundTo((T1 * T2)/100, -2);
 
-    edt_enfesto_altura2.Text := FloatToStr(T1);
+    edt_enfesto_altura2.Text    := FloatToStr(T1);
     edt_enfesto_qtd_tiras2.Text := FloatToStr(T2);
-    edt_metragem_compra2.Text := FloatToStr(ME);
+    edt_metragem_compra2.Text   := FloatToStr(ME);
   end;
 end;
 
@@ -1161,9 +1323,9 @@ begin
 
    if (edt_crackchapadosemfaca_area1.Text <> '') and (edt_crackchapadosemfaca_area2.Text <> '') then
    begin
-     MM := GetEditIntValue(edt_medida_maior1);
-     MN := GetEditIntValue(edt_medida_menor1);
-     MA := GetEditIntValue(edt_max_aceitavel);
+     MM  := GetEditIntValue(edt_medida_maior1);
+     MN  := GetEditIntValue(edt_medida_menor1);
+     MA  := GetEditIntValue(edt_max_aceitavel);
      TG1 := GetEditIntValue(edt_crackchapadosemfaca_area1);
      TG2 := GetEditIntValue(edt_crackchapadosemfaca_area2);
 
@@ -1181,7 +1343,7 @@ begin
 
        T4 := (T2 * (MN + 1) + 10);
 
-       edt_crackchapadosemfaca_qts2.Text := FloatToStr(T4);
+       edt_crackchapadosemfaca_qts2.Text       := FloatToStr(T4);
        edt_crackchapadosemfaca_area1laser.Text := FloatToStr(AL1);
        edt_crackchapadosemfaca_area2laser.Text := FloatToStr(AL2);
 
@@ -1212,18 +1374,18 @@ begin
    end
    else
    begin
-     edt_crackchapadosemfaca_hv1.Text := FloatToStr(0);
-     edt_crackchapadosemfaca_hv2.Text := FloatToStr(0);
-     edt_crackchapadosemfaca_qts1.Text := FloatToStr(0);
-     edt_crackchapadosemfaca_qts2.Text := FloatToStr(0);
+     edt_crackchapadosemfaca_hv1.Text        := FloatToStr(0);
+     edt_crackchapadosemfaca_hv2.Text        := FloatToStr(0);
+     edt_crackchapadosemfaca_qts1.Text       := FloatToStr(0);
+     edt_crackchapadosemfaca_qts2.Text       := FloatToStr(0);
      edt_crackchapadosemfaca_area1laser.Text := FloatToStr(0);
      edt_crackchapadosemfaca_area2laser.Text := FloatToStr(0);
-     edt_crackchapadosemfaca_hv12.Text := FloatToStr(0);
-     edt_crackchapadosemfaca_hv22.Text := FloatToStr(0);
-     edt_crackchapadosemfaca_chapa1.Text := FloatToStr(0);
-     edt_crackchapadosemfaca_chapa2.Text := FloatToStr(0);
-     edt_crackchapadosemfaca_etc.Text := FloatToStr(0);
-     edt_crackchapadosemfaca_qtc.Text := FloatToStr(0);
+     edt_crackchapadosemfaca_hv12.Text       := FloatToStr(0);
+     edt_crackchapadosemfaca_hv22.Text       := FloatToStr(0);
+     edt_crackchapadosemfaca_chapa1.Text     := FloatToStr(0);
+     edt_crackchapadosemfaca_chapa2.Text     := FloatToStr(0);
+     edt_crackchapadosemfaca_etc.Text        := FloatToStr(0);
+     edt_crackchapadosemfaca_qtc.Text        := FloatToStr(0);
    end;
 end;
 
@@ -1253,9 +1415,9 @@ begin
 
    if (edt_crackchapado_area1.Text <> '') and (edt_crackchapado_area2.Text <> '') then
    begin
-     MM := GetEditIntValue(edt_medida_maior1);
-     MN := GetEditIntValue(edt_medida_menor1);
-     MA := GetEditIntValue(edt_max_aceitavel);
+     MM  := GetEditIntValue(edt_medida_maior1);
+     MN  := GetEditIntValue(edt_medida_menor1);
+     MA  := GetEditIntValue(edt_max_aceitavel);
      TG1 := GetEditIntValue(edt_crackchapado_area1);
      TG2 := GetEditIntValue(edt_crackchapado_area2);
 
@@ -1273,7 +1435,7 @@ begin
 
        T4 := (T2 * (MN + 1) + 10);
 
-       edt_crackchapado_qts2.Text := FloatToStr(T4);
+       edt_crackchapado_qts2.Text       := FloatToStr(T4);
        edt_crackchapado_area1crack.Text := FloatToStr(AC1);
        edt_crackchapado_area2crack.Text := FloatToStr(AC2);
 
@@ -1304,18 +1466,18 @@ begin
    end
    else
    begin
-     edt_crackchapado_hv1.Text := FloatToStr(0);
-     edt_crackchapado_hv2.Text := FloatToStr(0);
-     edt_crackchapado_qts1.Text := FloatToStr(0);
-     edt_crackchapado_qts2.Text := FloatToStr(0);
+     edt_crackchapado_hv1.Text        := FloatToStr(0);
+     edt_crackchapado_hv2.Text        := FloatToStr(0);
+     edt_crackchapado_qts1.Text       := FloatToStr(0);
+     edt_crackchapado_qts2.Text       := FloatToStr(0);
      edt_crackchapado_area1crack.Text := FloatToStr(0);
      edt_crackchapado_area2crack.Text := FloatToStr(0);
-     edt_crackchapado_hv12.Text := FloatToStr(0);
-     edt_crackchapado_hv22.Text := FloatToStr(0);
-     edt_crackchapado_chapa1.Text := FloatToStr(0);
-     edt_crackchapado_chapa2.Text := FloatToStr(0);
-     edt_crackchapado_etc.Text := FloatToStr(0);
-     edt_crackchapado_qtc.Text := FloatToStr(0);
+     edt_crackchapado_hv12.Text       := FloatToStr(0);
+     edt_crackchapado_hv22.Text       := FloatToStr(0);
+     edt_crackchapado_chapa1.Text     := FloatToStr(0);
+     edt_crackchapado_chapa2.Text     := FloatToStr(0);
+     edt_crackchapado_etc.Text        := FloatToStr(0);
+     edt_crackchapado_qtc.Text        := FloatToStr(0);
    end;
 end;
 
@@ -1338,15 +1500,15 @@ begin
 
    if edt_crack_area1.Text <> '' then
    begin
-     CA := GetEditIntValue(edt_crack_area1);
+     CA  := GetEditIntValue(edt_crack_area1);
      CA2 := GetEditIntValue(edt_crack_area2);
-     MM := GetEditIntValue(edt_medida_maior1);
-     MN := GetEditIntValue(edt_medida_menor1);
+     MM  := GetEditIntValue(edt_medida_maior1);
+     MN  := GetEditIntValue(edt_medida_menor1);
      CH1 := GetEditIntValue(edt_crack_hv1);
      CH2 := GetEditIntValue(edt_crack_hv2);
-     CC := GetEditIntValue(edt_crack_chapa1);
-     CP := GetEditIntValue(edt_crack_pc);
-     MA := GetEditIntValue(edt_max_aceitavel);
+     CC  := GetEditIntValue(edt_crack_chapa1);
+     CP  := GetEditIntValue(edt_crack_pc);
+     MA  := GetEditIntValue(edt_max_aceitavel);
 
      if (CA <> 0) and (MM <> 0) then
      begin
@@ -1380,10 +1542,10 @@ begin
    end
    else
    begin
-     edt_crack_hv1.Text := FloatToStr(0);
+     edt_crack_hv1.Text    := FloatToStr(0);
      edt_crack_chapa1.Text := FloatToStr(0);
-     edt_crack_pc.Text := FloatToStr(0);
-     edt_crack_qc.Text := FloatToStr(0);
+     edt_crack_pc.Text     := FloatToStr(0);
+     edt_crack_qc.Text     := FloatToStr(0);
    end;
 end;
 
@@ -1400,15 +1562,15 @@ begin
 
    if edt_crack_area1.Text <> '' then
    begin
-     CA := GetEditIntValue(edt_crack_area1);
+     CA  := GetEditIntValue(edt_crack_area1);
      CA2 := GetEditIntValue(edt_crack_area2);
-     MM := GetEditIntValue(edt_medida_maior1);
-     MN := GetEditIntValue(edt_medida_menor1);
+     MM  := GetEditIntValue(edt_medida_maior1);
+     MN  := GetEditIntValue(edt_medida_menor1);
      CH1 := GetEditIntValue(edt_crack_hv1);
      CH2 := GetEditIntValue(edt_crack_hv2);
-     CC := GetEditIntValue(edt_crack_chapa2);
-     CP := GetEditIntValue(edt_crack_pc);
-     MA := GetEditIntValue(edt_max_aceitavel);
+     CC  := GetEditIntValue(edt_crack_chapa2);
+     CP  := GetEditIntValue(edt_crack_pc);
+     MA  := GetEditIntValue(edt_max_aceitavel);
 
      if (CA <> 0) and (MN <> 0) then
      begin
@@ -1433,19 +1595,19 @@ begin
        T6 := MA / T5;
      end;
 
-     edt_crack_hv2.Text := FloatToStr(T2);
+     edt_crack_hv2.Text    := FloatToStr(T2);
      edt_crack_chapa2.Text := FloatToStr(T4);
-     edt_crack_pc.Text := FloatToStr(T5);
+     edt_crack_pc.Text     := FloatToStr(T5);
 
      if MA <> 0 then
        edt_crack_qc.Text := FloatToStr(T6);
    end
    else
    begin
-     edt_crack_hv1.Text := FloatToStr(0);
+     edt_crack_hv1.Text    := FloatToStr(0);
      edt_crack_chapa1.Text := FloatToStr(0);
-     edt_crack_pc.Text := FloatToStr(0);
-     edt_crack_qc.Text := FloatToStr(0);
+     edt_crack_pc.Text     := FloatToStr(0);
+     edt_crack_qc.Text     := FloatToStr(0);
    end;
 end;
 
@@ -1465,14 +1627,14 @@ begin
 
    if (edt_galvofinal_hv1.Text <> '') and (edt_galvofinal_hv2.Text <> '') then
    begin
-     MM := GetEditIntValue(edt_medida_maior1);
-     MN := GetEditIntValue(edt_medida_menor1);
-     MA := GetEditIntValue(edt_max_aceitavel);
+     MM  := GetEditIntValue(edt_medida_maior1);
+     MN  := GetEditIntValue(edt_medida_menor1);
+     MA  := GetEditIntValue(edt_max_aceitavel);
      TG1 := GetEditIntValue(edt_galvofinal_hv1);
      TG2 := GetEditIntValue(edt_galvofinal_hv2);
 
-     T1 :=  Trunc(((TG1) * (MM + 1)) + 5);
-     T2 :=  Trunc(((TG2) * (MN + 1)) + 5);
+     T1  :=  Trunc(((TG1) * (MM + 1)) + 5);
+     T2  :=  Trunc(((TG2) * (MN + 1)) + 5);
 
      if (T1 > 0) and (T2 > 0) then
      begin
@@ -1502,13 +1664,13 @@ begin
    end
    else
    begin
-     edt_galvofinal_tg1.Text := FloatToStr(0);
-     edt_galvofinal_tg2.Text := FloatToStr(0);
+     edt_galvofinal_tg1.Text    := FloatToStr(0);
+     edt_galvofinal_tg2.Text    := FloatToStr(0);
      edt_galvofinal_altura.Text := FloatToStr(0);
      edt_galvofinal_desloc.Text := FloatToStr(0);
-     edt_galvofinal_etqpp.Text := FloatToStr(0);
-     edt_galvofinal_etpt.Text := FloatToStr(0);
-     edt_galvofinal_qt.Text := FloatToStr(0);
+     edt_galvofinal_etqpp.Text  := FloatToStr(0);
+     edt_galvofinal_etpt.Text   := FloatToStr(0);
+     edt_galvofinal_qt.Text     := FloatToStr(0);
    end;
 end;
 
@@ -1540,14 +1702,14 @@ begin
 
    if (edt_galvo_tg1.Text <> '') and (edt_galvo_tg2.Text <> '') then
    begin
-     MM := GetEditIntValue(edt_medida_maior1);
-     MN := GetEditIntValue(edt_medida_menor1);
-     MA := GetEditIntValue(edt_max_aceitavel);
+     MM  := GetEditIntValue(edt_medida_maior1);
+     MN  := GetEditIntValue(edt_medida_menor1);
+     MA  := GetEditIntValue(edt_max_aceitavel);
      TG1 := GetEditIntValue(edt_galvo_tg1);
      TG2 := GetEditIntValue(edt_galvo_tg2);
 
-     T1 :=  Trunc((TG1 / (MM + 1)));
-     T2 :=  Trunc((TG2 / (MN + 1)));
+     T1  :=  Trunc((TG1 / (MM + 1)));
+     T2  :=  Trunc((TG2 / (MN + 1)));
 
      if (T1 > 0) and (T2 > 0) then
      begin
@@ -1578,13 +1740,13 @@ begin
    end
    else
    begin
-     edt_galvo_hv1.Text := FloatToStr(0);
-     edt_galvo_hv2.Text := FloatToStr(0);
+     edt_galvo_hv1.Text    := FloatToStr(0);
+     edt_galvo_hv2.Text    := FloatToStr(0);
      edt_galvo_altura.Text := FloatToStr(0);
      edt_galvo_desloc.Text := FloatToStr(0);
-     edt_galvo_etqpp.Text := FloatToStr(0);
-     edt_galvo_etpt.Text := FloatToStr(0);
-     edt_galvo_qt.Text := FloatToStr(0);
+     edt_galvo_etqpp.Text  := FloatToStr(0);
+     edt_galvo_etpt.Text   := FloatToStr(0);
+     edt_galvo_qt.Text     := FloatToStr(0);
    end;
 end;
 
@@ -1653,16 +1815,16 @@ end;
 
 procedure TfrmModelagem.edt_medida_maior1Change(Sender: TObject);
 begin
-  edt_balancin_med_maior1.Text := edt_medida_maior1.Text;
+  edt_balancin_med_maior1.Text     := edt_medida_maior1.Text;
 
-  edt_crack_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
-  edt_laserg1_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
-  edt_laserm1_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
-  edt_laserp1_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
-  edt_galvo_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
-  edt_crackchapado_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_crack_tam.Text               := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_laserg1_tam.Text             := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_laserm1_tam.Text             := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_laserp1_tam.Text             := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_galvo_tam.Text               := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_crackchapado_tam.Text        := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
   edt_crackchapadosemfaca_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
-  edt_galvofinal_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_galvofinal_tam.Text          := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
 
   if Assigned(edt_balancin_cod_faca1.OnChange) then
     edt_balancin_cod_faca1.OnChange(edt_balancin_cod_faca1);
@@ -1692,9 +1854,9 @@ end;
 procedure TfrmModelagem.edt_medida_maior2Change(Sender: TObject);
 begin
   edt_balancin_med_maior2.Text := edt_medida_maior2.Text;
-  edt_laserg2_tam.Text := edt_medida_maior2.Text + 'X' + edt_medida_menor2.Text;
-  edt_laserm2_tam.Text := edt_medida_maior2.Text + 'X' + edt_medida_menor2.Text;
-  edt_laserp2_tam.Text := edt_medida_maior2.Text + 'X' + edt_medida_menor2.Text;
+  edt_laserg2_tam.Text         := edt_medida_maior2.Text + 'X' + edt_medida_menor2.Text;
+  edt_laserm2_tam.Text         := edt_medida_maior2.Text + 'X' + edt_medida_menor2.Text;
+  edt_laserp2_tam.Text         := edt_medida_maior2.Text + 'X' + edt_medida_menor2.Text;
 
   if Assigned(edt_balancin_cod_faca2.OnChange) then
     edt_balancin_cod_faca2.OnChange(edt_balancin_cod_faca2);
@@ -1711,15 +1873,15 @@ end;
 
 procedure TfrmModelagem.edt_medida_menor1Change(Sender: TObject);
 begin
-  edt_balancin_med_menor1.Text := edt_medida_menor1.Text;
-  edt_crack_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
-  edt_laserg1_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
-  edt_laserm1_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
-  edt_laserp1_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
-  edt_galvo_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
-  edt_crackchapado_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_balancin_med_menor1.Text     := edt_medida_menor1.Text;
+  edt_crack_tam.Text               := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_laserg1_tam.Text             := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_laserm1_tam.Text             := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_laserp1_tam.Text             := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_galvo_tam.Text               := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_crackchapado_tam.Text        := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
   edt_crackchapadosemfaca_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
-  edt_galvofinal_tam.Text := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
+  edt_galvofinal_tam.Text          := edt_medida_maior1.Text + 'X' + edt_medida_menor1.Text;
 
     if Assigned(edt_balancin_cod_faca1.OnChange) then
       edt_balancin_cod_faca1.OnChange(edt_balancin_cod_faca1);
@@ -1778,6 +1940,62 @@ end;
 procedure TfrmModelagem.FormCreate(Sender: TObject);
 begin
   pgCortes.TabIndex := 0;
+
+  SetListValues(CbTipoFaca);
+end;
+
+procedure TfrmModelagem.FormShow(Sender: TObject);
+begin
+  QrModelagem.Close;
+  QrModelagem.ParamByName('ID').AsInteger := ID;
+  QrModelagem.Open;
+
+  if Edit then
+  begin
+//    edt_pedido.Text                   := IntToStr(QrModelagemPEDIDO.AsInteger);
+    edt_comb.Text                     := QrModelagemCOMBINACAO.AsString;
+    edt_qtd_modelos.Text              := QrModelagemQTD_MODELOS.AsString;
+//    edt_qtd_etiquetas.Text            := FloatToStr(QrModelagemQTD_ETIQUETAS.AsFloat);
+    edt_max_aceitavel.Text            := IntToStr(QrModelagemMAX_ACEITAVEL.AsInteger);
+    edt_material1.Text                := QrModelagemMATERIAL_1.AsString;
+    edt_material2.Text                := QrModelagemMATERIAL_2.AsString;
+    edt_medida_maior1.Text            := IntToStr(QrModelagemMEDIDA_MAIOR_1.AsInteger);
+    edt_medida_maior2.Text            := IntToStr(QrModelagemMEDIDA_MAIOR_2.AsInteger);
+    edt_medida_menor1.Text            := IntToStr(QrModelagemMEDIDA_MENOR_1.AsInteger);
+    edt_medida_menor2.Text            := IntToStr(QrModelagemMEDIDA_MENOR_2.AsInteger);
+    edt_enfesto_largura1.Text         := IntToStr(QrModelagemENFESTO_LM_1.AsInteger);
+    edt_enfesto_largura2.Text         := IntToStr(QrModelagemENFESTO_LM_2.AsInteger);
+    edt_balancin_qtd_vert1.Text       := IntToStr(QrModelagemBALANCIM_QEV_1.AsInteger);
+    edt_balancin_qtd_vert2.Text       := IntToStr(QrModelagemBALANCIM_QEV_2.AsInteger);
+    edt_balancin_qtd_qdr1.Text        := IntToStr(QrModelagemBALANCIM_QEQ_1.AsInteger);
+    edt_balancin_qtd_qdr2.Text        := IntToStr(QrModelagemBALANCIM_QEQ_2.AsInteger);
+    edt_lasermontg1_hvrec1.Text       := IntToStr(QrModelagemLM_HVM_11.AsInteger);
+    edt_lasermontg1_hvrec2.Text       := IntToStr(QrModelagemLM_HVM_12.AsInteger);
+    edt_lasermontg2_hvrec1.Text       := IntToStr(QrModelagemLM_HVM_21.AsInteger);
+    edt_lasermontg2_hvrec2.Text       := IntToStr(QrModelagemLM_HVM_22.AsInteger);
+    edt_galvo_tg1.Text                := IntToStr(QrModelagemGALVO_T1.AsInteger);
+    edt_galvo_tg2.Text                := IntToStr(QrModelagemGALVO_T2.AsInteger);
+    edt_galvofinal_hv1.Text           := IntToStr(QrModelagemGALVO_CORTE_T1.AsInteger);
+    edt_galvofinal_hv2.Text           := IntToStr(QrModelagemGALVO_CORTE_T2.AsInteger);
+    edt_crackchapado_qts1.Text        := IntToStr(QrModelagemCRACK_SC_SERIGRAFIA_1.AsInteger);
+    edt_crackchapado_qts2.Text        := IntToStr(QrModelagemCRACK_SC_SERIGRAFIA_2.AsInteger);
+    edt_crackchapadosemfaca_qts1.Text := IntToStr(QrModelagemETQ_SC_SERIGRAFIA_1.AsInteger);
+    edt_crackchapadosemfaca_qts2.Text := IntToStr(QrModelagemETQ_SC_SERIGRAFIA_2.AsInteger);
+
+    QrFacasEdt.Close;
+    QrFacasEdt.ParamByName('id').AsInteger := QrModelagemFACA_ID.AsInteger;
+    QrFacasEdt.Open;
+
+    CbTipoFaca.Value := QrFacasEdttipo.AsString;
+    EdtMedida1.Text  := QrFacasEdtmedida_1.AsString;
+    EdtMedida2.Text  := QrFacasEdtmedida_2.AsString;
+    EdtCodigo.Text   := QrFacasEdtcodigo.AsString;
+
+  end;
+
+
+  edt_pedido.Text        := frmProducao.EdtNpedido.Text;
+  edt_qtd_etiquetas.Text := frmProducao.EdtQuantidade.Text;
 end;
 
 end.

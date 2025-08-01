@@ -3,7 +3,7 @@
         <ProjectGuid>{1A66F866-0F18-4686-B246-AB49369E3D6F}</ProjectGuid>
         <MainSource>BM2Alooe.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <TargetedPlatforms>1153</TargetedPlatforms>
         <AppType>Application</AppType>
         <FrameworkType>VCL</FrameworkType>
@@ -97,7 +97,7 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
         <Debugger_RunParams>F:\bmsoft\Bases\saletense 1 1</Debugger_RunParams>
         <Icon_MainIcon>convert.ico</Icon_MainIcon>
-        <DCC_ExeOutput>F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\</DCC_ExeOutput>
+        <DCC_ExeOutput>F:\Projetos Delphi\BM MySQL\Outros Projetos\Alooe\</DCC_ExeOutput>
         <VerInfo_Release>1</VerInfo_Release>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
@@ -121,12 +121,12 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <AppEnableHighDPI>true</AppEnableHighDPI>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.59;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.61;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <PreBuildEventCancelOnError>false</PreBuildEventCancelOnError>
         <PreBuildEvent><![CDATA[taskkill /f /im $(OUTPUTFILENAME)
 $(PreBuildEvent)]]></PreBuildEvent>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Build>59</VerInfo_Build>
+        <VerInfo_Build>61</VerInfo_Build>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -144,14 +144,13 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <AppEnableHighDPI>true</AppEnableHighDPI>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.1.262;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.1.263;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
-        <VerInfo_Build>262</VerInfo_Build>
+        <VerInfo_Build>263</VerInfo_Build>
         <Debugger_RunParams>F:\bmsoft\Bases\saletense 1 1</Debugger_RunParams>
         <VerInfo_Release>1</VerInfo_Release>
-        <DCC_ExeOutput>F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee</DCC_ExeOutput>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">

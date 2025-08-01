@@ -91,8 +91,10 @@ object frmProducao: TfrmProducao
       Top = 88
       Width = 121
       Height = 21
+      NumbersOnly = True
       TabOrder = 2
       OnChange = EdtQuantidadeChange
+      OnExit = EdtQuantidadeExit
     end
     object DtEntrega: TDateTimePicker
       Left = 368
@@ -204,7 +206,7 @@ object frmProducao: TfrmProducao
     end
     object EdtNpedido: TEdit
       Left = 32
-      Top = 92
+      Top = 88
       Width = 121
       Height = 21
       TabOrder = 12
@@ -340,10 +342,21 @@ object frmProducao: TfrmProducao
       '  salesOrderDate,'
       '  customer,'
       '  color,'
-      '  progressStatus'
-      'FROM ordens_producao;')
-    Left = 504
-    Top = 280
+      '  progressStatus,'
+      '  id_modelagem,'
+      '  note'
+      ''
+      'FROM ordens_producao'
+      'where id_producao= :id')
+    Left = 472
+    Top = 256
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end>
     object QrSaveProdid_producao: TStringField
       FieldName = 'id_producao'
       Origin = 'id_producao'
@@ -425,6 +438,17 @@ object frmProducao: TfrmProducao
       FieldName = 'name'
       Origin = '`name`'
       Size = 50
+    end
+    object QrSaveProdid_modelagem: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'id_modelagem'
+      Origin = 'id_modelagem'
+    end
+    object QrSaveProdnote: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'note'
+      Origin = 'note'
+      Size = 255
     end
   end
   object OpenDialog1: TOpenDialog

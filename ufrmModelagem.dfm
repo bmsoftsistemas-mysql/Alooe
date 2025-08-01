@@ -2,7 +2,7 @@ object frmModelagem: TfrmModelagem
   Left = 0
   Top = 0
   Caption = 'frmModelagem'
-  ClientHeight = 695
+  ClientHeight = 705
   ClientWidth = 699
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -12,13 +12,14 @@ object frmModelagem: TfrmModelagem
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object panel: TPanel
     Left = 0
     Top = 0
     Width = 699
-    Height = 695
+    Height = 705
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
@@ -31,28 +32,28 @@ object frmModelagem: TfrmModelagem
     end
     object Label2: TLabel
       Left = 24
-      Top = 51
+      Top = 53
       Width = 69
       Height = 13
       Caption = 'COMBINA'#199#195'O'
     end
     object Label3: TLabel
       Left = 24
-      Top = 70
+      Top = 73
       Width = 76
       Height = 13
       Caption = 'QTD. MODELOS'
     end
-    object edt_qtd_etiquetas: TLabel
-      Left = 224
+    object Label2222: TLabel
+      Left = 233
       Top = 32
       Width = 84
       Height = 13
       Caption = 'QTD. ETIQUETAS'
     end
     object Label5: TLabel
-      Left = 224
-      Top = 51
+      Left = 233
+      Top = 53
       Width = 82
       Height = 13
       Caption = 'M'#193'X. ACEIT'#193'VEL'
@@ -66,7 +67,7 @@ object frmModelagem: TfrmModelagem
     end
     object Label7: TLabel
       Left = 424
-      Top = 51
+      Top = 53
       Width = 110
       Height = 13
       Caption = 'METRAGEM COMPRA 2'
@@ -79,7 +80,7 @@ object frmModelagem: TfrmModelagem
       Caption = 'MATERIAL 1'
     end
     object Label9: TLabel
-      Left = 224
+      Left = 233
       Top = 102
       Width = 59
       Height = 13
@@ -94,24 +95,45 @@ object frmModelagem: TfrmModelagem
     end
     object Label11: TLabel
       Left = 24
-      Top = 150
+      Top = 152
       Width = 78
       Height = 13
       Caption = 'MEDIDA MENOR'
     end
     object Label12: TLabel
-      Left = 224
-      Top = 150
+      Left = 233
+      Top = 152
       Width = 78
       Height = 13
       Caption = 'MEDIDA MENOR'
     end
     object Label13: TLabel
-      Left = 224
+      Left = 233
       Top = 131
       Width = 76
       Height = 13
       Caption = 'MEDIDA MAIOR'
+    end
+    object Label145: TLabel
+      Left = 458
+      Top = 95
+      Width = 176
+      Height = 13
+      Caption = 'Selecione as medidas e tipo de Faca:'
+    end
+    object Label146: TLabel
+      Left = 544
+      Top = 146
+      Width = 6
+      Height = 13
+      Caption = 'X'
+    end
+    object Label147: TLabel
+      Left = 458
+      Top = 172
+      Width = 37
+      Height = 13
+      Caption = 'C'#243'digo:'
     end
     object edt_pedido: TEdit
       Left = 106
@@ -123,20 +145,20 @@ object frmModelagem: TfrmModelagem
     end
     object edt_comb: TEdit
       Left = 106
-      Top = 44
+      Top = 46
       Width = 112
       Height = 21
       TabOrder = 1
     end
     object edt_qtd_modelos: TEdit
       Left = 106
-      Top = 64
+      Top = 67
       Width = 112
       Height = 21
       NumbersOnly = True
       TabOrder = 2
     end
-    object Edit4: TEdit
+    object edt_qtd_etiquetas: TEdit
       Left = 318
       Top = 24
       Width = 100
@@ -146,7 +168,7 @@ object frmModelagem: TfrmModelagem
     end
     object edt_max_aceitavel: TEdit
       Left = 318
-      Top = 44
+      Top = 46
       Width = 100
       Height = 21
       NumbersOnly = True
@@ -163,25 +185,25 @@ object frmModelagem: TfrmModelagem
     end
     object edt_metragem_compra2: TEdit
       Left = 537
-      Top = 44
+      Top = 46
       Width = 78
       Height = 21
       ReadOnly = True
       TabOrder = 6
     end
     object edt_medida_maior1: TEdit
-      Left = 108
-      Top = 122
-      Width = 110
+      Left = 106
+      Top = 123
+      Width = 112
       Height = 21
       NumbersOnly = True
       TabOrder = 7
       OnChange = edt_medida_maior1Change
     end
     object edt_medida_menor1: TEdit
-      Left = 108
-      Top = 142
-      Width = 110
+      Left = 106
+      Top = 144
+      Width = 112
       Height = 21
       NumbersOnly = True
       TabOrder = 8
@@ -189,7 +211,7 @@ object frmModelagem: TfrmModelagem
     end
     object edt_medida_maior2: TEdit
       Left = 318
-      Top = 122
+      Top = 123
       Width = 100
       Height = 21
       NumbersOnly = True
@@ -198,7 +220,7 @@ object frmModelagem: TfrmModelagem
     end
     object edt_medida_menor2: TEdit
       Left = 318
-      Top = 142
+      Top = 144
       Width = 100
       Height = 21
       NumbersOnly = True
@@ -220,11 +242,11 @@ object frmModelagem: TfrmModelagem
       TabOrder = 12
     end
     object pgCortes: TPageControl
-      Left = -16
+      Left = 1
       Top = 196
       Width = 699
-      Height = 499
-      ActivePage = TabSheet7
+      Height = 477
+      ActivePage = TabSheet6
       TabOrder = 13
       object ENFESTO: TTabSheet
         Caption = 'ENFESTO'
@@ -237,14 +259,14 @@ object frmModelagem: TfrmModelagem
         end
         object Label17: TLabel
           Left = 44
-          Top = 103
+          Top = 104
           Width = 79
           Height = 13
           Caption = 'QTD DE TIRAS 1'
         end
         object Label18: TLabel
           Left = 44
-          Top = 122
+          Top = 125
           Width = 109
           Height = 13
           Caption = 'LARGURA MATERIAL 1'
@@ -265,14 +287,14 @@ object frmModelagem: TfrmModelagem
         end
         object Label20: TLabel
           Left = 232
-          Top = 98
+          Top = 99
           Width = 30
           Height = 13
           Caption = 'TIRAS'
         end
         object Label19: TLabel
           Left = 232
-          Top = 117
+          Top = 120
           Width = 15
           Height = 13
           Caption = 'CM'
@@ -286,14 +308,14 @@ object frmModelagem: TfrmModelagem
         end
         object Label23: TLabel
           Left = 326
-          Top = 103
+          Top = 104
           Width = 79
           Height = 13
           Caption = 'QTD DE TIRAS 2'
         end
         object Label24: TLabel
           Left = 326
-          Top = 122
+          Top = 125
           Width = 109
           Height = 13
           Caption = 'LARGURA MATERIAL 2'
@@ -307,14 +329,14 @@ object frmModelagem: TfrmModelagem
         end
         object Label26: TLabel
           Left = 514
-          Top = 117
+          Top = 120
           Width = 15
           Height = 13
           Caption = 'CM'
         end
         object Label27: TLabel
           Left = 514
-          Top = 98
+          Top = 99
           Width = 30
           Height = 13
           Caption = 'TIRAS'
@@ -337,7 +359,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_enfesto_qtd_tiras1: TEdit
           Left = 161
-          Top = 95
+          Top = 96
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -346,9 +368,10 @@ object frmModelagem: TfrmModelagem
         end
         object edt_enfesto_largura1: TEdit
           Left = 161
-          Top = 114
+          Top = 117
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 2
           OnChange = edt_balancin_cod_faca1Change
@@ -364,7 +387,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_enfesto_qtd_tiras2: TEdit
           Left = 443
-          Top = 95
+          Top = 96
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -373,9 +396,10 @@ object frmModelagem: TfrmModelagem
         end
         object edt_enfesto_largura2: TEdit
           Left = 443
-          Top = 114
+          Top = 117
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 5
           OnChange = edt_balancin_cod_faca2Change
@@ -407,28 +431,28 @@ object frmModelagem: TfrmModelagem
         end
         object Label33: TLabel
           Left = 64
-          Top = 86
+          Top = 87
           Width = 78
           Height = 13
           Caption = 'MEDIDA MENOR'
         end
         object Label34: TLabel
           Left = 64
-          Top = 106
+          Top = 108
           Width = 88
           Height = 13
           Caption = 'QTD. ETIQ. VERT.'
         end
         object Label35: TLabel
           Left = 64
-          Top = 125
+          Top = 127
           Width = 83
           Height = 13
           Caption = 'QTD. ETIQ. TIRA'
         end
         object Label36: TLabel
           Left = 64
-          Top = 144
+          Top = 146
           Width = 99
           Height = 13
           Caption = 'QTD. ETIQ. QUADR.'
@@ -456,28 +480,28 @@ object frmModelagem: TfrmModelagem
         end
         object Label46: TLabel
           Left = 352
-          Top = 86
+          Top = 87
           Width = 78
           Height = 13
           Caption = 'MEDIDA MENOR'
         end
         object Label47: TLabel
           Left = 352
-          Top = 106
+          Top = 108
           Width = 88
           Height = 13
           Caption = 'QTD. ETIQ. VERT.'
         end
         object Label48: TLabel
           Left = 352
-          Top = 125
+          Top = 127
           Width = 83
           Height = 13
           Caption = 'QTD. ETIQ. TIRA'
         end
         object Label49: TLabel
           Left = 352
-          Top = 144
+          Top = 146
           Width = 99
           Height = 13
           Caption = 'QTD. ETIQ. QUADR.'
@@ -493,16 +517,17 @@ object frmModelagem: TfrmModelagem
         end
         object edt_balancin_qtd_qdr1: TEdit
           Left = 169
-          Top = 136
+          Top = 142
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 1
           OnChange = edt_balancin_cod_faca1Change
         end
         object edt_balancin_qtd_etq1: TEdit
           Left = 169
-          Top = 117
+          Top = 121
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -511,7 +536,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_balancin_med_menor2: TEdit
           Left = 457
-          Top = 78
+          Top = 79
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -520,7 +545,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_balancin_med_menor1: TEdit
           Left = 169
-          Top = 78
+          Top = 79
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -533,21 +558,23 @@ object frmModelagem: TfrmModelagem
           Width = 57
           Height = 21
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 5
           OnChange = edt_balancin_cod_faca1Change
         end
         object edt_balancin_qtd_qdr2: TEdit
           Left = 457
-          Top = 136
+          Top = 142
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 6
           OnChange = edt_balancin_cod_faca2Change
         end
         object edt_balancin_qtd_etq2: TEdit
           Left = 457
-          Top = 117
+          Top = 121
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -556,18 +583,20 @@ object frmModelagem: TfrmModelagem
         end
         object edt_balancin_qtd_vert2: TEdit
           Left = 457
-          Top = 98
+          Top = 100
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 8
           OnChange = edt_balancin_cod_faca2Change
         end
         object edt_balancin_qtd_vert1: TEdit
           Left = 169
-          Top = 98
+          Top = 100
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 9
           OnChange = edt_balancin_cod_faca1Change
@@ -587,6 +616,7 @@ object frmModelagem: TfrmModelagem
           Width = 57
           Height = 21
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 11
           OnChange = edt_balancin_cod_faca2Change
         end
@@ -610,28 +640,28 @@ object frmModelagem: TfrmModelagem
         end
         object Label38: TLabel
           Left = 16
-          Top = 76
+          Top = 77
           Width = 59
           Height = 13
           Caption = 'HOR X VERT'
         end
         object Label39: TLabel
           Left = 16
-          Top = 96
+          Top = 98
           Width = 34
           Height = 13
           Caption = 'CHAPA'
         end
         object Label40: TLabel
           Left = 16
-          Top = 115
+          Top = 119
           Width = 93
           Height = 13
           Caption = 'PE'#199'AS POR CHAPA'
         end
         object Label41: TLabel
           Left = 16
-          Top = 134
+          Top = 140
           Width = 84
           Height = 13
           Caption = 'QTD. DE CHAPAS'
@@ -650,13 +680,14 @@ object frmModelagem: TfrmModelagem
           Top = 48
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           TabOrder = 1
           Text = '450'
           OnChange = edt_crack_area1Change
         end
         object edt_crack_hv1: TEdit
           Left = 121
-          Top = 68
+          Top = 69
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -665,7 +696,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crack_chapa1: TEdit
           Left = 121
-          Top = 88
+          Top = 90
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -674,7 +705,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crack_pc: TEdit
           Left = 121
-          Top = 107
+          Top = 111
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -683,7 +714,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crack_qc: TEdit
           Left = 121
-          Top = 126
+          Top = 132
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -695,13 +726,14 @@ object frmModelagem: TfrmModelagem
           Top = 48
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           TabOrder = 6
           Text = '350'
           OnChange = edt_crack_area2Change
         end
         object edt_crack_hv2: TEdit
           Left = 184
-          Top = 68
+          Top = 69
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -710,7 +742,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crack_chapa2: TEdit
           Left = 184
-          Top = 88
+          Top = 90
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -721,316 +753,316 @@ object frmModelagem: TfrmModelagem
       object TabSheet2: TTabSheet
         Caption = 'LASER'
         object Label42: TLabel
-          Left = 140
-          Top = 5
+          Left = 29
+          Top = 1
           Width = 59
           Height = 13
           Caption = 'MATERIAL 1'
         end
         object Label43: TLabel
-          Left = 428
-          Top = 5
+          Left = 324
+          Top = 1
           Width = 59
           Height = 13
           Caption = 'MATERIAL 2'
         end
         object Label50: TLabel
           Left = 80
-          Top = 40
+          Top = 16
           Width = 103
           Height = 13
           Caption = 'TAMANHO ETIQUETA'
         end
         object Label51: TLabel
           Left = 80
-          Top = 68
+          Top = 44
           Width = 78
           Height = 13
           Caption = 'AREA MAQUINA'
         end
         object Label52: TLabel
           Left = 80
-          Top = 88
+          Top = 64
           Width = 59
           Height = 13
           Caption = 'HOR X VERT'
         end
         object Label53: TLabel
           Left = 80
-          Top = 108
+          Top = 84
           Width = 34
           Height = 13
           Caption = 'CHAPA'
         end
         object Label54: TLabel
           Left = 80
-          Top = 127
+          Top = 103
           Width = 93
           Height = 13
           Caption = 'PE'#199'AS POR CHAPA'
         end
         object Label55: TLabel
           Left = 80
-          Top = 146
+          Top = 122
           Width = 84
           Height = 13
           Caption = 'QTD. DE CHAPAS'
         end
         object Label56: TLabel
           Left = 149
-          Top = 25
+          Top = 1
           Width = 41
           Height = 13
           Caption = 'LAZER G'
         end
         object Label57: TLabel
           Left = 441
-          Top = 25
+          Top = 1
           Width = 41
           Height = 13
           Caption = 'LAZER G'
         end
         object Label58: TLabel
           Left = 372
-          Top = 40
+          Top = 16
           Width = 103
           Height = 13
           Caption = 'TAMANHO ETIQUETA'
         end
         object Label59: TLabel
           Left = 372
-          Top = 146
+          Top = 122
           Width = 84
           Height = 13
           Caption = 'QTD. DE CHAPAS'
         end
         object Label60: TLabel
           Left = 372
-          Top = 127
+          Top = 103
           Width = 93
           Height = 13
           Caption = 'PE'#199'AS POR CHAPA'
         end
         object Label61: TLabel
           Left = 372
-          Top = 108
+          Top = 84
           Width = 34
           Height = 13
           Caption = 'CHAPA'
         end
         object Label62: TLabel
           Left = 372
-          Top = 88
+          Top = 64
           Width = 59
           Height = 13
           Caption = 'HOR X VERT'
         end
         object Label63: TLabel
           Left = 372
-          Top = 68
+          Top = 44
           Width = 78
           Height = 13
           Caption = 'AREA MAQUINA'
         end
         object Label64: TLabel
           Left = 149
-          Top = 177
+          Top = 153
           Width = 42
           Height = 13
           Caption = 'LAZER M'
         end
         object Label65: TLabel
           Left = 80
-          Top = 192
+          Top = 168
           Width = 103
           Height = 13
           Caption = 'TAMANHO ETIQUETA'
         end
         object Label66: TLabel
           Left = 80
-          Top = 298
+          Top = 274
           Width = 84
           Height = 13
           Caption = 'QTD. DE CHAPAS'
         end
         object Label67: TLabel
           Left = 80
-          Top = 279
+          Top = 255
           Width = 93
           Height = 13
           Caption = 'PE'#199'AS POR CHAPA'
         end
         object Label68: TLabel
           Left = 80
-          Top = 260
+          Top = 236
           Width = 34
           Height = 13
           Caption = 'CHAPA'
         end
         object Label69: TLabel
           Left = 80
-          Top = 240
+          Top = 216
           Width = 59
           Height = 13
           Caption = 'HOR X VERT'
         end
         object Label70: TLabel
           Left = 80
-          Top = 220
+          Top = 196
           Width = 78
           Height = 13
           Caption = 'AREA MAQUINA'
         end
         object Label71: TLabel
           Left = 149
-          Top = 321
+          Top = 297
           Width = 40
           Height = 13
           Caption = 'LAZER P'
         end
         object Label72: TLabel
           Left = 80
-          Top = 336
+          Top = 312
           Width = 103
           Height = 13
           Caption = 'TAMANHO ETIQUETA'
         end
         object Label73: TLabel
           Left = 80
-          Top = 442
+          Top = 418
           Width = 84
           Height = 13
           Caption = 'QTD. DE CHAPAS'
         end
         object Label74: TLabel
           Left = 80
-          Top = 423
+          Top = 399
           Width = 93
           Height = 13
           Caption = 'PE'#199'AS POR CHAPA'
         end
         object Label75: TLabel
           Left = 80
-          Top = 404
+          Top = 380
           Width = 34
           Height = 13
           Caption = 'CHAPA'
         end
         object Label76: TLabel
           Left = 80
-          Top = 384
+          Top = 360
           Width = 59
           Height = 13
           Caption = 'HOR X VERT'
         end
         object Label77: TLabel
           Left = 80
-          Top = 364
+          Top = 340
           Width = 78
           Height = 13
           Caption = 'AREA MAQUINA'
         end
         object Label78: TLabel
           Left = 441
-          Top = 177
+          Top = 153
           Width = 42
           Height = 13
           Caption = 'LAZER M'
         end
         object Label79: TLabel
           Left = 372
-          Top = 192
+          Top = 168
           Width = 103
           Height = 13
           Caption = 'TAMANHO ETIQUETA'
         end
         object Label80: TLabel
           Left = 372
-          Top = 298
+          Top = 274
           Width = 84
           Height = 13
           Caption = 'QTD. DE CHAPAS'
         end
         object Label81: TLabel
           Left = 372
-          Top = 279
+          Top = 255
           Width = 93
           Height = 13
           Caption = 'PE'#199'AS POR CHAPA'
         end
         object Label82: TLabel
           Left = 372
-          Top = 260
+          Top = 236
           Width = 34
           Height = 13
           Caption = 'CHAPA'
         end
         object Label83: TLabel
           Left = 372
-          Top = 240
+          Top = 216
           Width = 59
           Height = 13
           Caption = 'HOR X VERT'
         end
         object Label84: TLabel
           Left = 372
-          Top = 220
+          Top = 196
           Width = 78
           Height = 13
           Caption = 'AREA MAQUINA'
         end
         object Label85: TLabel
           Left = 441
-          Top = 321
+          Top = 297
           Width = 40
           Height = 13
           Caption = 'LAZER P'
         end
         object Label86: TLabel
           Left = 372
-          Top = 336
+          Top = 312
           Width = 103
           Height = 13
           Caption = 'TAMANHO ETIQUETA'
         end
         object Label87: TLabel
           Left = 372
-          Top = 442
+          Top = 418
           Width = 84
           Height = 13
           Caption = 'QTD. DE CHAPAS'
         end
         object Label88: TLabel
           Left = 372
-          Top = 423
+          Top = 399
           Width = 93
           Height = 13
           Caption = 'PE'#199'AS POR CHAPA'
         end
         object Label89: TLabel
           Left = 372
-          Top = 404
+          Top = 380
           Width = 34
           Height = 13
           Caption = 'CHAPA'
         end
         object Label90: TLabel
           Left = 372
-          Top = 384
+          Top = 360
           Width = 59
           Height = 13
           Caption = 'HOR X VERT'
         end
         object Label91: TLabel
           Left = 372
-          Top = 364
+          Top = 340
           Width = 78
           Height = 13
           Caption = 'AREA MAQUINA'
         end
         object edt_laserg1_tam: TEdit
           Left = 185
-          Top = 37
+          Top = 13
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1039,9 +1071,10 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg1_area1: TEdit
           Left = 185
-          Top = 60
+          Top = 35
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 1
           Text = '1350'
@@ -1049,7 +1082,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg1_qc: TEdit
           Left = 185
-          Top = 138
+          Top = 114
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1058,7 +1091,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg1_pc: TEdit
           Left = 185
-          Top = 119
+          Top = 95
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1067,7 +1100,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg1_chapa1: TEdit
           Left = 185
-          Top = 100
+          Top = 76
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1076,7 +1109,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg1_hv1: TEdit
           Left = 185
-          Top = 80
+          Top = 56
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1085,9 +1118,10 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg1_area2: TEdit
           Left = 248
-          Top = 60
+          Top = 35
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 6
           Text = '1000'
@@ -1095,7 +1129,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg1_hv2: TEdit
           Left = 248
-          Top = 80
+          Top = 56
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1104,7 +1138,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg1_chapa2: TEdit
           Left = 248
-          Top = 100
+          Top = 76
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1113,7 +1147,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg2_tam: TEdit
           Left = 477
-          Top = 37
+          Top = 13
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1122,9 +1156,10 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg2_area1: TEdit
           Left = 477
-          Top = 60
+          Top = 35
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 10
           Text = '1350'
@@ -1132,7 +1167,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg2_hv1: TEdit
           Left = 477
-          Top = 80
+          Top = 56
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1141,7 +1176,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg2_chapa1: TEdit
           Left = 477
-          Top = 100
+          Top = 76
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1150,9 +1185,10 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg2_area2: TEdit
           Left = 540
-          Top = 60
+          Top = 35
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 13
           Text = '1000'
@@ -1160,7 +1196,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg2_hv2: TEdit
           Left = 540
-          Top = 80
+          Top = 56
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1169,7 +1205,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg2_chapa2: TEdit
           Left = 540
-          Top = 100
+          Top = 76
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1178,7 +1214,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg2_pc: TEdit
           Left = 477
-          Top = 119
+          Top = 95
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1187,7 +1223,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserg2_qc: TEdit
           Left = 477
-          Top = 138
+          Top = 114
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1196,7 +1232,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm1_tam: TEdit
           Left = 185
-          Top = 189
+          Top = 165
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1205,9 +1241,10 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm1_area1: TEdit
           Left = 185
-          Top = 212
+          Top = 188
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 19
           Text = '760'
@@ -1215,7 +1252,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm1_hv1: TEdit
           Left = 185
-          Top = 232
+          Top = 208
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1224,7 +1261,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm1_chapa1: TEdit
           Left = 185
-          Top = 252
+          Top = 228
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1233,9 +1270,10 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm1_area2: TEdit
           Left = 248
-          Top = 212
+          Top = 188
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 22
           Text = '450'
@@ -1243,7 +1281,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm1_hv2: TEdit
           Left = 248
-          Top = 232
+          Top = 208
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1252,7 +1290,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm1_chapa2: TEdit
           Left = 248
-          Top = 252
+          Top = 228
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1261,7 +1299,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm1_pc: TEdit
           Left = 185
-          Top = 271
+          Top = 247
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1270,7 +1308,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm1_qc: TEdit
           Left = 185
-          Top = 290
+          Top = 266
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1279,7 +1317,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp1_tam: TEdit
           Left = 185
-          Top = 333
+          Top = 309
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1288,9 +1326,10 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp1_area1: TEdit
           Left = 185
-          Top = 356
+          Top = 332
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 28
           Text = '570'
@@ -1298,7 +1337,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp1_hv1: TEdit
           Left = 185
-          Top = 376
+          Top = 352
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1307,7 +1346,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp1_chapa1: TEdit
           Left = 185
-          Top = 396
+          Top = 372
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1316,9 +1355,10 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp1_area2: TEdit
           Left = 248
-          Top = 356
+          Top = 332
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 31
           Text = '400'
@@ -1326,7 +1366,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp1_hv2: TEdit
           Left = 248
-          Top = 376
+          Top = 352
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1335,7 +1375,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp1_chapa2: TEdit
           Left = 248
-          Top = 396
+          Top = 372
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1344,7 +1384,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp1_pc: TEdit
           Left = 185
-          Top = 415
+          Top = 391
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1353,7 +1393,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp1_qc: TEdit
           Left = 185
-          Top = 434
+          Top = 410
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1362,7 +1402,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm2_tam: TEdit
           Left = 477
-          Top = 189
+          Top = 165
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1372,9 +1412,10 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm2_area1: TEdit
           Left = 477
-          Top = 212
+          Top = 188
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 37
           Text = '760'
@@ -1382,7 +1423,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm2_hv1: TEdit
           Left = 477
-          Top = 232
+          Top = 208
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1391,7 +1432,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm2_chapa1: TEdit
           Left = 477
-          Top = 252
+          Top = 228
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1400,9 +1441,10 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm2_area2: TEdit
           Left = 540
-          Top = 212
+          Top = 188
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 40
           Text = '450'
@@ -1410,7 +1452,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm2_hv2: TEdit
           Left = 540
-          Top = 232
+          Top = 208
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1419,7 +1461,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm2_chapa2: TEdit
           Left = 540
-          Top = 252
+          Top = 228
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1428,7 +1470,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm2_pc: TEdit
           Left = 477
-          Top = 271
+          Top = 247
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1437,7 +1479,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserm2_qc: TEdit
           Left = 477
-          Top = 290
+          Top = 266
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1446,7 +1488,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp2_tam: TEdit
           Left = 477
-          Top = 333
+          Top = 309
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1455,9 +1497,10 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp2_area1: TEdit
           Left = 477
-          Top = 356
+          Top = 332
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 46
           Text = '570'
@@ -1465,7 +1508,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp2_hv1: TEdit
           Left = 477
-          Top = 376
+          Top = 352
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1474,7 +1517,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp2_chapa1: TEdit
           Left = 477
-          Top = 396
+          Top = 372
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1483,9 +1526,10 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp2_area2: TEdit
           Left = 540
-          Top = 356
+          Top = 332
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 49
           Text = '400'
@@ -1493,7 +1537,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp2_hv2: TEdit
           Left = 540
-          Top = 376
+          Top = 352
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1502,7 +1546,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp2_chapa2: TEdit
           Left = 540
-          Top = 396
+          Top = 372
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1511,7 +1555,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp2_pc: TEdit
           Left = 477
-          Top = 415
+          Top = 391
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1520,7 +1564,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_laserp2_qc: TEdit
           Left = 477
-          Top = 434
+          Top = 410
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1554,28 +1598,28 @@ object frmModelagem: TfrmModelagem
         end
         object Label96: TLabel
           Left = 88
-          Top = 96
+          Top = 97
           Width = 59
           Height = 13
           Caption = 'HOR X VERT'
         end
         object Label97: TLabel
           Left = 88
-          Top = 116
+          Top = 118
           Width = 34
           Height = 13
           Caption = 'CHAPA'
         end
         object Label98: TLabel
           Left = 88
-          Top = 135
+          Top = 138
           Width = 93
           Height = 13
           Caption = 'PE'#199'AS POR CHAPA'
         end
         object Label99: TLabel
           Left = 88
-          Top = 215
+          Top = 222
           Width = 84
           Height = 13
           Caption = 'QTD. DE CHAPAS'
@@ -1603,77 +1647,77 @@ object frmModelagem: TfrmModelagem
         end
         object Label104: TLabel
           Left = 380
-          Top = 96
+          Top = 97
           Width = 59
           Height = 13
           Caption = 'HOR X VERT'
         end
         object Label105: TLabel
           Left = 380
-          Top = 116
+          Top = 118
           Width = 34
           Height = 13
           Caption = 'CHAPA'
         end
         object Label106: TLabel
           Left = 380
-          Top = 135
+          Top = 138
           Width = 93
           Height = 13
           Caption = 'PE'#199'AS POR CHAPA'
         end
         object Label107: TLabel
           Left = 380
-          Top = 215
+          Top = 222
           Width = 84
           Height = 13
           Caption = 'QTD. DE CHAPAS'
         end
         object Label108: TLabel
           Left = 88
-          Top = 154
+          Top = 159
           Width = 47
           Height = 13
           Caption = 'RECORTE'
         end
         object Label109: TLabel
           Left = 88
-          Top = 173
+          Top = 180
           Width = 90
           Height = 13
           Caption = 'HOR X VERT (REC)'
         end
         object Label110: TLabel
           Left = 88
-          Top = 194
+          Top = 201
           Width = 95
           Height = 13
           Caption = 'QDT. ETQ. QUADR.'
         end
         object Label111: TLabel
           Left = 379
-          Top = 154
+          Top = 159
           Width = 47
           Height = 13
           Caption = 'RECORTE'
         end
         object Label112: TLabel
-          Left = 379
-          Top = 173
+          Left = 378
+          Top = 180
           Width = 90
           Height = 13
           Caption = 'HOR X VERT (REC)'
         end
         object Label113: TLabel
           Left = 379
-          Top = 194
+          Top = 201
           Width = 95
           Height = 13
           Caption = 'QDT. ETQ. QUADR.'
         end
         object edt_lasermontg1_qc: TEdit
           Left = 193
-          Top = 207
+          Top = 214
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1682,7 +1726,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg1_pc: TEdit
           Left = 193
-          Top = 127
+          Top = 130
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1691,7 +1735,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg1_chapa1: TEdit
           Left = 193
-          Top = 108
+          Top = 110
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1700,7 +1744,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg1_hv1: TEdit
           Left = 193
-          Top = 88
+          Top = 89
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1720,7 +1764,7 @@ object frmModelagem: TfrmModelagem
         object edt_lasermontg1_area2: TEdit
           Left = 256
           Top = 68
-          Width = 57
+          Width = 56
           Height = 21
           NumbersOnly = True
           TabOrder = 5
@@ -1729,8 +1773,8 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg1_hv2: TEdit
           Left = 256
-          Top = 88
-          Width = 57
+          Top = 89
+          Width = 56
           Height = 21
           NumbersOnly = True
           ReadOnly = True
@@ -1738,8 +1782,8 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg1_chapa2: TEdit
           Left = 256
-          Top = 108
-          Width = 57
+          Top = 110
+          Width = 56
           Height = 21
           NumbersOnly = True
           ReadOnly = True
@@ -1747,7 +1791,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg2_qc: TEdit
           Left = 485
-          Top = 207
+          Top = 214
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1756,7 +1800,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg2_pc: TEdit
           Left = 485
-          Top = 127
+          Top = 130
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1765,7 +1809,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg2_chapa1: TEdit
           Left = 485
-          Top = 108
+          Top = 110
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1774,7 +1818,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg2_hv1: TEdit
           Left = 485
-          Top = 88
+          Top = 89
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1794,7 +1838,7 @@ object frmModelagem: TfrmModelagem
         object edt_lasermontg2_area2: TEdit
           Left = 548
           Top = 68
-          Width = 57
+          Width = 56
           Height = 21
           NumbersOnly = True
           TabOrder = 13
@@ -1803,8 +1847,8 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg2_hv2: TEdit
           Left = 548
-          Top = 88
-          Width = 57
+          Top = 89
+          Width = 56
           Height = 21
           NumbersOnly = True
           ReadOnly = True
@@ -1812,8 +1856,8 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg2_chapa2: TEdit
           Left = 548
-          Top = 108
-          Width = 57
+          Top = 110
+          Width = 56
           Height = 21
           NumbersOnly = True
           ReadOnly = True
@@ -1821,7 +1865,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg1_recorte1: TEdit
           Left = 193
-          Top = 146
+          Top = 151
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1830,8 +1874,8 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg1_recorte2: TEdit
           Left = 256
-          Top = 146
-          Width = 57
+          Top = 151
+          Width = 56
           Height = 21
           NumbersOnly = True
           ReadOnly = True
@@ -1839,25 +1883,27 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg1_hvrec1: TEdit
           Left = 193
-          Top = 165
+          Top = 172
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 18
           OnChange = edt_lasermontg1_hvrec1Change
         end
         object edt_lasermontg1_hvrec2: TEdit
           Left = 256
-          Top = 165
-          Width = 57
+          Top = 172
+          Width = 56
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 19
           OnChange = edt_lasermontg1_hvrec2Change
         end
         object edt_lasermontg1_qeq: TEdit
           Left = 193
-          Top = 186
+          Top = 193
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1866,7 +1912,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_lasermontg2_recorte2: TEdit
           Left = 547
-          Top = 146
+          Top = 151
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1874,8 +1920,8 @@ object frmModelagem: TfrmModelagem
           TabOrder = 21
         end
         object edt_lasermontg2_recorte1: TEdit
-          Left = 484
-          Top = 146
+          Left = 485
+          Top = 151
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -1883,26 +1929,28 @@ object frmModelagem: TfrmModelagem
           TabOrder = 22
         end
         object edt_lasermontg2_hvrec1: TEdit
-          Left = 484
-          Top = 165
+          Left = 485
+          Top = 172
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 23
           OnChange = edt_lasermontg2_hvrec1Change
         end
         object edt_lasermontg2_hvrec2: TEdit
-          Left = 547
-          Top = 165
-          Width = 57
+          Left = 546
+          Top = 172
+          Width = 58
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 24
           OnChange = edt_lasermontg2_hvrec2Change
         end
         object edt_lasermontg2_qeq: TEdit
-          Left = 484
-          Top = 186
+          Left = 485
+          Top = 193
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -1922,14 +1970,14 @@ object frmModelagem: TfrmModelagem
         end
         object Label115: TLabel
           Left = 23
-          Top = 60
+          Top = 58
           Width = 66
           Height = 13
           Caption = 'ALTURA TIRA'
         end
         object Label116: TLabel
           Left = 23
-          Top = 80
+          Top = 79
           Width = 58
           Height = 13
           Caption = 'QTD. TIRAS'
@@ -1970,10 +2018,11 @@ object frmModelagem: TfrmModelagem
           Caption = 'TAMANHO GALVO'
         end
         object edt_galvo_tg2: TEdit
-          Left = 191
+          Left = 190
           Top = 170
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 0
           OnChange = edt_galvo_tg2Change
@@ -1983,6 +2032,7 @@ object frmModelagem: TfrmModelagem
           Top = 170
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 1
           OnChange = edt_galvo_tg1Change
@@ -1998,7 +2048,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_galvo_etqpp: TEdit
           Left = 128
-          Top = 130
+          Top = 131
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -2017,7 +2067,7 @@ object frmModelagem: TfrmModelagem
         object edt_galvo_hv2: TEdit
           Left = 191
           Top = 92
-          Width = 57
+          Width = 56
           Height = 21
           NumbersOnly = True
           ReadOnly = True
@@ -2034,7 +2084,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_galvo_altura: TEdit
           Left = 128
-          Top = 52
+          Top = 50
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -2043,7 +2093,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_galvo_qt: TEdit
           Left = 128
-          Top = 72
+          Top = 71
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -2063,7 +2113,6 @@ object frmModelagem: TfrmModelagem
       object TabSheet7: TTabSheet
         Caption = 'GALVO CORTE FINAL'
         ImageIndex = 8
-        ExplicitLeft = 8
         object Label4: TLabel
           Left = 44
           Top = 40
@@ -2168,7 +2217,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_galvofinal_desloc: TEdit
           Left = 152
-          Top = 119
+          Top = 118
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -2180,6 +2229,7 @@ object frmModelagem: TfrmModelagem
           Top = 100
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 6
           Text = '4'
@@ -2190,6 +2240,7 @@ object frmModelagem: TfrmModelagem
           Top = 100
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 7
           Text = '4'
@@ -2247,42 +2298,42 @@ object frmModelagem: TfrmModelagem
         end
         object Label126: TLabel
           Left = 31
-          Top = 127
+          Top = 130
           Width = 64
           Height = 13
           Caption = 'AREA CRACK'
         end
         object Label127: TLabel
           Left = 31
-          Top = 146
+          Top = 150
           Width = 59
           Height = 13
           Caption = 'HOR X VERT'
         end
         object Label128: TLabel
           Left = 31
-          Top = 165
+          Top = 171
           Width = 34
           Height = 13
           Caption = 'CHAPA'
         end
         object Label129: TLabel
           Left = 31
-          Top = 186
+          Top = 192
           Width = 85
           Height = 13
           Caption = 'ETQ. POR CHAPA'
         end
         object Label130: TLabel
           Left = 31
-          Top = 205
+          Top = 213
           Width = 84
           Height = 13
           Caption = 'QTD. DE CHAPAS'
         end
         object edt_crackchapado_etc: TEdit
           Left = 136
-          Top = 178
+          Top = 184
           Width = 119
           Height = 21
           NumbersOnly = True
@@ -2291,7 +2342,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapado_chapa1: TEdit
           Left = 136
-          Top = 157
+          Top = 163
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -2300,7 +2351,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapado_hv12: TEdit
           Left = 136
-          Top = 138
+          Top = 142
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -2309,7 +2360,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapado_area1crack: TEdit
           Left = 136
-          Top = 119
+          Top = 122
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -2319,7 +2370,7 @@ object frmModelagem: TfrmModelagem
         object edt_crackchapado_qts2: TEdit
           Left = 199
           Top = 100
-          Width = 57
+          Width = 56
           Height = 21
           NumbersOnly = True
           ReadOnly = True
@@ -2348,8 +2399,10 @@ object frmModelagem: TfrmModelagem
           Top = 59
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 7
+          Text = '220'
           OnChange = edt_crackchapado_area1Change
         end
         object edt_crackchapado_tam: TEdit
@@ -2363,7 +2416,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapado_qtc: TEdit
           Left = 136
-          Top = 197
+          Top = 205
           Width = 120
           Height = 21
           NumbersOnly = True
@@ -2372,8 +2425,8 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapado_area2crack: TEdit
           Left = 199
-          Top = 118
-          Width = 57
+          Top = 121
+          Width = 56
           Height = 21
           NumbersOnly = True
           ReadOnly = True
@@ -2382,7 +2435,7 @@ object frmModelagem: TfrmModelagem
         object edt_crackchapado_hv2: TEdit
           Left = 199
           Top = 80
-          Width = 57
+          Width = 56
           Height = 21
           NumbersOnly = True
           ReadOnly = True
@@ -2391,16 +2444,18 @@ object frmModelagem: TfrmModelagem
         object edt_crackchapado_area2: TEdit
           Left = 199
           Top = 60
-          Width = 57
+          Width = 56
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 12
+          Text = '199'
           OnChange = edt_crackchapado_area2Change
         end
         object edt_crackchapado_hv22: TEdit
           Left = 199
-          Top = 138
-          Width = 57
+          Top = 142
+          Width = 56
           Height = 21
           NumbersOnly = True
           ReadOnly = True
@@ -2408,8 +2463,8 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapado_chapa2: TEdit
           Left = 199
-          Top = 157
-          Width = 57
+          Top = 163
+          Width = 56
           Height = 21
           NumbersOnly = True
           ReadOnly = True
@@ -2435,49 +2490,49 @@ object frmModelagem: TfrmModelagem
         end
         object Label133: TLabel
           Left = 39
-          Top = 96
+          Top = 97
           Width = 59
           Height = 13
           Caption = 'HOR X VERT'
         end
         object Label134: TLabel
           Left = 39
-          Top = 116
+          Top = 118
           Width = 93
           Height = 13
           Caption = 'QUAD SERIGRAFIA'
         end
         object Label135: TLabel
           Left = 39
-          Top = 135
+          Top = 140
           Width = 61
           Height = 13
           Caption = 'AREA LASER'
         end
         object Label136: TLabel
           Left = 39
-          Top = 154
+          Top = 160
           Width = 59
           Height = 13
           Caption = 'HOR X VERT'
         end
         object Label137: TLabel
           Left = 39
-          Top = 173
+          Top = 181
           Width = 34
           Height = 13
           Caption = 'CHAPA'
         end
         object Label138: TLabel
           Left = 39
-          Top = 194
+          Top = 202
           Width = 85
           Height = 13
           Caption = 'ETQ. POR CHAPA'
         end
         object Label139: TLabel
           Left = 39
-          Top = 213
+          Top = 222
           Width = 84
           Height = 13
           Caption = 'QTD. DE CHAPAS'
@@ -2485,7 +2540,7 @@ object frmModelagem: TfrmModelagem
         object edt_crackchapadosemfaca_tam: TEdit
           Left = 144
           Top = 45
-          Width = 119
+          Width = 120
           Height = 21
           NumbersOnly = True
           ReadOnly = True
@@ -2493,7 +2548,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapadosemfaca_qtc: TEdit
           Left = 144
-          Top = 205
+          Top = 214
           Width = 120
           Height = 21
           NumbersOnly = True
@@ -2502,8 +2557,8 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapadosemfaca_etc: TEdit
           Left = 144
-          Top = 186
-          Width = 119
+          Top = 194
+          Width = 120
           Height = 21
           NumbersOnly = True
           ReadOnly = True
@@ -2511,7 +2566,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapadosemfaca_chapa1: TEdit
           Left = 144
-          Top = 165
+          Top = 173
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -2520,7 +2575,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapadosemfaca_hv12: TEdit
           Left = 144
-          Top = 146
+          Top = 152
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -2529,7 +2584,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapadosemfaca_area1laser: TEdit
           Left = 144
-          Top = 127
+          Top = 132
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -2538,7 +2593,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapadosemfaca_qts1: TEdit
           Left = 144
-          Top = 108
+          Top = 110
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -2547,7 +2602,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapadosemfaca_hv1: TEdit
           Left = 144
-          Top = 88
+          Top = 89
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -2559,8 +2614,10 @@ object frmModelagem: TfrmModelagem
           Top = 68
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 8
+          Text = '220'
           OnChange = edt_crackchapadosemfaca_area1Change
         end
         object edt_crackchapadosemfaca_area2: TEdit
@@ -2568,13 +2625,15 @@ object frmModelagem: TfrmModelagem
           Top = 68
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 9
+          Text = '199'
           OnChange = edt_crackchapadosemfaca_area2Change
         end
         object edt_crackchapadosemfaca_hv2: TEdit
           Left = 207
-          Top = 88
+          Top = 89
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -2583,7 +2642,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapadosemfaca_qts2: TEdit
           Left = 207
-          Top = 108
+          Top = 110
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -2592,7 +2651,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapadosemfaca_area2laser: TEdit
           Left = 207
-          Top = 126
+          Top = 131
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -2601,7 +2660,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapadosemfaca_hv22: TEdit
           Left = 207
-          Top = 146
+          Top = 152
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -2610,7 +2669,7 @@ object frmModelagem: TfrmModelagem
         end
         object edt_crackchapadosemfaca_chapa2: TEdit
           Left = 207
-          Top = 165
+          Top = 173
           Width = 57
           Height = 21
           NumbersOnly = True
@@ -2618,6 +2677,383 @@ object frmModelagem: TfrmModelagem
           TabOrder = 14
         end
       end
+    end
+    object EdtMedida1: TEdit
+      Left = 458
+      Top = 142
+      Width = 76
+      Height = 21
+      NumbersOnly = True
+      TabOrder = 14
+      OnChange = EdtMedida1Change
+    end
+    object EdtMedida2: TEdit
+      Left = 560
+      Top = 142
+      Width = 74
+      Height = 21
+      NumbersOnly = True
+      TabOrder = 15
+      OnChange = EdtMedida2Change
+    end
+    object EdtCodigo: TEdit
+      Left = 501
+      Top = 169
+      Width = 133
+      Height = 21
+      NumbersOnly = True
+      ReadOnly = True
+      TabOrder = 16
+    end
+    object Panel1: TPanel
+      Left = 0
+      Top = 664
+      Width = 699
+      Height = 41
+      Align = alBottom
+      BevelOuter = bvNone
+      TabOrder = 17
+      object btnEnviar: TButton
+        AlignWithMargins = True
+        Left = 609
+        Top = 6
+        Width = 75
+        Height = 31
+        Margins.Left = 5
+        Margins.Top = 5
+        Margins.Right = 5
+        Margins.Bottom = 5
+        Caption = 'Salvar'
+        TabOrder = 0
+        OnClick = btnEnviarClick
+      end
+    end
+  end
+  object CbTipoFaca: TRzComboBox
+    Left = 458
+    Top = 114
+    Width = 176
+    Height = 21
+    Style = csDropDownList
+    TabOrder = 1
+    OnChange = CbTipoFacaChange
+    Items.Strings = (
+      '1- Retas'
+      '2- Arrendodas'
+      '3- Trabalhadas'
+      '4- Com Vazador')
+  end
+  object QrFacas: TFDQuery
+    Connection = frmMain.bm_alooe
+    SQL.Strings = (
+      'select'
+      'id,'
+      'medida_1,'
+      'medida_2,'
+      'codigo,'
+      'tipo'
+      ''
+      'from FACAS'
+      
+        'where (medida_1= :medida_1) and (medida_2= :medida_2) and (tipo=' +
+        ' :tipo)')
+    Left = 621
+    Top = 444
+    ParamData = <
+      item
+        Name = 'MEDIDA_1'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'MEDIDA_2'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'TIPO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object QrFacasmedida_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'medida_1'
+      Origin = 'MEDIDA_1'
+    end
+    object QrFacasmedida_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'medida_2'
+      Origin = 'MEDIDA_2'
+    end
+    object QrFacascodigo: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codigo'
+      Origin = 'CODIGO'
+    end
+    object QrFacastipo: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'tipo'
+      Origin = 'TIPO'
+    end
+    object QrFacasid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'ID'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+  end
+  object QrModelagem: TFDQuery
+    Connection = frmMain.bm_alooe
+    SQL.Strings = (
+      'SELECT'
+      '  ID,'
+      '  PEDIDO,'
+      '  COMBINACAO,'
+      '  QTD_MODELOS,'
+      '  QTD_ETIQUETAS,'
+      '  MAX_ACEITAVEL,'
+      '  MATERIAL_1,'
+      '  MATERIAL_2,'
+      '  MEDIDA_MAIOR_1,'
+      '  MEDIDA_MAIOR_2,'
+      '  MEDIDA_MENOR_1,'
+      '  MEDIDA_MENOR_2,'
+      '  ENFESTO_LM_1,'
+      '  ENFESTO_LM_2,'
+      '  BALANCIM_QEV_1,'
+      '  BALANCIM_QEV_2,'
+      '  BALANCIM_QEQ_1,'
+      '  BALANCIM_QEQ_2,'
+      '  LM_HVM_11,'
+      '  LM_HVM_12,'
+      '  LM_HVM_21,'
+      '  LM_HVM_22,'
+      '  GALVO_T1,'
+      '  GALVO_T2,'
+      '  GALVO_CORTE_T1,'
+      '  GALVO_CORTE_T2,'
+      '  CRACK_SC_SERIGRAFIA_1,'
+      '  CRACK_SC_SERIGRAFIA_2,'
+      '  ETQ_SC_SERIGRAFIA_1,'
+      '  ETQ_SC_SERIGRAFIA_2,'
+      '  FACA_ID'
+      'FROM modelagem'
+      'where ID = :ID')
+    Left = 629
+    Top = 508
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object QrModelagemPEDIDO: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'PEDIDO'
+      Origin = 'PEDIDO'
+    end
+    object QrModelagemCOMBINACAO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'COMBINACAO'
+      Origin = 'COMBINACAO'
+    end
+    object QrModelagemQTD_MODELOS: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'QTD_MODELOS'
+      Origin = 'QTD_MODELOS'
+    end
+    object QrModelagemQTD_ETIQUETAS: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'QTD_ETIQUETAS'
+      Origin = 'QTD_ETIQUETAS'
+      Precision = 15
+    end
+    object QrModelagemMAX_ACEITAVEL: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'MAX_ACEITAVEL'
+      Origin = 'MAX_ACEITAVEL'
+    end
+    object QrModelagemMATERIAL_1: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'MATERIAL_1'
+      Origin = 'MATERIAL_1'
+      Size = 100
+    end
+    object QrModelagemMATERIAL_2: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'MATERIAL_2'
+      Origin = 'MATERIAL_2'
+      Size = 100
+    end
+    object QrModelagemMEDIDA_MAIOR_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'MEDIDA_MAIOR_1'
+      Origin = 'MEDIDA_MAIOR_1'
+    end
+    object QrModelagemMEDIDA_MAIOR_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'MEDIDA_MAIOR_2'
+      Origin = 'MEDIDA_MAIOR_2'
+    end
+    object QrModelagemMEDIDA_MENOR_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'MEDIDA_MENOR_1'
+      Origin = 'MEDIDA_MENOR_1'
+    end
+    object QrModelagemMEDIDA_MENOR_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'MEDIDA_MENOR_2'
+      Origin = 'MEDIDA_MENOR_2'
+    end
+    object QrModelagemENFESTO_LM_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'ENFESTO_LM_1'
+      Origin = 'ENFESTO_LM_1'
+    end
+    object QrModelagemENFESTO_LM_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'ENFESTO_LM_2'
+      Origin = 'ENFESTO_LM_2'
+    end
+    object QrModelagemBALANCIM_QEV_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'BALANCIM_QEV_1'
+      Origin = 'BALANCIM_QEV_1'
+    end
+    object QrModelagemBALANCIM_QEV_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'BALANCIM_QEV_2'
+      Origin = 'BALANCIM_QEV_2'
+    end
+    object QrModelagemBALANCIM_QEQ_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'BALANCIM_QEQ_1'
+      Origin = 'BALANCIM_QEQ_1'
+    end
+    object QrModelagemBALANCIM_QEQ_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'BALANCIM_QEQ_2'
+      Origin = 'BALANCIM_QEQ_2'
+    end
+    object QrModelagemLM_HVM_11: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LM_HVM_11'
+      Origin = 'LM_HVM_11'
+    end
+    object QrModelagemLM_HVM_12: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LM_HVM_12'
+      Origin = 'LM_HVM_12'
+    end
+    object QrModelagemLM_HVM_21: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LM_HVM_21'
+      Origin = 'LM_HVM_21'
+    end
+    object QrModelagemLM_HVM_22: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LM_HVM_22'
+      Origin = 'LM_HVM_22'
+    end
+    object QrModelagemGALVO_T1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'GALVO_T1'
+      Origin = 'GALVO_T1'
+    end
+    object QrModelagemGALVO_T2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'GALVO_T2'
+      Origin = 'GALVO_T2'
+    end
+    object QrModelagemGALVO_CORTE_T1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'GALVO_CORTE_T1'
+      Origin = 'GALVO_CORTE_T1'
+    end
+    object QrModelagemGALVO_CORTE_T2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'GALVO_CORTE_T2'
+      Origin = 'GALVO_CORTE_T2'
+    end
+    object QrModelagemCRACK_SC_SERIGRAFIA_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'CRACK_SC_SERIGRAFIA_1'
+      Origin = 'CRACK_SC_SERIGRAFIA_1'
+    end
+    object QrModelagemCRACK_SC_SERIGRAFIA_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'CRACK_SC_SERIGRAFIA_2'
+      Origin = 'CRACK_SC_SERIGRAFIA_2'
+    end
+    object QrModelagemETQ_SC_SERIGRAFIA_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'ETQ_SC_SERIGRAFIA_1'
+      Origin = 'ETQ_SC_SERIGRAFIA_1'
+    end
+    object QrModelagemETQ_SC_SERIGRAFIA_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'ETQ_SC_SERIGRAFIA_2'
+      Origin = 'ETQ_SC_SERIGRAFIA_2'
+    end
+    object QrModelagemID: TFDAutoIncField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object QrModelagemFACA_ID: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'FACA_ID'
+      Origin = 'FACA_ID'
+    end
+  end
+  object QrFacasEdt: TFDQuery
+    Connection = frmMain.bm_alooe
+    SQL.Strings = (
+      'select'
+      'id,'
+      'medida_1,'
+      'medida_2,'
+      'codigo,'
+      'tipo'
+      ''
+      'from FACAS'
+      'where (id = :id)')
+    Left = 565
+    Top = 500
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object QrFacasEdtid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'ID'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object QrFacasEdtmedida_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'medida_1'
+      Origin = 'MEDIDA_1'
+    end
+    object QrFacasEdtmedida_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'medida_2'
+      Origin = 'MEDIDA_2'
+    end
+    object QrFacasEdtcodigo: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codigo'
+      Origin = 'CODIGO'
+    end
+    object QrFacasEdttipo: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'tipo'
+      Origin = 'TIPO'
     end
   end
 end

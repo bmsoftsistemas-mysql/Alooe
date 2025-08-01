@@ -67,6 +67,8 @@ type
     btnEnviar: TButton;
     btnCancelar: TButton;
     btnModelo: TButton;
+    QrSaveProdid_modelagem: TIntegerField;
+    QrSaveProdnote: TStringField;
     procedure btnEnviarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBLookupModeloCloseUp(Sender: TObject);
@@ -80,6 +82,7 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnImageClick(Sender: TObject);
     procedure btnModeloClick(Sender: TObject);
+    procedure EdtQuantidadeExit(Sender: TObject);
   private
     procedure SetColorBoxFromHex(ColorBox: TColorBox; HexColor: string);
     procedure edtModeloKeyDown(Sender: TObject; var Key: Word;
@@ -101,12 +104,15 @@ type
 
 var
   frmProducao: TfrmProducao;
+  Edit : Boolean;
+  ID : Integer;
 
 implementation
 
 {$R *.dfm}
 
-uses ufrmRequest, uDD, ufrmModelos, Super, MD5, ufrmAviso, ufrmModelagem;
+uses ufrmRequest, uDD, ufrmModelos, Super, MD5, ufrmAviso, ufrmModelagem,
+  ufrmProducoesEnv;
 
 procedure TfrmProducao.btnCancelarClick(Sender: TObject);
 begin
@@ -120,7 +126,7 @@ var
   JsonStr: string;
   RootObj, CollectionObj, ItemObj, DataObj: TJSONObject;
   ItemsArray: TJSONArray;
-  id, productId, name, salesOrder, salesOrderDate, customer, color, progressStatus: string;
+  id_int, productId, name, salesOrder, salesOrderDate, customer, color, progressStatus: string;
   expectedProductionQuantity, productionQuantityBalance, priority: Integer;
   isFictitious: Boolean;
   deliveryDate, earlyStart, laterEnd: string;
@@ -160,6 +166,11 @@ begin
 
     JSONObj.AddPair('note', MmObs.Text + noteContent);
 
+    if EditOrd then
+    begin
+      JSONObj.AddPair('id', QrSaveProdid_producao.AsString);
+    end;
+
     // Dependência de Ordens de Produção
 //    DepArray := TJSONArray.Create;
 //    DepObj := TJSONObject.Create;
@@ -171,13 +182,26 @@ begin
     frmRequest.RESTClientProd.ResetToDefaults;
     frmRequest.RESTRequestProd.Params.Clear;
 
-    frmRequest.RESTRequestProd.Method := rmPOST;
-    frmRequest.RESTClientProd.BaseURL := URL + defProducao + ID_modelo;
-    frmRequest.RESTRequestProd.Params.AddItem('Authorization', 'Bearer ' + defAppToken, pkHTTPHEADER, [poDoNotEncode]);
-    frmRequest.RESTRequestProd.Body.ClearBody;
+    if  not EditOrd then
+    begin
+      frmRequest.RESTRequestProd.Method := rmPOST;
+      frmRequest.RESTClientProd.BaseURL := URL + defProducao + ID_modelo;
+      frmRequest.RESTRequestProd.Params.AddItem('Authorization', 'Bearer ' + defAppToken, pkHTTPHEADER, [poDoNotEncode]);
+      frmRequest.RESTRequestProd.Body.ClearBody;
 
-    StringToFile(JSONObj.ToString, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsProducao.json');
-    frmRequest.RESTRequestProd.AddBody(JSONObj);
+      //StringToFile(JSONObj.ToString, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsProducao.json');
+      frmRequest.RESTRequestProd.AddBody(JSONObj);
+    end
+    else
+    begin
+      frmRequest.RESTRequestProd.Method := rmPUT;
+      frmRequest.RESTClientProd.BaseURL := URL + defProducaoPut;
+      frmRequest.RESTRequestProd.Params.AddItem('Authorization', 'Bearer ' + defAppToken, pkHTTPHEADER, [poDoNotEncode]);
+      frmRequest.RESTRequestProd.Body.ClearBody;
+
+      StringToFile(JSONObj.ToString, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsProducaoPut.json');
+      frmRequest.RESTRequestProd.AddBody(JSONObj);
+    end;
 
     AvisoAtt('Enviando pedido...', 5, -1);
     try
@@ -196,7 +220,7 @@ begin
     end;
 
     JsonStr := frmRequest.RESTResponseProd.Content;
-    StringToFile(JsonStr, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsContentConflict.json');
+    //StringToFile(JsonStr, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsContentConflict.json');
     RootObj := TJSONObject.ParseJSONValue(JsonStr) as TJSONObject;
     try
       CollectionObj := RootObj.GetValue<TJSONObject>('collection');
@@ -208,43 +232,53 @@ begin
         DataObj := ItemObj.GetValue<TJSONObject>('data');
 
         // Pegando os valores
-        id := DataObj.GetValue<string>('id');
-        productId := DataObj.GetValue<string>('productId');
-        name := DataObj.GetValue<string>('name');
+        id_int                     := DataObj.GetValue<string>('id');
+        productId                  := DataObj.GetValue<string>('productId');
+        name                       := DataObj.GetValue<string>('name');
         expectedProductionQuantity := DataObj.GetValue<Integer>('expectedProductionQuantity');
-        productionQuantityBalance := DataObj.GetValue<Integer>('productionQuantityBalance');
-        isFictitious := DataObj.GetValue<Boolean>('isFictitious');
-        priority := DataObj.GetValue<Integer>('priority');
-        deliveryDate := DataObj.GetValue<string>('deliveryDate');
-        earlyStart := DataObj.GetValue<string>('earlyStart');
-        laterEnd := DataObj.GetValue<string>('laterEnd');
-        salesOrder := DataObj.GetValue<string>('salesOrder');
-        salesOrderDate := DataObj.GetValue<string>('salesOrderDate');
-        customer := DataObj.GetValue<string>('customer');
-        color := DataObj.GetValue<string>('color');
-        progressStatus := DataObj.GetValue<string>('progressStatus');
+        productionQuantityBalance  := DataObj.GetValue<Integer>('productionQuantityBalance');
+        isFictitious               := DataObj.GetValue<Boolean>('isFictitious');
+        priority                   := DataObj.GetValue<Integer>('priority');
+        deliveryDate               := DataObj.GetValue<string>('deliveryDate');
+        earlyStart                 := DataObj.GetValue<string>('earlyStart');
+        laterEnd                   := DataObj.GetValue<string>('laterEnd');
+        salesOrder                 := DataObj.GetValue<string>('salesOrder');
+        salesOrderDate             := DataObj.GetValue<string>('salesOrderDate');
+        customer                   := DataObj.GetValue<string>('customer');
+        color                      := DataObj.GetValue<string>('color');
+        progressStatus             := DataObj.GetValue<string>('progressStatus');
 
         // Salvando pedido
         AvisoAtt('Salvando pedido...', 5, -1);
         QrSaveProd.Close;
+        QrSaveProd.ParamByName('id').AsString := IDPROD;
         QrSaveProd.Open;
 
-        QrSaveProd.Append;
-        QrSaveProdid_producao.AsString :=  id;
-        QrSaveProdid_prod.AsString := productId;
-        QrSaveProdname.AsString := name;
+        if not EditOrd then
+        begin
+          QrSaveProd.Append;
+        end
+        else
+        begin
+          QrSaveProd.Edit;
+        end;
+        QrSaveProdid_producao.AsString                 := id_int;
+        QrSaveProdid_prod.AsString                     := productId;
+        QrSaveProdname.AsString                        := name;
         QrSaveProdexpectedProductionQuantity.AsInteger := expectedProductionQuantity;
-        QrSaveProdproductionQuantityBalance.AsInteger := productionQuantityBalance;
-        QrSaveProdisFictitious.AsBoolean := isFictitious;
-        QrSaveProdpriority.AsInteger := priority;
-        QrSaveProddeliveryDate.AsDateTime := ParseAPIDateTimeToLocal(deliveryDate);
-        QrSaveProdearlyStart.AsDateTime := ParseAPIDateTimeToLocal(earlyStart);
-        QrSaveProdlaterEnd.AsDateTime := ParseAPIDateTimeToLocal(laterEnd);
-        QrSaveProdsalesOrder.AsString := salesOrder;
-        QrSaveProdsalesOrderDate.AsDateTime := ParseAPIDateTimeToLocal(salesOrderDate);
-        QrSaveProdcustomer.AsString := customer;
-        QrSaveProdcolor.AsString := color;
-        QrSaveProdprogressStatus.AsString := progressStatus;
+        QrSaveProdproductionQuantityBalance.AsInteger  := productionQuantityBalance;
+        QrSaveProdisFictitious.AsBoolean               := isFictitious;
+        QrSaveProdpriority.AsInteger                   := priority;
+        QrSaveProddeliveryDate.AsDateTime              := ParseAPIDateTimeToLocal(deliveryDate);
+        QrSaveProdearlyStart.AsDateTime                := ParseAPIDateTimeToLocal(earlyStart);
+        QrSaveProdlaterEnd.AsDateTime                  := ParseAPIDateTimeToLocal(laterEnd);
+        QrSaveProdsalesOrder.AsString                  := salesOrder;
+        QrSaveProdsalesOrderDate.AsDateTime            := ParseAPIDateTimeToLocal(salesOrderDate);
+        QrSaveProdcustomer.AsString                    := customer;
+        QrSaveProdcolor.AsString                       := color;
+        QrSaveProdprogressStatus.AsString              := progressStatus;
+        QrSaveProdid_modelagem.AsInteger               := ID;
+        QrSaveProdnote.AsString                        := MmObs.Text;
         QrSaveProd.Post;
 
         AvisoAtt('Processo de envio concluído...', 5, -1);
@@ -256,6 +290,7 @@ begin
     JSONObj.Free;
   end;
 
+  Edit := False;
   ModalResult := mrOk;
 end;
 
@@ -265,7 +300,7 @@ var
   img: TImage;
 begin
   OpenDialog1.Options := [ofAllowMultiSelect, ofFileMustExist];
-  OpenDialog1.Filter := 'Imagens|*.jpg;*.jpeg;*.png;*.bmp';
+  OpenDialog1.Filter  := 'Imagens|*.jpg;*.jpeg;*.png;*.bmp';
 
   if OpenDialog1.Execute then
   begin
@@ -273,14 +308,14 @@ begin
 
     for i := 0 to OpenDialog1.Files.Count - 1 do
     begin
-      img := TImage.Create(FlowPanel1);
-      img.Parent := FlowPanel1;
+      img          := TImage.Create(FlowPanel1);
+      img.Parent   := FlowPanel1;
       img.Picture.LoadFromFile(OpenDialog1.Files[i]);
-      img.Width := 100;
-      img.Height := 100;
-      img.Stretch := True;
+      img.Width    := 100;
+      img.Height   := 100;
+      img.Stretch  := True;
 
-      img.Hint := OpenDialog1.Files[i]; // guarda o caminho no Hint
+      img.Hint     := OpenDialog1.Files[i]; // guarda o caminho no Hint
       img.ShowHint := True;
     end;
   end;
@@ -288,9 +323,17 @@ end;
 
 procedure TfrmProducao.btnModeloClick(Sender: TObject);
 begin
-    frmModelagem := Tfrmmodelagem.Create(Application);
-    frmModelagem.ShowModal;
-    frmModelagem.Free;
+  if (EdtNpedido.Text = '') then
+    raiseWithFocus(EdtNpedido, 'Número do Pedido em branco');
+
+  if (EdtQuantidade.Text = '') then
+    raiseWithFocus(EdtQuantidade, 'Quantidade em branco');
+
+  frmModelagem := Tfrmmodelagem.Create(Application);
+  frmModelagem.ShowModal;
+  Edit := True;
+  frmModelagem.Free;
+
 end;
 
 function TfrmProducao.ImageToBase64(const FilePath: string): string;
@@ -298,7 +341,7 @@ var
   InputStream: TMemoryStream;
   OutputStream: TStringStream;
 begin
-  InputStream := TMemoryStream.Create;
+  InputStream  := TMemoryStream.Create;
   OutputStream := TStringStream.Create('', TEncoding.ASCII);
   try
     InputStream.LoadFromFile(FilePath);
@@ -341,10 +384,10 @@ begin
     ISODateStr := Copy(ISODateStr, 1, Pos('.', ISODateStr) - 1);
 
   // Força formato de data/hora padrão aceito
-  FormatSettings.DateSeparator := '-';
-  FormatSettings.TimeSeparator := ':';
+  FormatSettings.DateSeparator   := '-';
+  FormatSettings.TimeSeparator   := ':';
   FormatSettings.ShortDateFormat := 'yyyy-mm-dd';
-  FormatSettings.LongTimeFormat := 'hh:nn:ss';
+  FormatSettings.LongTimeFormat  := 'hh:nn:ss';
 
   if not TryStrToDateTime(ISODateStr, utcDateTime, FormatSettings) then
     raise Exception.Create('Formato de data inválido: ' + DataStr);
@@ -372,9 +415,9 @@ begin
   if texto = '' then
   begin
     lstSugestoes.Visible := False;
-    DadosCarregados := False;  // reset porque texto está vazio
-    EdtQuantidade.Text := '';
-    CbCor.Selected := clWhite; // ou algo assim para limpar
+    DadosCarregados      := False;  // reset porque texto está vazio
+    EdtQuantidade.Text   := '';
+    CbCor.Selected       := clWhite; // ou algo assim para limpar
     Exit;
   end;
 
@@ -394,10 +437,10 @@ begin
     if lstSugestoes.Items.Count > 0 then
     begin
       lstSugestoes.ItemIndex := 0;
-      lstSugestoes.Left := edtModelos.Left;
-      lstSugestoes.Top := edtModelos.Top + edtModelos.Height;
-      lstSugestoes.Width := edtModelos.Width;
-      lstSugestoes.Visible := True;
+      lstSugestoes.Left      := edtModelos.Left;
+      lstSugestoes.Top       := edtModelos.Top + edtModelos.Height;
+      lstSugestoes.Width     := edtModelos.Width;
+      lstSugestoes.Visible   := True;
       lstSugestoes.BringToFront;
     end
     else
@@ -427,11 +470,30 @@ var
   valor: Double;
   textoFormatado: string;
 begin
+//  if TryStrToFloat(edtQuantidade.Text, valor) then
+//  begin
+//    // Formata com 4 dígitos inteiros (com zeros à esquerda) e 4 decimais
+//    // '0000.0000' significa exatamente isso
+//    textoFormatado := FormatFloat('0000.0000', valor);
+//    edtQuantidade.Text := textoFormatado;
+//  end
+//  else
+//  begin
+//    // Caso não seja número, limpa ou coloca padrão
+//    edtQuantidade.Text := '0000.0000';
+//  end;
+end;
+
+procedure TfrmProducao.EdtQuantidadeExit(Sender: TObject);
+var
+  valor: Double;
+  textoFormatado: string;
+begin
   if TryStrToFloat(edtQuantidade.Text, valor) then
   begin
     // Formata com 4 dígitos inteiros (com zeros à esquerda) e 4 decimais
     // '0000.0000' significa exatamente isso
-    textoFormatado := FormatFloat('0000.0000', valor);
+    textoFormatado     := FormatFloat('0000.0000', valor);
     edtQuantidade.Text := textoFormatado;
   end
   else
@@ -475,30 +537,30 @@ end;
 procedure TfrmProducao.FormCreate(Sender: TObject);
 begin
   // Configura a ListBox se ainda não estiver pronta
-  lstSugestoes.Visible := False;
-  lstSugestoes.Parent := Self;
-  lstSugestoes.TabStop := False;
-  lstSugestoes.OnClick := lstSugestoesClick;
+  lstSugestoes.Visible   := False;
+  lstSugestoes.Parent    := Self;
+  lstSugestoes.TabStop   := False;
+  lstSugestoes.OnClick   := lstSugestoesClick;
   lstSugestoes.OnKeyDown := lstSugestoesKeyDown;
 
   // Configura o evento do Edit
-  edtModelos.OnKeyDown := edtModeloKeyDown;
-  edtModelos.OnChange := edtModelosChange;
+  edtModelos.OnKeyDown   := edtModeloKeyDown;
+  edtModelos.OnChange    := edtModelosChange;
 
   //limpar memo e setar datas
-  MmObs.Text := '';
-  DtInicio.DateTime := now;
-  DtFim.DateTime := now;
-  DtEntrega.DateTime := now + 15;
+  MmObs.Text             := '';
+  DtInicio.DateTime      := now;
+  DtFim.DateTime         := now;
+  DtEntrega.DateTime     := now + 15;
 
-  BorderStyle := bsSingle;
-  BorderIcons := [biSystemMenu, biMinimize];
+  BorderStyle            := bsSingle;
+  BorderIcons            := [biSystemMenu, biMinimize];
 
   // trava o tamanho atual
-  Constraints.MinWidth := Width;
-  Constraints.MaxWidth := Width;
-  Constraints.MinHeight := Height;
-  Constraints.MaxHeight := Height;
+  Constraints.MinWidth   := Width;
+  Constraints.MaxWidth   := Width;
+  Constraints.MinHeight  := Height;
+  Constraints.MaxHeight  := Height;
 end;
 
 procedure TfrmProducao.FormShow(Sender: TObject);
@@ -511,26 +573,48 @@ begin
 
   //ordenar taborder forçadamente
   EdtModelos.SetFocus;
-  EdtModelos.TabOrder := 0;
-  EdtNpedido.TabOrder := 1;
+  EdtModelos.TabOrder    := 0;
+  EdtNpedido.TabOrder    := 1;
   EdtQuantidade.TabOrder := 2;
-  DtInicio.TabOrder := 3;
-  DtFim.TabOrder := 4;
-  DtEntrega.TabOrder := 5;
-  EdtCliente.TabOrder := 6;
-  MmObs.TabOrder := 7;
-  btnImage.TabOrder := 8;
-  btnEnviar.TabOrder := 9;
-  btnCancelar.TabOrder := 10;
-  lstSugestoes.TabOrder := 11;
+  DtInicio.TabOrder      := 3;
+  DtFim.TabOrder         := 4;
+  DtEntrega.TabOrder     := 5;
+  EdtCliente.TabOrder    := 6;
+  MmObs.TabOrder         := 7;
+  btnImage.TabOrder      := 8;
+  btnEnviar.TabOrder     := 9;
+  btnCancelar.TabOrder   := 10;
+  lstSugestoes.TabOrder  := 11;
+
+  Edit := False;
+  ID := 0;
+
+  if  EditOrd then
+  begin
+    QrSaveProd.Close;
+    QrSaveProd.ParamByName('id').AsString := IDPROD;
+    QrSaveProd.Open;
+
+    EdtModelos.Text    := QrSaveProdname.AsString;
+    EdtNpedido.Text    := QrSaveProdsalesOrder.AsString;
+    EdtQuantidade.Text := QrSaveProdproductionQuantityBalance.AsString;
+    SetColorBoxFromHex(CbCor, QrSaveProdcolor.AsString);
+    DtInicio.Date      := QrSaveProdearlyStart.Value;
+    DtFim.Date         := QrSaveProdlaterEnd.Value;
+    DtEntrega.Date     := QrSaveProddeliveryDate.Value;
+    EdtCliente.Text    := QrSaveProdcustomer.AsString;
+    MmObs.Text         := QrSaveProdnote.AsString;
+//    FlowPanel1 := ;
+  end;
+
 end;
 
 procedure TfrmProducao.SelecionaModelo;
 begin
   if lstSugestoes.ItemIndex >= 0 then
   begin
-    edtModelos.Text := lstSugestoes.Items[lstSugestoes.ItemIndex];
-    edtModelos.SelStart := Length(edtModelos.Text);
+    edtModelos.Text      := lstSugestoes.Items[lstSugestoes.ItemIndex];
+    edtModelos.SelStart  := Length(edtModelos.Text);
     lstSugestoes.Visible := False;
 
     QrModelos.Close;
@@ -540,9 +624,9 @@ begin
     if not QrModelos.IsEmpty then
     begin
       EdtQuantidade.Text := QrModelos.FieldByName('quantidade_producao').AsString;
-      ID_modelo := QrModelosid.AsString;
-      ID_produto := QrModelosproduct_id.AsString;
-      CorSelecionada := QrModelos.FieldByName('cor_etiqueta').AsString;
+      ID_modelo          := QrModelosid.AsString;
+      ID_produto         := QrModelosproduct_id.AsString;
+      CorSelecionada     := QrModelos.FieldByName('cor_etiqueta').AsString;
       SetColorBoxFromHex(CbCor, QrModelos.FieldByName('cor_etiqueta').AsString);
     end;
 

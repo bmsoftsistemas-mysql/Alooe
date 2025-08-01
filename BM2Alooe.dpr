@@ -32,7 +32,7 @@ uses
 
 var
   AppMutex: THandle;
-  MutexName: string = 'BM2Alooe_Mutex_Unico';
+  MutexName: string = 'BM2Alooe';
 
 begin
   // Verifica se já está rodando

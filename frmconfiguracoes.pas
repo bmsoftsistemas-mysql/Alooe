@@ -69,19 +69,19 @@ end;
 procedure Tfrmconfig.FormCreate(Sender: TObject);
 begin
   frmconfig.Height := 290;
-  frmconfig.Width := 620;
-  btngravar.Left := Trunc(frmconfig.Width / 2 - 49);
-  edt_sync.Value := Trunc(DD.config.ReadInteger('config', 'TimerAtualizacaoSegundos', 900) / 60);
-  edt_url.Text := DD.config.ReadString('config', 'url', '');
-  edt_email.Text := DD.config.ReadString('config', 'email', '');
-  edt_senha.Text := DD.config.ReadString('config', 'senha', '');
+  frmconfig.Width  := 620;
+  btngravar.Left   := Trunc(frmconfig.Width / 2 - 49);
+  edt_sync.Value   := Trunc(DD.config.ReadInteger('config', 'TimerAtualizacaoSegundos', 900) / 60);
+  edt_url.Text     := DD.config.ReadString('config', 'url', '');
+  edt_email.Text   := DD.config.ReadString('config', 'email', '');
+  edt_senha.Text   := DD.config.ReadString('config', 'senha', '');
 end;
 
 procedure Tfrmconfig.FormResize(Sender: TObject);
 begin
   frmconfig.Height := 335;
-  frmconfig.Width := 620;
-  btngravar.Left := Trunc(frmconfig.Width / 2 - 49);
+  frmconfig.Width  := 620;
+  btngravar.Left   := Trunc(frmconfig.Width / 2 - 49);
 end;
 
 end.
