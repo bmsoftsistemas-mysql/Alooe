@@ -28,7 +28,11 @@ uses
   RzBckgnd,
   Vcl.Menus,
   Vcl.StdCtrls,
-  RzLabel, Data.DB, dbisamtb, RzTray, Vcl.Buttons;
+  RzLabel, Data.DB, dbisamtb, RzTray, Vcl.Buttons, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait,
+  FireDAC.Comp.Client;
 
 type
   TfrmMain = class(TForm)
@@ -58,6 +62,7 @@ type
     Sair1: TMenuItem;
     tmprocessaini: TTimer;
     TrayIcon1: TTrayIcon;
+    bm_alooe: TFDConnection;
     procedure btnSairClick(Sender: TObject);
     procedure btnProducoesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -71,6 +76,7 @@ type
     procedure tmprocessainiTimer(Sender: TObject);
     procedure Configuraes1Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure fVersaoDblClick(Sender: TObject);
   private
 
     { Private declarations }
@@ -90,7 +96,7 @@ uses
   ufrmMsg,
   ufuncoesGerais,
   ufrmTabelas, ufrmRequest, ufrmMarcas, ufrmMarcas2, ufrmCategorias,
-  uprodutosfrm, ufrmClientes, ufrmPedidos, ufrmerros, frmconfiguracoes;
+  uprodutosfrm, ufrmModelos, ufrmPedidos, ufrmProducoesEnv, frmconfiguracoes;
 
 {$R *.dfm}
 
@@ -129,7 +135,7 @@ end;
 
 procedure TfrmMain.btnProducoesClick(Sender: TObject);
 begin
-  T.Exibe(Tfrmerros, frmerros);
+  T.Exibe(TfrmProducoesEnv, frmProducoesEnv);
 end;
 
 procedure TfrmMain.Configuraes1Click(Sender: TObject);
@@ -177,12 +183,29 @@ begin
     frmMain.Height := 800
 end;
 
+procedure TfrmMain.fVersaoDblClick(Sender: TObject);
+begin
+  AvisoAtt('Inicio de sincronização...', 5, -1);
+  T.Exibe(TfrmModelos, frmModelos);
+  AvisoAtt('Obtendo Token...', 5, -1);
+  frmModelos.btnToken.Click;
+
+  AvisoAtt('Atualizando Modelos...', 5, -1);
+  frmModelos.btnModelos.Click;
+
+  AvisoAtt('Atualizando Produções...', 5, -1);
+  //descomentar
+//    frmModelos.btnProducoes.Click;
+end;
+
 procedure TfrmMain.RzToolButton1Click(Sender: TObject);
 begin
   T.Exibe(TfrmTabelas, frmTabelas);
 end;
 
 procedure TfrmMain.RzToolButton2Click(Sender: TObject);
+var
+  frmModelos: TfrmModelos;
 begin
   if tmprocessa.Enabled = false then
     frmMain.T.FecharTudo;
@@ -190,15 +213,22 @@ begin
   btnTabelas.Enabled := false;
   AvisoON;
 
-  AvisoAtt('Inicio de sincronização...', 5, -1);
-  T.Exibe(TfrmModelos, frmModelos);
-  AvisoAtt('Obtendo Token...', 5, -1);
-  frmModelos.btnToken.Click;
-  AvisoAtt('Atualizando Modelos...', 5, -1);
-  frmModelos.btnModelos.Click;
-  AvisoAtt('Atualizando Produções...', 5, -1);
-//  frmModelos.btnProducoes.Click;
-  AvisoAtt('Atualização de dados finalizada...', 5, -1);
+  frmModelos := TfrmModelos.Create(nil);
+  try
+    AvisoAtt('Obtendo Token...', 5, -1);
+    //frmModelos.btnToken.Click;
+
+    AvisoAtt('Atualizando Modelos...', 5, -1);
+    //frmModelos.btnModelos.Click;
+
+    AvisoAtt('Atualizando Produções...', 5, -1);
+    //descomentar
+//    frmModelos.btnProducoes.Click;
+  finally
+    frmModelos.Free;
+  end;
+
+  btnProducoes.Click;
 //  //
 //  AvisoAtt('Sincronizando pedidos...', 5, -1);
 //  T.Exibe(Tfrmpedidos, frmpedidos);

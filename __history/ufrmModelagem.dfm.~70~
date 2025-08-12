@@ -12,6 +12,7 @@ object frmModelagem: TfrmModelagem
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object panel: TPanel
@@ -22,7 +23,6 @@ object frmModelagem: TfrmModelagem
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitHeight = 695
     object Label1: TLabel
       Left = 24
       Top = 32
@@ -44,7 +44,7 @@ object frmModelagem: TfrmModelagem
       Height = 13
       Caption = 'QTD. MODELOS'
     end
-    object edt_qtd_etiquetas: TLabel
+    object Label2222: TLabel
       Left = 233
       Top = 32
       Width = 84
@@ -124,8 +124,8 @@ object frmModelagem: TfrmModelagem
     object Label146: TLabel
       Left = 544
       Top = 146
-      Width = 18
-      Height = 18
+      Width = 6
+      Height = 13
       Caption = 'X'
     end
     object Label147: TLabel
@@ -158,7 +158,7 @@ object frmModelagem: TfrmModelagem
       NumbersOnly = True
       TabOrder = 2
     end
-    object Edit4: TEdit
+    object edt_qtd_etiquetas: TEdit
       Left = 318
       Top = 24
       Width = 100
@@ -246,12 +246,10 @@ object frmModelagem: TfrmModelagem
       Top = 196
       Width = 699
       Height = 477
-      ActivePage = TabSheet2
+      ActivePage = TabSheet6
       TabOrder = 13
       object ENFESTO: TTabSheet
         Caption = 'ENFESTO'
-        ExplicitLeft = 0
-        ExplicitHeight = 471
         object Label16: TLabel
           Left = 44
           Top = 83
@@ -373,6 +371,7 @@ object frmModelagem: TfrmModelagem
           Top = 117
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 2
           OnChange = edt_balancin_cod_faca1Change
@@ -400,6 +399,7 @@ object frmModelagem: TfrmModelagem
           Top = 117
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 5
           OnChange = edt_balancin_cod_faca2Change
@@ -408,7 +408,6 @@ object frmModelagem: TfrmModelagem
       object TabSheet1: TTabSheet
         Caption = 'BALANCIN'
         ImageIndex = 1
-        ExplicitHeight = 471
         object Label30: TLabel
           Left = 132
           Top = 20
@@ -521,6 +520,7 @@ object frmModelagem: TfrmModelagem
           Top = 142
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 1
           OnChange = edt_balancin_cod_faca1Change
@@ -567,6 +567,7 @@ object frmModelagem: TfrmModelagem
           Top = 142
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 6
           OnChange = edt_balancin_cod_faca2Change
@@ -585,6 +586,7 @@ object frmModelagem: TfrmModelagem
           Top = 100
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 8
           OnChange = edt_balancin_cod_faca2Change
@@ -594,6 +596,7 @@ object frmModelagem: TfrmModelagem
           Top = 100
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 9
           OnChange = edt_balancin_cod_faca1Change
@@ -621,7 +624,6 @@ object frmModelagem: TfrmModelagem
       object CRACK: TTabSheet
         Caption = 'CRACK'
         ImageIndex = 2
-        ExplicitHeight = 471
         object Label22: TLabel
           Left = 13
           Top = 24
@@ -678,6 +680,7 @@ object frmModelagem: TfrmModelagem
           Top = 48
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           TabOrder = 1
           Text = '450'
           OnChange = edt_crack_area1Change
@@ -723,6 +726,7 @@ object frmModelagem: TfrmModelagem
           Top = 48
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           TabOrder = 6
           Text = '350'
           OnChange = edt_crack_area2Change
@@ -748,7 +752,6 @@ object frmModelagem: TfrmModelagem
       end
       object TabSheet2: TTabSheet
         Caption = 'LASER'
-        ExplicitHeight = 441
         object Label42: TLabel
           Left = 29
           Top = 1
@@ -1071,6 +1074,7 @@ object frmModelagem: TfrmModelagem
           Top = 35
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 1
           Text = '1350'
@@ -1117,6 +1121,7 @@ object frmModelagem: TfrmModelagem
           Top = 35
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 6
           Text = '1000'
@@ -1154,6 +1159,7 @@ object frmModelagem: TfrmModelagem
           Top = 35
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 10
           Text = '1350'
@@ -1182,6 +1188,7 @@ object frmModelagem: TfrmModelagem
           Top = 35
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 13
           Text = '1000'
@@ -1237,6 +1244,7 @@ object frmModelagem: TfrmModelagem
           Top = 188
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 19
           Text = '760'
@@ -1265,6 +1273,7 @@ object frmModelagem: TfrmModelagem
           Top = 188
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 22
           Text = '450'
@@ -1320,6 +1329,7 @@ object frmModelagem: TfrmModelagem
           Top = 332
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 28
           Text = '570'
@@ -1348,6 +1358,7 @@ object frmModelagem: TfrmModelagem
           Top = 332
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 31
           Text = '400'
@@ -1404,6 +1415,7 @@ object frmModelagem: TfrmModelagem
           Top = 188
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 37
           Text = '760'
@@ -1432,6 +1444,7 @@ object frmModelagem: TfrmModelagem
           Top = 188
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 40
           Text = '450'
@@ -1487,6 +1500,7 @@ object frmModelagem: TfrmModelagem
           Top = 332
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 46
           Text = '570'
@@ -1515,6 +1529,7 @@ object frmModelagem: TfrmModelagem
           Top = 332
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 49
           Text = '400'
@@ -1560,8 +1575,6 @@ object frmModelagem: TfrmModelagem
       object TabSheet3: TTabSheet
         Caption = 'LASER C/ MONTAGEM'
         ImageIndex = 4
-        ExplicitLeft = 7
-        ExplicitHeight = 471
         object Label92: TLabel
           Left = 148
           Top = 13
@@ -1873,6 +1886,7 @@ object frmModelagem: TfrmModelagem
           Top = 172
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 18
           OnChange = edt_lasermontg1_hvrec1Change
@@ -1882,6 +1896,7 @@ object frmModelagem: TfrmModelagem
           Top = 172
           Width = 56
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 19
           OnChange = edt_lasermontg1_hvrec2Change
@@ -1918,6 +1933,7 @@ object frmModelagem: TfrmModelagem
           Top = 172
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 23
           OnChange = edt_lasermontg2_hvrec1Change
@@ -1927,6 +1943,7 @@ object frmModelagem: TfrmModelagem
           Top = 172
           Width = 58
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 24
           OnChange = edt_lasermontg2_hvrec2Change
@@ -1944,7 +1961,6 @@ object frmModelagem: TfrmModelagem
       object TabSheet4: TTabSheet
         Caption = 'GALVO'
         ImageIndex = 5
-        ExplicitHeight = 471
         object Label114: TLabel
           Left = 20
           Top = 32
@@ -2006,6 +2022,7 @@ object frmModelagem: TfrmModelagem
           Top = 170
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 0
           OnChange = edt_galvo_tg2Change
@@ -2015,6 +2032,7 @@ object frmModelagem: TfrmModelagem
           Top = 170
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 1
           OnChange = edt_galvo_tg1Change
@@ -2095,7 +2113,6 @@ object frmModelagem: TfrmModelagem
       object TabSheet7: TTabSheet
         Caption = 'GALVO CORTE FINAL'
         ImageIndex = 8
-        ExplicitHeight = 471
         object Label4: TLabel
           Left = 44
           Top = 40
@@ -2212,6 +2229,7 @@ object frmModelagem: TfrmModelagem
           Top = 100
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 6
           Text = '4'
@@ -2222,6 +2240,7 @@ object frmModelagem: TfrmModelagem
           Top = 100
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 7
           Text = '4'
@@ -2249,7 +2268,6 @@ object frmModelagem: TfrmModelagem
       object TabSheet5: TTabSheet
         Caption = 'CRACK C/ SILK CHAPADO'
         ImageIndex = 6
-        ExplicitHeight = 471
         object Label122: TLabel
           Left = 28
           Top = 40
@@ -2381,8 +2399,10 @@ object frmModelagem: TfrmModelagem
           Top = 59
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 7
+          Text = '220'
           OnChange = edt_crackchapado_area1Change
         end
         object edt_crackchapado_tam: TEdit
@@ -2426,8 +2446,10 @@ object frmModelagem: TfrmModelagem
           Top = 60
           Width = 56
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 12
+          Text = '199'
           OnChange = edt_crackchapado_area2Change
         end
         object edt_crackchapado_hv22: TEdit
@@ -2452,8 +2474,6 @@ object frmModelagem: TfrmModelagem
       object TabSheet6: TTabSheet
         Caption = 'ETQ. C/ SILK CHAPADO SEM FACA'
         ImageIndex = 7
-        ExplicitLeft = 7
-        ExplicitHeight = 471
         object Label131: TLabel
           Left = 36
           Top = 48
@@ -2530,7 +2550,7 @@ object frmModelagem: TfrmModelagem
           Left = 144
           Top = 214
           Width = 120
-          Height = 22
+          Height = 21
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 1
@@ -2594,8 +2614,10 @@ object frmModelagem: TfrmModelagem
           Top = 68
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 8
+          Text = '220'
           OnChange = edt_crackchapadosemfaca_area1Change
         end
         object edt_crackchapadosemfaca_area2: TEdit
@@ -2603,8 +2625,10 @@ object frmModelagem: TfrmModelagem
           Top = 68
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 9
+          Text = '199'
           OnChange = edt_crackchapadosemfaca_area2Change
         end
         object edt_crackchapadosemfaca_hv2: TEdit
@@ -2689,9 +2713,6 @@ object frmModelagem: TfrmModelagem
       Align = alBottom
       BevelOuter = bvNone
       TabOrder = 17
-      ExplicitLeft = 408
-      ExplicitTop = 688
-      ExplicitWidth = 185
       object btnEnviar: TButton
         AlignWithMargins = True
         Left = 609
@@ -2704,6 +2725,7 @@ object frmModelagem: TfrmModelagem
         Margins.Bottom = 5
         Caption = 'Salvar'
         TabOrder = 0
+        OnClick = btnEnviarClick
       end
     end
   end
@@ -2725,6 +2747,7 @@ object frmModelagem: TfrmModelagem
     Connection = frmMain.bm_alooe
     SQL.Strings = (
       'select'
+      'id,'
       'medida_1,'
       'medida_2,'
       'codigo,'
@@ -2771,6 +2794,263 @@ object frmModelagem: TfrmModelagem
       Origin = 'CODIGO'
     end
     object QrFacastipo: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'tipo'
+      Origin = 'TIPO'
+    end
+    object QrFacasid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'ID'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+  end
+  object QrModelagem: TFDQuery
+    Connection = frmMain.bm_alooe
+    SQL.Strings = (
+      'SELECT'
+      '  ID,'
+      '  PEDIDO,'
+      '  COMBINACAO,'
+      '  QTD_MODELOS,'
+      '  QTD_ETIQUETAS,'
+      '  MAX_ACEITAVEL,'
+      '  MATERIAL_1,'
+      '  MATERIAL_2,'
+      '  MEDIDA_MAIOR_1,'
+      '  MEDIDA_MAIOR_2,'
+      '  MEDIDA_MENOR_1,'
+      '  MEDIDA_MENOR_2,'
+      '  ENFESTO_LM_1,'
+      '  ENFESTO_LM_2,'
+      '  BALANCIM_QEV_1,'
+      '  BALANCIM_QEV_2,'
+      '  BALANCIM_QEQ_1,'
+      '  BALANCIM_QEQ_2,'
+      '  LM_HVM_11,'
+      '  LM_HVM_12,'
+      '  LM_HVM_21,'
+      '  LM_HVM_22,'
+      '  GALVO_T1,'
+      '  GALVO_T2,'
+      '  GALVO_CORTE_T1,'
+      '  GALVO_CORTE_T2,'
+      '  CRACK_SC_SERIGRAFIA_1,'
+      '  CRACK_SC_SERIGRAFIA_2,'
+      '  ETQ_SC_SERIGRAFIA_1,'
+      '  ETQ_SC_SERIGRAFIA_2,'
+      '  FACA_ID'
+      'FROM modelagem'
+      'where ID = :ID')
+    Left = 629
+    Top = 508
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object QrModelagemPEDIDO: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'PEDIDO'
+      Origin = 'PEDIDO'
+    end
+    object QrModelagemCOMBINACAO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'COMBINACAO'
+      Origin = 'COMBINACAO'
+    end
+    object QrModelagemQTD_MODELOS: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'QTD_MODELOS'
+      Origin = 'QTD_MODELOS'
+    end
+    object QrModelagemQTD_ETIQUETAS: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'QTD_ETIQUETAS'
+      Origin = 'QTD_ETIQUETAS'
+      Precision = 15
+    end
+    object QrModelagemMAX_ACEITAVEL: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'MAX_ACEITAVEL'
+      Origin = 'MAX_ACEITAVEL'
+    end
+    object QrModelagemMATERIAL_1: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'MATERIAL_1'
+      Origin = 'MATERIAL_1'
+      Size = 100
+    end
+    object QrModelagemMATERIAL_2: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'MATERIAL_2'
+      Origin = 'MATERIAL_2'
+      Size = 100
+    end
+    object QrModelagemMEDIDA_MAIOR_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'MEDIDA_MAIOR_1'
+      Origin = 'MEDIDA_MAIOR_1'
+    end
+    object QrModelagemMEDIDA_MAIOR_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'MEDIDA_MAIOR_2'
+      Origin = 'MEDIDA_MAIOR_2'
+    end
+    object QrModelagemMEDIDA_MENOR_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'MEDIDA_MENOR_1'
+      Origin = 'MEDIDA_MENOR_1'
+    end
+    object QrModelagemMEDIDA_MENOR_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'MEDIDA_MENOR_2'
+      Origin = 'MEDIDA_MENOR_2'
+    end
+    object QrModelagemENFESTO_LM_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'ENFESTO_LM_1'
+      Origin = 'ENFESTO_LM_1'
+    end
+    object QrModelagemENFESTO_LM_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'ENFESTO_LM_2'
+      Origin = 'ENFESTO_LM_2'
+    end
+    object QrModelagemBALANCIM_QEV_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'BALANCIM_QEV_1'
+      Origin = 'BALANCIM_QEV_1'
+    end
+    object QrModelagemBALANCIM_QEV_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'BALANCIM_QEV_2'
+      Origin = 'BALANCIM_QEV_2'
+    end
+    object QrModelagemBALANCIM_QEQ_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'BALANCIM_QEQ_1'
+      Origin = 'BALANCIM_QEQ_1'
+    end
+    object QrModelagemBALANCIM_QEQ_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'BALANCIM_QEQ_2'
+      Origin = 'BALANCIM_QEQ_2'
+    end
+    object QrModelagemLM_HVM_11: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LM_HVM_11'
+      Origin = 'LM_HVM_11'
+    end
+    object QrModelagemLM_HVM_12: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LM_HVM_12'
+      Origin = 'LM_HVM_12'
+    end
+    object QrModelagemLM_HVM_21: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LM_HVM_21'
+      Origin = 'LM_HVM_21'
+    end
+    object QrModelagemLM_HVM_22: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LM_HVM_22'
+      Origin = 'LM_HVM_22'
+    end
+    object QrModelagemGALVO_T1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'GALVO_T1'
+      Origin = 'GALVO_T1'
+    end
+    object QrModelagemGALVO_T2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'GALVO_T2'
+      Origin = 'GALVO_T2'
+    end
+    object QrModelagemGALVO_CORTE_T1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'GALVO_CORTE_T1'
+      Origin = 'GALVO_CORTE_T1'
+    end
+    object QrModelagemGALVO_CORTE_T2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'GALVO_CORTE_T2'
+      Origin = 'GALVO_CORTE_T2'
+    end
+    object QrModelagemCRACK_SC_SERIGRAFIA_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'CRACK_SC_SERIGRAFIA_1'
+      Origin = 'CRACK_SC_SERIGRAFIA_1'
+    end
+    object QrModelagemCRACK_SC_SERIGRAFIA_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'CRACK_SC_SERIGRAFIA_2'
+      Origin = 'CRACK_SC_SERIGRAFIA_2'
+    end
+    object QrModelagemETQ_SC_SERIGRAFIA_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'ETQ_SC_SERIGRAFIA_1'
+      Origin = 'ETQ_SC_SERIGRAFIA_1'
+    end
+    object QrModelagemETQ_SC_SERIGRAFIA_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'ETQ_SC_SERIGRAFIA_2'
+      Origin = 'ETQ_SC_SERIGRAFIA_2'
+    end
+    object QrModelagemID: TFDAutoIncField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object QrModelagemFACA_ID: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'FACA_ID'
+      Origin = 'FACA_ID'
+    end
+  end
+  object QrFacasEdt: TFDQuery
+    Connection = frmMain.bm_alooe
+    SQL.Strings = (
+      'select'
+      'id,'
+      'medida_1,'
+      'medida_2,'
+      'codigo,'
+      'tipo'
+      ''
+      'from FACAS'
+      'where (id = :id)')
+    Left = 565
+    Top = 500
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object QrFacasEdtid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'ID'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object QrFacasEdtmedida_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'medida_1'
+      Origin = 'MEDIDA_1'
+    end
+    object QrFacasEdtmedida_2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'medida_2'
+      Origin = 'MEDIDA_2'
+    end
+    object QrFacasEdtcodigo: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codigo'
+      Origin = 'CODIGO'
+    end
+    object QrFacasEdttipo: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'tipo'
       Origin = 'TIPO'

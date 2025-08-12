@@ -216,14 +216,14 @@ begin
   frmModelos := TfrmModelos.Create(nil);
   try
     AvisoAtt('Obtendo Token...', 5, -1);
-    //frmModelos.btnToken.Click;
+    frmModelos.btnToken.Click;
 
     AvisoAtt('Atualizando Modelos...', 5, -1);
-    //frmModelos.btnModelos.Click;
+    frmModelos.btnModelos.Click;
 
     AvisoAtt('Atualizando Produções...', 5, -1);
     //descomentar
-//    frmModelos.btnProducoes.Click;
+    frmModelos.btnProducoes.Click;
   finally
     frmModelos.Free;
   end;

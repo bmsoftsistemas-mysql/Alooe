@@ -60,7 +60,9 @@ type
   end;
 
 var
-  ufrmProducoesEnv: TfrmProducoesEnv;
+  frmProducoesEnv: TfrmProducoesEnv;
+  EditOrd : Boolean;
+  IDPRODUCAO, IDPRO : string;
 
 implementation
 
@@ -69,7 +71,7 @@ implementation
 uses ufuncoesGerais, ufrmAviso, uMain, uDD, ufrmProducao;
 
 //Listar erros com base na data escolhida e a data atual + 1
-procedure Tfrmerros.btnFiltrarClick(Sender: TObject);
+procedure TfrmProducoesEnv.btnFiltrarClick(Sender: TObject);
 var
   DataInicial, DataFinal: TDateTime;
   CampoFiltrar: string;
@@ -119,8 +121,9 @@ begin
 end;
 
 //Limpar a tabela de erros completamente
-procedure Tfrmerros.btnNovaOrdemClick(Sender: TObject);
+procedure TfrmProducoesEnv.btnNovaOrdemClick(Sender: TObject);
 begin
+    IDPRODUCAO := '';
     frmProducao := TfrmProducao.Create(Application);
     frmProducao.ShowModal;
     frmProducao.Free;
@@ -130,7 +133,7 @@ begin
     QrProducoes.Last;
 end;
 
-procedure Tfrmerros.btnTodosClick(Sender: TObject);
+procedure TfrmProducoesEnv.btnTodosClick(Sender: TObject);
 begin
   with QrProducoes do
   begin
@@ -140,27 +143,30 @@ begin
   end;
 end;
 
-procedure Tfrmerros.DBGrid1DblClick(Sender: TObject);
+procedure TfrmProducoesEnv.DBGrid1DblClick(Sender: TObject);
 begin
-//  frmProducao := TfrmProducao.Create(Application);
-//  try
-//    frmProducao.Visualizacao := True;
-//
-//    // aqui você pode passar os dados selecionados do grid para os campos do form:
-////    frmProducao.EditNome.Text := DataSource1.DataSet.FieldByName('name').AsString;
-////    frmProducao.EditQuantidade.Text := DataSource1.DataSet.FieldByName('expectedProductionQuantity').AsString;
-//
-//
-//    if frmProducao.Visualizacao then
-//      frmProducao.BloquearCampos;
-//
-//    frmProducao.ShowModal;
-//  finally
-//    frmProducao.Free;
-//  end;
+  if QrProducoesprogressStatus.AsString = 'NotInitiated' then
+  begin
+    frmProducao := TfrmProducao.Create(Application);
+    EditOrd := True;
+    IDPRODUCAO := QrProducoesid_producao.AsString;
+
+    frmProducao.ShowModal;
+    frmProducao.Free;
+
+    QrProducoes.Close;
+    QrProducoes.Open;
+    QrProducoes.Last;
+    EditOrd := False;
+  end
+  else
+  begin
+    TaskMessageDlg('Aviso', 'A produção já foi INICIADA.', mtInformation, [mbOK], 0)
+  end;
+
 end;
 
-procedure Tfrmerros.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+procedure TfrmProducoesEnv.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: Integer; Column: TColumn; State: TGridDrawState);
 var
   status: string;
@@ -186,20 +192,20 @@ begin
     DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
 end;
 
-procedure Tfrmerros.DtProducoesDataChange(Sender: TObject; Field: TField);
+procedure TfrmProducoesEnv.DtProducoesDataChange(Sender: TObject; Field: TField);
 begin
 
 end;
 
 //Limpa o FORM ao fechar
-procedure Tfrmerros.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TfrmProducoesEnv.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   action := caFree;
-  frmerros := nil;
+  frmProducoesEnv := nil;
 end;
 
 //joga a data atual no componente DATE
-procedure Tfrmerros.FormCreate(Sender: TObject);
+procedure TfrmProducoesEnv.FormCreate(Sender: TObject);
 begin
 //  edtdata.DateTime := date;
 //  btserros.Click;
@@ -210,33 +216,33 @@ begin
   QrProducoes.Open;
 end;
 
-procedure Tfrmerros.FormShow(Sender: TObject);
+procedure TfrmProducoesEnv.FormShow(Sender: TObject);
 begin
   // Estilização do botão Nova Ordem
-  btnNovaOrdem.Caption := '➕ Nova Produção';
-  btnNovaOrdem.Font.Size := 10;
-  btnNovaOrdem.Font.Style := [fsBold];
-  btnNovaOrdem.Font.Color := clWhite;
+  btnNovaOrdem.Caption             := '➕ Nova Produção';
+  btnNovaOrdem.Font.Size           := 10;
+  btnNovaOrdem.Font.Style          := [fsBold];
+  btnNovaOrdem.Font.Color          := clWhite;
 
     // Exemplo de estilização das colunas do grid
   DBGrid1.Columns[0].Title.Caption := 'Nº Pedido';
   DBGrid1.Columns[1].Title.Caption := 'Cliente';
   DBGrid1.Columns[2].Title.Caption := 'Quantidade';
-  DBGrid1.Columns[2].Alignment := taRightJustify;
+  DBGrid1.Columns[2].Alignment     := taRightJustify;
   DBGrid1.Columns[3].Title.Caption := 'Data Início';
-  DBGrid1.Columns[3].Alignment := taCenter;
+  DBGrid1.Columns[3].Alignment     := taCenter;
   DBGrid1.Columns[4].Title.Caption := 'Data Fim';
-  DBGrid1.Columns[4].Alignment := taCenter;
+  DBGrid1.Columns[4].Alignment     := taCenter;
   DBGrid1.Columns[5].Title.Caption := 'Data Entrega';
-  DBGrid1.Columns[5].Alignment := taCenter;
+  DBGrid1.Columns[5].Alignment     := taCenter;
   DBGrid1.Columns[6].Title.Caption := 'Status';
 
 
-  dtinicio.DateTime := now;
-  dtfim.DateTime := now;
+  dtinicio.DateTime                := now;
+  dtfim.DateTime                   := now;
 end;
 
-procedure Tfrmerros.QrProducoesCalcFields(DataSet: TDataSet);
+procedure TfrmProducoesEnv.QrProducoesCalcFields(DataSet: TDataSet);
 var
   statusIngles: string;
 begin

@@ -137,7 +137,14 @@ begin
   JSONObj := TJSONObject.Create;
   try
     // Propriedades principais
-    JSONObj.AddPair('productId', TJSONString.Create(ID_Produto));
+    if  not EditOrd then
+    begin
+      JSONObj.AddPair('productId', TJSONString.Create(ID_Produto));
+    end
+    else
+    begin
+      JSONObj.AddPair('productId', TJSONString.Create(IDPRO));
+    end;
     JSONObj.AddPair('name', '*' + EdtNpedido.Text);
     JSONObj.AddPair('expectedProductionQuantity', TJSONNumber.Create(StrToFloat(EdtQuantidade.Text)));
     JSONObj.AddPair('isFictitious', TJSONBool.Create(False));
@@ -148,7 +155,14 @@ begin
     JSONObj.AddPair('salesOrder', EdtNpedido.Text);
     JSONObj.AddPair('salesOrderDate', TJSONString.Create((FormatDateTimeToAPIPattern(now))));
     JSONObj.AddPair('customer', EdtCliente.Text);
-    JSONObj.AddPair('color', CorSelecionada);
+    if  not EditOrd then
+    begin
+      JSONObj.AddPair('color', CorSelecionada);
+    end
+    else
+    begin
+      JSONObj.AddPair('color', COR);
+    end;
 
     //pegar as imagens e converter para base64
     noteContent := '';
@@ -199,7 +213,7 @@ begin
       frmRequest.RESTRequestProd.Params.AddItem('Authorization', 'Bearer ' + defAppToken, pkHTTPHEADER, [poDoNotEncode]);
       frmRequest.RESTRequestProd.Body.ClearBody;
 
-      StringToFile(JSONObj.ToString, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsProducaoPut.json');
+      StringToFile(JSONObj.ToString, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\Alooe\extras\jsProducaoPut.json');
       frmRequest.RESTRequestProd.AddBody(JSONObj);
     end;
 
@@ -235,8 +249,8 @@ begin
         id_int                     := DataObj.GetValue<string>('id');
         productId                  := DataObj.GetValue<string>('productId');
         name                       := DataObj.GetValue<string>('name');
-        expectedProductionQuantity := DataObj.GetValue<Integer>('expectedProductionQuantity');
-        productionQuantityBalance  := DataObj.GetValue<Integer>('productionQuantityBalance');
+        expectedProductionQuantity := Trunc(DataObj.GetValue<Double>('expectedProductionQuantity'));
+        productionQuantityBalance  := Trunc(DataObj.GetValue<Double>('productionQuantityBalance'));
         isFictitious               := DataObj.GetValue<Boolean>('isFictitious');
         priority                   := DataObj.GetValue<Integer>('priority');
         deliveryDate               := DataObj.GetValue<string>('deliveryDate');
@@ -251,7 +265,7 @@ begin
         // Salvando pedido
         AvisoAtt('Salvando pedido...', 5, -1);
         QrSaveProd.Close;
-        QrSaveProd.ParamByName('id').AsString := IDPROD;
+        QrSaveProd.ParamByName('id').AsString := IDPRODUCAO;
         QrSaveProd.Open;
 
         if not EditOrd then
@@ -592,7 +606,7 @@ begin
   if  EditOrd then
   begin
     QrSaveProd.Close;
-    QrSaveProd.ParamByName('id').AsString := IDPROD;
+    QrSaveProd.ParamByName('id').AsString := IDPRODUCAO;
     QrSaveProd.Open;
 
     EdtModelos.Text    := QrSaveProdname.AsString;

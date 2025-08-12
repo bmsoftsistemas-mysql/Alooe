@@ -465,7 +465,9 @@ begin
   QrModelos.Open;
   Tentativa := 0;
   Sucesso := False;
-  //FormatDateTime('yyyy"-"mm"-"dd', (now))
+
+  ShowMessage(DD.config.ReadString('Config', 'data_token', ''));
+  ShowMessage(DateToStr(Date));
   if DD.config.ReadString('Config', 'data_token', '') < (DateToStr(now)) then
   begin
     ObjBody := TJSONObject.Create;

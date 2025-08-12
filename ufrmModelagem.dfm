@@ -140,6 +140,7 @@ object frmModelagem: TfrmModelagem
       Top = 24
       Width = 112
       Height = 21
+      Color = clMoneyGreen
       NumbersOnly = True
       TabOrder = 0
     end
@@ -148,6 +149,7 @@ object frmModelagem: TfrmModelagem
       Top = 46
       Width = 112
       Height = 21
+      Color = clMoneyGreen
       TabOrder = 1
     end
     object edt_qtd_modelos: TEdit
@@ -155,6 +157,7 @@ object frmModelagem: TfrmModelagem
       Top = 67
       Width = 112
       Height = 21
+      Color = clMoneyGreen
       NumbersOnly = True
       TabOrder = 2
     end
@@ -163,6 +166,7 @@ object frmModelagem: TfrmModelagem
       Top = 24
       Width = 100
       Height = 21
+      Color = clMoneyGreen
       NumbersOnly = True
       TabOrder = 3
     end
@@ -171,6 +175,7 @@ object frmModelagem: TfrmModelagem
       Top = 46
       Width = 100
       Height = 21
+      Color = clMoneyGreen
       NumbersOnly = True
       TabOrder = 4
       OnChange = edt_max_aceitavelChange
@@ -180,6 +185,7 @@ object frmModelagem: TfrmModelagem
       Top = 24
       Width = 78
       Height = 21
+      TabStop = False
       ReadOnly = True
       TabOrder = 5
     end
@@ -188,6 +194,7 @@ object frmModelagem: TfrmModelagem
       Top = 46
       Width = 78
       Height = 21
+      TabStop = False
       ReadOnly = True
       TabOrder = 6
     end
@@ -196,6 +203,7 @@ object frmModelagem: TfrmModelagem
       Top = 123
       Width = 112
       Height = 21
+      Color = clMoneyGreen
       NumbersOnly = True
       TabOrder = 7
       OnChange = edt_medida_maior1Change
@@ -205,6 +213,7 @@ object frmModelagem: TfrmModelagem
       Top = 144
       Width = 112
       Height = 21
+      Color = clMoneyGreen
       NumbersOnly = True
       TabOrder = 8
       OnChange = edt_medida_menor1Change
@@ -214,6 +223,7 @@ object frmModelagem: TfrmModelagem
       Top = 123
       Width = 100
       Height = 21
+      Color = clMoneyGreen
       NumbersOnly = True
       TabOrder = 9
       OnChange = edt_medida_maior2Change
@@ -223,6 +233,7 @@ object frmModelagem: TfrmModelagem
       Top = 144
       Width = 100
       Height = 21
+      Color = clMoneyGreen
       NumbersOnly = True
       TabOrder = 10
       OnChange = edt_medida_menor2Change
@@ -232,14 +243,16 @@ object frmModelagem: TfrmModelagem
       Top = 94
       Width = 112
       Height = 21
-      TabOrder = 11
+      Color = clMoneyGreen
+      TabOrder = 13
     end
     object edt_material2: TEdit
       Left = 318
       Top = 94
       Width = 100
       Height = 21
-      TabOrder = 12
+      Color = clMoneyGreen
+      TabOrder = 14
     end
     object pgCortes: TPageControl
       Left = 1
@@ -247,7 +260,7 @@ object frmModelagem: TfrmModelagem
       Width = 699
       Height = 477
       ActivePage = TabSheet6
-      TabOrder = 13
+      TabOrder = 15
       object ENFESTO: TTabSheet
         Caption = 'ENFESTO'
         object Label16: TLabel
@@ -353,6 +366,7 @@ object frmModelagem: TfrmModelagem
           Top = 75
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 0
@@ -362,6 +376,7 @@ object frmModelagem: TfrmModelagem
           Top = 96
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 1
@@ -381,6 +396,7 @@ object frmModelagem: TfrmModelagem
           Top = 75
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 3
@@ -390,6 +406,7 @@ object frmModelagem: TfrmModelagem
           Top = 96
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 4
@@ -511,9 +528,10 @@ object frmModelagem: TfrmModelagem
           Top = 58
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 0
+          TabOrder = 4
         end
         object edt_balancin_qtd_qdr1: TEdit
           Left = 169
@@ -530,36 +548,40 @@ object frmModelagem: TfrmModelagem
           Top = 121
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 2
+          TabOrder = 5
         end
         object edt_balancin_med_menor2: TEdit
           Left = 457
           Top = 79
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 3
+          TabOrder = 6
         end
         object edt_balancin_med_menor1: TEdit
           Left = 169
           Top = 79
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 4
+          TabOrder = 7
         end
         object edt_balancin_cod_faca1: TEdit
           Left = 169
           Top = 39
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 5
+          TabOrder = 8
           OnChange = edt_balancin_cod_faca1Change
         end
         object edt_balancin_qtd_qdr2: TEdit
@@ -569,7 +591,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 6
+          TabOrder = 3
           OnChange = edt_balancin_cod_faca2Change
         end
         object edt_balancin_qtd_etq2: TEdit
@@ -577,9 +599,10 @@ object frmModelagem: TfrmModelagem
           Top = 121
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 7
+          TabOrder = 9
         end
         object edt_balancin_qtd_vert2: TEdit
           Left = 457
@@ -588,7 +611,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 8
+          TabOrder = 2
           OnChange = edt_balancin_cod_faca2Change
         end
         object edt_balancin_qtd_vert1: TEdit
@@ -598,7 +621,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 9
+          TabOrder = 0
           OnChange = edt_balancin_cod_faca1Change
         end
         object edt_balancin_med_maior2: TEdit
@@ -606,6 +629,7 @@ object frmModelagem: TfrmModelagem
           Top = 58
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 10
@@ -615,6 +639,7 @@ object frmModelagem: TfrmModelagem
           Top = 39
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 11
@@ -671,6 +696,7 @@ object frmModelagem: TfrmModelagem
           Top = 21
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 0
@@ -690,6 +716,7 @@ object frmModelagem: TfrmModelagem
           Top = 69
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 2
@@ -699,6 +726,7 @@ object frmModelagem: TfrmModelagem
           Top = 90
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 3
@@ -708,6 +736,7 @@ object frmModelagem: TfrmModelagem
           Top = 111
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 4
@@ -717,6 +746,7 @@ object frmModelagem: TfrmModelagem
           Top = 132
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 5
@@ -736,6 +766,7 @@ object frmModelagem: TfrmModelagem
           Top = 69
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 7
@@ -745,6 +776,7 @@ object frmModelagem: TfrmModelagem
           Top = 90
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 8
@@ -1065,9 +1097,10 @@ object frmModelagem: TfrmModelagem
           Top = 13
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 0
+          TabOrder = 12
         end
         object edt_laserg1_area1: TEdit
           Left = 185
@@ -1076,7 +1109,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 1
+          TabOrder = 0
           Text = '1350'
           OnChange = edt_laserg1_area1Change
         end
@@ -1085,36 +1118,40 @@ object frmModelagem: TfrmModelagem
           Top = 114
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 2
+          TabOrder = 13
         end
         object edt_laserg1_pc: TEdit
           Left = 185
           Top = 95
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 3
+          TabOrder = 14
         end
         object edt_laserg1_chapa1: TEdit
           Left = 185
           Top = 76
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 4
+          TabOrder = 15
         end
         object edt_laserg1_hv1: TEdit
           Left = 185
           Top = 56
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 5
+          TabOrder = 16
         end
         object edt_laserg1_area2: TEdit
           Left = 248
@@ -1123,7 +1160,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 6
+          TabOrder = 1
           Text = '1000'
           OnChange = edt_laserg1_area2Change
         end
@@ -1132,27 +1169,30 @@ object frmModelagem: TfrmModelagem
           Top = 56
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 7
+          TabOrder = 17
         end
         object edt_laserg1_chapa2: TEdit
           Left = 248
           Top = 76
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 8
+          TabOrder = 18
         end
         object edt_laserg2_tam: TEdit
           Left = 477
           Top = 13
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 9
+          TabOrder = 19
         end
         object edt_laserg2_area1: TEdit
           Left = 477
@@ -1161,7 +1201,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 10
+          TabOrder = 6
           Text = '1350'
           OnChange = edt_laserg2_area1Change
         end
@@ -1170,18 +1210,20 @@ object frmModelagem: TfrmModelagem
           Top = 56
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 11
+          TabOrder = 20
         end
         object edt_laserg2_chapa1: TEdit
           Left = 477
           Top = 76
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 12
+          TabOrder = 21
         end
         object edt_laserg2_area2: TEdit
           Left = 540
@@ -1190,7 +1232,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 13
+          TabOrder = 7
           Text = '1000'
           OnChange = edt_laserg2_area2Change
         end
@@ -1199,45 +1241,50 @@ object frmModelagem: TfrmModelagem
           Top = 56
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 14
+          TabOrder = 22
         end
         object edt_laserg2_chapa2: TEdit
           Left = 540
           Top = 76
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 15
+          TabOrder = 23
         end
         object edt_laserg2_pc: TEdit
           Left = 477
           Top = 95
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 16
+          TabOrder = 24
         end
         object edt_laserg2_qc: TEdit
           Left = 477
           Top = 114
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 17
+          TabOrder = 25
         end
         object edt_laserm1_tam: TEdit
           Left = 185
           Top = 165
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 18
+          TabOrder = 26
         end
         object edt_laserm1_area1: TEdit
           Left = 185
@@ -1246,7 +1293,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 19
+          TabOrder = 2
           Text = '760'
           OnChange = edt_laserm1_area1Change
         end
@@ -1255,18 +1302,20 @@ object frmModelagem: TfrmModelagem
           Top = 208
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 20
+          TabOrder = 27
         end
         object edt_laserm1_chapa1: TEdit
           Left = 185
           Top = 228
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 21
+          TabOrder = 28
         end
         object edt_laserm1_area2: TEdit
           Left = 248
@@ -1275,7 +1324,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 22
+          TabOrder = 3
           Text = '450'
           OnChange = edt_laserm1_area2Change
         end
@@ -1284,45 +1333,50 @@ object frmModelagem: TfrmModelagem
           Top = 208
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 23
+          TabOrder = 29
         end
         object edt_laserm1_chapa2: TEdit
           Left = 248
           Top = 228
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 24
+          TabOrder = 30
         end
         object edt_laserm1_pc: TEdit
           Left = 185
           Top = 247
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 25
+          TabOrder = 31
         end
         object edt_laserm1_qc: TEdit
           Left = 185
           Top = 266
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 26
+          TabOrder = 32
         end
         object edt_laserp1_tam: TEdit
           Left = 185
           Top = 309
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 27
+          TabOrder = 33
         end
         object edt_laserp1_area1: TEdit
           Left = 185
@@ -1331,7 +1385,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 28
+          TabOrder = 4
           Text = '570'
           OnChange = edt_laserp1_area1Change
         end
@@ -1340,18 +1394,20 @@ object frmModelagem: TfrmModelagem
           Top = 352
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 29
+          TabOrder = 34
         end
         object edt_laserp1_chapa1: TEdit
           Left = 185
           Top = 372
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 30
+          TabOrder = 35
         end
         object edt_laserp1_area2: TEdit
           Left = 248
@@ -1360,7 +1416,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 31
+          TabOrder = 5
           Text = '400'
           OnChange = edt_laserp1_area2Change
         end
@@ -1369,45 +1425,50 @@ object frmModelagem: TfrmModelagem
           Top = 352
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 32
+          TabOrder = 36
         end
         object edt_laserp1_chapa2: TEdit
           Left = 248
           Top = 372
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 33
+          TabOrder = 37
         end
         object edt_laserp1_pc: TEdit
           Left = 185
           Top = 391
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 34
+          TabOrder = 38
         end
         object edt_laserp1_qc: TEdit
           Left = 185
           Top = 410
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 35
+          TabOrder = 39
         end
         object edt_laserm2_tam: TEdit
           Left = 477
           Top = 165
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 36
+          TabOrder = 40
           OnChange = edt_laserm2_tamChange
         end
         object edt_laserm2_area1: TEdit
@@ -1417,7 +1478,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 37
+          TabOrder = 8
           Text = '760'
           OnChange = edt_laserm2_area1Change
         end
@@ -1426,18 +1487,20 @@ object frmModelagem: TfrmModelagem
           Top = 208
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 38
+          TabOrder = 41
         end
         object edt_laserm2_chapa1: TEdit
           Left = 477
           Top = 228
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 39
+          TabOrder = 42
         end
         object edt_laserm2_area2: TEdit
           Left = 540
@@ -1446,7 +1509,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 40
+          TabOrder = 9
           Text = '450'
           OnChange = edt_laserm2_area2Change
         end
@@ -1455,45 +1518,50 @@ object frmModelagem: TfrmModelagem
           Top = 208
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 41
+          TabOrder = 43
         end
         object edt_laserm2_chapa2: TEdit
           Left = 540
           Top = 228
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 42
+          TabOrder = 44
         end
         object edt_laserm2_pc: TEdit
           Left = 477
           Top = 247
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 43
+          TabOrder = 45
         end
         object edt_laserm2_qc: TEdit
           Left = 477
           Top = 266
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 44
+          TabOrder = 46
         end
         object edt_laserp2_tam: TEdit
           Left = 477
           Top = 309
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 45
+          TabOrder = 47
         end
         object edt_laserp2_area1: TEdit
           Left = 477
@@ -1502,7 +1570,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 46
+          TabOrder = 10
           Text = '570'
           OnChange = edt_laserp2_area1Change
         end
@@ -1511,18 +1579,20 @@ object frmModelagem: TfrmModelagem
           Top = 352
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 47
+          TabOrder = 48
         end
         object edt_laserp2_chapa1: TEdit
           Left = 477
           Top = 372
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 48
+          TabOrder = 49
         end
         object edt_laserp2_area2: TEdit
           Left = 540
@@ -1531,7 +1601,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 49
+          TabOrder = 11
           Text = '400'
           OnChange = edt_laserp2_area2Change
         end
@@ -1540,6 +1610,7 @@ object frmModelagem: TfrmModelagem
           Top = 352
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 50
@@ -1549,6 +1620,7 @@ object frmModelagem: TfrmModelagem
           Top = 372
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 51
@@ -1558,6 +1630,7 @@ object frmModelagem: TfrmModelagem
           Top = 391
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 52
@@ -1567,6 +1640,7 @@ object frmModelagem: TfrmModelagem
           Top = 410
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 53
@@ -1720,44 +1794,49 @@ object frmModelagem: TfrmModelagem
           Top = 214
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 0
+          TabOrder = 8
         end
         object edt_lasermontg1_pc: TEdit
           Left = 193
           Top = 130
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 1
+          TabOrder = 9
         end
         object edt_lasermontg1_chapa1: TEdit
           Left = 193
           Top = 110
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 2
+          TabOrder = 10
         end
         object edt_lasermontg1_hv1: TEdit
           Left = 193
           Top = 89
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 3
+          TabOrder = 11
         end
         object edt_lasermontg1_area1: TEdit
           Left = 193
           Top = 68
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 4
+          TabOrder = 0
           Text = '1350'
           OnChange = edt_lasermontg1_area1Change
         end
@@ -1766,8 +1845,9 @@ object frmModelagem: TfrmModelagem
           Top = 68
           Width = 56
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 5
+          TabOrder = 1
           Text = '1000'
           OnChange = edt_lasermontg1_area2Change
         end
@@ -1776,62 +1856,69 @@ object frmModelagem: TfrmModelagem
           Top = 89
           Width = 56
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 6
+          TabOrder = 12
         end
         object edt_lasermontg1_chapa2: TEdit
           Left = 256
           Top = 110
           Width = 56
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 7
+          TabOrder = 13
         end
         object edt_lasermontg2_qc: TEdit
           Left = 485
           Top = 214
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 8
+          TabOrder = 14
         end
         object edt_lasermontg2_pc: TEdit
           Left = 485
           Top = 130
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 9
+          TabOrder = 15
         end
         object edt_lasermontg2_chapa1: TEdit
           Left = 485
           Top = 110
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 10
+          TabOrder = 16
         end
         object edt_lasermontg2_hv1: TEdit
           Left = 485
           Top = 89
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 11
+          TabOrder = 17
         end
         object edt_lasermontg2_area1: TEdit
           Left = 485
           Top = 68
           Width = 57
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 12
+          TabOrder = 4
           Text = '1350'
           OnChange = edt_lasermontg2_area1Change
         end
@@ -1840,8 +1927,9 @@ object frmModelagem: TfrmModelagem
           Top = 68
           Width = 56
           Height = 21
+          Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 13
+          TabOrder = 5
           Text = '1000'
           OnChange = edt_lasermontg2_area2Change
         end
@@ -1850,36 +1938,40 @@ object frmModelagem: TfrmModelagem
           Top = 89
           Width = 56
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 14
+          TabOrder = 18
         end
         object edt_lasermontg2_chapa2: TEdit
           Left = 548
           Top = 110
           Width = 56
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 15
+          TabOrder = 19
         end
         object edt_lasermontg1_recorte1: TEdit
           Left = 193
           Top = 151
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 16
+          TabOrder = 20
         end
         object edt_lasermontg1_recorte2: TEdit
           Left = 256
           Top = 151
           Width = 56
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 17
+          TabOrder = 21
         end
         object edt_lasermontg1_hvrec1: TEdit
           Left = 193
@@ -1888,7 +1980,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 18
+          TabOrder = 2
           OnChange = edt_lasermontg1_hvrec1Change
         end
         object edt_lasermontg1_hvrec2: TEdit
@@ -1898,7 +1990,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 19
+          TabOrder = 3
           OnChange = edt_lasermontg1_hvrec2Change
         end
         object edt_lasermontg1_qeq: TEdit
@@ -1906,27 +1998,30 @@ object frmModelagem: TfrmModelagem
           Top = 193
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 20
+          TabOrder = 22
         end
         object edt_lasermontg2_recorte2: TEdit
           Left = 547
           Top = 151
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 21
+          TabOrder = 23
         end
         object edt_lasermontg2_recorte1: TEdit
           Left = 485
           Top = 151
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 22
+          TabOrder = 24
         end
         object edt_lasermontg2_hvrec1: TEdit
           Left = 485
@@ -1935,7 +2030,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 23
+          TabOrder = 6
           OnChange = edt_lasermontg2_hvrec1Change
         end
         object edt_lasermontg2_hvrec2: TEdit
@@ -1945,7 +2040,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 24
+          TabOrder = 7
           OnChange = edt_lasermontg2_hvrec2Change
         end
         object edt_lasermontg2_qeq: TEdit
@@ -1953,6 +2048,7 @@ object frmModelagem: TfrmModelagem
           Top = 193
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 25
@@ -2024,7 +2120,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 0
+          TabOrder = 1
           OnChange = edt_galvo_tg2Change
         end
         object edt_galvo_tg1: TEdit
@@ -2034,7 +2130,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 1
+          TabOrder = 0
           OnChange = edt_galvo_tg1Change
         end
         object edt_galvo_etpt: TEdit
@@ -2042,6 +2138,7 @@ object frmModelagem: TfrmModelagem
           Top = 149
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 2
@@ -2051,6 +2148,7 @@ object frmModelagem: TfrmModelagem
           Top = 131
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 3
@@ -2060,6 +2158,7 @@ object frmModelagem: TfrmModelagem
           Top = 111
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 4
@@ -2069,6 +2168,7 @@ object frmModelagem: TfrmModelagem
           Top = 92
           Width = 56
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 5
@@ -2078,6 +2178,7 @@ object frmModelagem: TfrmModelagem
           Top = 29
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 6
@@ -2087,6 +2188,7 @@ object frmModelagem: TfrmModelagem
           Top = 50
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 7
@@ -2096,6 +2198,7 @@ object frmModelagem: TfrmModelagem
           Top = 71
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 8
@@ -2105,6 +2208,7 @@ object frmModelagem: TfrmModelagem
           Top = 92
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 9
@@ -2174,27 +2278,30 @@ object frmModelagem: TfrmModelagem
           Top = 37
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 0
+          TabOrder = 2
         end
         object edt_galvofinal_tg1: TEdit
           Left = 152
           Top = 178
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 1
+          TabOrder = 3
         end
         object edt_galvofinal_tg2: TEdit
           Left = 214
           Top = 178
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 2
+          TabOrder = 4
           OnChange = edt_galvofinal_tg2Change
         end
         object edt_galvofinal_etpt: TEdit
@@ -2202,27 +2309,30 @@ object frmModelagem: TfrmModelagem
           Top = 157
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 3
+          TabOrder = 5
         end
         object edt_galvofinal_etqpp: TEdit
           Left = 152
           Top = 138
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 4
+          TabOrder = 6
         end
         object edt_galvofinal_desloc: TEdit
           Left = 152
           Top = 118
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 5
+          TabOrder = 7
         end
         object edt_galvofinal_hv1: TEdit
           Left = 152
@@ -2231,7 +2341,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 6
+          TabOrder = 0
           Text = '4'
           OnChange = edt_galvofinal_hv1Change
         end
@@ -2242,7 +2352,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 7
+          TabOrder = 1
           Text = '4'
           OnChange = edt_galvofinal_hv2Change
         end
@@ -2251,6 +2361,7 @@ object frmModelagem: TfrmModelagem
           Top = 80
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 8
@@ -2260,6 +2371,7 @@ object frmModelagem: TfrmModelagem
           Top = 60
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 9
@@ -2336,63 +2448,70 @@ object frmModelagem: TfrmModelagem
           Top = 184
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 0
+          TabOrder = 2
         end
         object edt_crackchapado_chapa1: TEdit
           Left = 136
           Top = 163
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 1
+          TabOrder = 3
         end
         object edt_crackchapado_hv12: TEdit
           Left = 136
           Top = 142
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 2
+          TabOrder = 4
         end
         object edt_crackchapado_area1crack: TEdit
           Left = 136
           Top = 122
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 3
+          TabOrder = 5
         end
         object edt_crackchapado_qts2: TEdit
           Left = 199
           Top = 100
           Width = 56
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 4
+          TabOrder = 6
         end
         object edt_crackchapado_qts1: TEdit
           Left = 136
           Top = 100
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 5
+          TabOrder = 7
         end
         object edt_crackchapado_hv1: TEdit
           Left = 136
           Top = 80
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 6
+          TabOrder = 8
         end
         object edt_crackchapado_area1: TEdit
           Left = 136
@@ -2401,7 +2520,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 7
+          TabOrder = 0
           Text = '220'
           OnChange = edt_crackchapado_area1Change
         end
@@ -2410,36 +2529,40 @@ object frmModelagem: TfrmModelagem
           Top = 37
           Width = 119
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 8
+          TabOrder = 9
         end
         object edt_crackchapado_qtc: TEdit
           Left = 136
           Top = 205
           Width = 120
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 9
+          TabOrder = 10
         end
         object edt_crackchapado_area2crack: TEdit
           Left = 199
           Top = 121
           Width = 56
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 10
+          TabOrder = 11
         end
         object edt_crackchapado_hv2: TEdit
           Left = 199
           Top = 80
           Width = 56
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 11
+          TabOrder = 12
         end
         object edt_crackchapado_area2: TEdit
           Left = 199
@@ -2448,7 +2571,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 12
+          TabOrder = 1
           Text = '199'
           OnChange = edt_crackchapado_area2Change
         end
@@ -2457,6 +2580,7 @@ object frmModelagem: TfrmModelagem
           Top = 142
           Width = 56
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 13
@@ -2466,6 +2590,7 @@ object frmModelagem: TfrmModelagem
           Top = 163
           Width = 56
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 14
@@ -2542,72 +2667,80 @@ object frmModelagem: TfrmModelagem
           Top = 45
           Width = 120
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 0
+          TabOrder = 2
         end
         object edt_crackchapadosemfaca_qtc: TEdit
           Left = 144
           Top = 214
           Width = 120
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 1
+          TabOrder = 3
         end
         object edt_crackchapadosemfaca_etc: TEdit
           Left = 144
           Top = 194
           Width = 120
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 2
+          TabOrder = 4
         end
         object edt_crackchapadosemfaca_chapa1: TEdit
           Left = 144
           Top = 173
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 3
+          TabOrder = 5
         end
         object edt_crackchapadosemfaca_hv12: TEdit
           Left = 144
           Top = 152
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 4
+          TabOrder = 6
         end
         object edt_crackchapadosemfaca_area1laser: TEdit
           Left = 144
           Top = 132
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 5
+          TabOrder = 7
         end
         object edt_crackchapadosemfaca_qts1: TEdit
           Left = 144
           Top = 110
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 6
+          TabOrder = 8
         end
         object edt_crackchapadosemfaca_hv1: TEdit
           Left = 144
           Top = 89
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
-          TabOrder = 7
+          TabOrder = 9
         end
         object edt_crackchapadosemfaca_area1: TEdit
           Left = 144
@@ -2616,7 +2749,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 8
+          TabOrder = 0
           Text = '220'
           OnChange = edt_crackchapadosemfaca_area1Change
         end
@@ -2627,7 +2760,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
-          TabOrder = 9
+          TabOrder = 1
           Text = '199'
           OnChange = edt_crackchapadosemfaca_area2Change
         end
@@ -2636,6 +2769,7 @@ object frmModelagem: TfrmModelagem
           Top = 89
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 10
@@ -2645,6 +2779,7 @@ object frmModelagem: TfrmModelagem
           Top = 110
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 11
@@ -2654,6 +2789,7 @@ object frmModelagem: TfrmModelagem
           Top = 131
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 12
@@ -2663,6 +2799,7 @@ object frmModelagem: TfrmModelagem
           Top = 152
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 13
@@ -2672,6 +2809,7 @@ object frmModelagem: TfrmModelagem
           Top = 173
           Width = 57
           Height = 21
+          TabStop = False
           NumbersOnly = True
           ReadOnly = True
           TabOrder = 14
@@ -2683,8 +2821,9 @@ object frmModelagem: TfrmModelagem
       Top = 142
       Width = 76
       Height = 21
+      Color = clMoneyGreen
       NumbersOnly = True
-      TabOrder = 14
+      TabOrder = 11
       OnChange = EdtMedida1Change
     end
     object EdtMedida2: TEdit
@@ -2692,8 +2831,9 @@ object frmModelagem: TfrmModelagem
       Top = 142
       Width = 74
       Height = 21
+      Color = clMoneyGreen
       NumbersOnly = True
-      TabOrder = 15
+      TabOrder = 12
       OnChange = EdtMedida2Change
     end
     object EdtCodigo: TEdit
@@ -2701,6 +2841,7 @@ object frmModelagem: TfrmModelagem
       Top = 169
       Width = 133
       Height = 21
+      TabStop = False
       NumbersOnly = True
       ReadOnly = True
       TabOrder = 16
@@ -2735,6 +2876,7 @@ object frmModelagem: TfrmModelagem
     Width = 176
     Height = 21
     Style = csDropDownList
+    Color = clMoneyGreen
     TabOrder = 1
     OnChange = CbTipoFacaChange
     Items.Strings = (
@@ -2802,6 +2944,7 @@ object frmModelagem: TfrmModelagem
       FieldName = 'id'
       Origin = 'ID'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
   end
   object QrModelagem: TFDQuery
@@ -3002,6 +3145,7 @@ object frmModelagem: TfrmModelagem
       FieldName = 'ID'
       Origin = 'ID'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object QrModelagemFACA_ID: TIntegerField
       AutoGenerateValue = arDefault
@@ -3034,6 +3178,7 @@ object frmModelagem: TfrmModelagem
       FieldName = 'id'
       Origin = 'ID'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object QrFacasEdtmedida_1: TIntegerField
       AutoGenerateValue = arDefault

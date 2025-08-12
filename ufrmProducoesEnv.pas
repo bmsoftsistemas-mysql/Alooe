@@ -62,7 +62,7 @@ type
 var
   frmProducoesEnv: TfrmProducoesEnv;
   EditOrd : Boolean;
-  IDPROD : string;
+  IDPRODUCAO, IDPRO, COR : string;
 
 implementation
 
@@ -123,7 +123,7 @@ end;
 //Limpar a tabela de erros completamente
 procedure TfrmProducoesEnv.btnNovaOrdemClick(Sender: TObject);
 begin
-    IDPROD := '';
+    IDPRODUCAO := '';
     frmProducao := TfrmProducao.Create(Application);
     frmProducao.ShowModal;
     frmProducao.Free;
@@ -149,7 +149,9 @@ begin
   begin
     frmProducao := TfrmProducao.Create(Application);
     EditOrd := True;
-    IDPROD := QrProducoesid_producao.AsString;
+    IDPRODUCAO := QrProducoesid_producao.AsString;
+    IDPRO      := QrProducoesid_prod.AsString;
+    COR        := QrProducoescolor.AsString;
     frmProducao.ShowModal;
     frmProducao.Free;
 
