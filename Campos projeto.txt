@@ -1,3 +1,15 @@
+cbLaseMontagem
+cbGalvoFinal
+cbCrackSilkChapado
+cbEtqSilkChapado
+cbEnfesto
+cbBalancin
+cbCrack
+cbLaserP
+cbLaserM
+cbLaserG
+cbGalvo
+
 edt_pedido
 edt_comb
 edt_qtd_modelos

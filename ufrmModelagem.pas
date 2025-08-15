@@ -353,6 +353,14 @@ type
     Panel1: TPanel;
     btnEnviar: TButton;
     QrModelagem: TFDQuery;
+    QrFacasid: TFDAutoIncField;
+    QrFacasEdt: TFDQuery;
+    QrFacasEdtid: TFDAutoIncField;
+    QrFacasEdtmedida_1: TIntegerField;
+    QrFacasEdtmedida_2: TIntegerField;
+    QrFacasEdtcodigo: TStringField;
+    QrFacasEdttipo: TIntegerField;
+    QrModelagemID: TFDAutoIncField;
     QrModelagemPEDIDO: TIntegerField;
     QrModelagemCOMBINACAO: TStringField;
     QrModelagemQTD_MODELOS: TStringField;
@@ -370,6 +378,8 @@ type
     QrModelagemBALANCIM_QEV_2: TIntegerField;
     QrModelagemBALANCIM_QEQ_1: TIntegerField;
     QrModelagemBALANCIM_QEQ_2: TIntegerField;
+    QrModelagemCRACK_AREA1: TIntegerField;
+    QrModelagemCRACK_AREA2: TIntegerField;
     QrModelagemLM_HVM_11: TIntegerField;
     QrModelagemLM_HVM_12: TIntegerField;
     QrModelagemLM_HVM_21: TIntegerField;
@@ -378,19 +388,27 @@ type
     QrModelagemGALVO_T2: TIntegerField;
     QrModelagemGALVO_CORTE_T1: TIntegerField;
     QrModelagemGALVO_CORTE_T2: TIntegerField;
-    QrModelagemCRACK_SC_SERIGRAFIA_1: TIntegerField;
-    QrModelagemCRACK_SC_SERIGRAFIA_2: TIntegerField;
-    QrModelagemETQ_SC_SERIGRAFIA_1: TIntegerField;
-    QrModelagemETQ_SC_SERIGRAFIA_2: TIntegerField;
-    QrModelagemID: TFDAutoIncField;
+    QrModelagemCRACK_SC_AREA_1: TIntegerField;
+    QrModelagemCRACK_SC_AREA_2: TIntegerField;
+    QrModelagemETQ_SC_AREA_1: TIntegerField;
+    QrModelagemETQ_SC_AREA_2: TIntegerField;
     QrModelagemFACA_ID: TIntegerField;
-    QrFacasid: TFDAutoIncField;
-    QrFacasEdt: TFDQuery;
-    QrFacasEdtid: TFDAutoIncField;
-    QrFacasEdtmedida_1: TIntegerField;
-    QrFacasEdtmedida_2: TIntegerField;
-    QrFacasEdtcodigo: TStringField;
-    QrFacasEdttipo: TIntegerField;
+    QrModelagemLASERP1_AREA1: TIntegerField;
+    QrModelagemLASERP1_AREA2: TIntegerField;
+    QrModelagemLASERP2_AREA1: TIntegerField;
+    QrModelagemLASERP2_AREA2: TIntegerField;
+    QrModelagemLASERM1_AREA1: TIntegerField;
+    QrModelagemLASERM1_AREA2: TIntegerField;
+    QrModelagemLASERM2_AREA1: TIntegerField;
+    QrModelagemLASERM2_AREA2: TIntegerField;
+    QrModelagemLASERG1_AREA1: TIntegerField;
+    QrModelagemLASERG1_AREA2: TIntegerField;
+    QrModelagemLASERG2_AREA1: TIntegerField;
+    QrModelagemLASERG2_AREA2: TIntegerField;
+    QrModelagemLM_G1_A1: TIntegerField;
+    QrModelagemLM_G1_A2: TIntegerField;
+    QrModelagemLM_G2_A1: TIntegerField;
+    QrModelagemLM_G2_A2: TIntegerField;
     procedure FormCreate(Sender: TObject);
     procedure edt_medida_maior1Change(Sender: TObject);
     procedure edt_medida_maior2Change(Sender: TObject);
@@ -440,6 +458,7 @@ type
     function GetEditIntValue(Edit: TEdit): Double;
     function SafeStrToFloat(const S: string): Double;
     function SafeStrToInt(const S: string): Integer;
+    function SafeIntToStr(const S: Integer): String;
     { Private declarations }
   public
     { Public declarations }
@@ -452,7 +471,7 @@ implementation
 
 {$R *.dfm}
 
-uses uMain, ufrmProducao;
+uses uMain, ufrmProducao, Super;
 
 procedure TfrmModelagem.edt_laserg1_area1Change(Sender: TObject);
 var
@@ -1134,12 +1153,183 @@ end;
 
 procedure TfrmModelagem.btnEnviarClick(Sender: TObject);
 begin
-  //validações
+  //validações informações iniciais
+  if edt_max_aceitavel.Text = '' then
+    raiseWithFocus(edt_max_aceitavel, 'Máximo aceitável em branco');
+
+  if edt_medida_maior1.Text = '' then
+    raiseWithFocus(edt_medida_maior1, 'Medida maior material 1 em branco');
+
+  if edt_medida_menor1.Text = '' then
+    raiseWithFocus(edt_medida_menor1, 'Medida menor material 1 em branco');
+
+  if (edt_medida_maior2.Text <> '') and (edt_medida_menor2.Text = '') then
+    raiseWithFocus(edt_medida_menor2, 'Medida menor material 2 em branco');
+
+
+  //validações tipo de corte
+  case TipoCorte of
+    0: begin
+         // Validação para etapa Enfesto e Balancin
+         if edt_enfesto_largura1.Text = '' then
+           raiseWithFocus(edt_enfesto_largura1, 'Largura em branco');
+
+         if edt_balancin_qtd_vert1.Text = '' then
+           raiseWithFocus(edt_balancin_qtd_vert1, 'Quantidade de Etiqueta Vertical em branco');
+
+         if edt_balancin_qtd_qdr1.Text = '' then
+           raiseWithFocus(edt_balancin_qtd_qdr1, 'Quantidade de Etiqueta no Quadrado em branco');
+
+         if EdtCodigo.Text = '' then
+           raiseWithFocus(CbTipoFaca, 'Tipo de faca e medidas em branco ou não encontrada');
+
+         if (edt_medida_maior2.Text <> '') and (edt_medida_menor2.Text <> '') then
+         begin
+           if edt_enfesto_largura2.Text = '' then
+             raiseWithFocus(edt_enfesto_largura2, 'Largura em branco');
+
+           if edt_balancin_qtd_vert2.Text = '' then
+             raiseWithFocus(edt_balancin_qtd_vert2, 'Quantidade de Etiqueta Vertical em branco');
+
+           if edt_balancin_qtd_qdr2.Text = '' then
+             raiseWithFocus(edt_balancin_qtd_qdr2, 'Quantidade de Etiqueta no Quadrado em branco');
+         end;
+       end;
+
+    1: begin
+         // Validação para etapa Crack
+         if (edt_crack_area1.Text = '') then
+           raiseWithFocus(edt_crack_area1, 'Área da Máquina em branco');
+
+         if (edt_crack_area2.Text = '') then
+           raiseWithFocus(edt_crack_area2, 'Área da Máquina em branco');
+       end;
+
+    2: begin
+         // Validação para etapa Laser P
+         if (edt_laserp1_area1.Text = '') then
+           raiseWithFocus(edt_laserp1_area1, 'Área da Máquina em branco');
+
+         if (edt_laserp1_area2.Text = '') then
+           raiseWithFocus(edt_laserp1_area2, 'Área da Máquina em branco');
+
+         if (edt_medida_maior2.Text <> '') and (edt_medida_menor2.Text <> '') then
+         begin
+           if (edt_laserp2_area1.Text = '') then
+             raiseWithFocus(edt_laserp2_area1, 'Área da Máquina em branco');
+
+           if (edt_laserp2_area2.Text = '') then
+             raiseWithFocus(edt_laserp2_area2, 'Área da Máquina em branco');
+         end;
+       end;
+
+    3: begin
+         // Validação para etapa Laser M
+         if (edt_laserm1_area1.Text = '') then
+           raiseWithFocus(edt_laserm1_area1, 'Área da Máquina em branco');
+
+         if (edt_laserm1_area2.Text = '') then
+           raiseWithFocus(edt_laserm1_area2, 'Área da Máquina em branco');
+
+         if (edt_medida_maior2.Text <> '') and (edt_medida_menor2.Text <> '') then
+         begin
+           if (edt_laserm2_area1.Text = '') then
+             raiseWithFocus(edt_laserm2_area1, 'Área da Máquina em branco');
+
+           if (edt_laserm2_area2.Text = '') then
+             raiseWithFocus(edt_laserm2_area2, 'Área da Máquina em branco');
+         end;
+       end;
+
+    4: begin
+         // Validação para etapa Laser G
+         if (edt_laserg1_area1.Text = '') then
+           raiseWithFocus(edt_laserm1_area1, 'Área da Máquina em branco');
+
+         if (edt_laserg1_area2.Text = '') then
+           raiseWithFocus(edt_laserm1_area2, 'Área da Máquina em branco');
+
+         if (edt_medida_maior2.Text <> '') and (edt_medida_menor2.Text <> '') then
+         begin
+           if (edt_laserg2_area1.Text = '') then
+             raiseWithFocus(edt_laserm2_area1, 'Área da Máquina em branco');
+
+           if (edt_laserg2_area2.Text = '') then
+             raiseWithFocus(edt_laserm2_area2, 'Área da Máquina em branco');
+         end;
+       end;
+
+    5: begin
+       // Validação para etapa Laser c/ Montagem
+         if (edt_lasermontg1_area1.Text = '') then
+           raiseWithFocus(edt_lasermontg1_area1, 'Área da Máquina em branco');
+
+         if (edt_lasermontg1_area2.Text = '') then
+           raiseWithFocus(edt_lasermontg1_area2, 'Área da Máquina em branco');
+
+         if (edt_lasermontg2_area1.Text = '') then
+           raiseWithFocus(edt_lasermontg2_area1, 'Área da Máquina em branco');
+
+         if (edt_lasermontg2_area2.Text = '') then
+           raiseWithFocus(edt_lasermontg2_area2, 'Área da Máquina em branco');
+
+         if (edt_lasermontg1_hvrec1.Text = '') then
+           raiseWithFocus(edt_lasermontg1_hvrec1, 'Valor Horizontal Material de Cima em branco');
+
+         if (edt_lasermontg1_hvrec2.Text = '') then
+           raiseWithFocus(edt_lasermontg1_hvrec2, 'Valor Vertical Material de Cima em branco');
+
+         if (edt_lasermontg2_hvrec1.Text = '') then
+           raiseWithFocus(edt_lasermontg2_hvrec1, 'Valor Horizontal Material Base em branco');
+
+         if (edt_lasermontg2_hvrec2.Text = '') then
+           raiseWithFocus(edt_lasermontg2_hvrec2, 'Valor Vertical Material Base em branco');
+       end;
+
+    6: begin
+         // Validação para etapa Galvo
+         if (edt_galvo_tg1.Text = '') then
+           raiseWithFocus(edt_galvo_tg1, 'Tamanho Galvo 1 em branco');
+
+         if (edt_galvo_tg2.Text = '') then
+           raiseWithFocus(edt_galvo_tg2, 'Tamanho Galvo 1 em branco');
+       end;
+
+    7: begin
+         // Validação para etapa Galvo Final
+         if (edt_galvofinal_hv1.Text = '') then
+           raiseWithFocus(edt_galvofinal_hv1, 'Tamanho Galvo Horizontal em branco');
+
+         if (edt_galvofinal_hv2.Text = '') then
+           raiseWithFocus(edt_galvofinal_hv2, 'Tamanho Galvo Vertical em branco');
+       end;
+
+    8: begin
+         // Validação para etapa Crack c/ Silk Chapado
+         if (edt_crackchapado_area1.Text = '') then
+           raiseWithFocus(edt_crackchapado_area1, 'Área Serigrafia 1 em branco');
+
+         if (edt_crackchapado_area2.Text = '') then
+           raiseWithFocus(edt_crackchapado_area2, 'Área Serigrafia 2 em branco');
+       end;
+
+    9: begin
+         // Validação para etapa Etq c/ silk chapado sem faca
+         if (edt_crackchapadosemfaca_area1.Text = '') then
+           raiseWithFocus(edt_crackchapadosemfaca_area1, 'Área Serigrafia 1 em branco');
+
+         if (edt_crackchapadosemfaca_area2.Text = '') then
+           raiseWithFocus(edt_crackchapadosemfaca_area2, 'Área Serigrafia 2 em branco');
+       end;
+  end;
+
 
   //gravação
   QrModelagem.Close;
   QrModelagem.ParamByName('ID').AsInteger := ID;
   QrModelagem.Open;
+
+  //Gravação tipo de corte
   if Edit then
   begin
     QrModelagem.Edit;
@@ -1160,29 +1350,203 @@ begin
   QrModelagemMEDIDA_MAIOR_2.AsInteger        := SafeStrToInt(edt_medida_maior2.Text);
   QrModelagemMEDIDA_MENOR_1.AsInteger        := SafeStrToInt(edt_medida_menor1.Text);
   QrModelagemMEDIDA_MENOR_2.AsInteger        := SafeStrToInt(edt_medida_menor2.Text);
-  QrModelagemENFESTO_LM_1.AsInteger          := SafeStrToInt(edt_enfesto_largura1.Text);
-  QrModelagemENFESTO_LM_2.AsInteger          := SafeStrToInt(edt_enfesto_largura2.Text);
-  QrModelagemBALANCIM_QEV_1.AsInteger        := SafeStrToInt(edt_balancin_qtd_vert1.Text);
-  QrModelagemBALANCIM_QEV_2.AsInteger        := SafeStrToInt(edt_balancin_qtd_vert2.Text);
-  QrModelagemBALANCIM_QEQ_1.AsInteger        := SafeStrToInt(edt_balancin_qtd_qdr1.Text);
-  QrModelagemBALANCIM_QEQ_2.AsInteger        := SafeStrToInt(edt_balancin_qtd_qdr2.Text);
-  QrModelagemLM_HVM_11.AsInteger             := SafeStrToInt(edt_lasermontg1_hvrec1.Text);
-  QrModelagemLM_HVM_12.AsInteger             := SafeStrToInt(edt_lasermontg1_hvrec2.Text);
-  QrModelagemLM_HVM_21.AsInteger             := SafeStrToInt(edt_lasermontg2_hvrec1.Text);
-  QrModelagemLM_HVM_22.AsInteger             := SafeStrToInt(edt_lasermontg2_hvrec2.Text);
-  QrModelagemGALVO_T1.AsInteger              := SafeStrToInt(edt_galvo_tg1.Text);
-  QrModelagemGALVO_T2.AsInteger              := SafeStrToInt(edt_galvo_tg2.Text);
-  QrModelagemGALVO_CORTE_T1.AsInteger        := SafeStrToInt(edt_galvofinal_hv1.Text);
-  QrModelagemGALVO_CORTE_T2.AsInteger        := SafeStrToInt(edt_galvofinal_hv2.Text);
-  QrModelagemCRACK_SC_SERIGRAFIA_1.AsInteger := SafeStrToInt(edt_crackchapado_qts1.Text);
-  QrModelagemCRACK_SC_SERIGRAFIA_2.AsInteger := SafeStrToInt(edt_crackchapado_qts2.Text);
-  QrModelagemETQ_SC_SERIGRAFIA_1.AsInteger   := SafeStrToInt(edt_crackchapadosemfaca_qts1.Text);
-  QrModelagemETQ_SC_SERIGRAFIA_2.AsInteger   := SafeStrToInt(edt_crackchapadosemfaca_qts2.Text);
+
+  case TipoCorte of
+    0: begin
+          QrModelagemENFESTO_LM_1.AsInteger          := SafeStrToInt(edt_enfesto_largura1.Text);
+          QrModelagemENFESTO_LM_2.AsInteger          := SafeStrToInt(edt_enfesto_largura2.Text);
+          QrModelagemBALANCIM_QEV_1.AsInteger        := SafeStrToInt(edt_balancin_qtd_vert1.Text);
+          QrModelagemBALANCIM_QEV_2.AsInteger        := SafeStrToInt(edt_balancin_qtd_vert2.Text);
+          QrModelagemBALANCIM_QEQ_1.AsInteger        := SafeStrToInt(edt_balancin_qtd_qdr1.Text);
+          QrModelagemBALANCIM_QEQ_2.AsInteger        := SafeStrToInt(edt_balancin_qtd_qdr2.Text);
+
+          DadosModeloEnvio := '<b>MATERIAL 1</b>' + sLineBreak + '<br>' + '<br>' +
+                              '<b>ENFESTO</b>' + sLineBreak + '<br>' + '<br>' +
+                              '<b>ALTURA TIRA 1: </b>' + edt_enfesto_altura1.Text + sLineBreak + '<br>' +
+                              '<b>QTD DE TIRAS 1: </b>' + edt_enfesto_qtd_tiras1.Text + sLineBreak + '<br>' +
+                              '<b>LARGURA MATERIAL 1: </b>' + edt_enfesto_largura1.Text + sLineBreak + '<br>' + sLineBreak + '<br>' +
+                              '<b>BALANCIN</b>' + sLineBreak + '<br>' + '<br>' +
+                              '<b>CÓDIGO FACA 1: </b>' + edt_balancin_cod_faca1.Text + sLineBreak + '<br>' +
+                              '<b>QTD ETIQUETAS VERTICAL: </b>' + edt_balancin_qtd_vert1.Text + sLineBreak + '<br>' +
+                              '<b>QTD DE ETIQUETAS / TIRA: </b>' + edt_balancin_qtd_etq1.Text + sLineBreak + '<br>' +
+                              '<b>QTDE ETIQ QUADRADO: </b>' + edt_balancin_qtd_qdr1.Text;
+       end;
+
+    1: begin
+          QrModelagemCRACK_AREA1.AsInteger           := SafeStrToInt(edt_crack_area1.Text);
+          QrModelagemCRACK_AREA2.AsInteger           := SafeStrToInt(edt_crack_area2.Text);
+
+          DadosModeloEnvio := '<b>MATERIAL 1</b>' + sLineBreak + '<br>' + '<br>' +
+                              '<b>CRACK</b>' + sLineBreak + '<br>' + '<br>' +
+                              '<b>HOR: </b>' + edt_crack_hv1.Text + sLineBreak + '<br>' +
+                              '<b>VERT: </b>' + edt_crack_hv2.Text + sLineBreak + '<br>' +
+                              '<b>CHAPA ALTURA: </b>' + edt_crack_chapa1.Text + sLineBreak + '<br>' +
+                              '<b>CHAPA LARGURA: </b>' + edt_crack_chapa2.Text + sLineBreak + '<br>' +
+                              '<b>PEÇAS POR CHAPA: </b>' + edt_crack_pc.Text + sLineBreak + '<br>' +
+                              '<b>QTDE DE CHAPAS: </b>' + edt_crack_qc.Text;
+       end;
+
+    2: begin
+         QrModelagemLASERP1_AREA1.AsInteger         := SafeStrToInt(edt_laserp1_area1.Text);
+         QrModelagemLASERP1_AREA2.AsInteger         := SafeStrToInt(edt_laserp1_area2.Text);
+         QrModelagemLASERP2_AREA1.AsInteger         := SafeStrToInt(edt_laserp2_area1.Text);
+         QrModelagemLASERP2_AREA2.AsInteger         := SafeStrToInt(edt_laserp2_area2.Text);
+
+         DadosModeloEnvio := '<b>MATERIAL 1</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>LASER P</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>HOR: </b>' + edt_laserp1_hv1.Text + sLineBreak + '<br>' +
+                             '<b>VERT: </b>' + edt_laserp1_hv2.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA ALTURA: </b>' + edt_laserp1_chapa1.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA LARGURA: </b>' + edt_laserp1_chapa2.Text + sLineBreak + '<br>' +
+                             '<b>PEÇAS POR CHAPA: </b>' + edt_laserp1_pc.Text + sLineBreak + '<br>' +
+                             '<b>QTDE DE CHAPAS: </b>' + edt_laserp1_qc.Text;
+
+         if (edt_medida_maior2.Text <> '') and (edt_medida_menor2.Text <> '') then
+         begin
+           DadosModeloEnvio := DadosModeloEnvio + '<br>' + '<br>' +
+                             '<b>MATERIAL 2</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>LASER P</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>HOR: </b>' + edt_laserp2_hv1.Text + sLineBreak + '<br>' +
+                             '<b>VERT: </b>' + edt_laserp2_hv2.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA ALTURA: </b>' + edt_laserp2_chapa1.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA LARGURA: </b>' + edt_laserp2_chapa2.Text + sLineBreak + '<br>' +
+                             '<b>PEÇAS POR CHAPA: </b>' + edt_laserp2_pc.Text + sLineBreak + '<br>' +
+                             '<b>QTDE DE CHAPAS: </b>' + edt_laserp2_qc.Text;
+         end;
+       end;
+
+    3: begin
+         QrModelagemLASERM1_AREA1.AsInteger         := SafeStrToInt(edt_laserm1_area1.Text);
+         QrModelagemLASERM1_AREA2.AsInteger         := SafeStrToInt(edt_laserm1_area2.Text);
+         QrModelagemLASERM2_AREA1.AsInteger         := SafeStrToInt(edt_laserm2_area1.Text);
+         QrModelagemLASERM2_AREA2.AsInteger         := SafeStrToInt(edt_laserm2_area2.Text);
+
+         DadosModeloEnvio := '<b>MATERIAL 1</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>LASER M</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>HOR: </b>' + edt_laserm1_hv1.Text + sLineBreak + '<br>' +
+                             '<b>VERT: </b>' + edt_laserm1_hv2.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA ALTURA: </b>' + edt_laserm1_chapa1.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA LARGURA: </b>' + edt_laserm1_chapa2.Text + sLineBreak + '<br>' +
+                             '<b>PEÇAS POR CHAPA: </b>' + edt_laserm1_pc.Text + sLineBreak + '<br>' +
+                             '<b>QTDE DE CHAPAS: </b>' + edt_laserm1_qc.Text;
+
+         if (edt_medida_maior2.Text <> '') and (edt_medida_menor2.Text <> '') then
+         begin
+           DadosModeloEnvio := DadosModeloEnvio + '<br>' + '<br>' +
+                             '<b>MATERIAL 2</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>LASER M</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>HOR: </b>' + edt_laserm2_hv1.Text + sLineBreak + '<br>' +
+                             '<b>VERT: </b>' + edt_laserm2_hv2.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA ALTURA: </b>' + edt_laserm2_chapa1.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA LARGURA: </b>' + edt_laserm2_chapa2.Text + sLineBreak + '<br>' +
+                             '<b>PEÇAS POR CHAPA: </b>' + edt_laserm2_pc.Text + sLineBreak + '<br>' +
+                             '<b>QTDE DE CHAPAS: </b>' + edt_laserm2_qc.Text;
+         end;
+       end;
+
+    4: begin
+         QrModelagemLASERG1_AREA1.AsInteger         := SafeStrToInt(edt_laserg1_area1.Text);
+         QrModelagemLASERG1_AREA2.AsInteger         := SafeStrToInt(edt_laserg1_area2.Text);
+         QrModelagemLASERG2_AREA1.AsInteger         := SafeStrToInt(edt_laserg2_area1.Text);
+         QrModelagemLASERG2_AREA2.AsInteger         := SafeStrToInt(edt_laserg2_area2.Text);
+
+         DadosModeloEnvio := '<b>MATERIAL 1</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>LASER G</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>HOR: </b>' + edt_laserg1_hv1.Text + sLineBreak + '<br>' +
+                             '<b>VERT: </b>' + edt_laserg1_hv2.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA ALTURA: </b>' + edt_laserg1_chapa1.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA LARGURA: </b>' + edt_laserg1_chapa2.Text + sLineBreak + '<br>' +
+                             '<b>PEÇAS POR CHAPA: </b>' + edt_laserg1_pc.Text + sLineBreak + '<br>' +
+                             '<b>QTDE DE CHAPAS: </b>' + edt_laserg1_qc.Text;
+
+         if (edt_medida_maior2.Text <> '') and (edt_medida_menor2.Text <> '') then
+         begin
+           DadosModeloEnvio := DadosModeloEnvio + '<br>' + '<br>' +
+                             '<b>MATERIAL 2</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>LASER G</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>HOR: </b>' + edt_laserg2_hv1.Text + sLineBreak + '<br>' +
+                             '<b>VERT: </b>' + edt_laserg2_hv2.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA ALTURA: </b>' + edt_laserg2_chapa1.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA LARGURA: </b>' + edt_laserg2_chapa2.Text + sLineBreak + '<br>' +
+                             '<b>PEÇAS POR CHAPA: </b>' + edt_laserg2_pc.Text + sLineBreak + '<br>' +
+                             '<b>QTDE DE CHAPAS: </b>' + edt_laserg2_qc.Text;
+         end;
+       end;
+
+    5: begin
+         QrModelagemLM_G1_A1.AsInteger              := SafeStrToInt(edt_lasermontg1_area1.Text);
+         QrModelagemLM_G1_A2.AsInteger              := SafeStrToInt(edt_lasermontg1_area2.Text);
+         QrModelagemLM_HVM_11.AsInteger             := SafeStrToInt(edt_lasermontg1_hvrec1.Text);
+         QrModelagemLM_HVM_12.AsInteger             := SafeStrToInt(edt_lasermontg1_hvrec2.Text);
+
+         QrModelagemLM_G2_A1.AsInteger              := SafeStrToInt(edt_lasermontg2_area1.Text);
+         QrModelagemLM_G2_A2.AsInteger              := SafeStrToInt(edt_lasermontg2_area2.Text);
+         QrModelagemLM_HVM_21.AsInteger             := SafeStrToInt(edt_lasermontg2_hvrec1.Text);
+         QrModelagemLM_HVM_22.AsInteger             := SafeStrToInt(edt_lasermontg2_hvrec2.Text);
+
+         DadosModeloEnvio := '<b>MATERIAL 1</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>LASER C/ MODELAGEM G MATERIAL DE CIMA</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>HOR: </b>' + edt_lasermontg1_hv1.Text + sLineBreak + '<br>' +
+                             '<b>VERT: </b>' + edt_lasermontg1_hv2.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA ALTURA: </b>' + edt_lasermontg1_chapa1.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA LARGURA: </b>' + edt_lasermontg1_chapa2.Text + sLineBreak + '<br>' +
+                             '<b>PEÇAS POR CHAPA: </b>' + edt_lasermontg1_pc.Text + sLineBreak + '<br>' +
+                             '<b>RECORTE 1: </b>' + edt_lasermontg1_recorte1.Text + sLineBreak + '<br>' +
+                             '<b>RECORTE 2: </b>' + edt_lasermontg1_recorte2.Text + sLineBreak + '<br>' +
+                             '<b>HOR (REC): </b>' + edt_lasermontg1_hvrec1.Text + sLineBreak + '<br>' +
+                             '<b>VERT (REC): </b>' + edt_lasermontg1_hvrec2.Text + sLineBreak + '<br>' +
+                             '<b>QTDE ETIQ QUADRADO: </b>' + edt_lasermontg1_qeq.Text + sLineBreak + '<br>' +
+                             '<b>QTDE DE CHAPAS: </b>' + edt_lasermontg1_qc.Text + sLineBreak + '<br>' + '<br>' +
+
+                             '<b>LASER C/ MODELAGEM G MATERIAL DA BASE</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>HOR: </b>' + edt_laserg2_hv1.Text + sLineBreak + '<br>' +
+                             '<b>VERT: </b>' + edt_laserg2_hv2.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA ALTURA: </b>' + edt_laserg2_chapa1.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA LARGURA: </b>' + edt_laserg2_chapa2.Text + sLineBreak + '<br>' +
+                             '<b>PEÇAS POR CHAPA: </b>' + edt_laserg2_pc.Text + sLineBreak + '<br>' +
+                             '<b>RECORTE 1: </b>' + edt_lasermontg2_recorte1.Text + sLineBreak + '<br>' +
+                             '<b>RECORTE 2: </b>' + edt_lasermontg2_recorte2.Text + sLineBreak + '<br>' +
+                             '<b>HOR (REC): </b>' + edt_lasermontg2_hvrec1.Text + sLineBreak + '<br>' +
+                             '<b>VERT (REC): </b>' + edt_lasermontg2_hvrec2.Text + sLineBreak + '<br>' +
+                             '<b>QTDE ETIQ QUADRADO: </b>' + edt_lasermontg2_qeq.Text + sLineBreak + '<br>' +
+                             '<b>QTDE DE CHAPAS: </b>' + edt_laserg2_qc.Text;
+       end;
+
+    6: begin
+         QrModelagemGALVO_T1.AsInteger              := SafeStrToInt(edt_galvo_tg1.Text);
+         QrModelagemGALVO_T2.AsInteger              := SafeStrToInt(edt_galvo_tg2.Text);
+
+//         DadosModeloEnvio := ;
+       end;
+
+    7: begin
+         QrModelagemGALVO_CORTE_T1.AsInteger        := SafeStrToInt(edt_galvofinal_hv1.Text);
+         QrModelagemGALVO_CORTE_T2.AsInteger        := SafeStrToInt(edt_galvofinal_hv2.Text);
+
+//         DadosModeloEnvio := ;
+       end;
+
+    8: begin
+         QrModelagemCRACK_SC_AREA_1.AsInteger       := SafeStrToInt(edt_crackchapado_area1.Text);
+         QrModelagemCRACK_SC_AREA_2.AsInteger       := SafeStrToInt(edt_crackchapado_area2.Text);
+
+//         DadosModeloEnvio := ;
+       end;
+
+    9: begin
+         QrModelagemETQ_SC_AREA_1.AsInteger         := SafeStrToInt(edt_crackchapadosemfaca_area1.Text);
+         QrModelagemETQ_SC_AREA_2.AsInteger         := SafeStrToInt(edt_crackchapadosemfaca_area2.Text);
+
+//         DadosModeloEnvio := ;
+       end;
+
+  end;
+
   QrModelagemFACA_ID.AsInteger               := (QrFacasid.AsInteger);
   QrModelagem.Post;
 
   ID := QrModelagemID.AsInteger;
-
+  ModelagemTerminada := True;
 
   ModalResult := mrOk;
 end;
@@ -1197,6 +1561,18 @@ function TfrmModelagem.SafeStrToInt(const S: string): Integer;
 begin
   if TryStrToInt(S, Result) = False then
     Result := 0; // ou um valor padrão
+end;
+
+function TfrmModelagem.SafeIntToStr(const S: Integer): String;
+begin
+  if (IntToStr(S) = '0') then
+  begin
+    Result := ''; // ou um valor padrão
+  end
+  else
+  begin
+    Result := IntToStr(S);
+  end;
 end;
 
 procedure TfrmModelagem.CbTipoFacaChange(Sender: TObject);
@@ -1950,52 +2326,106 @@ begin
   QrModelagem.ParamByName('ID').AsInteger := ID;
   QrModelagem.Open;
 
+  QrFacasEdt.Close;
+  QrFacasEdt.ParamByName('id').AsInteger := QrModelagemFACA_ID.AsInteger;
+  QrFacasEdt.Open;
+
+  edt_pedido.Text        := frmProducao.EdtNpedido.Text;
+  edt_qtd_etiquetas.Text := frmProducao.EdtQuantidade.Text;
+
   if Edit then
   begin
-//    edt_pedido.Text                   := IntToStr(QrModelagemPEDIDO.AsInteger);
-    edt_comb.Text                     := QrModelagemCOMBINACAO.AsString;
-    edt_qtd_modelos.Text              := QrModelagemQTD_MODELOS.AsString;
-//    edt_qtd_etiquetas.Text            := FloatToStr(QrModelagemQTD_ETIQUETAS.AsFloat);
-    edt_max_aceitavel.Text            := IntToStr(QrModelagemMAX_ACEITAVEL.AsInteger);
-    edt_material1.Text                := QrModelagemMATERIAL_1.AsString;
-    edt_material2.Text                := QrModelagemMATERIAL_2.AsString;
-    edt_medida_maior1.Text            := IntToStr(QrModelagemMEDIDA_MAIOR_1.AsInteger);
-    edt_medida_maior2.Text            := IntToStr(QrModelagemMEDIDA_MAIOR_2.AsInteger);
-    edt_medida_menor1.Text            := IntToStr(QrModelagemMEDIDA_MENOR_1.AsInteger);
-    edt_medida_menor2.Text            := IntToStr(QrModelagemMEDIDA_MENOR_2.AsInteger);
-    edt_enfesto_largura1.Text         := IntToStr(QrModelagemENFESTO_LM_1.AsInteger);
-    edt_enfesto_largura2.Text         := IntToStr(QrModelagemENFESTO_LM_2.AsInteger);
-    edt_balancin_qtd_vert1.Text       := IntToStr(QrModelagemBALANCIM_QEV_1.AsInteger);
-    edt_balancin_qtd_vert2.Text       := IntToStr(QrModelagemBALANCIM_QEV_2.AsInteger);
-    edt_balancin_qtd_qdr1.Text        := IntToStr(QrModelagemBALANCIM_QEQ_1.AsInteger);
-    edt_balancin_qtd_qdr2.Text        := IntToStr(QrModelagemBALANCIM_QEQ_2.AsInteger);
-    edt_lasermontg1_hvrec1.Text       := IntToStr(QrModelagemLM_HVM_11.AsInteger);
-    edt_lasermontg1_hvrec2.Text       := IntToStr(QrModelagemLM_HVM_12.AsInteger);
-    edt_lasermontg2_hvrec1.Text       := IntToStr(QrModelagemLM_HVM_21.AsInteger);
-    edt_lasermontg2_hvrec2.Text       := IntToStr(QrModelagemLM_HVM_22.AsInteger);
-    edt_galvo_tg1.Text                := IntToStr(QrModelagemGALVO_T1.AsInteger);
-    edt_galvo_tg2.Text                := IntToStr(QrModelagemGALVO_T2.AsInteger);
-    edt_galvofinal_hv1.Text           := IntToStr(QrModelagemGALVO_CORTE_T1.AsInteger);
-    edt_galvofinal_hv2.Text           := IntToStr(QrModelagemGALVO_CORTE_T2.AsInteger);
-    edt_crackchapado_qts1.Text        := IntToStr(QrModelagemCRACK_SC_SERIGRAFIA_1.AsInteger);
-    edt_crackchapado_qts2.Text        := IntToStr(QrModelagemCRACK_SC_SERIGRAFIA_2.AsInteger);
-    edt_crackchapadosemfaca_qts1.Text := IntToStr(QrModelagemETQ_SC_SERIGRAFIA_1.AsInteger);
-    edt_crackchapadosemfaca_qts2.Text := IntToStr(QrModelagemETQ_SC_SERIGRAFIA_2.AsInteger);
-
-    QrFacasEdt.Close;
-    QrFacasEdt.ParamByName('id').AsInteger := QrModelagemFACA_ID.AsInteger;
-    QrFacasEdt.Open;
-
     CbTipoFaca.Value := QrFacasEdttipo.AsString;
     EdtMedida1.Text  := QrFacasEdtmedida_1.AsString;
     EdtMedida2.Text  := QrFacasEdtmedida_2.AsString;
     EdtCodigo.Text   := QrFacasEdtcodigo.AsString;
 
+
+//    edt_pedido.Text                   := IntToStr(QrModelagemPEDIDO.AsInteger);
+    edt_comb.Text                       := QrModelagemCOMBINACAO.AsString;
+    edt_qtd_modelos.Text                := QrModelagemQTD_MODELOS.AsString;
+//    edt_qtd_etiquetas.Text            := FloatToStr(QrModelagemQTD_ETIQUETAS.AsFloat);
+    edt_max_aceitavel.Text              := SafeIntToStr(QrModelagemMAX_ACEITAVEL.AsInteger);
+    edt_material1.Text                  := QrModelagemMATERIAL_1.AsString;
+    edt_material2.Text                  := QrModelagemMATERIAL_2.AsString;
+    edt_medida_maior1.Text              := SafeIntToStr(QrModelagemMEDIDA_MAIOR_1.AsInteger);
+    edt_medida_maior2.Text              := SafeIntToStr(QrModelagemMEDIDA_MAIOR_2.AsInteger);
+    edt_medida_menor1.Text              := SafeIntToStr(QrModelagemMEDIDA_MENOR_1.AsInteger);
+    edt_medida_menor2.Text              := SafeIntToStr(QrModelagemMEDIDA_MENOR_2.AsInteger);
+
+      case TipoCorte of
+      0: begin
+          edt_enfesto_largura1.Text           := SafeIntToStr(QrModelagemENFESTO_LM_1.AsInteger);
+          edt_enfesto_largura2.Text           := SafeIntToStr(QrModelagemENFESTO_LM_2.AsInteger);
+          edt_balancin_qtd_vert1.Text         := SafeIntToStr(QrModelagemBALANCIM_QEV_1.AsInteger);
+          edt_balancin_qtd_vert2.Text         := SafeIntToStr(QrModelagemBALANCIM_QEV_2.AsInteger);
+          edt_balancin_qtd_qdr1.Text          := SafeIntToStr(QrModelagemBALANCIM_QEQ_1.AsInteger);
+          edt_balancin_qtd_qdr2.Text          := SafeIntToStr(QrModelagemBALANCIM_QEQ_2.AsInteger);
+         end;
+
+      1: begin
+          edt_crack_area1.Text                := SafeIntToStr(QrModelagemCRACK_AREA1.AsInteger);
+          edt_crack_area2.Text                := SafeIntToStr(QrModelagemCRACK_AREA2.AsInteger);
+         end;
+
+      2: begin
+          edt_laserp1_area1.Text              := SafeIntToStr(QrModelagemLASERP1_AREA1.AsInteger);
+          edt_laserp1_area2.Text              := SafeIntToStr(QrModelagemLASERP1_AREA2.AsInteger);
+          edt_laserp2_area1.Text              := SafeIntToStr(QrModelagemLASERP2_AREA1.AsInteger);
+          edt_laserp2_area2.Text              := SafeIntToStr(QrModelagemLASERP2_AREA2.AsInteger);
+         end;
+
+      3: begin
+          edt_laserm1_area1.Text              := SafeIntToStr(QrModelagemLASERM1_AREA1.AsInteger);
+          edt_laserm1_area2.Text              := SafeIntToStr(QrModelagemLASERM1_AREA2.AsInteger);
+          edt_laserm2_area1.Text              := SafeIntToStr(QrModelagemLASERM2_AREA1.AsInteger);
+          edt_laserm2_area2.Text              := SafeIntToStr(QrModelagemLASERM2_AREA2.AsInteger);
+
+         end;
+
+      4: begin
+          edt_laserg1_area1.Text              := SafeIntToStr(QrModelagemLASERG1_AREA1.AsInteger);
+          edt_laserg1_area2.Text              := SafeIntToStr(QrModelagemLASERG1_AREA2.AsInteger);
+          edt_laserg2_area1.Text              := SafeIntToStr(QrModelagemLASERG2_AREA1.AsInteger);
+          edt_laserg2_area2.Text              := SafeIntToStr(QrModelagemLASERG2_AREA2.AsInteger);
+         end;
+
+      5: begin
+          edt_lasermontg1_area1.Text          := SafeIntToStr(QrModelagemLM_G1_A1.AsInteger);
+          edt_lasermontg1_area2.Text          := SafeIntToStr(QrModelagemLM_G1_A2.AsInteger);
+          edt_lasermontg2_area1.Text          := SafeIntToStr(QrModelagemLM_G2_A1.AsInteger);
+          edt_lasermontg2_area2.Text          := SafeIntToStr(QrModelagemLM_G2_A2.AsInteger);
+          edt_lasermontg1_hvrec1.Text         := SafeIntToStr(QrModelagemLM_HVM_11.AsInteger);
+          edt_lasermontg1_hvrec2.Text         := SafeIntToStr(QrModelagemLM_HVM_12.AsInteger);
+          edt_lasermontg2_hvrec1.Text         := SafeIntToStr(QrModelagemLM_HVM_21.AsInteger);
+          edt_lasermontg2_hvrec2.Text         := SafeIntToStr(QrModelagemLM_HVM_22.AsInteger);
+         end;
+
+      6: begin
+          edt_galvo_tg1.Text                  := SafeIntToStr(QrModelagemGALVO_T1.AsInteger);
+          edt_galvo_tg2.Text                  := SafeIntToStr(QrModelagemGALVO_T2.AsInteger);
+         end;
+
+      7: begin
+          edt_galvofinal_hv1.Text             := SafeIntToStr(QrModelagemGALVO_CORTE_T1.AsInteger);
+          edt_galvofinal_hv2.Text             := SafeIntToStr(QrModelagemGALVO_CORTE_T2.AsInteger);
+         end;
+
+      8: begin
+          edt_crackchapado_area1.Text         := SafeIntToStr(QrModelagemCRACK_SC_AREA_1.AsInteger);
+          edt_crackchapado_area2.Text         := SafeIntToStr(QrModelagemCRACK_SC_AREA_2.AsInteger);
+         end;
+
+      9: begin
+          edt_crackchapadosemfaca_area1.Text  := SafeIntToStr(QrModelagemETQ_SC_AREA_1.AsInteger);
+          edt_crackchapadosemfaca_area2.Text  := SafeIntToStr(QrModelagemETQ_SC_AREA_2.AsInteger);
+         end;
+      end;
   end;
 
-
-  edt_pedido.Text        := frmProducao.EdtNpedido.Text;
-  edt_qtd_etiquetas.Text := frmProducao.EdtQuantidade.Text;
+    // Remove o botão de fechar
+  SetWindowLong(Handle, GWL_STYLE,
+    GetWindowLong(Handle, GWL_STYLE) and not WS_SYSMENU);
 end;
 
 end.

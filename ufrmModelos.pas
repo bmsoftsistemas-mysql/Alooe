@@ -261,7 +261,7 @@ begin
         QrProducoes.Edit; ;
         QrProducoesid_producao.AsString               :=  id;
         QrProducoesid_prod.AsString                   := productId;
-        QrProducoesname.AsString                      := name;
+        //QrProducoesname.AsString                      := name;
         QrProducoesexpectedProductionQuantity.AsFloat := expectedProductionQuantity;
         QrProducoesproductionQuantityBalance.AsFloat  := productionQuantityBalance;
         QrProducoesisFictitious.AsBoolean             := isFictitious;
@@ -466,7 +466,7 @@ begin
   Tentativa := 0;
   Sucesso := False;
   //FormatDateTime('yyyy"-"mm"-"dd', (now))
-  if DD.config.ReadString('Config', 'data_token', '') < (DateToStr(now)) then
+  if DD.config.ReadString('Config', 'data_token', '') < (FormatDateTime('yyyy"-"mm"-"dd', (now))) then
   begin
     ObjBody := TJSONObject.Create;
 
@@ -524,7 +524,7 @@ begin
 
           Token := DataObject.GetValue<string>('token');
           defAppToken := DataObject.GetValue<string>('token');
-          DD.config.WriteString('config', 'data_token', (DateToStr(now)));
+          DD.config.WriteString('config', 'data_token', (FormatDateTime('yyyy"-"mm"-"dd', (now))));
           DD.config.WriteString('config', 'token', (defAppToken));
           //ShowMessage('Token: ' + Token);
         end;

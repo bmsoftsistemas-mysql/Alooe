@@ -42,6 +42,7 @@ type
     cbCampo: TComboBox;
     btnTodos: TButton;
     btnNovaOrdem: TButton;
+    QrProducoesimage: TMemoField;
     procedure FormCreate(Sender: TObject);
     procedure btnFiltrarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -62,7 +63,7 @@ type
 var
   frmProducoesEnv: TfrmProducoesEnv;
   EditOrd : Boolean;
-  IDPRODUCAO, IDPRO, COR : string;
+  IDPRODUCAO, IDPRO, COR, IMAGE:string;
 
 implementation
 
@@ -152,6 +153,7 @@ begin
     IDPRODUCAO := QrProducoesid_producao.AsString;
     IDPRO      := QrProducoesid_prod.AsString;
     COR        := QrProducoescolor.AsString;
+    IMAGE      := QrProducoesimage.Value;
     frmProducao.ShowModal;
     frmProducao.Free;
 

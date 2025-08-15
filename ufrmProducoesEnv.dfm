@@ -288,7 +288,8 @@ object frmProducoesEnv: TfrmProducoesEnv
       '  salesOrderDate,'
       '  customer,'
       '  color,'
-      '  progressStatus'
+      '  progressStatus,'
+      '  image'
       'FROM ordens_producao;')
     Left = 776
     Top = 304
@@ -373,6 +374,10 @@ object frmProducoesEnv: TfrmProducoesEnv
       FieldKind = fkCalculated
       FieldName = 'progressStatusPt'#10#10
       Calculated = True
+    end
+    object QrProducoesimage: TMemoField
+      FieldName = 'image'
+      BlobType = ftMemo
     end
   end
   object DtProducoes: TDataSource

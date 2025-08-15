@@ -67,7 +67,7 @@ object frmProducao: TfrmProducao
     end
     object LabelObs: TLabel
       Left = 32
-      Top = 238
+      Top = 256
       Width = 63
       Height = 13
       Caption = 'Observa'#231#245'es'
@@ -81,7 +81,7 @@ object frmProducao: TfrmProducao
     end
     object LabelCliente: TLabel
       Left = 32
-      Top = 179
+      Top = 165
       Width = 33
       Height = 13
       Caption = 'Cliente'
@@ -124,7 +124,7 @@ object frmProducao: TfrmProducao
     end
     object MmObs: TMemo
       Left = 32
-      Top = 256
+      Top = 274
       Width = 481
       Height = 89
       Lines.Strings = (
@@ -133,7 +133,7 @@ object frmProducao: TfrmProducao
     end
     object EdtCliente: TEdit
       Left = 32
-      Top = 198
+      Top = 184
       Width = 481
       Height = 21
       TabOrder = 5
@@ -159,7 +159,7 @@ object frmProducao: TfrmProducao
     end
     object btnImage: TButton
       Left = 32
-      Top = 490
+      Top = 494
       Width = 75
       Height = 25
       Caption = 'Add Imagem'
@@ -168,7 +168,7 @@ object frmProducao: TfrmProducao
     end
     object FlowPanel1: TFlowPanel
       Left = 32
-      Top = 366
+      Top = 370
       Width = 481
       Height = 118
       BevelKind = bkFlat
@@ -229,6 +229,25 @@ object frmProducao: TfrmProducao
       Caption = 'Modelagem'
       TabOrder = 14
       OnClick = btnModeloClick
+    end
+    object cbTipoCorte: TRzComboBox
+      Left = 32
+      Top = 224
+      Width = 288
+      Height = 21
+      Style = csDropDownList
+      TabOrder = 15
+      Items.Strings = (
+        '0-Enfesto e Balancin'
+        '1-Crack'
+        '2-Laser P'
+        '3-Laser M'
+        '4-Laser G'
+        '5-Laser c/ Montagem'
+        '6-Galvo'
+        '7-Galvo Final'
+        '8-Crack c/ Silk Chapado'
+        '9-Etiqueta c/ Silk Chapado s/ Faca')
     end
   end
   object QrModelos: TFDQuery
@@ -344,7 +363,9 @@ object frmProducao: TfrmProducao
       '  color,'
       '  progressStatus,'
       '  id_modelagem,'
-      '  note'
+      '  note,'
+      '  image,'
+      '  tipoCorte'
       ''
       'FROM ordens_producao'
       'where id_producao= :id')
@@ -449,6 +470,15 @@ object frmProducao: TfrmProducao
       FieldName = 'note'
       Origin = 'note'
       Size = 255
+    end
+    object QrSaveProdimage: TMemoField
+      FieldName = 'image'
+      BlobType = ftMemo
+    end
+    object QrSaveProdtipoCorte: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'tipoCorte'
+      Origin = 'tipoCorte'
     end
   end
   object OpenDialog1: TOpenDialog

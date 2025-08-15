@@ -9,7 +9,8 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, Vcl.DBCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, System.DateUtils,
-  REST.Types, REST.HttpClient, EncdDecd, System.NetEncoding;
+  REST.Types, REST.HttpClient, EncdDecd, System.NetEncoding, RzButton, RzRadChk,
+  RzCmboBx, UtilsRz;
 
 type
   TfrmProducao = class(TForm)
@@ -69,6 +70,9 @@ type
     btnModelo: TButton;
     QrSaveProdid_modelagem: TIntegerField;
     QrSaveProdnote: TStringField;
+    QrSaveProdimage: TMemoField;
+    cbTipoCorte: TRzComboBox;
+    QrSaveProdtipoCorte: TIntegerField;
     procedure btnEnviarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBLookupModeloCloseUp(Sender: TObject);
@@ -106,6 +110,9 @@ var
   frmProducao: TfrmProducao;
   Edit : Boolean;
   ID : Integer;
+  TipoCorte: Integer;
+  ModelagemTerminada: Boolean;
+  DadosModeloEnvio: string;
 
 implementation
 
@@ -173,12 +180,25 @@ begin
       begin
         img := TImage(FlowPanel1.Controls[i]);
         base64 := ImageToBase64(img.Hint);
-        htmlTag := '<img src="data:image/jpeg;base64,' + base64 + '" />';
+        if  not EditOrd then
+        begin
+          htmlTag := '<img src="data:image/jpeg;base64,' + base64 + '" />';
+        end
+        else
+        begin
+          htmlTag := IMAGE + sLineBreak + '<img src="data:image/jpeg;base64,' + base64 + '" />';
+        end;
+
         noteContent := noteContent + htmlTag + sLineBreak;
       end;
     end;
 
-    JSONObj.AddPair('note', MmObs.Text + noteContent);
+    if FlowPanel1.ControlCount = 0 then
+    begin
+      noteContent := IMAGE;
+    end;
+
+    JSONObj.AddPair('note', MmObs.Text + '<br>' + '<br>' + noteContent);
 
     if EditOrd then
     begin
@@ -213,7 +233,7 @@ begin
       frmRequest.RESTRequestProd.Params.AddItem('Authorization', 'Bearer ' + defAppToken, pkHTTPHEADER, [poDoNotEncode]);
       frmRequest.RESTRequestProd.Body.ClearBody;
 
-      StringToFile(JSONObj.ToString, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\Alooe\extras\jsProducaoPut.json');
+      //StringToFile(JSONObj.ToString, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\Alooe\extras\jsProducaoPut.json');
       frmRequest.RESTRequestProd.AddBody(JSONObj);
     end;
 
@@ -278,7 +298,7 @@ begin
         end;
         QrSaveProdid_producao.AsString                 := id_int;
         QrSaveProdid_prod.AsString                     := productId;
-        QrSaveProdname.AsString                        := name;
+        QrSaveProdname.AsString                        := EdtModelos.Text;
         QrSaveProdexpectedProductionQuantity.AsInteger := expectedProductionQuantity;
         QrSaveProdproductionQuantityBalance.AsInteger  := productionQuantityBalance;
         QrSaveProdisFictitious.AsBoolean               := isFictitious;
@@ -293,6 +313,8 @@ begin
         QrSaveProdprogressStatus.AsString              := progressStatus;
         QrSaveProdid_modelagem.AsInteger               := ID;
         QrSaveProdnote.AsString                        := MmObs.Text;
+        QrSaveProdimage.AsString                       := noteContent;
+        QrSaveProdtipoCorte.AsInteger                  := StrToInt(cbTipoCorte.Value);
         QrSaveProd.Post;
 
         AvisoAtt('Processo de envio concluído...', 5, -1);
@@ -343,11 +365,18 @@ begin
   if (EdtQuantidade.Text = '') then
     raiseWithFocus(EdtQuantidade, 'Quantidade em branco');
 
+  if (cbTipoCorte.Value = '') then
+    raiseWithFocus(cbTipoCorte, 'Obrigatório escolher Modelo a ser usado');
+
+  Edit := EditOrd;
+  TipoCorte := StrToInt(cbTipoCorte.Value);
+  ModelagemTerminada := False;
   frmModelagem := Tfrmmodelagem.Create(Application);
   frmModelagem.ShowModal;
   Edit := True;
   frmModelagem.Free;
 
+  MmObs.Text := sLineBreak + DadosModeloEnvio;
 end;
 
 function TfrmProducao.ImageToBase64(const FilePath: string): string;
@@ -575,6 +604,12 @@ begin
   Constraints.MaxWidth   := Width;
   Constraints.MinHeight  := Height;
   Constraints.MaxHeight  := Height;
+
+  SetListValues(cbTipoCorte);
+
+    // Remove o botão de fechar
+  SetWindowLong(Handle, GWL_STYLE,
+    GetWindowLong(Handle, GWL_STYLE) and not WS_SYSMENU);
 end;
 
 procedure TfrmProducao.FormShow(Sender: TObject);
@@ -586,19 +621,19 @@ begin
   QrModelos.Open;
 
   //ordenar taborder forçadamente
-  EdtModelos.SetFocus;
-  EdtModelos.TabOrder    := 0;
-  EdtNpedido.TabOrder    := 1;
-  EdtQuantidade.TabOrder := 2;
-  DtInicio.TabOrder      := 3;
-  DtFim.TabOrder         := 4;
-  DtEntrega.TabOrder     := 5;
-  EdtCliente.TabOrder    := 6;
-  MmObs.TabOrder         := 7;
-  btnImage.TabOrder      := 8;
-  btnEnviar.TabOrder     := 9;
-  btnCancelar.TabOrder   := 10;
-  lstSugestoes.TabOrder  := 11;
+//  EdtModelos.SetFocus;
+//  EdtModelos.TabOrder    := 0;
+//  EdtNpedido.TabOrder    := 1;
+//  EdtQuantidade.TabOrder := 2;
+//  DtInicio.TabOrder      := 3;
+//  DtFim.TabOrder         := 4;
+//  DtEntrega.TabOrder     := 5;
+//  EdtCliente.TabOrder    := 6;
+//  MmObs.TabOrder         := 7;
+//  btnImage.TabOrder      := 8;
+//  btnEnviar.TabOrder     := 9;
+//  btnCancelar.TabOrder   := 10;
+//  lstSugestoes.TabOrder  := 11;
 
   Edit := False;
   ID := 0;
@@ -610,6 +645,9 @@ begin
     QrSaveProd.Open;
 
     EdtModelos.Text    := QrSaveProdname.AsString;
+    EdtModelos.Enabled := False;
+    EdtModelos.TabStop := False;
+    EdtModelos.ReadOnly := True;
     EdtNpedido.Text    := QrSaveProdsalesOrder.AsString;
     EdtQuantidade.Text := QrSaveProdproductionQuantityBalance.AsString;
     SetColorBoxFromHex(CbCor, QrSaveProdcolor.AsString);
@@ -618,6 +656,8 @@ begin
     DtEntrega.Date     := QrSaveProddeliveryDate.Value;
     EdtCliente.Text    := QrSaveProdcustomer.AsString;
     MmObs.Text         := QrSaveProdnote.AsString;
+    cbTipoCorte.Value  := QrSaveProdtipoCorte.AsString;
+    ID                 := QrSaveProdid_modelagem.AsInteger;
 //    FlowPanel1 := ;
   end;
 
