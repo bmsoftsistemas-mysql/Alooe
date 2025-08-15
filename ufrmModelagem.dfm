@@ -166,8 +166,9 @@ object frmModelagem: TfrmModelagem
       Top = 24
       Width = 100
       Height = 21
-      Color = clMoneyGreen
+      Color = clWhite
       NumbersOnly = True
+      ReadOnly = True
       TabOrder = 3
     end
     object edt_max_aceitavel: TEdit
@@ -3010,6 +3011,7 @@ object frmModelagem: TfrmModelagem
       FieldName = 'ID'
       Origin = 'ID'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object QrModelagemPEDIDO: TIntegerField
       FieldName = 'PEDIDO'

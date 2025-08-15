@@ -259,14 +259,10 @@ object frmModelagem: TfrmModelagem
       Top = 196
       Width = 699
       Height = 477
-      ActivePage = TabSheet6
+      ActivePage = ENFESTO
       TabOrder = 15
       object ENFESTO: TTabSheet
         Caption = 'ENFESTO'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label16: TLabel
           Left = 44
           Top = 83
@@ -429,10 +425,6 @@ object frmModelagem: TfrmModelagem
       object TabSheet1: TTabSheet
         Caption = 'BALANCIN'
         ImageIndex = 1
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label30: TLabel
           Left = 132
           Top = 20
@@ -657,10 +649,6 @@ object frmModelagem: TfrmModelagem
       object CRACK: TTabSheet
         Caption = 'CRACK'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label22: TLabel
           Left = 13
           Top = 24
@@ -2354,7 +2342,6 @@ object frmModelagem: TfrmModelagem
           Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 0
-          Text = '4'
           OnChange = edt_galvofinal_hv1Change
         end
         object edt_galvofinal_hv2: TEdit
@@ -2365,7 +2352,6 @@ object frmModelagem: TfrmModelagem
           Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 1
-          Text = '4'
           OnChange = edt_galvofinal_hv2Change
         end
         object edt_galvofinal_qt: TEdit
@@ -2533,7 +2519,6 @@ object frmModelagem: TfrmModelagem
           Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 0
-          Text = '220'
           OnChange = edt_crackchapado_area1Change
         end
         object edt_crackchapado_tam: TEdit
@@ -2584,7 +2569,6 @@ object frmModelagem: TfrmModelagem
           Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 1
-          Text = '199'
           OnChange = edt_crackchapado_area2Change
         end
         object edt_crackchapado_hv22: TEdit
@@ -2762,7 +2746,6 @@ object frmModelagem: TfrmModelagem
           Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 0
-          Text = '220'
           OnChange = edt_crackchapadosemfaca_area1Change
         end
         object edt_crackchapadosemfaca_area2: TEdit
@@ -2773,7 +2756,6 @@ object frmModelagem: TfrmModelagem
           Color = clMoneyGreen
           NumbersOnly = True
           TabOrder = 1
-          Text = '199'
           OnChange = edt_crackchapadosemfaca_area2Change
         end
         object edt_crackchapadosemfaca_hv2: TEdit
@@ -2892,10 +2874,10 @@ object frmModelagem: TfrmModelagem
     TabOrder = 1
     OnChange = CbTipoFacaChange
     Items.Strings = (
-      '1- Retas'
-      '2- Arrendodas'
-      '3- Trabalhadas'
-      '4- Com Vazador')
+      '1-Retas'
+      '2-Arrendodas'
+      '3-Trabalhadas'
+      '4-Com Vazador')
   end
   object QrFacas: TFDQuery
     Connection = frmMain.bm_alooe
@@ -2981,6 +2963,8 @@ object frmModelagem: TfrmModelagem
       '  BALANCIM_QEV_2,'
       '  BALANCIM_QEQ_1,'
       '  BALANCIM_QEQ_2,'
+      '  CRACK_AREA1,'
+      '  CRACK_AREA2,'
       '  LM_HVM_11,'
       '  LM_HVM_12,'
       '  LM_HVM_21,'
@@ -2989,11 +2973,28 @@ object frmModelagem: TfrmModelagem
       '  GALVO_T2,'
       '  GALVO_CORTE_T1,'
       '  GALVO_CORTE_T2,'
-      '  CRACK_SC_SERIGRAFIA_1,'
-      '  CRACK_SC_SERIGRAFIA_2,'
-      '  ETQ_SC_SERIGRAFIA_1,'
-      '  ETQ_SC_SERIGRAFIA_2,'
-      '  FACA_ID'
+      '  CRACK_SC_AREA_1,'
+      '  CRACK_SC_AREA_2,'
+      '  ETQ_SC_AREA_1,'
+      '  ETQ_SC_AREA_2,'
+      '  FACA_ID,'
+      '  LASERP1_AREA1,'
+      '  LASERP1_AREA2,'
+      '  LASERP2_AREA1,'
+      '  LASERP2_AREA2,'
+      '  LASERM1_AREA1,'
+      '  LASERM1_AREA2,'
+      '  LASERM2_AREA1,'
+      '  LASERM2_AREA2,'
+      '  LASERG1_AREA1,'
+      '  LASERG1_AREA2,'
+      '  LASERG2_AREA1,'
+      '  LASERG2_AREA2,'
+      '  LM_G1_A1,'
+      '  LM_G1_A2,'
+      '  LM_G2_A1,'
+      '  LM_G2_A2'
+      ''
       'FROM modelagem'
       'where ID = :ID')
     Left = 629
@@ -3005,10 +3006,15 @@ object frmModelagem: TfrmModelagem
         ParamType = ptInput
         Value = Null
       end>
+    object QrModelagemID: TFDAutoIncField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
     object QrModelagemPEDIDO: TIntegerField
-      AutoGenerateValue = arDefault
       FieldName = 'PEDIDO'
       Origin = 'PEDIDO'
+      Required = True
     end
     object QrModelagemCOMBINACAO: TStringField
       AutoGenerateValue = arDefault
@@ -3093,6 +3099,16 @@ object frmModelagem: TfrmModelagem
       FieldName = 'BALANCIM_QEQ_2'
       Origin = 'BALANCIM_QEQ_2'
     end
+    object QrModelagemCRACK_AREA1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'CRACK_AREA1'
+      Origin = 'CRACK_AREA1'
+    end
+    object QrModelagemCRACK_AREA2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'CRACK_AREA2'
+      Origin = 'CRACK_AREA2'
+    end
     object QrModelagemLM_HVM_11: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'LM_HVM_11'
@@ -3133,36 +3149,110 @@ object frmModelagem: TfrmModelagem
       FieldName = 'GALVO_CORTE_T2'
       Origin = 'GALVO_CORTE_T2'
     end
-    object QrModelagemCRACK_SC_SERIGRAFIA_1: TIntegerField
+    object QrModelagemCRACK_SC_AREA_1: TIntegerField
       AutoGenerateValue = arDefault
-      FieldName = 'CRACK_SC_SERIGRAFIA_1'
-      Origin = 'CRACK_SC_SERIGRAFIA_1'
+      FieldName = 'CRACK_SC_AREA_1'
+      Origin = 'CRACK_SC_AREA_1'
     end
-    object QrModelagemCRACK_SC_SERIGRAFIA_2: TIntegerField
+    object QrModelagemCRACK_SC_AREA_2: TIntegerField
       AutoGenerateValue = arDefault
-      FieldName = 'CRACK_SC_SERIGRAFIA_2'
-      Origin = 'CRACK_SC_SERIGRAFIA_2'
+      FieldName = 'CRACK_SC_AREA_2'
+      Origin = 'CRACK_SC_AREA_2'
     end
-    object QrModelagemETQ_SC_SERIGRAFIA_1: TIntegerField
+    object QrModelagemETQ_SC_AREA_1: TIntegerField
       AutoGenerateValue = arDefault
-      FieldName = 'ETQ_SC_SERIGRAFIA_1'
-      Origin = 'ETQ_SC_SERIGRAFIA_1'
+      FieldName = 'ETQ_SC_AREA_1'
+      Origin = 'ETQ_SC_AREA_1'
     end
-    object QrModelagemETQ_SC_SERIGRAFIA_2: TIntegerField
+    object QrModelagemETQ_SC_AREA_2: TIntegerField
       AutoGenerateValue = arDefault
-      FieldName = 'ETQ_SC_SERIGRAFIA_2'
-      Origin = 'ETQ_SC_SERIGRAFIA_2'
-    end
-    object QrModelagemID: TFDAutoIncField
-      FieldName = 'ID'
-      Origin = 'ID'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
+      FieldName = 'ETQ_SC_AREA_2'
+      Origin = 'ETQ_SC_AREA_2'
     end
     object QrModelagemFACA_ID: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'FACA_ID'
       Origin = 'FACA_ID'
+    end
+    object QrModelagemLASERP1_AREA1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LASERP1_AREA1'
+      Origin = 'LASERP1_AREA1'
+    end
+    object QrModelagemLASERP1_AREA2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LASERP1_AREA2'
+      Origin = 'LASERP1_AREA2'
+    end
+    object QrModelagemLASERP2_AREA1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LASERP2_AREA1'
+      Origin = 'LASERP2_AREA1'
+    end
+    object QrModelagemLASERP2_AREA2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LASERP2_AREA2'
+      Origin = 'LASERP2_AREA2'
+    end
+    object QrModelagemLASERM1_AREA1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LASERM1_AREA1'
+      Origin = 'LASERM1_AREA1'
+    end
+    object QrModelagemLASERM1_AREA2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LASERM1_AREA2'
+      Origin = 'LASERM1_AREA2'
+    end
+    object QrModelagemLASERM2_AREA1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LASERM2_AREA1'
+      Origin = 'LASERM2_AREA1'
+    end
+    object QrModelagemLASERM2_AREA2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LASERM2_AREA2'
+      Origin = 'LASERM2_AREA2'
+    end
+    object QrModelagemLASERG1_AREA1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LASERG1_AREA1'
+      Origin = 'LASERG1_AREA1'
+    end
+    object QrModelagemLASERG1_AREA2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LASERG1_AREA2'
+      Origin = 'LASERG1_AREA2'
+    end
+    object QrModelagemLASERG2_AREA1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LASERG2_AREA1'
+      Origin = 'LASERG2_AREA1'
+    end
+    object QrModelagemLASERG2_AREA2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LASERG2_AREA2'
+      Origin = 'LASERG2_AREA2'
+    end
+    object QrModelagemLM_G1_A1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LM_G1_A1'
+      Origin = 'LM_G1_A1'
+    end
+    object QrModelagemLM_G1_A2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LM_G1_A2'
+      Origin = 'LM_G1_A2'
+    end
+    object QrModelagemLM_G2_A1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LM_G2_A1'
+      Origin = 'LM_G2_A1'
+    end
+    object QrModelagemLM_G2_A2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'LM_G2_A2'
+      Origin = 'LM_G2_A2'
     end
   end
   object QrFacasEdt: TFDQuery
@@ -3177,8 +3267,8 @@ object frmModelagem: TfrmModelagem
       ''
       'from FACAS'
       'where (id = :id)')
-    Left = 565
-    Top = 500
+    Left = 509
+    Top = 468
     ParamData = <
       item
         Name = 'ID'

@@ -146,6 +146,7 @@ object frmProducao: TfrmProducao
       TabOrder = 0
       OnChange = EdtModelosChange
       OnKeyDown = EdtModelosKeyDown
+      OnKeyPress = EdtModelosKeyPress
     end
     object lstSugestoes: TListBox
       Left = 513

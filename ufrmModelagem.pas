@@ -1516,28 +1516,78 @@ begin
          QrModelagemGALVO_T1.AsInteger              := SafeStrToInt(edt_galvo_tg1.Text);
          QrModelagemGALVO_T2.AsInteger              := SafeStrToInt(edt_galvo_tg2.Text);
 
-//         DadosModeloEnvio := ;
+         DadosModeloEnvio := '<b>MATERIAL 1</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>GALVO</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>ALTURA TIRA: </b>' + edt_galvo_altura.Text + sLineBreak + '<br>' +
+                             '<b>QTDE TIRAS: </b>' + edt_galvo_qt.Text + sLineBreak + '<br>' +
+                             '<b>HOR: </b>' + edt_galvo_hv1.Text + sLineBreak + '<br>' +
+                             '<b>VERT: </b>' + edt_galvo_hv2.Text + sLineBreak + '<br>' +
+                             '<b>DESLOCAMENTO: </b>' + edt_galvo_desloc.Text + sLineBreak + '<br>' +
+                             '<b>ETIQUETAS POR PROGRAMA: </b>' + edt_galvo_etqpp.Text + sLineBreak + '<br>' +
+                             '<b>ETIQUETAS POR TIRA: </b>' + edt_galvo_etpt.Text + sLineBreak + '<br>' +
+                             '<b>TAM GALVO 1: </b>' + edt_galvo_tg1.Text + sLineBreak + '<br>' +
+                             '<b>TAM GALVO 2: </b>' + edt_galvo_tg2.Text;
        end;
 
     7: begin
          QrModelagemGALVO_CORTE_T1.AsInteger        := SafeStrToInt(edt_galvofinal_hv1.Text);
          QrModelagemGALVO_CORTE_T2.AsInteger        := SafeStrToInt(edt_galvofinal_hv2.Text);
 
-//         DadosModeloEnvio := ;
+         DadosModeloEnvio := '<b>MATERIAL 1</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>GALVO CORTE FINAL</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>ALTURA TIRA: </b>' + edt_galvofinal_altura.Text + sLineBreak + '<br>' +
+                             '<b>QTDE TIRAS: </b>' + edt_galvofinal_qt.Text + sLineBreak + '<br>' +
+                             '<b>HOR: </b>' + edt_galvofinal_hv1.Text + sLineBreak + '<br>' +
+                             '<b>VERT: </b>' + edt_galvofinal_hv2.Text + sLineBreak + '<br>' +
+                             '<b>DESLOCAMENTO: </b>' + edt_galvofinal_desloc.Text + sLineBreak + '<br>' +
+                             '<b>ETIQUETAS POR PROGRAMA: </b>' + edt_galvofinal_etqpp.Text + sLineBreak + '<br>' +
+                             '<b>ETIQUETAS POR TIRA: </b>' + edt_galvofinal_etpt.Text + sLineBreak + '<br>' +
+                             '<b>TAM CORTE GALVO 1: </b>' + edt_galvofinal_tg1.Text + sLineBreak + '<br>' +
+                             '<b>TAM CORTE GALVO 2: </b>' + edt_galvofinal_tg2.Text;
        end;
 
     8: begin
          QrModelagemCRACK_SC_AREA_1.AsInteger       := SafeStrToInt(edt_crackchapado_area1.Text);
          QrModelagemCRACK_SC_AREA_2.AsInteger       := SafeStrToInt(edt_crackchapado_area2.Text);
 
-//         DadosModeloEnvio := ;
+         DadosModeloEnvio := '<b>MATERIAL 1</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>CRACK COM SILK CHAPADO</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>AREA SERIGRAFIA 1: </b>' + edt_crackchapado_area1.Text + sLineBreak + '<br>' +
+                             '<b>AREA SERIGRAFIA 2: </b>' + edt_crackchapado_area2.Text + sLineBreak + '<br>' +
+                             '<b>HOR: </b>' + edt_crackchapado_hv1.Text + sLineBreak + '<br>' +
+                             '<b>VERT: </b>' + edt_crackchapado_hv2.Text + sLineBreak + '<br>' +
+                             '<b>QUAD SERIGRAFIA 1: </b>' + edt_crackchapado_qts1.Text + sLineBreak + '<br>' +
+                             '<b>QUAD SERIGRAFIA 2: </b>' + edt_crackchapado_qts2.Text + sLineBreak + '<br>' +
+                             '<b>AREA CRACK 1: </b>' + edt_crackchapado_area1crack.Text + sLineBreak + '<br>' +
+                             '<b>AREA CRACK 2: </b>' + edt_crackchapado_area2crack.Text + sLineBreak + '<br>' +
+                             '<b>HOR 2: </b>' + edt_crackchapado_hv12.Text + sLineBreak + '<br>' +
+                             '<b>VERT 2: </b>' + edt_crackchapado_hv22.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA 1: </b>' + edt_crackchapado_chapa1.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA 2: </b>' + edt_crackchapado_chapa2.Text + sLineBreak + '<br>' +
+                             '<b>ETIQUETAS POR CHAPA: </b>' + edt_crackchapado_etc.Text + sLineBreak + '<br>' +
+                             '<b>QTDE DE CHAPAS: </b>' + edt_crackchapado_qtc.Text;
        end;
 
     9: begin
          QrModelagemETQ_SC_AREA_1.AsInteger         := SafeStrToInt(edt_crackchapadosemfaca_area1.Text);
          QrModelagemETQ_SC_AREA_2.AsInteger         := SafeStrToInt(edt_crackchapadosemfaca_area2.Text);
 
-//         DadosModeloEnvio := ;
+         DadosModeloEnvio := '<b>MATERIAL 1</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>ETIQUETA COM SILK CHAPADO SEM FACA</b>' + sLineBreak + '<br>' + '<br>' +
+                             '<b>AREA SERIGRAFIA 1: </b>' + edt_crackchapadosemfaca_area1.Text + sLineBreak + '<br>' +
+                             '<b>AREA SERIGRAFIA 2: </b>' + edt_crackchapadosemfaca_area2.Text + sLineBreak + '<br>' +
+                             '<b>HOR: </b>' + edt_crackchapadosemfaca_hv1.Text + sLineBreak + '<br>' +
+                             '<b>VERT: </b>' + edt_crackchapadosemfaca_hv2.Text + sLineBreak + '<br>' +
+                             '<b>QUAD SERIGRAFIA 1: </b>' + edt_crackchapadosemfaca_qts1.Text + sLineBreak + '<br>' +
+                             '<b>QUAD SERIGRAFIA 2: </b>' + edt_crackchapadosemfaca_qts2.Text + sLineBreak + '<br>' +
+                             '<b>AREA LASER 1: </b>' + edt_crackchapadosemfaca_area1laser.Text + sLineBreak + '<br>' +
+                             '<b>AREA LASER 2: </b>' + edt_crackchapadosemfaca_area2laser.Text + sLineBreak + '<br>' +
+                             '<b>HOR 2: </b>' + edt_crackchapadosemfaca_hv12.Text + sLineBreak + '<br>' +
+                             '<b>VERT 2: </b>' + edt_crackchapadosemfaca_hv22.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA 1: </b>' + edt_crackchapadosemfaca_chapa1.Text + sLineBreak + '<br>' +
+                             '<b>CHAPA 2: </b>' + edt_crackchapadosemfaca_chapa2.Text + sLineBreak + '<br>' +
+                             '<b>ETIQUETAS POR CHAPA: </b>' + edt_crackchapadosemfaca_etc.Text + sLineBreak + '<br>' +
+                             '<b>QTDE DE CHAPAS: </b>' + edt_crackchapadosemfaca_qtc.Text;
        end;
 
   end;

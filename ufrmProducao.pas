@@ -87,6 +87,7 @@ type
     procedure btnImageClick(Sender: TObject);
     procedure btnModeloClick(Sender: TObject);
     procedure EdtQuantidadeExit(Sender: TObject);
+    procedure EdtModelosKeyPress(Sender: TObject; var Key: Char);
   private
     procedure SetColorBoxFromHex(ColorBox: TColorBox; HexColor: string);
     procedure edtModeloKeyDown(Sender: TObject; var Key: Word;
@@ -622,18 +623,18 @@ begin
 
   //ordenar taborder forçadamente
 //  EdtModelos.SetFocus;
-//  EdtModelos.TabOrder    := 0;
-//  EdtNpedido.TabOrder    := 1;
-//  EdtQuantidade.TabOrder := 2;
-//  DtInicio.TabOrder      := 3;
-//  DtFim.TabOrder         := 4;
-//  DtEntrega.TabOrder     := 5;
-//  EdtCliente.TabOrder    := 6;
-//  MmObs.TabOrder         := 7;
-//  btnImage.TabOrder      := 8;
-//  btnEnviar.TabOrder     := 9;
-//  btnCancelar.TabOrder   := 10;
-//  lstSugestoes.TabOrder  := 11;
+  EdtModelos.TabOrder    := 0;
+  EdtNpedido.TabOrder    := 1;
+  EdtQuantidade.TabOrder := 2;
+  DtInicio.TabOrder      := 3;
+  DtFim.TabOrder         := 4;
+  DtEntrega.TabOrder     := 5;
+  EdtCliente.TabOrder    := 6;
+  MmObs.TabOrder         := 7;
+  btnImage.TabOrder      := 8;
+  btnEnviar.TabOrder     := 9;
+  btnCancelar.TabOrder   := 10;
+  lstSugestoes.TabOrder  := 11;
 
   Edit := False;
   ID := 0;
@@ -644,10 +645,13 @@ begin
     QrSaveProd.ParamByName('id').AsString := IDPRODUCAO;
     QrSaveProd.Open;
 
+    EdtModelos.OnChange := nil;
     EdtModelos.Text    := QrSaveProdname.AsString;
     EdtModelos.Enabled := False;
     EdtModelos.TabStop := False;
     EdtModelos.ReadOnly := True;
+    EdtModelos.OnChange := EdtModelosChange;
+
     EdtNpedido.Text    := QrSaveProdsalesOrder.AsString;
     EdtQuantidade.Text := QrSaveProdproductionQuantityBalance.AsString;
     SetColorBoxFromHex(CbCor, QrSaveProdcolor.AsString);
@@ -658,6 +662,7 @@ begin
     MmObs.Text         := QrSaveProdnote.AsString;
     cbTipoCorte.Value  := QrSaveProdtipoCorte.AsString;
     ID                 := QrSaveProdid_modelagem.AsInteger;
+    EdtNpedido.SetFocus;
 //    FlowPanel1 := ;
   end;
 
@@ -686,6 +691,8 @@ begin
 
     DadosCarregados := True;
   end;
+
+  EdtNpedido.SetFocus;
 end;
 
 procedure TfrmProducao.lstSugestoesClick(Sender: TObject);
@@ -744,6 +751,12 @@ begin
     SelecionaModelo;
     Key := 0; // evita beep
   end;
+end;
+
+procedure TfrmProducao.EdtModelosKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+    Key := #0; // mata beep no KeyPress
 end;
 
 procedure TfrmProducao.lstSugestoesKeyDown(Sender: TObject; var Key: Word;

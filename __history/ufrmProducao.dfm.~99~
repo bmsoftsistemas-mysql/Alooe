@@ -230,113 +230,24 @@ object frmProducao: TfrmProducao
       TabOrder = 14
       OnClick = btnModeloClick
     end
-    object Panel1: TPanel
-      Left = 23
-      Top = 211
-      Width = 493
-      Height = 45
-      BevelOuter = bvNone
+    object cbTipoCorte: TRzComboBox
+      Left = 32
+      Top = 224
+      Width = 288
+      Height = 21
+      Style = csDropDownList
       TabOrder = 15
-      object cbLaseMontagem: TRzCheckBox
-        Left = 9
-        Top = 7
-        Width = 110
-        Height = 15
-        Caption = 'Laser c/ Montagem'
-        State = cbUnchecked
-        TabOrder = 0
-        OnClick = CheckBoxClick
-      end
-      object cbEnfesto: TRzCheckBox
-        Left = 9
-        Top = 23
-        Width = 56
-        Height = 15
-        Caption = 'Enfesto'
-        State = cbUnchecked
-        TabOrder = 1
-      end
-      object cbGalvoFinal: TRzCheckBox
-        Left = 125
-        Top = 7
-        Width = 71
-        Height = 15
-        Caption = 'Galvo Final'
-        State = cbUnchecked
-        TabOrder = 2
-      end
-      object cbBalancin: TRzCheckBox
-        Left = 91
-        Top = 23
-        Width = 58
-        Height = 15
-        Caption = 'Balancin'
-        State = cbUnchecked
-        TabOrder = 3
-      end
-      object cbCrackSilkChapado: TRzCheckBox
-        Left = 204
-        Top = 7
-        Width = 122
-        Height = 15
-        Caption = 'Crack c/ Silk Chapado'
-        State = cbUnchecked
-        TabOrder = 4
-      end
-      object cbCrack: TRzCheckBox
-        Left = 176
-        Top = 23
-        Width = 46
-        Height = 15
-        Caption = 'Crack'
-        State = cbUnchecked
-        TabOrder = 5
-      end
-      object cbEtqSilkChapado: TRzCheckBox
-        Left = 333
-        Top = 7
-        Width = 153
-        Height = 15
-        Caption = 'Etq. c/ Silk Chapado s/ Faca'
-        State = cbUnchecked
-        TabOrder = 6
-      end
-      object cbLaserP: TRzCheckBox
-        Left = 243
-        Top = 23
-        Width = 54
-        Height = 15
-        Caption = 'Laser P'
-        State = cbUnchecked
-        TabOrder = 7
-      end
-      object cbLaserM: TRzCheckBox
-        Left = 315
-        Top = 23
-        Width = 56
-        Height = 15
-        Caption = 'Laser M'
-        State = cbUnchecked
-        TabOrder = 8
-      end
-      object cbLaserG: TRzCheckBox
-        Left = 383
-        Top = 23
-        Width = 55
-        Height = 15
-        Caption = 'Laser G'
-        State = cbUnchecked
-        TabOrder = 9
-      end
-      object cbGalvo: TRzCheckBox
-        Left = 440
-        Top = 23
-        Width = 46
-        Height = 15
-        Caption = 'Galvo'
-        State = cbUnchecked
-        TabOrder = 10
-      end
+      Items.Strings = (
+        '0-Enfesto e Balancin'
+        '1-Crack'
+        '2-Laser P'
+        '3-Laser M'
+        '4-Laser G'
+        '5-Laser c/ Montagem'
+        '6-Galvo'
+        '7-Galvo Final'
+        '8-Crack c/ Silk Chapado'
+        '9-Etiqueta c/ Silk Chapado s/ Faca')
     end
   end
   object QrModelos: TFDQuery
@@ -453,7 +364,8 @@ object frmProducao: TfrmProducao
       '  progressStatus,'
       '  id_modelagem,'
       '  note,'
-      '  image'
+      '  image,'
+      '  tipoCorte'
       ''
       'FROM ordens_producao'
       'where id_producao= :id')
@@ -562,6 +474,11 @@ object frmProducao: TfrmProducao
     object QrSaveProdimage: TMemoField
       FieldName = 'image'
       BlobType = ftMemo
+    end
+    object QrSaveProdtipoCorte: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'tipoCorte'
+      Origin = 'tipoCorte'
     end
   end
   object OpenDialog1: TOpenDialog

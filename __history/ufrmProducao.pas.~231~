@@ -198,7 +198,7 @@ begin
       noteContent := IMAGE;
     end;
 
-    JSONObj.AddPair('note', MmObs.Text + noteContent);
+    JSONObj.AddPair('note', MmObs.Text + '<br>' + '<br>' + noteContent);
 
     if EditOrd then
     begin
@@ -368,6 +368,7 @@ begin
   if (cbTipoCorte.Value = '') then
     raiseWithFocus(cbTipoCorte, 'Obrigatório escolher Modelo a ser usado');
 
+  Edit := EditOrd;
   TipoCorte := StrToInt(cbTipoCorte.Value);
   ModelagemTerminada := False;
   frmModelagem := Tfrmmodelagem.Create(Application);
@@ -605,6 +606,10 @@ begin
   Constraints.MaxHeight  := Height;
 
   SetListValues(cbTipoCorte);
+
+    // Remove o botão de fechar
+  SetWindowLong(Handle, GWL_STYLE,
+    GetWindowLong(Handle, GWL_STYLE) and not WS_SYSMENU);
 end;
 
 procedure TfrmProducao.FormShow(Sender: TObject);
@@ -616,19 +621,19 @@ begin
   QrModelos.Open;
 
   //ordenar taborder forçadamente
-  EdtModelos.SetFocus;
-  EdtModelos.TabOrder    := 0;
-  EdtNpedido.TabOrder    := 1;
-  EdtQuantidade.TabOrder := 2;
-  DtInicio.TabOrder      := 3;
-  DtFim.TabOrder         := 4;
-  DtEntrega.TabOrder     := 5;
-  EdtCliente.TabOrder    := 6;
-  MmObs.TabOrder         := 7;
-  btnImage.TabOrder      := 8;
-  btnEnviar.TabOrder     := 9;
-  btnCancelar.TabOrder   := 10;
-  lstSugestoes.TabOrder  := 11;
+//  EdtModelos.SetFocus;
+//  EdtModelos.TabOrder    := 0;
+//  EdtNpedido.TabOrder    := 1;
+//  EdtQuantidade.TabOrder := 2;
+//  DtInicio.TabOrder      := 3;
+//  DtFim.TabOrder         := 4;
+//  DtEntrega.TabOrder     := 5;
+//  EdtCliente.TabOrder    := 6;
+//  MmObs.TabOrder         := 7;
+//  btnImage.TabOrder      := 8;
+//  btnEnviar.TabOrder     := 9;
+//  btnCancelar.TabOrder   := 10;
+//  lstSugestoes.TabOrder  := 11;
 
   Edit := False;
   ID := 0;
@@ -639,8 +644,13 @@ begin
     QrSaveProd.ParamByName('id').AsString := IDPRODUCAO;
     QrSaveProd.Open;
 
+    EdtModelos.OnChange := nil;
     EdtModelos.Text    := QrSaveProdname.AsString;
-    //EdtModelos.Enabled := False;
+    EdtModelos.Enabled := False;
+    EdtModelos.TabStop := False;
+    EdtModelos.ReadOnly := True;
+    EdtModelos.OnChange := EdtModelosChange();
+
     EdtNpedido.Text    := QrSaveProdsalesOrder.AsString;
     EdtQuantidade.Text := QrSaveProdproductionQuantityBalance.AsString;
     SetColorBoxFromHex(CbCor, QrSaveProdcolor.AsString);
