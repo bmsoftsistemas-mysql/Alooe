@@ -2,7 +2,7 @@ object frmProducao: TfrmProducao
   Left = 0
   Top = 0
   Caption = 'Criar Produ'#231#227'o'
-  ClientHeight = 753
+  ClientHeight = 555
   ClientWidth = 547
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,11 +19,10 @@ object frmProducao: TfrmProducao
     Left = 0
     Top = 0
     Width = 547
-    Height = 753
+    Height = 555
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitHeight = 555
     object LabelModelo: TLabel
       Left = 32
       Top = 24
@@ -86,13 +85,6 @@ object frmProducao: TfrmProducao
       Width = 33
       Height = 13
       Caption = 'Cliente'
-    end
-    object Label1: TLabel
-      Left = 32
-      Top = 212
-      Width = 92
-      Height = 13
-      Caption = 'Tipo de Modelagem'
     end
     object EdtQuantidade: TEdit
       Left = 199
@@ -157,8 +149,8 @@ object frmProducao: TfrmProducao
       OnKeyPress = EdtModelosKeyPress
     end
     object lstSugestoes: TListBox
-      Left = 537
-      Top = 544
+      Left = 513
+      Top = 547
       Width = 145
       Height = 209
       TabStop = False
@@ -168,7 +160,7 @@ object frmProducao: TfrmProducao
     end
     object btnImage: TButton
       Left = 32
-      Top = 686
+      Top = 494
       Width = 75
       Height = 25
       Caption = 'Add Imagem'
@@ -177,7 +169,7 @@ object frmProducao: TfrmProducao
     end
     object FlowPanel1: TFlowPanel
       Left = 32
-      Top = 562
+      Top = 370
       Width = 481
       Height = 118
       BevelKind = bkFlat
@@ -188,7 +180,7 @@ object frmProducao: TfrmProducao
     object btnEnviar: TButton
       AlignWithMargins = True
       Left = 438
-      Top = 715
+      Top = 523
       Width = 75
       Height = 31
       Margins.Left = 5
@@ -202,7 +194,7 @@ object frmProducao: TfrmProducao
     object btnCancelar: TButton
       AlignWithMargins = True
       Left = 338
-      Top = 715
+      Top = 523
       Width = 90
       Height = 31
       Margins.Left = 5
@@ -232,7 +224,7 @@ object frmProducao: TfrmProducao
     end
     object btnModelo: TButton
       Left = 20
-      Top = 715
+      Top = 523
       Width = 75
       Height = 31
       Caption = 'Modelagem'
@@ -241,7 +233,7 @@ object frmProducao: TfrmProducao
     end
     object cbTipoCorte: TRzComboBox
       Left = 32
-      Top = 226
+      Top = 224
       Width = 288
       Height = 21
       Style = csDropDownList
@@ -257,19 +249,6 @@ object frmProducao: TfrmProducao
         '7-Galvo Final'
         '8-Crack c/ Silk Chapado'
         '9-Etiqueta c/ Silk Chapado s/ Faca')
-    end
-    object WBDadosModelo: TWebBrowser
-      Left = 32
-      Top = 376
-      Width = 481
-      Height = 180
-      TabOrder = 16
-      ControlData = {
-        4C000000B63100009B1200000000000000000000000000000000000000000000
-        000000004C000000000000000000000001000000E0D057007335CF11AE690800
-        2B2E126208000000000000004C0000000114020000000000C000000000000046
-        8000000000000000000000000000000000000000000000000000000000000000
-        00000000000000000100000000000000000000000000000000000000}
     end
   end
   object QrModelos: TFDQuery
@@ -387,8 +366,7 @@ object frmProducao: TfrmProducao
       '  id_modelagem,'
       '  note,'
       '  image,'
-      '  tipoCorte,'
-      '  dadosModelagem'
+      '  tipoCorte'
       ''
       'FROM ordens_producao'
       'where id_producao= :id')
@@ -502,10 +480,6 @@ object frmProducao: TfrmProducao
       AutoGenerateValue = arDefault
       FieldName = 'tipoCorte'
       Origin = 'tipoCorte'
-    end
-    object QrSaveProddadosModelagem: TMemoField
-      FieldName = 'dadosModelagem'
-      BlobType = ftMemo
     end
   end
   object OpenDialog1: TOpenDialog

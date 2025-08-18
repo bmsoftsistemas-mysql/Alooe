@@ -1637,8 +1637,7 @@ begin
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[galvo1]', edt_galvo_tg1.Text, [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[galvo2]', edt_galvo_tg2.Text, [rfIgnoreCase, rfReplaceAll]);
 
-           LHTML.Text := StringReplace(LHTML.Text, '__table1__', LHTML_table.Text, [rfIgnoreCase, rfReplaceAll]);
-           LHTML.Text := StringReplace(LHTML.Text, '__table2__', '', [rfIgnoreCase, rfReplaceAll]);
+           LHTML.Text := StringReplace(LHTML.Text, '__table2__', LHTML_table.Text, [rfIgnoreCase, rfReplaceAll]);
 
            DadosModeloEnvio := LHTML.Text;
 
@@ -1663,8 +1662,7 @@ begin
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[galvo1]', edt_galvofinal_tg1.Text, [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[galvo2]', edt_galvofinal_tg2.Text, [rfIgnoreCase, rfReplaceAll]);
 
-           LHTML.Text := StringReplace(LHTML.Text, '__table1__', LHTML_table.Text, [rfIgnoreCase, rfReplaceAll]);
-           LHTML.Text := StringReplace(LHTML.Text, '__table2__', '', [rfIgnoreCase, rfReplaceAll]);
+           LHTML.Text := StringReplace(LHTML.Text, '__table2__', LHTML_table.Text, [rfIgnoreCase, rfReplaceAll]);
 
            DadosModeloEnvio := LHTML.Text;
          end;
@@ -1693,8 +1691,7 @@ begin
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[etqc]', edt_crackchapado_etc.Text, [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[qtdc]', edt_crackchapado_qtc.Text, [rfIgnoreCase, rfReplaceAll]);
 
-           LHTML.Text := StringReplace(LHTML.Text, '__table1__', LHTML_table.Text, [rfIgnoreCase, rfReplaceAll]);
-           LHTML.Text := StringReplace(LHTML.Text, '__table2__', '', [rfIgnoreCase, rfReplaceAll]);
+           LHTML.Text := StringReplace(LHTML.Text, '__table2__', LHTML_table.Text, [rfIgnoreCase, rfReplaceAll]);
 
            DadosModeloEnvio := LHTML.Text;
          end;
@@ -1723,8 +1720,7 @@ begin
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[etqc]', edt_crackchapadosemfaca_etc.Text, [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[qtdc]', edt_crackchapadosemfaca_qtc.Text, [rfIgnoreCase, rfReplaceAll]);
 
-           LHTML.Text := StringReplace(LHTML.Text, '__table1__', LHTML_table.Text, [rfIgnoreCase, rfReplaceAll]);
-           LHTML.Text := StringReplace(LHTML.Text, '__table2__', '', [rfIgnoreCase, rfReplaceAll]);
+           LHTML.Text := StringReplace(LHTML.Text, '__table2__', LHTML_table.Text, [rfIgnoreCase, rfReplaceAll]);
 
            DadosModeloEnvio := LHTML.Text;
          end;

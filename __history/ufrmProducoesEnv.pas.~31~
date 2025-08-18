@@ -124,9 +124,6 @@ end;
 //Limpar a tabela de erros completamente
 procedure TfrmProducoesEnv.btnNovaOrdemClick(Sender: TObject);
 begin
-    if Assigned(frmMain.btnAtualizacaoAutomaticaTudo.OnClick) then
-      frmMain.btnAtualizacaoAutomaticaTudo.OnClick(frmMain.btnAtualizacaoAutomaticaTudo);
-
     IDPRODUCAO := '';
     frmProducao := TfrmProducao.Create(Application);
     frmProducao.ShowModal;
@@ -135,9 +132,6 @@ begin
     QrProducoes.Close;
     QrProducoes.Open;
     QrProducoes.Last;
-
-    if Assigned(frmMain.btnAtualizacaoAutomaticaTudo.OnClick) then
-      frmMain.btnAtualizacaoAutomaticaTudo.OnClick(frmMain.btnAtualizacaoAutomaticaTudo);
 end;
 
 procedure TfrmProducoesEnv.btnTodosClick(Sender: TObject);
@@ -154,9 +148,6 @@ procedure TfrmProducoesEnv.DBGrid1DblClick(Sender: TObject);
 begin
   if QrProducoesprogressStatus.AsString = 'NotInitiated' then
   begin
-    if Assigned(frmMain.btnAtualizacaoAutomaticaTudo.OnClick) then
-      frmMain.btnAtualizacaoAutomaticaTudo.OnClick(frmMain.btnAtualizacaoAutomaticaTudo);
-
     frmProducao := TfrmProducao.Create(Application);
     EditOrd := True;
     IDPRODUCAO := QrProducoesid_producao.AsString;
@@ -165,10 +156,6 @@ begin
     IMAGE      := QrProducoesimage.Value;
     frmProducao.ShowModal;
     frmProducao.Free;
-
-
-    if Assigned(frmMain.btnAtualizacaoAutomaticaTudo.OnClick) then
-      frmMain.btnAtualizacaoAutomaticaTudo.OnClick(frmMain.btnAtualizacaoAutomaticaTudo);
 
     QrProducoes.Close;
     QrProducoes.Open;

@@ -136,7 +136,7 @@ begin
     QrProducoes.Open;
     QrProducoes.Last;
 
-    if Assigned(frmMain.btnAtualizacaoAutomaticaTudo.OnClick) then
+    if not Assigned(frmMain.btnAtualizacaoAutomaticaTudo.OnClick) then
       frmMain.btnAtualizacaoAutomaticaTudo.OnClick(frmMain.btnAtualizacaoAutomaticaTudo);
 end;
 

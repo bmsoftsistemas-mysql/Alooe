@@ -289,8 +289,7 @@ object frmProducoesEnv: TfrmProducoesEnv
       '  customer,'
       '  color,'
       '  progressStatus,'
-      '  image,'
-      '  dadosModelagem'
+      '  image'
       'FROM ordens_producao;')
     Left = 776
     Top = 304

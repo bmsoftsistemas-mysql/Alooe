@@ -74,8 +74,7 @@ type
     cbTipoCorte: TRzComboBox;
     QrSaveProdtipoCorte: TIntegerField;
     WBDadosModelo: TWebBrowser;
-    Label1: TLabel;
-    QrSaveProddadosModelagem: TMemoField;
+    QrSaveProddadosModelagem: TStringField;
     procedure btnEnviarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBLookupModeloCloseUp(Sender: TObject);
@@ -147,192 +146,185 @@ var
 begin
   JSONObj := TJSONObject.Create;
   try
-    if ModelagemTerminada then
+    // Propriedades principais
+    if  not EditOrd then
     begin
-      // Propriedades principais
-      if  not EditOrd then
-      begin
-        JSONObj.AddPair('productId', TJSONString.Create(ID_Produto));
-      end
-      else
-      begin
-        JSONObj.AddPair('productId', TJSONString.Create(IDPRO));
-      end;
-      JSONObj.AddPair('name', '*' + EdtNpedido.Text);
-      JSONObj.AddPair('expectedProductionQuantity', TJSONNumber.Create(StrToFloat(EdtQuantidade.Text)));
-      JSONObj.AddPair('isFictitious', TJSONBool.Create(False));
-      JSONObj.AddPair('priority', TJSONNumber.Create(0));
-      JSONObj.AddPair('deliveryDate', TJSONString.Create((FormatDateTimeToAPIPattern(DtEntrega.DateTime))));
-      JSONObj.AddPair('earlyStart', TJSONString.Create((FormatDateTimeToAPIPattern(DtInicio.DateTime))));
-      JSONObj.AddPair('laterEnd', TJSONString.Create((FormatDateTimeToAPIPattern(DtFim.DateTime))));
-      JSONObj.AddPair('salesOrder', EdtNpedido.Text);
-      JSONObj.AddPair('salesOrderDate', TJSONString.Create((FormatDateTimeToAPIPattern(now))));
-      JSONObj.AddPair('customer', EdtCliente.Text);
-      if  not EditOrd then
-      begin
-        JSONObj.AddPair('color', CorSelecionada);
-      end
-      else
-      begin
-        JSONObj.AddPair('color', COR);
-      end;
-
-      //pegar as imagens e converter para base64
-      noteContent := '';
-
-      for i := 0 to FlowPanel1.ControlCount - 1 do
-      begin
-        if FlowPanel1.Controls[i] is TImage then
-        begin
-          img := TImage(FlowPanel1.Controls[i]);
-          base64 := ImageToBase64(img.Hint);
-          if  not EditOrd then
-          begin
-            htmlTag := '<img src="data:image/jpeg;base64,' + base64 + '" />';
-          end
-          else
-          begin
-            htmlTag := IMAGE + sLineBreak + '<img src="data:image/jpeg;base64,' + base64 + '" />';
-          end;
-
-          noteContent := noteContent + htmlTag + sLineBreak;
-        end;
-      end;
-
-      if FlowPanel1.ControlCount = 0 then
-      begin
-        noteContent := IMAGE;
-      end;
-
-      JSONObj.AddPair('note', MmObs.Text + '<br>' + '<br>' + DadosModeloEnvio + '<br>' + '<br>' + noteContent );
-
-      if EditOrd then
-      begin
-        JSONObj.AddPair('id', QrSaveProdid_producao.AsString);
-      end;
-
-      // Dependência de Ordens de Produção
-  //    DepArray := TJSONArray.Create;
-  //    DepObj := TJSONObject.Create;
-  //    DepObj.AddPair('previousProductionOrderId', '3fa85f64-5717-4562-b3fc-2c963f66afa6');
-  //    DepArray.AddElement(DepObj);
-  //    JSONObj.AddPair('previousProductionOrdersDependency', DepArray);
-
-      frmRequest.RESTRequestProd.ResetToDefaults;
-      frmRequest.RESTClientProd.ResetToDefaults;
-      frmRequest.RESTRequestProd.Params.Clear;
-
-      if  not EditOrd then
-      begin
-        frmRequest.RESTRequestProd.Method := rmPOST;
-        frmRequest.RESTClientProd.BaseURL := URL + defProducao + ID_modelo;
-        frmRequest.RESTRequestProd.Params.AddItem('Authorization', 'Bearer ' + defAppToken, pkHTTPHEADER, [poDoNotEncode]);
-        frmRequest.RESTRequestProd.Body.ClearBody;
-
-        //StringToFile(JSONObj.ToString, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsProducao.json');
-        frmRequest.RESTRequestProd.AddBody(JSONObj);
-      end
-      else
-      begin
-        frmRequest.RESTRequestProd.Method := rmPUT;
-        frmRequest.RESTClientProd.BaseURL := URL + defProducaoPut;
-        frmRequest.RESTRequestProd.Params.AddItem('Authorization', 'Bearer ' + defAppToken, pkHTTPHEADER, [poDoNotEncode]);
-        frmRequest.RESTRequestProd.Body.ClearBody;
-
-        //StringToFile(JSONObj.ToString, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\Alooe\extras\jsProducaoPut.json');
-        frmRequest.RESTRequestProd.AddBody(JSONObj);
-      end;
-
-      AvisoAtt('Enviando pedido...', 5, -1);
-      try
-        frmRequest.RESTRequestProd.Execute;
-      except
-        on E: EHTTPProtocolException do
-        begin
-          ShowMessage('Erro HTTP: ' + E.Message);
-          Exit;
-        end;
-        on E: Exception do
-        begin
-          ShowMessage('Erro inesperado: ' + E.Message);
-          Exit;
-        end;
-      end;
-
-      JsonStr := frmRequest.RESTResponseProd.Content;
-      //StringToFile(JsonStr, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsContentConflict.json');
-      RootObj := TJSONObject.ParseJSONValue(JsonStr) as TJSONObject;
-      try
-        CollectionObj := RootObj.GetValue<TJSONObject>('collection');
-        ItemsArray := CollectionObj.GetValue<TJSONArray>('items');
-
-        if (ItemsArray.Count > 0) then
-        begin
-          ItemObj := ItemsArray.Items[0] as TJSONObject;
-          DataObj := ItemObj.GetValue<TJSONObject>('data');
-
-          // Pegando os valores
-          id_int                     := DataObj.GetValue<string>('id');
-          productId                  := DataObj.GetValue<string>('productId');
-          name                       := DataObj.GetValue<string>('name');
-          expectedProductionQuantity := Trunc(DataObj.GetValue<Double>('expectedProductionQuantity'));
-          productionQuantityBalance  := Trunc(DataObj.GetValue<Double>('productionQuantityBalance'));
-          isFictitious               := DataObj.GetValue<Boolean>('isFictitious');
-          priority                   := DataObj.GetValue<Integer>('priority');
-          deliveryDate               := DataObj.GetValue<string>('deliveryDate');
-          earlyStart                 := DataObj.GetValue<string>('earlyStart');
-          laterEnd                   := DataObj.GetValue<string>('laterEnd');
-          salesOrder                 := DataObj.GetValue<string>('salesOrder');
-          salesOrderDate             := DataObj.GetValue<string>('salesOrderDate');
-          customer                   := DataObj.GetValue<string>('customer');
-          color                      := DataObj.GetValue<string>('color');
-          progressStatus             := DataObj.GetValue<string>('progressStatus');
-
-          // Salvando pedido
-          AvisoAtt('Salvando pedido...', 5, -1);
-          QrSaveProd.Close;
-          QrSaveProd.ParamByName('id').AsString := IDPRODUCAO;
-          QrSaveProd.Open;
-
-          if not EditOrd then
-          begin
-            QrSaveProd.Append;
-          end
-          else
-          begin
-            QrSaveProd.Edit;
-          end;
-          QrSaveProdid_producao.AsString                 := id_int;
-          QrSaveProdid_prod.AsString                     := productId;
-          QrSaveProdname.AsString                        := EdtModelos.Text;
-          QrSaveProdexpectedProductionQuantity.AsInteger := expectedProductionQuantity;
-          QrSaveProdproductionQuantityBalance.AsInteger  := productionQuantityBalance;
-          QrSaveProdisFictitious.AsBoolean               := isFictitious;
-          QrSaveProdpriority.AsInteger                   := priority;
-          QrSaveProddeliveryDate.AsDateTime              := ParseAPIDateTimeToLocal(deliveryDate);
-          QrSaveProdearlyStart.AsDateTime                := ParseAPIDateTimeToLocal(earlyStart);
-          QrSaveProdlaterEnd.AsDateTime                  := ParseAPIDateTimeToLocal(laterEnd);
-          QrSaveProdsalesOrder.AsString                  := salesOrder;
-          QrSaveProdsalesOrderDate.AsDateTime            := ParseAPIDateTimeToLocal(salesOrderDate);
-          QrSaveProdcustomer.AsString                    := customer;
-          QrSaveProdcolor.AsString                       := color;
-          QrSaveProdprogressStatus.AsString              := progressStatus;
-          QrSaveProdid_modelagem.AsInteger               := ID;
-          QrSaveProdnote.AsString                        := MmObs.Text;
-          QrSaveProdimage.AsString                       := noteContent;
-          QrSaveProdtipoCorte.AsInteger                  := StrToInt(cbTipoCorte.Value);
-          QrSaveProddadosModelagem.AsString              := DadosModeloEnvio;
-          QrSaveProd.Post;
-
-          AvisoAtt('Processo de envio concluído...', 5, -1);
-        end;
-      finally
-        RootObj.Free;
-      end
+      JSONObj.AddPair('productId', TJSONString.Create(ID_Produto));
     end
     else
     begin
-      raiseWithFocus(btnModelo, 'Necessário fazer modelagem da produção!');
+      JSONObj.AddPair('productId', TJSONString.Create(IDPRO));
+    end;
+    JSONObj.AddPair('name', '*' + EdtNpedido.Text);
+    JSONObj.AddPair('expectedProductionQuantity', TJSONNumber.Create(StrToFloat(EdtQuantidade.Text)));
+    JSONObj.AddPair('isFictitious', TJSONBool.Create(False));
+    JSONObj.AddPair('priority', TJSONNumber.Create(0));
+    JSONObj.AddPair('deliveryDate', TJSONString.Create((FormatDateTimeToAPIPattern(DtEntrega.DateTime))));
+    JSONObj.AddPair('earlyStart', TJSONString.Create((FormatDateTimeToAPIPattern(DtInicio.DateTime))));
+    JSONObj.AddPair('laterEnd', TJSONString.Create((FormatDateTimeToAPIPattern(DtFim.DateTime))));
+    JSONObj.AddPair('salesOrder', EdtNpedido.Text);
+    JSONObj.AddPair('salesOrderDate', TJSONString.Create((FormatDateTimeToAPIPattern(now))));
+    JSONObj.AddPair('customer', EdtCliente.Text);
+    if  not EditOrd then
+    begin
+      JSONObj.AddPair('color', CorSelecionada);
+    end
+    else
+    begin
+      JSONObj.AddPair('color', COR);
+    end;
+
+    //pegar as imagens e converter para base64
+    noteContent := '';
+
+    for i := 0 to FlowPanel1.ControlCount - 1 do
+    begin
+      if FlowPanel1.Controls[i] is TImage then
+      begin
+        img := TImage(FlowPanel1.Controls[i]);
+        base64 := ImageToBase64(img.Hint);
+        if  not EditOrd then
+        begin
+          htmlTag := '<img src="data:image/jpeg;base64,' + base64 + '" />';
+        end
+        else
+        begin
+          htmlTag := IMAGE + sLineBreak + '<img src="data:image/jpeg;base64,' + base64 + '" />';
+        end;
+
+        noteContent := noteContent + htmlTag + sLineBreak;
+      end;
+    end;
+
+    if FlowPanel1.ControlCount = 0 then
+    begin
+      noteContent := IMAGE;
+    end;
+
+    JSONObj.AddPair('note', MmObs.Text + '<br>' + '<br>' + noteContent);
+
+    if EditOrd then
+    begin
+      JSONObj.AddPair('id', QrSaveProdid_producao.AsString);
+    end;
+
+    // Dependência de Ordens de Produção
+//    DepArray := TJSONArray.Create;
+//    DepObj := TJSONObject.Create;
+//    DepObj.AddPair('previousProductionOrderId', '3fa85f64-5717-4562-b3fc-2c963f66afa6');
+//    DepArray.AddElement(DepObj);
+//    JSONObj.AddPair('previousProductionOrdersDependency', DepArray);
+
+    frmRequest.RESTRequestProd.ResetToDefaults;
+    frmRequest.RESTClientProd.ResetToDefaults;
+    frmRequest.RESTRequestProd.Params.Clear;
+
+    if  not EditOrd then
+    begin
+      frmRequest.RESTRequestProd.Method := rmPOST;
+      frmRequest.RESTClientProd.BaseURL := URL + defProducao + ID_modelo;
+      frmRequest.RESTRequestProd.Params.AddItem('Authorization', 'Bearer ' + defAppToken, pkHTTPHEADER, [poDoNotEncode]);
+      frmRequest.RESTRequestProd.Body.ClearBody;
+
+      //StringToFile(JSONObj.ToString, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsProducao.json');
+      frmRequest.RESTRequestProd.AddBody(JSONObj);
+    end
+    else
+    begin
+      frmRequest.RESTRequestProd.Method := rmPUT;
+      frmRequest.RESTClientProd.BaseURL := URL + defProducaoPut;
+      frmRequest.RESTRequestProd.Params.AddItem('Authorization', 'Bearer ' + defAppToken, pkHTTPHEADER, [poDoNotEncode]);
+      frmRequest.RESTRequestProd.Body.ClearBody;
+
+      //StringToFile(JSONObj.ToString, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\Alooe\extras\jsProducaoPut.json');
+      frmRequest.RESTRequestProd.AddBody(JSONObj);
+    end;
+
+    AvisoAtt('Enviando pedido...', 5, -1);
+    try
+      frmRequest.RESTRequestProd.Execute;
+    except
+      on E: EHTTPProtocolException do
+      begin
+        ShowMessage('Erro HTTP: ' + E.Message);
+        Exit;
+      end;
+      on E: Exception do
+      begin
+        ShowMessage('Erro inesperado: ' + E.Message);
+        Exit;
+      end;
+    end;
+
+    JsonStr := frmRequest.RESTResponseProd.Content;
+    //StringToFile(JsonStr, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsContentConflict.json');
+    RootObj := TJSONObject.ParseJSONValue(JsonStr) as TJSONObject;
+    try
+      CollectionObj := RootObj.GetValue<TJSONObject>('collection');
+      ItemsArray := CollectionObj.GetValue<TJSONArray>('items');
+
+      if (ItemsArray.Count > 0) then
+      begin
+        ItemObj := ItemsArray.Items[0] as TJSONObject;
+        DataObj := ItemObj.GetValue<TJSONObject>('data');
+
+        // Pegando os valores
+        id_int                     := DataObj.GetValue<string>('id');
+        productId                  := DataObj.GetValue<string>('productId');
+        name                       := DataObj.GetValue<string>('name');
+        expectedProductionQuantity := Trunc(DataObj.GetValue<Double>('expectedProductionQuantity'));
+        productionQuantityBalance  := Trunc(DataObj.GetValue<Double>('productionQuantityBalance'));
+        isFictitious               := DataObj.GetValue<Boolean>('isFictitious');
+        priority                   := DataObj.GetValue<Integer>('priority');
+        deliveryDate               := DataObj.GetValue<string>('deliveryDate');
+        earlyStart                 := DataObj.GetValue<string>('earlyStart');
+        laterEnd                   := DataObj.GetValue<string>('laterEnd');
+        salesOrder                 := DataObj.GetValue<string>('salesOrder');
+        salesOrderDate             := DataObj.GetValue<string>('salesOrderDate');
+        customer                   := DataObj.GetValue<string>('customer');
+        color                      := DataObj.GetValue<string>('color');
+        progressStatus             := DataObj.GetValue<string>('progressStatus');
+
+        // Salvando pedido
+        AvisoAtt('Salvando pedido...', 5, -1);
+        QrSaveProd.Close;
+        QrSaveProd.ParamByName('id').AsString := IDPRODUCAO;
+        QrSaveProd.Open;
+
+        if not EditOrd then
+        begin
+          QrSaveProd.Append;
+        end
+        else
+        begin
+          QrSaveProd.Edit;
+        end;
+        QrSaveProdid_producao.AsString                 := id_int;
+        QrSaveProdid_prod.AsString                     := productId;
+        QrSaveProdname.AsString                        := EdtModelos.Text;
+        QrSaveProdexpectedProductionQuantity.AsInteger := expectedProductionQuantity;
+        QrSaveProdproductionQuantityBalance.AsInteger  := productionQuantityBalance;
+        QrSaveProdisFictitious.AsBoolean               := isFictitious;
+        QrSaveProdpriority.AsInteger                   := priority;
+        QrSaveProddeliveryDate.AsDateTime              := ParseAPIDateTimeToLocal(deliveryDate);
+        QrSaveProdearlyStart.AsDateTime                := ParseAPIDateTimeToLocal(earlyStart);
+        QrSaveProdlaterEnd.AsDateTime                  := ParseAPIDateTimeToLocal(laterEnd);
+        QrSaveProdsalesOrder.AsString                  := salesOrder;
+        QrSaveProdsalesOrderDate.AsDateTime            := ParseAPIDateTimeToLocal(salesOrderDate);
+        QrSaveProdcustomer.AsString                    := customer;
+        QrSaveProdcolor.AsString                       := color;
+        QrSaveProdprogressStatus.AsString              := progressStatus;
+        QrSaveProdid_modelagem.AsInteger               := ID;
+        QrSaveProdnote.AsString                        := MmObs.Text;
+        QrSaveProdimage.AsString                       := noteContent;
+        QrSaveProdtipoCorte.AsInteger                  := StrToInt(cbTipoCorte.Value);
+
+        QrSaveProd.Post;
+
+        AvisoAtt('Processo de envio concluído...', 5, -1);
+      end;
+    finally
+      RootObj.Free;
     end;
   finally
     JSONObj.Free;
@@ -390,6 +382,7 @@ begin
 
   StringToFile(DadosModeloEnvio, pubDirEXE + 'dados.html');
   WBDadosModelo.Navigate(pubDirEXE + 'dados.html');
+  MmObs.Text := sLineBreak + DadosModeloEnvio;
 end;
 
 function TfrmProducao.ImageToBase64(const FilePath: string): string;
@@ -675,9 +668,9 @@ begin
     cbTipoCorte.Value  := QrSaveProdtipoCorte.AsString;
     ID                 := QrSaveProdid_modelagem.AsInteger;
 
-    StringToFile(QrSaveProddadosModelagem.AsString, pubDirEXE + 'dados.html');
+    StringToFile(DadosModeloEnvio, pubDirEXE + 'dados.html');
     WBDadosModelo.Navigate(pubDirEXE + 'dados.html');
-
+    MmObs.Text := sLineBreak + DadosModeloEnvio;
     EdtNpedido.SetFocus;
 //    FlowPanel1 := ;
   end;

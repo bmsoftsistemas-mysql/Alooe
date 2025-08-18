@@ -74,8 +74,8 @@ type
     cbTipoCorte: TRzComboBox;
     QrSaveProdtipoCorte: TIntegerField;
     WBDadosModelo: TWebBrowser;
+    QrSaveProddadosModelagem: TStringField;
     Label1: TLabel;
-    QrSaveProddadosModelagem: TMemoField;
     procedure btnEnviarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBLookupModeloCloseUp(Sender: TObject);

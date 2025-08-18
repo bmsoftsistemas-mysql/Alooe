@@ -260,7 +260,7 @@ object frmModelagem: TfrmModelagem
       Top = 196
       Width = 699
       Height = 477
-      ActivePage = TabSheet3
+      ActivePage = ENFESTO
       TabOrder = 15
       object ENFESTO: TTabSheet
         Caption = 'ENFESTO'

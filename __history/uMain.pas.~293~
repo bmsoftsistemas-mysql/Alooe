@@ -336,7 +336,7 @@ begin
     RzToolButton3.Enabled := true;
     btnSair.Enabled := true;
     btnAtualizacaoAutomaticaTudo.Caption := 'Ativar Atualização';
-    AvisoAtt('Desativado o modo de atualização automático', 1, -2);
+    AvisoAtt('Desativado o modo de atualização automático', 3, -2);
   end
   else
   begin

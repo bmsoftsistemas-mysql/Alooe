@@ -74,8 +74,7 @@ type
     cbTipoCorte: TRzComboBox;
     QrSaveProdtipoCorte: TIntegerField;
     WBDadosModelo: TWebBrowser;
-    Label1: TLabel;
-    QrSaveProddadosModelagem: TMemoField;
+    QrSaveProddadosModelagem: TStringField;
     procedure btnEnviarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBLookupModeloCloseUp(Sender: TObject);
@@ -204,7 +203,7 @@ begin
         noteContent := IMAGE;
       end;
 
-      JSONObj.AddPair('note', MmObs.Text + '<br>' + '<br>' + DadosModeloEnvio + '<br>' + '<br>' + noteContent );
+      JSONObj.AddPair('note', MmObs.Text + '<br>' + '<br>' + noteContent);
 
       if EditOrd then
       begin

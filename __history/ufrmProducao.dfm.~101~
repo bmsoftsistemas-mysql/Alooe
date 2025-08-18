@@ -87,13 +87,6 @@ object frmProducao: TfrmProducao
       Height = 13
       Caption = 'Cliente'
     end
-    object Label1: TLabel
-      Left = 32
-      Top = 212
-      Width = 92
-      Height = 13
-      Caption = 'Tipo de Modelagem'
-    end
     object EdtQuantidade: TEdit
       Left = 199
       Top = 88
@@ -241,7 +234,7 @@ object frmProducao: TfrmProducao
     end
     object cbTipoCorte: TRzComboBox
       Left = 32
-      Top = 226
+      Top = 224
       Width = 288
       Height = 21
       Style = csDropDownList
@@ -503,9 +496,11 @@ object frmProducao: TfrmProducao
       FieldName = 'tipoCorte'
       Origin = 'tipoCorte'
     end
-    object QrSaveProddadosModelagem: TMemoField
+    object QrSaveProddadosModelagem: TStringField
+      AutoGenerateValue = arDefault
       FieldName = 'dadosModelagem'
-      BlobType = ftMemo
+      Origin = 'dadosModelagem'
+      Size = 500
     end
   end
   object OpenDialog1: TOpenDialog

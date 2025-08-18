@@ -135,9 +135,6 @@ begin
     QrProducoes.Close;
     QrProducoes.Open;
     QrProducoes.Last;
-
-    if Assigned(frmMain.btnAtualizacaoAutomaticaTudo.OnClick) then
-      frmMain.btnAtualizacaoAutomaticaTudo.OnClick(frmMain.btnAtualizacaoAutomaticaTudo);
 end;
 
 procedure TfrmProducoesEnv.btnTodosClick(Sender: TObject);
@@ -165,10 +162,6 @@ begin
     IMAGE      := QrProducoesimage.Value;
     frmProducao.ShowModal;
     frmProducao.Free;
-
-
-    if Assigned(frmMain.btnAtualizacaoAutomaticaTudo.OnClick) then
-      frmMain.btnAtualizacaoAutomaticaTudo.OnClick(frmMain.btnAtualizacaoAutomaticaTudo);
 
     QrProducoes.Close;
     QrProducoes.Open;

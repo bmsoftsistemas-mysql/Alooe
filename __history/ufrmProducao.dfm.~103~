@@ -503,9 +503,11 @@ object frmProducao: TfrmProducao
       FieldName = 'tipoCorte'
       Origin = 'tipoCorte'
     end
-    object QrSaveProddadosModelagem: TMemoField
+    object QrSaveProddadosModelagem: TStringField
+      AutoGenerateValue = arDefault
       FieldName = 'dadosModelagem'
-      BlobType = ftMemo
+      Origin = 'dadosModelagem'
+      Size = 500
     end
   end
   object OpenDialog1: TOpenDialog
