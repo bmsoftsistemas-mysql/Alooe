@@ -96,7 +96,8 @@ uses
   ufrmMsg,
   ufuncoesGerais,
   ufrmTabelas, ufrmRequest, ufrmMarcas, ufrmMarcas2, ufrmCategorias,
-  uprodutosfrm, ufrmModelos, ufrmPedidos, ufrmProducoesEnv, frmconfiguracoes;
+  uprodutosfrm, ufrmModelos, ufrmPedidos, ufrmProducoesEnv, frmconfiguracoes,
+  UFrmSenhaManutencao;
 
 {$R *.dfm}
 
@@ -140,9 +141,12 @@ end;
 
 procedure TfrmMain.Configuraes1Click(Sender: TObject);
 begin
-  if not Assigned(frmconfig) then
-    Application.CreateForm(Tfrmconfig, frmconfig);
-  frmconfig.Show;
+    if SenhaManutencao then
+    begin
+      if not Assigned(frmconfig) then
+        Application.CreateForm(Tfrmconfig, frmconfig);
+      frmconfig.Show;
+    end;
 end;
 
 procedure TfrmMain.fechartodasabas(Sender: TObject);
@@ -173,6 +177,15 @@ begin
   fBase.Caption := ParamStr(1);
   fHost.Caption := defHost;
   Application.ShowMainForm := True;
+
+  bm_alooe.Params.Clear;
+  bm_alooe.Params.Add('DriverID=MySQL');
+  bm_alooe.Params.Add('Database=' + 'bm_alooe');
+  bm_alooe.Params.Add('Server=' + defServer);
+  bm_alooe.Params.Add('User_Name=Adm');
+  bm_alooe.Params.Add('Password=Adm7062');
+
+  bm_alooe.Open;
 end;
 
 procedure TfrmMain.FormResize(Sender: TObject);

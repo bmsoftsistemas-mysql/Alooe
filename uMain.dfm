@@ -651,9 +651,6 @@ object frmMain: TfrmMain
   end
   object bm_alooe: TFDConnection
     Params.Strings = (
-      'Database=bm_alooe'
-      'User_Name=Adm'
-      'Password=Adm7062'
       'DriverID=MySQL')
     Left = 760
     Top = 416

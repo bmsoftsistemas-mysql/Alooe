@@ -5,7 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask,
-  RzEdit, RzSpnEdt;
+  RzEdit, RzSpnEdt, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client;
 
 type
   Tfrmconfig = class(TForm)
@@ -29,6 +32,17 @@ type
     Panel5: TPanel;
     edt_senha: TEdit;
     CkSenha: TCheckBox;
+    Panel4: TPanel;
+    Label2: TLabel;
+    edt_server: TEdit;
+    QrConfig: TFDQuery;
+    QrConfigUSER: TStringField;
+    QrConfigTEMPO_ATUALIZA: TIntegerField;
+    QrConfigURL: TStringField;
+    QrConfigEMAIL: TStringField;
+    QrConfigSENHA: TStringField;
+    QrConfigSERVER: TStringField;
+    QrConfigID: TIntegerField;
     procedure btngravarClick(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -46,16 +60,50 @@ implementation
 
 {$R *.dfm}
 
-uses uDD, ufuncoesGerais, UComps, UIntegridade, ULookup;
+uses uDD, ufuncoesGerais, UComps, UIntegridade, ULookup, Super;
 
 procedure Tfrmconfig.btngravarClick(Sender: TObject);
 begin
-  DD.config.WriteInteger('config', 'TimerAtualizacaoSegundos', Trunc(edt_sync.Value * 60));
-  DD.config.WriteString('config', 'url', (edt_url.Text));
-  DD.config.WriteString('config', 'email', (edt_email.Text));
-  DD.config.WriteString('config', 'senha', (edt_senha.Text));
-  frmconfig.Close;
+  if edt_url.Text = '' then
+    raiseWithFocus(edt_url, 'Necessário informar url de produção!');
 
+  if edt_email.Text = '' then
+    raiseWithFocus(edt_email, 'Necessário informar e-mail!');
+
+  if edt_senha.Text = '' then
+    raiseWithFocus(edt_senha, 'Necessário informar senha!');
+
+  if edt_server.Text = '' then
+    raiseWithFocus(edt_server, 'Necessário informar endereço do servidor!');
+
+//  DD.config.WriteInteger('config', 'TimerAtualizacaoSegundos', Trunc(edt_sync.Value * 60));
+//  DD.config.WriteString('config', 'url', (edt_url.Text));
+//  DD.config.WriteString('config', 'email', (edt_email.Text));
+//  DD.config.WriteString('config', 'senha', (edt_senha.Text));
+//  DD.config.WriteString('config', 'server', (edt_server.Text));
+
+  QrConfig.Close;
+  QrConfig.Open;
+  QrConfig.First;
+
+  if QrConfig.IsEmpty then
+  begin
+    QrConfig.Append;
+  end
+  else
+  begin
+    QrConfig.Edit;
+  end;
+
+  QrConfigUSER.Value           := '';
+  QrConfigTEMPO_ATUALIZA.Value := Trunc(edt_sync.Value * 60);
+  QrConfigURL.Value            :=  edt_url.Text;
+  QrConfigEMAIL.Value          := edt_email.Text;
+  QrConfigSENHA.Value          := edt_senha.Text;
+  QrConfigSERVER.Value         := edt_server.Text;
+  QrConfig.Post;
+
+  frmconfig.Close;
 end;
 
 procedure Tfrmconfig.CkSenhaClick(Sender: TObject);
@@ -68,18 +116,30 @@ end;
 
 procedure Tfrmconfig.FormCreate(Sender: TObject);
 begin
-  frmconfig.Height := 290;
+  frmconfig.Height := 390;
   frmconfig.Width  := 620;
+//  btngravar.Left   := Trunc(frmconfig.Width / 2 - 49);
+//  edt_sync.Value   := Trunc(DD.config.ReadInteger('config', 'TimerAtualizacaoSegundos', 900) / 60);
+//  edt_url.Text     := DD.config.ReadString('config', 'url', '');
+//  edt_email.Text   := DD.config.ReadString('config', 'email', '');
+//  edt_senha.Text   := DD.config.ReadString('config', 'senha', '');
+//  edt_server.Text  := DD.config.ReadString('config', 'server', '');
+
+  QrConfig.Close;
+  QrConfig.Open;
+  QrConfig.First;
+
   btngravar.Left   := Trunc(frmconfig.Width / 2 - 49);
-  edt_sync.Value   := Trunc(DD.config.ReadInteger('config', 'TimerAtualizacaoSegundos', 900) / 60);
-  edt_url.Text     := DD.config.ReadString('config', 'url', '');
-  edt_email.Text   := DD.config.ReadString('config', 'email', '');
-  edt_senha.Text   := DD.config.ReadString('config', 'senha', '');
+  edt_sync.Value   := QrConfigTEMPO_ATUALIZA.Value / 60;
+  edt_url.Text     := QrConfigURL.Value;
+  edt_email.Text   := QrConfigEMAIL.Value;
+  edt_senha.Text   := QrConfigSENHA.Value;
+  edt_server.Text  := QrConfigSERVER.Value;
 end;
 
 procedure Tfrmconfig.FormResize(Sender: TObject);
 begin
-  frmconfig.Height := 335;
+  frmconfig.Height := 390;
   frmconfig.Width  := 620;
   btngravar.Left   := Trunc(frmconfig.Width / 2 - 49);
 end;

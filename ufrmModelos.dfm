@@ -442,4 +442,74 @@ object frmModelos: TfrmModelos
       Size = 50
     end
   end
+  object QrConfig: TFDQuery
+    Connection = DD.DB
+    SQL.Strings = (
+      'SELECT'
+      '  ID,'
+      '  USER,'
+      '  TEMPO_ATUALIZA,'
+      '  URL,'
+      '  EMAIL,'
+      '  SENHA,'
+      '  SERVER,'
+      '  TOKEN,'
+      '  DATA_ATUALIZADO'
+      ''
+      'FROM config;')
+    Left = 544
+    Top = 240
+    object QrConfigID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object QrConfigUSER: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'USER'
+      Origin = '`USER`'
+      Size = 255
+    end
+    object QrConfigTEMPO_ATUALIZA: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'TEMPO_ATUALIZA'
+      Origin = 'TEMPO_ATUALIZA'
+    end
+    object QrConfigURL: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'URL'
+      Origin = 'URL'
+      Size = 255
+    end
+    object QrConfigEMAIL: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'EMAIL'
+      Origin = 'EMAIL'
+      Size = 50
+    end
+    object QrConfigSENHA: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'SENHA'
+      Origin = 'SENHA'
+      Size = 255
+    end
+    object QrConfigSERVER: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'SERVER'
+      Origin = 'SERVER'
+      Size = 255
+    end
+    object QrConfigTOKEN: TMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'TOKEN'
+      Origin = 'TOKEN'
+      BlobType = ftMemo
+    end
+    object QrConfigDATA_ATUALIZADO: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'DATA_ATUALIZADO'
+      Origin = 'DATA_ATUALIZADO'
+    end
+  end
 end

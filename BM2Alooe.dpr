@@ -14,11 +14,7 @@ uses
   ufrmAguardaServidor in 'ufrmAguardaServidor.pas' {frmAguardaServidor},
   ufuncoesGerais in '..\Units\ufuncoesGerais.pas',
   ufrmRequest in 'ufrmRequest.pas' {frmRequest},
-  ufrmMarcas in 'ufrmMarcas.pas' {frmmarcas},
-  ufrmCategorias in 'ufrmCategorias.pas' {frmContatos},
-  uprodutosfrm in 'uprodutosfrm.pas' {produtosfrm},
   ufrmModelos in 'ufrmModelos.pas' {frmModelos},
-  ufrmPedidos in 'ufrmPedidos.pas' {frmpedidos},
   ufrmProducoesEnv in 'ufrmProducoesEnv.pas' {frmerros},
   frmconfiguracoes in 'frmconfiguracoes.pas' {frmconfig},
   Ro in '..\Units\Ro.pas',
@@ -26,7 +22,8 @@ uses
   Vcl.Themes,
   Vcl.Styles,
   ufrmProducao in 'ufrmProducao.pas' {frmProducao},
-  ufrmModelagem in 'ufrmModelagem.pas' {frmModelagem};
+  ufrmModelagem in 'ufrmModelagem.pas' {frmModelagem},
+  UFrmSenhaManutencao in 'UFrmSenhaManutencao.pas' {FrmSenhaManutencao};
 
 {$R *.res}
 
@@ -54,6 +51,7 @@ begin
   Application.CreateForm(TfrmRequest, frmRequest);
   Application.CreateForm(TfrmAviso, frmAviso);
   Application.CreateForm(TfrmFundoModal, frmFundoModal);
+  Application.CreateForm(TFrmSenhaManutencao, FrmSenhaManutencao);
   Application.Run;
 
   // Libera o mutex ao sair (boa prática)

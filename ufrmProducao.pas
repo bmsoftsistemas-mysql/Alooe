@@ -76,6 +76,8 @@ type
     WBDadosModelo: TWebBrowser;
     Label1: TLabel;
     QrSaveProddadosModelagem: TMemoField;
+    Label2: TLabel;
+    Label3: TLabel;
     procedure btnEnviarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBLookupModeloCloseUp(Sender: TObject);
@@ -91,6 +93,7 @@ type
     procedure btnModeloClick(Sender: TObject);
     procedure EdtQuantidadeExit(Sender: TObject);
     procedure EdtModelosKeyPress(Sender: TObject; var Key: Char);
+    procedure cbTipoCorteChange(Sender: TObject);
   private
     procedure SetColorBoxFromHex(ColorBox: TColorBox; HexColor: string);
     procedure edtModeloKeyDown(Sender: TObject; var Key: Word;
@@ -147,7 +150,7 @@ var
 begin
   JSONObj := TJSONObject.Create;
   try
-    if ModelagemTerminada then
+    if (ModelagemTerminada) then
     begin
       // Propriedades principais
       if  not EditOrd then
@@ -382,7 +385,6 @@ begin
 
   Edit := EditOrd;
   TipoCorte := StrToInt(cbTipoCorte.Value);
-  ModelagemTerminada := False;
   frmModelagem := Tfrmmodelagem.Create(Application);
   frmModelagem.ShowModal;
   Edit := True;
@@ -390,6 +392,11 @@ begin
 
   StringToFile(DadosModeloEnvio, pubDirEXE + 'dados.html');
   WBDadosModelo.Navigate(pubDirEXE + 'dados.html');
+end;
+
+procedure TfrmProducao.cbTipoCorteChange(Sender: TObject);
+begin
+  ModelagemTerminada := False;
 end;
 
 function TfrmProducao.ImageToBase64(const FilePath: string): string;
@@ -679,9 +686,13 @@ begin
     WBDadosModelo.Navigate(pubDirEXE + 'dados.html');
 
     EdtNpedido.SetFocus;
+    ModelagemTerminada := True;
 //    FlowPanel1 := ;
+  end
+  else
+  begin
+    ModelagemTerminada := False;
   end;
-
 end;
 
 procedure TfrmProducao.SelecionaModelo;

@@ -4,7 +4,7 @@ object frmconfig: Tfrmconfig
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = 'Configura'#231#245'es'
-  ClientHeight = 306
+  ClientHeight = 359
   ClientWidth = 620
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -22,11 +22,22 @@ object frmconfig: Tfrmconfig
     Left = 0
     Top = 0
     Width = 620
-    Height = 306
+    Height = 359
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 610
-    ExplicitHeight = 296
+    object Label2: TLabel
+      Left = 17
+      Top = 293
+      Width = 49
+      Height = 16
+      Caption = 'Server:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
     object Panel1: TPanel
       Left = 1
       Top = 129
@@ -35,7 +46,6 @@ object frmconfig: Tfrmconfig
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitWidth = 608
       object Label1: TLabel
         Left = 16
         Top = 35
@@ -73,7 +83,6 @@ object frmconfig: Tfrmconfig
         ParentBackground = False
         ParentFont = False
         TabOrder = 1
-        ExplicitWidth = 602
       end
     end
     object Panel6: TPanel
@@ -84,7 +93,6 @@ object frmconfig: Tfrmconfig
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitWidth = 608
       object Label5: TLabel
         Left = 16
         Top = 35
@@ -115,7 +123,6 @@ object frmconfig: Tfrmconfig
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 602
       end
       object edt_url: TEdit
         Left = 111
@@ -133,7 +140,6 @@ object frmconfig: Tfrmconfig
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 2
-      ExplicitWidth = 608
       object Label7: TLabel
         Left = 16
         Top = 35
@@ -177,7 +183,6 @@ object frmconfig: Tfrmconfig
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 602
       end
       object edt_sync: TRzSpinEdit
         Left = 218
@@ -191,7 +196,7 @@ object frmconfig: Tfrmconfig
     object btngravar: TButton
       AlignWithMargins = True
       Left = 257
-      Top = 263
+      Top = 325
       Width = 89
       Height = 29
       Caption = 'Gravar'
@@ -212,7 +217,6 @@ object frmconfig: Tfrmconfig
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 4
-      ExplicitWidth = 608
       object Label3: TLabel
         Left = 16
         Top = 35
@@ -243,7 +247,6 @@ object frmconfig: Tfrmconfig
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 602
       end
       object edt_senha: TEdit
         Left = 109
@@ -262,6 +265,88 @@ object frmconfig: Tfrmconfig
         TabOrder = 2
         OnClick = CkSenhaClick
       end
+    end
+    object Panel4: TPanel
+      AlignWithMargins = True
+      Left = 4
+      Top = 260
+      Width = 612
+      Height = 24
+      Align = alTop
+      Caption = 'Server'
+      Color = 15770519
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 5
+    end
+    object edt_server: TEdit
+      Left = 112
+      Top = 291
+      Width = 342
+      Height = 21
+      TabOrder = 6
+    end
+  end
+  object QrConfig: TFDQuery
+    Connection = DD.DB
+    SQL.Strings = (
+      'SELECT'
+      '  ID,'
+      '  USER,'
+      '  TEMPO_ATUALIZA,'
+      '  URL,'
+      '  EMAIL,'
+      '  SENHA,'
+      '  SERVER'
+      ''
+      'FROM config;')
+    Left = 568
+    Top = 280
+    object QrConfigUSER: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'USER'
+      Origin = '`USER`'
+      Size = 255
+    end
+    object QrConfigTEMPO_ATUALIZA: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'TEMPO_ATUALIZA'
+      Origin = 'TEMPO_ATUALIZA'
+    end
+    object QrConfigURL: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'URL'
+      Origin = 'URL'
+      Size = 255
+    end
+    object QrConfigEMAIL: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'EMAIL'
+      Origin = 'EMAIL'
+      Size = 50
+    end
+    object QrConfigSENHA: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'SENHA'
+      Origin = 'SENHA'
+      Size = 255
+    end
+    object QrConfigSERVER: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'SERVER'
+      Origin = 'SERVER'
+      Size = 255
+    end
+    object QrConfigID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
     end
   end
 end

@@ -3,7 +3,7 @@ object frmModelagem: TfrmModelagem
   Top = 0
   Caption = 'frmModelagem'
   ClientHeight = 705
-  ClientWidth = 699
+  ClientWidth = 658
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object frmModelagem: TfrmModelagem
   object panel: TPanel
     Left = 0
     Top = 0
-    Width = 699
+    Width = 658
     Height = 705
     Align = alClient
     BevelOuter = bvNone
@@ -143,6 +143,7 @@ object frmModelagem: TfrmModelagem
       Color = clMoneyGreen
       NumbersOnly = True
       TabOrder = 0
+      OnDblClick = edt_pedidoDblClick
     end
     object edt_comb: TEdit
       Left = 106
@@ -260,7 +261,7 @@ object frmModelagem: TfrmModelagem
       Top = 196
       Width = 699
       Height = 477
-      ActivePage = TabSheet3
+      ActivePage = ENFESTO
       TabOrder = 15
       object ENFESTO: TTabSheet
         Caption = 'ENFESTO'
@@ -708,6 +709,7 @@ object frmModelagem: TfrmModelagem
           Width = 57
           Height = 21
           Color = clMoneyGreen
+          ReadOnly = True
           TabOrder = 1
           Text = '450'
           OnChange = edt_crack_area1Change
@@ -758,6 +760,7 @@ object frmModelagem: TfrmModelagem
           Width = 57
           Height = 21
           Color = clMoneyGreen
+          ReadOnly = True
           TabOrder = 6
           Text = '350'
           OnChange = edt_crack_area2Change
@@ -1110,6 +1113,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 0
           Text = '1350'
           OnChange = edt_laserg1_area1Change
@@ -1161,6 +1165,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 1
           Text = '1000'
           OnChange = edt_laserg1_area2Change
@@ -1202,6 +1207,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 6
           Text = '1350'
           OnChange = edt_laserg2_area1Change
@@ -1233,6 +1239,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 7
           Text = '1000'
           OnChange = edt_laserg2_area2Change
@@ -1294,6 +1301,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 2
           Text = '760'
           OnChange = edt_laserm1_area1Change
@@ -1325,6 +1333,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 3
           Text = '450'
           OnChange = edt_laserm1_area2Change
@@ -1386,6 +1395,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 4
           Text = '570'
           OnChange = edt_laserp1_area1Change
@@ -1417,6 +1427,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 5
           Text = '400'
           OnChange = edt_laserp1_area2Change
@@ -1479,6 +1490,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 8
           Text = '760'
           OnChange = edt_laserm2_area1Change
@@ -1510,6 +1522,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 9
           Text = '450'
           OnChange = edt_laserm2_area2Change
@@ -1571,6 +1584,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 10
           Text = '570'
           OnChange = edt_laserp2_area1Change
@@ -1602,6 +1616,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 11
           Text = '400'
           OnChange = edt_laserp2_area2Change
@@ -1837,6 +1852,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 0
           Text = '1350'
           OnChange = edt_lasermontg1_area1Change
@@ -1848,6 +1864,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 1
           Text = '1000'
           OnChange = edt_lasermontg1_area2Change
@@ -1919,6 +1936,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 4
           Text = '1350'
           OnChange = edt_lasermontg2_area1Change
@@ -1930,6 +1948,7 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 5
           Text = '1000'
           OnChange = edt_lasermontg2_area2Change
@@ -2121,7 +2140,9 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 1
+          Text = '150'
           OnChange = edt_galvo_tg2Change
         end
         object edt_galvo_tg1: TEdit
@@ -2131,7 +2152,9 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 0
+          Text = '150'
           OnChange = edt_galvo_tg1Change
         end
         object edt_galvo_etpt: TEdit
@@ -2519,7 +2542,9 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 0
+          Text = '220'
           OnChange = edt_crackchapado_area1Change
         end
         object edt_crackchapado_tam: TEdit
@@ -2569,7 +2594,9 @@ object frmModelagem: TfrmModelagem
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 1
+          Text = '190'
           OnChange = edt_crackchapado_area2Change
         end
         object edt_crackchapado_hv22: TEdit
@@ -2597,71 +2624,71 @@ object frmModelagem: TfrmModelagem
         Caption = 'ETQ. C/ SILK CHAPADO SEM FACA'
         ImageIndex = 7
         object Label131: TLabel
-          Left = 36
-          Top = 48
+          Left = 30
+          Top = 38
           Width = 103
           Height = 13
           Caption = 'TAMANHO ETIQUETA'
         end
         object Label132: TLabel
-          Left = 39
-          Top = 76
+          Left = 33
+          Top = 66
           Width = 91
           Height = 13
           Caption = 'AREA SERIGRAFIA'
         end
         object Label133: TLabel
-          Left = 39
-          Top = 97
+          Left = 33
+          Top = 87
           Width = 59
           Height = 13
           Caption = 'HOR X VERT'
         end
         object Label134: TLabel
-          Left = 39
-          Top = 118
+          Left = 33
+          Top = 108
           Width = 93
           Height = 13
           Caption = 'QUAD SERIGRAFIA'
         end
         object Label135: TLabel
-          Left = 39
-          Top = 140
+          Left = 33
+          Top = 130
           Width = 61
           Height = 13
           Caption = 'AREA LASER'
         end
         object Label136: TLabel
-          Left = 39
-          Top = 160
+          Left = 33
+          Top = 150
           Width = 59
           Height = 13
           Caption = 'HOR X VERT'
         end
         object Label137: TLabel
-          Left = 39
-          Top = 181
+          Left = 33
+          Top = 171
           Width = 34
           Height = 13
           Caption = 'CHAPA'
         end
         object Label138: TLabel
-          Left = 39
-          Top = 202
+          Left = 33
+          Top = 192
           Width = 85
           Height = 13
           Caption = 'ETQ. POR CHAPA'
         end
         object Label139: TLabel
-          Left = 39
-          Top = 222
+          Left = 33
+          Top = 212
           Width = 84
           Height = 13
           Caption = 'QTD. DE CHAPAS'
         end
         object edt_crackchapadosemfaca_tam: TEdit
-          Left = 144
-          Top = 45
+          Left = 138
+          Top = 35
           Width = 120
           Height = 21
           TabStop = False
@@ -2670,8 +2697,8 @@ object frmModelagem: TfrmModelagem
           TabOrder = 2
         end
         object edt_crackchapadosemfaca_qtc: TEdit
-          Left = 144
-          Top = 214
+          Left = 138
+          Top = 204
           Width = 120
           Height = 21
           TabStop = False
@@ -2680,8 +2707,8 @@ object frmModelagem: TfrmModelagem
           TabOrder = 3
         end
         object edt_crackchapadosemfaca_etc: TEdit
-          Left = 144
-          Top = 194
+          Left = 138
+          Top = 184
           Width = 120
           Height = 21
           TabStop = False
@@ -2690,8 +2717,8 @@ object frmModelagem: TfrmModelagem
           TabOrder = 4
         end
         object edt_crackchapadosemfaca_chapa1: TEdit
-          Left = 144
-          Top = 173
+          Left = 138
+          Top = 163
           Width = 57
           Height = 21
           TabStop = False
@@ -2700,8 +2727,8 @@ object frmModelagem: TfrmModelagem
           TabOrder = 5
         end
         object edt_crackchapadosemfaca_hv12: TEdit
-          Left = 144
-          Top = 152
+          Left = 138
+          Top = 142
           Width = 57
           Height = 21
           TabStop = False
@@ -2710,8 +2737,8 @@ object frmModelagem: TfrmModelagem
           TabOrder = 6
         end
         object edt_crackchapadosemfaca_area1laser: TEdit
-          Left = 144
-          Top = 132
+          Left = 138
+          Top = 122
           Width = 57
           Height = 21
           TabStop = False
@@ -2720,8 +2747,8 @@ object frmModelagem: TfrmModelagem
           TabOrder = 7
         end
         object edt_crackchapadosemfaca_qts1: TEdit
-          Left = 144
-          Top = 110
+          Left = 138
+          Top = 100
           Width = 57
           Height = 21
           TabStop = False
@@ -2730,8 +2757,8 @@ object frmModelagem: TfrmModelagem
           TabOrder = 8
         end
         object edt_crackchapadosemfaca_hv1: TEdit
-          Left = 144
-          Top = 89
+          Left = 138
+          Top = 79
           Width = 57
           Height = 21
           TabStop = False
@@ -2740,28 +2767,32 @@ object frmModelagem: TfrmModelagem
           TabOrder = 9
         end
         object edt_crackchapadosemfaca_area1: TEdit
-          Left = 144
-          Top = 68
+          Left = 138
+          Top = 58
           Width = 57
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 0
+          Text = '270'
           OnChange = edt_crackchapadosemfaca_area1Change
         end
         object edt_crackchapadosemfaca_area2: TEdit
-          Left = 207
-          Top = 68
+          Left = 201
+          Top = 58
           Width = 57
           Height = 21
           Color = clMoneyGreen
           NumbersOnly = True
+          ReadOnly = True
           TabOrder = 1
+          Text = '240'
           OnChange = edt_crackchapadosemfaca_area2Change
         end
         object edt_crackchapadosemfaca_hv2: TEdit
-          Left = 207
-          Top = 89
+          Left = 201
+          Top = 79
           Width = 57
           Height = 21
           TabStop = False
@@ -2770,8 +2801,8 @@ object frmModelagem: TfrmModelagem
           TabOrder = 10
         end
         object edt_crackchapadosemfaca_qts2: TEdit
-          Left = 207
-          Top = 110
+          Left = 201
+          Top = 100
           Width = 57
           Height = 21
           TabStop = False
@@ -2780,8 +2811,8 @@ object frmModelagem: TfrmModelagem
           TabOrder = 11
         end
         object edt_crackchapadosemfaca_area2laser: TEdit
-          Left = 207
-          Top = 131
+          Left = 201
+          Top = 121
           Width = 57
           Height = 21
           TabStop = False
@@ -2790,8 +2821,8 @@ object frmModelagem: TfrmModelagem
           TabOrder = 12
         end
         object edt_crackchapadosemfaca_hv22: TEdit
-          Left = 207
-          Top = 152
+          Left = 201
+          Top = 142
           Width = 57
           Height = 21
           TabStop = False
@@ -2800,8 +2831,8 @@ object frmModelagem: TfrmModelagem
           TabOrder = 13
         end
         object edt_crackchapadosemfaca_chapa2: TEdit
-          Left = 207
-          Top = 173
+          Left = 201
+          Top = 163
           Width = 57
           Height = 21
           TabStop = False
@@ -2844,14 +2875,14 @@ object frmModelagem: TfrmModelagem
     object Panel1: TPanel
       Left = 0
       Top = 664
-      Width = 699
+      Width = 658
       Height = 41
       Align = alBottom
       BevelOuter = bvNone
       TabOrder = 17
       object btnEnviar: TButton
         AlignWithMargins = True
-        Left = 609
+        Left = 568
         Top = 6
         Width = 75
         Height = 31

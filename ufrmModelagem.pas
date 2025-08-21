@@ -454,6 +454,7 @@ type
     procedure CbTipoFacaChange(Sender: TObject);
     procedure btnEnviarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure edt_pedidoDblClick(Sender: TObject);
   private
     function GetEditIntValue(Edit: TEdit): Double;
     function SafeStrToFloat(const S: string): Double;
@@ -471,7 +472,7 @@ implementation
 
 {$R *.dfm}
 
-uses uMain, ufrmProducao, Super, uDD;
+uses uMain, ufrmProducao, Super, uDD, UFrmSenhaManutencao;
 
 procedure TfrmModelagem.edt_laserg1_area1Change(Sender: TObject);
 var
@@ -1359,6 +1360,36 @@ begin
     LHTML := TStringList.Create;
     LHTML_table := TStringList.Create;
 
+    QrModelagemCRACK_AREA1.AsInteger           := SafeStrToInt(edt_crack_area1.Text);
+    QrModelagemCRACK_AREA2.AsInteger           := SafeStrToInt(edt_crack_area2.Text);
+    QrModelagemLASERP1_AREA1.AsInteger         := SafeStrToInt(edt_laserp1_area1.Text);
+    QrModelagemLASERP1_AREA2.AsInteger         := SafeStrToInt(edt_laserp1_area2.Text);
+    QrModelagemLASERP2_AREA1.AsInteger         := SafeStrToInt(edt_laserp2_area1.Text);
+    QrModelagemLASERP2_AREA2.AsInteger         := SafeStrToInt(edt_laserp2_area2.Text);
+
+    QrModelagemLASERM1_AREA1.AsInteger         := SafeStrToInt(edt_laserm1_area1.Text);
+    QrModelagemLASERM1_AREA2.AsInteger         := SafeStrToInt(edt_laserm1_area2.Text);
+    QrModelagemLASERM2_AREA1.AsInteger         := SafeStrToInt(edt_laserm2_area1.Text);
+    QrModelagemLASERM2_AREA2.AsInteger         := SafeStrToInt(edt_laserm2_area2.Text);
+
+    QrModelagemLASERG1_AREA1.AsInteger         := SafeStrToInt(edt_laserg1_area1.Text);
+    QrModelagemLASERG1_AREA2.AsInteger         := SafeStrToInt(edt_laserg1_area2.Text);
+    QrModelagemLASERG2_AREA1.AsInteger         := SafeStrToInt(edt_laserg2_area1.Text);
+    QrModelagemLASERG2_AREA2.AsInteger         := SafeStrToInt(edt_laserg2_area2.Text);
+
+    QrModelagemLM_G1_A1.AsInteger              := SafeStrToInt(edt_lasermontg1_area1.Text);
+    QrModelagemLM_G1_A2.AsInteger              := SafeStrToInt(edt_lasermontg1_area2.Text);
+    QrModelagemLM_G2_A1.AsInteger              := SafeStrToInt(edt_lasermontg2_area1.Text);
+    QrModelagemLM_G2_A2.AsInteger              := SafeStrToInt(edt_lasermontg2_area2.Text);
+
+    QrModelagemGALVO_T1.AsInteger              := SafeStrToInt(edt_galvo_tg1.Text);
+    QrModelagemGALVO_T2.AsInteger              := SafeStrToInt(edt_galvo_tg2.Text);
+
+    QrModelagemCRACK_SC_AREA_1.AsInteger       := SafeStrToInt(edt_crackchapado_area1.Text);
+    QrModelagemCRACK_SC_AREA_2.AsInteger       := SafeStrToInt(edt_crackchapado_area2.Text);
+    QrModelagemETQ_SC_AREA_1.AsInteger         := SafeStrToInt(edt_crackchapadosemfaca_area1.Text);
+    QrModelagemETQ_SC_AREA_2.AsInteger         := SafeStrToInt(edt_crackchapadosemfaca_area2.Text);
+
     case TipoCorte of
       0: begin
             QrModelagemENFESTO_LM_1.AsInteger          := SafeStrToInt(edt_enfesto_largura1.Text);
@@ -1377,6 +1408,8 @@ begin
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[qtd_tiras]', edt_enfesto_qtd_tiras1.Text, [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[largura]', edt_enfesto_largura1.Text, [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[codigo_faca]',edt_balancin_cod_faca1.Text, [rfIgnoreCase, rfReplaceAll]);
+            LHTML_table.Text := StringReplace(LHTML_table.Text, '[medida1]',EdtMedida1.Text, [rfIgnoreCase, rfReplaceAll]);
+            LHTML_table.Text := StringReplace(LHTML_table.Text, '[medida2]',EdtMedida2.Text, [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[qtd_etq]', edt_balancin_qtd_vert1.Text, [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[qtd_etq_tiras]', edt_balancin_qtd_etq1.Text, [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[qtd_etq_qd]', edt_balancin_qtd_qdr1.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1393,6 +1426,8 @@ begin
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[qtd_tiras]', edt_enfesto_qtd_tiras2.Text, [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[largura]', edt_enfesto_largura2.Text, [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[codigo_faca]',edt_balancin_cod_faca2.Text, [rfIgnoreCase, rfReplaceAll]);
+            LHTML_table.Text := StringReplace(LHTML_table.Text, '[medida1]',EdtMedida1.Text, [rfIgnoreCase, rfReplaceAll]);
+            LHTML_table.Text := StringReplace(LHTML_table.Text, '[medida2]',EdtMedida2.Text, [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[qtd_etq]', edt_balancin_qtd_vert2.Text, [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[qtd_etq_tiras]', edt_balancin_qtd_etq2.Text, [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[qtd_etq_qd]', edt_balancin_qtd_qdr2.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1410,9 +1445,6 @@ begin
          end;
 
       1: begin
-            QrModelagemCRACK_AREA1.AsInteger           := SafeStrToInt(edt_crack_area1.Text);
-            QrModelagemCRACK_AREA2.AsInteger           := SafeStrToInt(edt_crack_area2.Text);
-
             LHTML.LoadFromFile(pubDirEXE + 'index.html');
             LHTML_table.LoadFromFile(pubDirEXE + 'crack.html');
 
@@ -1433,11 +1465,6 @@ begin
          end;
 
       2: begin
-           QrModelagemLASERP1_AREA1.AsInteger         := SafeStrToInt(edt_laserp1_area1.Text);
-           QrModelagemLASERP1_AREA2.AsInteger         := SafeStrToInt(edt_laserp1_area2.Text);
-           QrModelagemLASERP2_AREA1.AsInteger         := SafeStrToInt(edt_laserp2_area1.Text);
-           QrModelagemLASERP2_AREA2.AsInteger         := SafeStrToInt(edt_laserp2_area2.Text);
-
            LHTML.LoadFromFile(pubDirEXE + 'index.html');
            LHTML_table.LoadFromFile(pubDirEXE + 'laserP.html');
 
@@ -1478,11 +1505,6 @@ begin
          end;
 
       3: begin
-           QrModelagemLASERM1_AREA1.AsInteger         := SafeStrToInt(edt_laserm1_area1.Text);
-           QrModelagemLASERM1_AREA2.AsInteger         := SafeStrToInt(edt_laserm1_area2.Text);
-           QrModelagemLASERM2_AREA1.AsInteger         := SafeStrToInt(edt_laserm2_area1.Text);
-           QrModelagemLASERM2_AREA2.AsInteger         := SafeStrToInt(edt_laserm2_area2.Text);
-
            LHTML.LoadFromFile(pubDirEXE + 'index.html');
            LHTML_table.LoadFromFile(pubDirEXE + 'laserM.html');
 
@@ -1523,11 +1545,6 @@ begin
          end;
 
       4: begin
-           QrModelagemLASERG1_AREA1.AsInteger         := SafeStrToInt(edt_laserg1_area1.Text);
-           QrModelagemLASERG1_AREA2.AsInteger         := SafeStrToInt(edt_laserg1_area2.Text);
-           QrModelagemLASERG2_AREA1.AsInteger         := SafeStrToInt(edt_laserg2_area1.Text);
-           QrModelagemLASERG2_AREA2.AsInteger         := SafeStrToInt(edt_laserg2_area2.Text);
-
            LHTML.LoadFromFile(pubDirEXE + 'index.html');
            LHTML_table.LoadFromFile(pubDirEXE + 'laserG.html');
 
@@ -1568,13 +1585,9 @@ begin
          end;
 
       5: begin
-           QrModelagemLM_G1_A1.AsInteger              := SafeStrToInt(edt_lasermontg1_area1.Text);
-           QrModelagemLM_G1_A2.AsInteger              := SafeStrToInt(edt_lasermontg1_area2.Text);
            QrModelagemLM_HVM_11.AsInteger             := SafeStrToInt(edt_lasermontg1_hvrec1.Text);
            QrModelagemLM_HVM_12.AsInteger             := SafeStrToInt(edt_lasermontg1_hvrec2.Text);
 
-           QrModelagemLM_G2_A1.AsInteger              := SafeStrToInt(edt_lasermontg2_area1.Text);
-           QrModelagemLM_G2_A2.AsInteger              := SafeStrToInt(edt_lasermontg2_area2.Text);
            QrModelagemLM_HVM_21.AsInteger             := SafeStrToInt(edt_lasermontg2_hvrec1.Text);
            QrModelagemLM_HVM_22.AsInteger             := SafeStrToInt(edt_lasermontg2_hvrec2.Text);
 
@@ -1619,9 +1632,6 @@ begin
          end;
 
       6: begin
-           QrModelagemGALVO_T1.AsInteger              := SafeStrToInt(edt_galvo_tg1.Text);
-           QrModelagemGALVO_T2.AsInteger              := SafeStrToInt(edt_galvo_tg2.Text);
-
            LHTML.LoadFromFile(pubDirEXE + 'index.html');
            LHTML_table.LoadFromFile(pubDirEXE + 'galvo.html');
 
@@ -1670,9 +1680,6 @@ begin
          end;
 
       8: begin
-           QrModelagemCRACK_SC_AREA_1.AsInteger       := SafeStrToInt(edt_crackchapado_area1.Text);
-           QrModelagemCRACK_SC_AREA_2.AsInteger       := SafeStrToInt(edt_crackchapado_area2.Text);
-
            LHTML.LoadFromFile(pubDirEXE + 'index.html');
            LHTML_table.LoadFromFile(pubDirEXE + 'crackSilk.html');
 
@@ -1700,9 +1707,6 @@ begin
          end;
 
       9: begin
-           QrModelagemETQ_SC_AREA_1.AsInteger         := SafeStrToInt(edt_crackchapadosemfaca_area1.Text);
-           QrModelagemETQ_SC_AREA_2.AsInteger         := SafeStrToInt(edt_crackchapadosemfaca_area2.Text);
-
            LHTML.LoadFromFile(pubDirEXE + 'index.html');
            LHTML_table.LoadFromFile(pubDirEXE + 'etqSilk.html');
 
@@ -2506,6 +2510,37 @@ begin
 
   if Assigned(edt_laserp2_area1.OnChange) then
     edt_laserp2_area1.OnChange(edt_laserp2_area1);
+end;
+
+procedure TfrmModelagem.edt_pedidoDblClick(Sender: TObject);
+begin
+  if SenhaManutencao then
+  begin
+    edt_crack_area1.ReadOnly               := False;
+    edt_crack_area2.ReadOnly               := False;
+    edt_laserg1_area1.ReadOnly             := False;
+    edt_laserg1_area2.ReadOnly             := False;
+    edt_laserm1_area1.ReadOnly             := False;
+    edt_laserm1_area2.ReadOnly             := False;
+    edt_laserp1_area1.ReadOnly             := False;
+    edt_laserp1_area2.ReadOnly             := False;
+    edt_laserg2_area1.ReadOnly             := False;
+    edt_laserg2_area2.ReadOnly             := False;
+    edt_laserm2_area1.ReadOnly             := False;
+    edt_laserm2_area2.ReadOnly             := False;
+    edt_laserp2_area1.ReadOnly             := False;
+    edt_laserp2_area2.ReadOnly             := False;
+    edt_lasermontg1_area1.ReadOnly         := False;
+    edt_lasermontg1_area2.ReadOnly         := False;
+    edt_lasermontg2_area1.ReadOnly         := False;
+    edt_lasermontg2_area2.ReadOnly         := False;
+    edt_galvo_tg1.ReadOnly                 := False;
+    edt_galvo_tg2.ReadOnly                 := False;
+    edt_crackchapado_area1.ReadOnly        := False;
+    edt_crackchapado_area2.ReadOnly        := False;
+    edt_crackchapadosemfaca_area1.ReadOnly := False;
+    edt_crackchapadosemfaca_area2.ReadOnly := False;
+  end;
 end;
 
 procedure TfrmModelagem.FormCreate(Sender: TObject);

@@ -53,6 +53,16 @@ type
     QrProducoescolor: TStringField;
     QrProducoesprogressStatus: TStringField;
     QrProducoesname: TStringField;
+    QrConfig: TFDQuery;
+    QrConfigID: TIntegerField;
+    QrConfigUSER: TStringField;
+    QrConfigTEMPO_ATUALIZA: TIntegerField;
+    QrConfigURL: TStringField;
+    QrConfigEMAIL: TStringField;
+    QrConfigSENHA: TStringField;
+    QrConfigSERVER: TStringField;
+    QrConfigTOKEN: TMemoField;
+    QrConfigDATA_ATUALIZADO: TDateField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnTokenClick(Sender: TObject);
     procedure btnModelosClick(Sender: TObject);
@@ -148,9 +158,13 @@ end;
 
 procedure TfrmModelos.FormCreate(Sender: TObject);
 begin
-    URL   := DD.config.ReadString('config', 'url', '');
-    Email := DD.config.ReadString('config', 'email', '');
-    Senha := DD.config.ReadString('config', 'senha', '');
+    QrConfig.Close;
+    QrConfig.Open;
+    QrConfig.First;
+
+    URL   := QrConfigURL.Value;
+    Email := QrConfigEMAIL.Value;
+    Senha := QrConfigSENHA.Value;
 end;
 
 //procedure responsável por gravar os clientes na tabela da BM
@@ -466,7 +480,7 @@ begin
   Tentativa := 0;
   Sucesso := False;
   //FormatDateTime('yyyy"-"mm"-"dd', (now))
-  if DD.config.ReadString('Config', 'data_token', '') < (FormatDateTime('yyyy"-"mm"-"dd', (now))) then
+  if (FormatDateTime('yyyy"-"mm"-"dd', (QrConfigDATA_ATUALIZADO.Value))) < (FormatDateTime('yyyy"-"mm"-"dd', (now))) then
   begin
     ObjBody := TJSONObject.Create;
 
@@ -524,8 +538,14 @@ begin
 
           Token := DataObject.GetValue<string>('token');
           defAppToken := DataObject.GetValue<string>('token');
-          DD.config.WriteString('config', 'data_token', (FormatDateTime('yyyy"-"mm"-"dd', (now))));
-          DD.config.WriteString('config', 'token', (defAppToken));
+
+          QrConfig.Edit;
+          QrConfigDATA_ATUALIZADO.Value := (now);
+          QrConfigTOKEN.Value :=  defAppToken;
+          QrConfig.Post;
+
+//          DD.config.WriteString('config', 'data_token', (FormatDateTime('yyyy"-"mm"-"dd', (now))));
+//          DD.config.WriteString('config', 'token', (defAppToken));
           //ShowMessage('Token: ' + Token);
         end;
       end;
@@ -535,7 +555,11 @@ begin
   end
   else
   begin
-    defAppToken :=  DD.config.ReadString('Config', 'token', '');
+    QrConfig.Close;
+    QrConfig.Open;
+    QrConfig.First;
+
+    defAppToken :=  QrConfigTOKEN.Value;
   end;
 
  //StringToFile(defAppToken, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsToken.txt');

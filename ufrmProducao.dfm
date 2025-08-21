@@ -23,7 +23,6 @@ object frmProducao: TfrmProducao
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitHeight = 555
     object LabelModelo: TLabel
       Left = 32
       Top = 24
@@ -94,6 +93,20 @@ object frmProducao: TfrmProducao
       Height = 13
       Caption = 'Tipo de Modelagem'
     end
+    object Label2: TLabel
+      Left = 32
+      Top = 343
+      Width = 43
+      Height = 13
+      Caption = 'C'#225'lculos:'
+    end
+    object Label3: TLabel
+      Left = 32
+      Top = 543
+      Width = 45
+      Height = 13
+      Caption = 'Imagens:'
+    end
     object EdtQuantidade: TEdit
       Left = 199
       Top = 88
@@ -132,9 +145,9 @@ object frmProducao: TfrmProducao
     end
     object MmObs: TMemo
       Left = 32
-      Top = 274
+      Top = 270
       Width = 481
-      Height = 89
+      Height = 63
       Lines.Strings = (
         'MmObs')
       TabOrder = 6
@@ -177,9 +190,9 @@ object frmProducao: TfrmProducao
     end
     object FlowPanel1: TFlowPanel
       Left = 32
-      Top = 562
+      Top = 557
       Width = 481
-      Height = 118
+      Height = 127
       BevelKind = bkFlat
       BevelOuter = bvNone
       TabOrder = 7
@@ -241,11 +254,12 @@ object frmProducao: TfrmProducao
     end
     object cbTipoCorte: TRzComboBox
       Left = 32
-      Top = 226
+      Top = 229
       Width = 288
       Height = 21
       Style = csDropDownList
       TabOrder = 15
+      OnChange = cbTipoCorteChange
       Items.Strings = (
         '0-Enfesto e Balancin'
         '1-Crack'
@@ -260,7 +274,7 @@ object frmProducao: TfrmProducao
     end
     object WBDadosModelo: TWebBrowser
       Left = 32
-      Top = 376
+      Top = 357
       Width = 481
       Height = 180
       TabOrder = 16
