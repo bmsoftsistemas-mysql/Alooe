@@ -32,7 +32,8 @@ uses
   IdFTP, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error,
   FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
   FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Comp.Client,
-  FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef;
+  FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FireDAC.Stan.Param, FireDAC.DatS,
+  FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet;
 
 type
   TDD = class(TDataModule)
@@ -82,6 +83,15 @@ type
     config: TRzRegIniFile;
     DB: TFDConnection;
     FDManager1: TFDManager;
+    QrConfig: TFDQuery;
+    QrConfigID: TIntegerField;
+    QrConfigUSER: TStringField;
+    QrConfigTEMPO_ATUALIZA: TIntegerField;
+    QrConfigURL: TStringField;
+    QrConfigEMAIL: TStringField;
+    QrConfigSENHA: TStringField;
+    QrConfigSERVER: TStringField;
+    QrConfigTOKEN: TMemoField;
     procedure DataModuleCreate(Sender: TObject);
   private
 
@@ -152,6 +162,7 @@ const
   defmarcas                  = '/brands';
   defclientes                = '/customers';
   defvariacoes               = '/products/variants';
+
   defModelos                 = '/v1/ProductionOrderTemplate?PageNumber=';
   defLogin                   = '/v1/Login';
   defProducao                ='/v1/ProductionOrder/Template/';
@@ -196,6 +207,7 @@ var
   def_access_token           : string;
   defurl                     : string;
   defcode                    : string;
+  defServer                  : string;
   def_erro                   : boolean;
 
 implementation
@@ -203,7 +215,7 @@ implementation
 uses
   ufrmAviso,
   uMain,
-  ufrmAguardaServidor, ufrmRequest, frmconfiguracoes;
+  ufrmAguardaServidor, ufrmRequest, frmconfiguracoes, UFrmSenhaManutencao;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
@@ -251,19 +263,28 @@ var
   CaminhoINI: string;
 begin
 
-  CaminhoINI := ExtractFilePath(ParamStr(0)) + 'BM2Tray.ini'; // substitua pelo nome do seu .ini
+  QrConfig.Close;
+  QrConfig.Open;
+  QrConfig.First;
 
-  if not FileExists(CaminhoINI) then
+  if QrConfig.IsEmpty then
   begin
-    if not Assigned(frmconfig) then
+    if SenhaManutencao then
     begin
-      Application.CreateForm(Tfrmconfig, frmconfig);
+      if not Assigned(frmconfig) then
+      begin
+        Application.CreateForm(Tfrmconfig, frmconfig);
+      end;
+
+      frmconfig.ShowModal;  // <== espera até o usuário fechar
+
+      FreeAndNil(frmconfig);  // opcional: libera da memória após fechar
     end;
-
-    frmconfig.ShowModal;  // <== espera até o usuário fechar
-
-    FreeAndNil(frmconfig);  // opcional: libera da memória após fechar
   end;
+
+  QrConfig.Close;
+  QrConfig.Open;
+  QrConfig.First;
 
   pubEmpresaAtiva       := StrToIntDef(DD.config.ReadString('Config', 'EmpresaAtiva', ''), 0); //StrToInt(ParamStr(2));
 
@@ -272,19 +293,11 @@ begin
   pubUsuarioAtivoNome   := '<<INDEFINIDO>>';
 
   pubDirEXE             := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)));
-  defurl                := DD.config.ReadString('Config', 'url', '');
-  defcode               := DD.config.ReadString('Config', 'code', '');
-  defusaPersonal        := DD.config.ReadString('Config', 'usaPersonal', '');
-  defusaVenda4          := DD.config.ReadString('Config', 'usaVenda4', '');
-  defusaDescricaoWeb    := DD.config.ReadString('Config', 'usaDescricaoWeb', '');
-  defusaModelo          := DD.config.ReadString('Config', 'usaModelo', '');
-  defusaDisponibilidade := DD.config.ReadString('Config', 'usaDisponibilidade', '');
-  defusaDestaque        := DD.config.ReadString('Config', 'usaDestaque', '');
-  defusaLancamento      := DD.config.ReadString('Config', 'usaLancamento', '');
-  defusaGarantia        := DD.config.ReadString('Config', 'usaGarantia', '');
-  defusaSEO             := DD.config.ReadString('Config', 'usaSEO', '');
   defTimerAtualizacao   := DD.config.ReadInteger('config', 'TimerAtualizacaoSegundos', 900) * 1000; // 15 minutos por padrão...
-  defusaenviofotos      := DD.config.ReadString('Config', 'usaEnviodeFotos', '');
+  defServer             := DD.config.ReadString('Config', 'server', '');
+
+  defTimerAtualizacao   := QrConfigTEMPO_ATUALIZA.Value * 1000;
+  defServer  := QrConfigSERVER.Value;
 end;
 
 procedure GravaLog(FArq, Texto: string);

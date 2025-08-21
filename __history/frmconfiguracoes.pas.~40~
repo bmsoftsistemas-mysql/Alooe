@@ -76,6 +76,12 @@ begin
   if edt_server.Text = '' then
     raiseWithFocus(edt_server, 'Necessário informar endereço do servidor!');
 
+//  DD.config.WriteInteger('config', 'TimerAtualizacaoSegundos', Trunc(edt_sync.Value * 60));
+//  DD.config.WriteString('config', 'url', (edt_url.Text));
+//  DD.config.WriteString('config', 'email', (edt_email.Text));
+//  DD.config.WriteString('config', 'senha', (edt_senha.Text));
+//  DD.config.WriteString('config', 'server', (edt_server.Text));
+
   QrConfig.Close;
   QrConfig.Open;
   QrConfig.First;
@@ -112,6 +118,12 @@ procedure Tfrmconfig.FormCreate(Sender: TObject);
 begin
   frmconfig.Height := 390;
   frmconfig.Width  := 620;
+//  btngravar.Left   := Trunc(frmconfig.Width / 2 - 49);
+//  edt_sync.Value   := Trunc(DD.config.ReadInteger('config', 'TimerAtualizacaoSegundos', 900) / 60);
+//  edt_url.Text     := DD.config.ReadString('config', 'url', '');
+//  edt_email.Text   := DD.config.ReadString('config', 'email', '');
+//  edt_senha.Text   := DD.config.ReadString('config', 'senha', '');
+//  edt_server.Text  := DD.config.ReadString('config', 'server', '');
 
   QrConfig.Close;
   QrConfig.Open;

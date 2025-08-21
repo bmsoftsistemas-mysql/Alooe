@@ -64,7 +64,7 @@ object frmconfig: Tfrmconfig
         Top = 30
         Width = 443
         Height = 21
-        TabOrder = 0
+        TabOrder = 1
       end
       object Panel2: TPanel
         AlignWithMargins = True
@@ -82,7 +82,7 @@ object frmconfig: Tfrmconfig
         Font.Style = [fsBold]
         ParentBackground = False
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 0
       end
     end
     object Panel6: TPanel
@@ -122,14 +122,14 @@ object frmconfig: Tfrmconfig
         Font.Style = [fsBold]
         ParentBackground = False
         ParentFont = False
-        TabOrder = 0
+        TabOrder = 1
       end
       object edt_url: TEdit
         Left = 111
         Top = 30
         Width = 443
         Height = 21
-        TabOrder = 1
+        TabOrder = 0
       end
     end
     object Panel8: TPanel
@@ -206,7 +206,7 @@ object frmconfig: Tfrmconfig
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 4
       OnClick = btngravarClick
     end
     object Panel10: TPanel
@@ -216,7 +216,7 @@ object frmconfig: Tfrmconfig
       Height = 64
       Align = alTop
       BevelOuter = bvNone
-      TabOrder = 4
+      TabOrder = 5
       object Label3: TLabel
         Left = 16
         Top = 35
@@ -254,7 +254,7 @@ object frmconfig: Tfrmconfig
         Width = 342
         Height = 21
         PasswordChar = '*'
-        TabOrder = 1
+        TabOrder = 2
       end
       object CkSenha: TCheckBox
         Left = 457
@@ -262,7 +262,7 @@ object frmconfig: Tfrmconfig
         Width = 97
         Height = 17
         Caption = 'Mostrar Senha'
-        TabOrder = 2
+        TabOrder = 1
         OnClick = CkSenhaClick
       end
     end
@@ -282,14 +282,14 @@ object frmconfig: Tfrmconfig
       Font.Style = [fsBold]
       ParentBackground = False
       ParentFont = False
-      TabOrder = 5
+      TabOrder = 6
     end
     object edt_server: TEdit
       Left = 112
       Top = 291
       Width = 342
       Height = 21
-      TabOrder = 6
+      TabOrder = 3
     end
   end
   object QrConfig: TFDQuery

@@ -238,11 +238,6 @@ end;
 
 procedure AjustaEnvio;
 begin
-
-  //  defHost := defHostDesenvolvimento;
-  //  defAppToken := defAppTokenDesenvolvimento;
-  //  defCompanyToken := defCompanyTokenBM;
-
   dd.serverTray.Request.CacheControl    := defCache;
   dd.serverTray.Request.ContentType     := defContent;
 
@@ -381,9 +376,6 @@ var
   str: TJSONString;
 
 begin
-  //  str := TJSONString.Create(TiraEstranhos(TiraAcento(ATexto)));
-  //  JSONObj.AddPair(TJSONPair.Create(ALabel, str));
-
   str := TJSONString.Create(ATexto);
   JSONObj.AddPair(TJSONPair.Create(ALabel, str));
 end;
@@ -395,7 +387,6 @@ end;
 
 function AddPairInt(JSONObj: TJSONObject; ALabel: string; AInteger: Integer): TJSONPair;
 begin
-  //  Result := TJSONPair.Create(ALabel, TJSONNumber.Create(AInteger));
   JSONObj.AddPair(ALabel, TJSONNumber.Create(AInteger));
 end;
 
