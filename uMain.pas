@@ -172,10 +172,10 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 var
   H: HWND;
 begin
-  fVersao.Caption := Copy(V.FileVersion, 1, RPos('.', V.FileVersion) - 1);
+  //fVersao.Caption := Copy(V.FileVersion, 1, RPos('.', V.FileVersion) - 1);
   fCompilacao.Caption := Copy(V.FileVersion, RPos('.', V.FileVersion) + 1, 3);
-  fBase.Caption := ParamStr(1);
-  fHost.Caption := defHost;
+  fBase.Caption := 'bm_alooe';
+  fHost.Caption := defServer;
   Application.ShowMainForm := True;
 
   bm_alooe.Params.Clear;

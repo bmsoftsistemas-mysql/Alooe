@@ -1,9 +1,10 @@
 object frmModelagem: TfrmModelagem
   Left = 0
   Top = 0
-  Caption = 'frmModelagem'
-  ClientHeight = 705
-  ClientWidth = 658
+  BorderStyle = bsDialog
+  Caption = 'Modelagem'
+  ClientHeight = 715
+  ClientWidth = 668
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,6 +12,7 @@ object frmModelagem: TfrmModelagem
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -18,8 +20,8 @@ object frmModelagem: TfrmModelagem
   object panel: TPanel
     Left = 0
     Top = 0
-    Width = 658
-    Height = 705
+    Width = 668
+    Height = 715
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
@@ -427,6 +429,10 @@ object frmModelagem: TfrmModelagem
       object TabSheet1: TTabSheet
         Caption = 'BALANCIN'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label30: TLabel
           Left = 132
           Top = 20
@@ -651,6 +657,10 @@ object frmModelagem: TfrmModelagem
       object CRACK: TTabSheet
         Caption = 'CRACK'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label22: TLabel
           Left = 13
           Top = 24
@@ -788,6 +798,10 @@ object frmModelagem: TfrmModelagem
       end
       object TabSheet2: TTabSheet
         Caption = 'LASER'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label42: TLabel
           Left = 29
           Top = 1
@@ -1665,6 +1679,10 @@ object frmModelagem: TfrmModelagem
       object TabSheet3: TTabSheet
         Caption = 'LASER C/ MONTAGEM'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label92: TLabel
           Left = 148
           Top = 13
@@ -2077,6 +2095,10 @@ object frmModelagem: TfrmModelagem
       object TabSheet4: TTabSheet
         Caption = 'GALVO'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label114: TLabel
           Left = 20
           Top = 32
@@ -2241,6 +2263,10 @@ object frmModelagem: TfrmModelagem
       object TabSheet7: TTabSheet
         Caption = 'GALVO CORTE FINAL'
         ImageIndex = 8
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label4: TLabel
           Left = 44
           Top = 40
@@ -2402,6 +2428,10 @@ object frmModelagem: TfrmModelagem
       object TabSheet5: TTabSheet
         Caption = 'CRACK C/ SILK CHAPADO'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label122: TLabel
           Left = 28
           Top = 40
@@ -2623,6 +2653,10 @@ object frmModelagem: TfrmModelagem
       object TabSheet6: TTabSheet
         Caption = 'ETQ. C/ SILK CHAPADO SEM FACA'
         ImageIndex = 7
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label131: TLabel
           Left = 30
           Top = 38
@@ -2874,8 +2908,8 @@ object frmModelagem: TfrmModelagem
     end
     object Panel1: TPanel
       Left = 0
-      Top = 664
-      Width = 658
+      Top = 674
+      Width = 668
       Height = 41
       Align = alBottom
       BevelOuter = bvNone

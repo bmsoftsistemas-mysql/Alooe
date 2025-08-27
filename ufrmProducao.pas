@@ -38,7 +38,6 @@ type
     QrModelosproduct_unit: TStringField;
     QrModelosproduct_color: TStringField;
     QrModelosnome_etiqueta: TStringField;
-    QrModeloscliente: TStringField;
     QrModeloscor_etiqueta: TStringField;
     QrModelosquantidade_producao: TBCDField;
     DtModelos: TDataSource;
@@ -78,6 +77,7 @@ type
     QrSaveProddadosModelagem: TMemoField;
     Label2: TLabel;
     Label3: TLabel;
+    QrModeloscliente: TStringField;
     procedure btnEnviarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBLookupModeloCloseUp(Sender: TObject);
@@ -103,6 +103,7 @@ type
     function FormatDateTimeToAPIPattern(Data: TDateTime): string;
     function ParseAPIDateTimeToLocal(const DataStr: string): TDateTime;
     function ImageToBase64(const FilePath: string): string;
+    procedure SelecionaCorte;
     { Private declarations }
   public
     { Public declarations }
@@ -383,7 +384,9 @@ begin
   if (cbTipoCorte.Value = '') then
     raiseWithFocus(cbTipoCorte, 'Obrigatório escolher Modelo a ser usado');
 
-  Edit := EditOrd;
+  if EditOrd then
+    Edit := EditOrd;
+
   TipoCorte := StrToInt(cbTipoCorte.Value);
   frmModelagem := Tfrmmodelagem.Create(Application);
   frmModelagem.ShowModal;
@@ -636,10 +639,6 @@ procedure TfrmProducao.FormShow(Sender: TObject);
 begin
   if Visualizacao then
     btnEnviar.Visible := False;
-  // Modelo
-  QrModelos.Close;
-  QrModelos.Open;
-
   //ordenar taborder forçadamente
 //  EdtModelos.SetFocus;
   EdtModelos.TabOrder    := 0;
@@ -665,9 +664,9 @@ begin
     QrSaveProd.Open;
 
     EdtModelos.OnChange := nil;
-    EdtModelos.Text    := QrSaveProdname.AsString;
-    EdtModelos.Enabled := False;
-    EdtModelos.TabStop := False;
+    EdtModelos.Text     := QrSaveProdname.AsString;
+    EdtModelos.Enabled  := False;
+    EdtModelos.TabStop  := False;
     EdtModelos.ReadOnly := True;
     EdtModelos.OnChange := EdtModelosChange;
 
@@ -695,6 +694,74 @@ begin
   end;
 end;
 
+procedure TfrmProducao.SelecionaCorte;
+begin
+    if QrModeloscliente.AsString <> '' then
+  begin
+    case QrModeloscliente.AsInteger of
+      0: begin
+          // Validação para etapa Balancin e Enfesto
+          TipoCorte := 0;
+          cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      1: begin
+           // Validação para etapa Crack
+           TipoCorte := 1;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      2: begin
+           // Validação para etapa Laser P
+           TipoCorte := 2;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      3: begin
+           // Validação para etapa Laser M
+           TipoCorte := 3;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      4: begin
+           // Validação para etapa Laser G
+           TipoCorte := 4;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      5: begin
+           // Validação para etapa Laser c/ Montagem
+           TipoCorte := 5;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      6: begin
+           // Validação para etapa Galvo
+           TipoCorte := 6;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      7: begin
+           // Validação para etapa Galvo Final
+           TipoCorte := 7;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      8: begin
+           // Validação para etapa Crack c/ Silk Chapado
+           TipoCorte := 8;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      9: begin
+           // Validação para etapa Etq c/ silk chapado sem faca
+           TipoCorte := 9;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+    end;
+  end;
+end;
+
 procedure TfrmProducao.SelecionaModelo;
 begin
   if lstSugestoes.ItemIndex >= 0 then
@@ -716,6 +783,7 @@ begin
       SetColorBoxFromHex(CbCor, QrModelos.FieldByName('cor_etiqueta').AsString);
     end;
 
+    SelecionaCorte;
     DadosCarregados := True;
   end;
 

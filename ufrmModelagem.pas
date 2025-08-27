@@ -747,12 +747,12 @@ begin
    end
    else
    begin
-     edt_laserm2_hv1.Text := FloatToStr(0);
+     edt_laserm2_hv1.Text    := FloatToStr(0);
      edt_laserm2_chapa1.Text := FloatToStr(0);
-     edt_laserm2_hv2.Text := FloatToStr(0);
+     edt_laserm2_hv2.Text    := FloatToStr(0);
      edt_laserm2_chapa2.Text := FloatToStr(0);
-     edt_laserm2_pc.Text := FloatToStr(0);
-     edt_laserm2_qc.Text := FloatToStr(0);
+     edt_laserm2_pc.Text     := FloatToStr(0);
+     edt_laserm2_qc.Text     := FloatToStr(0);
    end;
 end;
 
@@ -1186,7 +1186,13 @@ begin
            raiseWithFocus(edt_balancin_qtd_qdr1, 'Quantidade de Etiqueta no Quadrado em branco');
 
          if EdtCodigo.Text = '' then
-           raiseWithFocus(CbTipoFaca, 'Tipo de faca e medidas em branco ou não encontrada');
+           raiseWithFocus(CbTipoFaca, 'Tipo de faca em branco ou não encontrada');
+
+         if EdtMedida1.Text = '' then
+           raiseWithFocus(EdtMedida1, 'Medida 1 em branco');
+
+         if EdtMedida2.Text = '' then
+           raiseWithFocus(EdtMedida2, 'Medida 2 em branco');
 
          if (edt_medida_maior2.Text <> '') and (edt_medida_menor2.Text <> '') then
          begin
@@ -1883,15 +1889,15 @@ var
 ALT, QT, CH1, CH2, DESC, ETQPP, ETPT, TG1, TG2, MM, MN, MA:DOUBLE;
 T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, AL1, AL2:DOUBLE;
 begin
-   T1 := 0;
-   T2 := 0;
-   T3 := 0;
-   T4 := 0;
-   T5 := 0;
-   T6 := 0;
-   T7 := 0;
-   T8 := 0;
-   T9 := 0;
+   T1  := 0;
+   T2  := 0;
+   T3  := 0;
+   T4  := 0;
+   T5  := 0;
+   T6  := 0;
+   T7  := 0;
+   T8  := 0;
+   T9  := 0;
    T10 := 0;
    AL1 := 760;
    AL2 := 460;
@@ -1975,15 +1981,15 @@ var
 ALT, QT, CH1, CH2, DESC, ETQPP, ETPT, TG1, TG2, MM, MN, MA:DOUBLE;
 T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, AC1, AC2:DOUBLE;
 begin
-   T1 := 0;
-   T2 := 0;
-   T3 := 0;
-   T4 := 0;
-   T5 := 0;
-   T6 := 0;
-   T7 := 0;
-   T8 := 0;
-   T9 := 0;
+   T1  := 0;
+   T2  := 0;
+   T3  := 0;
+   T4  := 0;
+   T5  := 0;
+   T6  := 0;
+   T7  := 0;
+   T8  := 0;
+   T9  := 0;
    T10 := 0;
    AC1 := 450;
    AC2 := 350;
@@ -2108,9 +2114,9 @@ begin
        T6 := MA / T5;
      end;
 
-     edt_crack_hv1.Text := FloatToStr(T1);
+     edt_crack_hv1.Text    := FloatToStr(T1);
      edt_crack_chapa1.Text := FloatToStr(T3);
-     edt_crack_pc.Text := FloatToStr(T5);
+     edt_crack_pc.Text     := FloatToStr(T5);
 
      if MA <> 0 then
        edt_crack_qc.Text := FloatToStr(T6);

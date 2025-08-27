@@ -158,11 +158,11 @@ begin
       frmMain.btnAtualizacaoAutomaticaTudo.OnClick(frmMain.btnAtualizacaoAutomaticaTudo);
 
     frmProducao := TfrmProducao.Create(Application);
-    EditOrd := True;
-    IDPRODUCAO := QrProducoesid_producao.AsString;
-    IDPRO      := QrProducoesid_prod.AsString;
-    COR        := QrProducoescolor.AsString;
-    IMAGE      := QrProducoesimage.Value;
+    EditOrd     := True;
+    IDPRODUCAO  := QrProducoesid_producao.AsString;
+    IDPRO       := QrProducoesid_prod.AsString;
+    COR         := QrProducoescolor.AsString;
+    IMAGE       := QrProducoesimage.Value;
     frmProducao.ShowModal;
     frmProducao.Free;
 

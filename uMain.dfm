@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
   Left = 0
   Top = 0
-  Caption = 'Aloee - Vers'#227'o 1.0.1'
+  Caption = 'Aloee - Vers'#227'o 1.1.0'
   ClientHeight = 625
   ClientWidth = 1106
   Color = clBtnFace
@@ -78,16 +78,16 @@ object frmMain: TfrmMain
     object fVersao: TRzFieldStatus
       Left = 0
       Top = 0
-      Width = 122
+      Width = 110
       Height = 19
       Align = alLeft
       OnDblClick = fVersaoDblClick
-      FieldLabel = 'Vers'#227'o: 1.0.027'
+      FieldLabel = 'Vers'#227'o: 1.1.0'
       AutoSize = True
       Caption = ''
     end
     object fCompilacao: TRzFieldStatus
-      Left = 122
+      Left = 110
       Top = 0
       Width = 102
       Height = 19
@@ -99,7 +99,7 @@ object frmMain: TfrmMain
       ExplicitHeight = 25
     end
     object fBase: TRzFieldStatus
-      Left = 224
+      Left = 212
       Top = 0
       Width = 71
       Height = 19
@@ -107,11 +107,11 @@ object frmMain: TfrmMain
       FieldLabel = 'Base:'
       AutoSize = True
       Caption = ''
-      ExplicitLeft = 88
-      ExplicitHeight = 25
+      ExplicitLeft = 218
+      ExplicitTop = 6
     end
     object fHost: TRzFieldStatus
-      Left = 295
+      Left = 283
       Top = 0
       Width = 70
       Height = 19
@@ -652,7 +652,7 @@ object frmMain: TfrmMain
   object bm_alooe: TFDConnection
     Params.Strings = (
       'DriverID=MySQL')
-    Left = 760
-    Top = 416
+    Left = 696
+    Top = 168
   end
 end
