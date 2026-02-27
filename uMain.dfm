@@ -531,7 +531,6 @@ object frmMain: TfrmMain
       end>
     Left = 134
     Top = 168
-    Bitmap = {}
   end
   object I16: TPngImageList
     PngImages = <
@@ -606,7 +605,6 @@ object frmMain: TfrmMain
       end>
     Left = 86
     Top = 168
-    Bitmap = {}
   end
   object F: TRzFormState
     Section = 'frmMain'
@@ -651,6 +649,9 @@ object frmMain: TfrmMain
   end
   object bm_alooe: TFDConnection
     Params.Strings = (
+      'User_Name=Adm'
+      'Password=Adm7062'
+      'Database=bm_alooe'
       'DriverID=MySQL')
     Left = 696
     Top = 168

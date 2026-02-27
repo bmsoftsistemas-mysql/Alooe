@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IPPeerClient, REST.Client,
-  Data.Bind.Components, Data.Bind.ObjectScope, REST.Authenticator.OAuth;
+  Data.Bind.Components, Data.Bind.ObjectScope, REST.Authenticator.OAuth,
+  REST.Types;
 
 type
   TfrmRequest = class(TForm)

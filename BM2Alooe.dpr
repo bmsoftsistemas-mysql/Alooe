@@ -17,7 +17,6 @@ uses
   ufrmModelos in 'ufrmModelos.pas' {frmModelos},
   ufrmProducoesEnv in 'ufrmProducoesEnv.pas' {frmerros},
   frmconfiguracoes in 'frmconfiguracoes.pas' {frmconfig},
-  Ro in '..\Units\Ro.pas',
   ufrmFundoModal in '..\Units\ufrmFundoModal.pas' {frmFundoModal},
   Vcl.Themes,
   Vcl.Styles,

@@ -43,6 +43,7 @@ type
     btnTodos: TButton;
     btnNovaOrdem: TButton;
     QrProducoesimage: TMemoField;
+    QrProducoesn_pedido: TStringField;
     procedure FormCreate(Sender: TObject);
     procedure btnFiltrarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

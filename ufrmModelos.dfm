@@ -356,7 +356,9 @@ object frmModelos: TfrmModelos
       '  progressStatus'
       'FROM ordens_producao'
       ''
-      'where progressStatus <> '#39'Ended'#39)
+      
+        'where (progressStatus <> '#39'Ended'#39') and (salesOrderDate >= CURRENT' +
+        '_DATE - INTERVAL 5 DAY)')
     Left = 504
     Top = 280
     object QrProducoesid_producao: TStringField

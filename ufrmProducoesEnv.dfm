@@ -126,7 +126,7 @@ object frmProducoesEnv: TfrmProducoesEnv
           Margins.Top = 10
           Margins.Bottom = 10
           Align = alLeft
-          Date = 0.720087824076472300
+          Date = 46038.000000000000000000
           Time = 0.720087824076472300
           TabOrder = 0
         end
@@ -140,7 +140,7 @@ object frmProducoesEnv: TfrmProducoesEnv
         Margins.Top = 10
         Margins.Bottom = 10
         Align = alLeft
-        Date = 0.720087824076472300
+        Date = 46038.000000000000000000
         Time = 0.720087824076472300
         TabOrder = 2
       end
@@ -214,10 +214,17 @@ object frmProducoesEnv: TfrmProducoesEnv
       Columns = <
         item
           Expanded = False
+          FieldName = 'n_pedido'
+          Title.Caption = 'N'#176' Pedido'
+          Width = 54
+          Visible = True
+        end
+        item
+          Expanded = False
           FieldName = 'salesOrder'
           ReadOnly = True
-          Title.Caption = 'N'#176' Pedido'
-          Width = 100
+          Title.Caption = 'N'#176' Pedido Venda'
+          Width = 84
           Visible = True
         end
         item
@@ -290,7 +297,8 @@ object frmProducoesEnv: TfrmProducoesEnv
       '  color,'
       '  progressStatus,'
       '  image,'
-      '  dadosModelagem'
+      '  dadosModelagem,'
+      '  n_pedido'
       'FROM ordens_producao;')
     Left = 776
     Top = 304
@@ -379,6 +387,12 @@ object frmProducoesEnv: TfrmProducoesEnv
     object QrProducoesimage: TMemoField
       FieldName = 'image'
       BlobType = ftMemo
+    end
+    object QrProducoesn_pedido: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'n_pedido'
+      Origin = 'n_pedido'
+      Size = 255
     end
   end
   object DtProducoes: TDataSource

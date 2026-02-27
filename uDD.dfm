@@ -4,7 +4,7 @@ object DD: TDD
   Height = 405
   Width = 602
   object db1: TDBISAMDatabase
-    EngineVersion = '4.44 Build 3'
+    EngineVersion = '4.49 Build 4'
     DatabaseName = 'db'
     Directory = 'F:\bmsoft\Bases\saletense'
     SessionName = 'Default'
@@ -187,11 +187,10 @@ object DD: TDD
       end>
     Left = 204
     Top = 72
-    Bitmap = {}
   end
   object tbEmp: TDBISAMTable
     DatabaseName = 'db'
-    EngineVersion = '4.44 Build 3'
+    EngineVersion = '4.49 Build 4'
     TableName = 'empresas'
     Left = 40
     Top = 132
@@ -263,7 +262,7 @@ object DD: TDD
   end
   object qrTemp: TDBISAMQuery
     DatabaseName = 'db'
-    EngineVersion = '4.44 Build 3'
+    EngineVersion = '4.49 Build 4'
     Params = <>
     Left = 40
     Top = 72
@@ -326,7 +325,6 @@ object DD: TDD
       end>
     Left = 204
     Top = 132
-    Bitmap = {}
   end
   object frameNaoObrigatorio: TRzFrameController
     DisabledColor = 14671839
@@ -405,11 +403,10 @@ object DD: TDD
     Top = 12
   end
   object SX: TDBISAMSession
-    EngineVersion = '4.44 Build 3'
+    EngineVersion = '4.49 Build 4'
     Active = True
     LockRetryCount = 10
     LockWaitTime = 1000
-    PrivateDir = 'C:\Users\luisc\AppData\Local\Temp\'
     SessionName = 'SS'
     RemoteEncryptionPassword = 'elevatesoft'
     RemoteAddress = '127.0.0.1'
@@ -422,7 +419,6 @@ object DD: TDD
     Top = 194
   end
   object serverTray: TIdHTTP
-    AllowCookies = True
     HandleRedirects = True
     ProxyParams.BasicAuthentication = False
     ProxyParams.ProxyPort = 0
@@ -446,7 +442,7 @@ object DD: TDD
     Left = 204
     Top = 252
     Bitmap = {
-      494C010101000800CC0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -586,7 +582,6 @@ object DD: TDD
       000000000000}
   end
   object IdFTPTray: TIdFTP
-    IPVersion = Id_IPv4
     Passive = True
     ConnectTimeout = 0
     TransferType = ftBinary

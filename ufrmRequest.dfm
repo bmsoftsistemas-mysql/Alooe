@@ -20,7 +20,6 @@ object frmRequest: TfrmRequest
     BaseURL = 'https://dev-api.aloee.it'
     ContentType = 'application/x-www-form-urlencoded'
     Params = <>
-    HandleRedirects = True
     RaiseExceptionOn500 = False
     Left = 48
   end
@@ -29,15 +28,15 @@ object frmRequest: TfrmRequest
     Method = rmPOST
     Params = <
       item
-        name = 'consumer_key'
+        Name = 'consumer_key'
         Value = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0'
       end
       item
-        name = 'consumer_secret'
+        Name = 'consumer_secret'
         Value = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526'
       end
       item
-        name = 'code'
+        Name = 'code'
         Value = 'd6ef0a3fd271ef9ff9228aa29ae80d6edc06b5518ba8cf6145d57b632a96d6b0'
       end>
     Response = RESTResponseAuth
@@ -55,7 +54,6 @@ object frmRequest: TfrmRequest
     BaseURL = 'https://dev-api.aloee.it'
     ContentType = 'application/x-www-form-urlencoded'
     Params = <>
-    HandleRedirects = True
     RaiseExceptionOn500 = False
     Left = 184
     Top = 8
@@ -65,15 +63,15 @@ object frmRequest: TfrmRequest
     Method = rmPOST
     Params = <
       item
-        name = 'consumer_key'
+        Name = 'consumer_key'
         Value = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0'
       end
       item
-        name = 'consumer_secret'
+        Name = 'consumer_secret'
         Value = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526'
       end
       item
-        name = 'code'
+        Name = 'code'
         Value = 'd6ef0a3fd271ef9ff9228aa29ae80d6edc06b5518ba8cf6145d57b632a96d6b0'
       end>
     Response = RESTResponseModelo
@@ -92,7 +90,6 @@ object frmRequest: TfrmRequest
     BaseURL = 'https://dev-api.aloee.it'
     ContentType = 'application/x-www-form-urlencoded'
     Params = <>
-    HandleRedirects = True
     RaiseExceptionOn500 = False
     Left = 312
     Top = 8
@@ -102,15 +99,15 @@ object frmRequest: TfrmRequest
     Method = rmPOST
     Params = <
       item
-        name = 'consumer_key'
+        Name = 'consumer_key'
         Value = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0'
       end
       item
-        name = 'consumer_secret'
+        Name = 'consumer_secret'
         Value = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526'
       end
       item
-        name = 'code'
+        Name = 'code'
         Value = 'd6ef0a3fd271ef9ff9228aa29ae80d6edc06b5518ba8cf6145d57b632a96d6b0'
       end>
     Response = RESTResponseProd
@@ -129,7 +126,6 @@ object frmRequest: TfrmRequest
     BaseURL = 'https://dev-api.aloee.it'
     ContentType = 'application/x-www-form-urlencoded'
     Params = <>
-    HandleRedirects = True
     RaiseExceptionOn500 = False
     Left = 416
     Top = 16
@@ -139,15 +135,15 @@ object frmRequest: TfrmRequest
     Method = rmPOST
     Params = <
       item
-        name = 'consumer_key'
+        Name = 'consumer_key'
         Value = '89475d824b72ef1d5dad6c24dbd5d89febe6071cb196da33a14c7ef78dd2b2c0'
       end
       item
-        name = 'consumer_secret'
+        Name = 'consumer_secret'
         Value = '498605fa3a9b4276ac2faf29942e0f1bedf3b9efd9f6d2ccdc266ce219d8f526'
       end
       item
-        name = 'code'
+        Name = 'code'
         Value = 'd6ef0a3fd271ef9ff9228aa29ae80d6edc06b5518ba8cf6145d57b632a96d6b0'
       end>
     Response = RESTResponseProdGet
