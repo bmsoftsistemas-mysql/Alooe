@@ -1174,15 +1174,12 @@ begin
     begin
       Fim := Pos('</tr>', LowerCase(HTML), Inicio);
       if Fim = 0 then Break;
-
       Linha := Copy(HTML, Inicio, (Fim + 5) - Inicio);
-
       if Pos(LowerCase(Placeholder), LowerCase(Linha)) > 0 then
       begin
         HTML := StringReplace(HTML, Linha, '', []);
         Break;
       end;
-
       Inicio := Pos('<tr', LowerCase(HTML), Fim);
     end;
   end;
@@ -1194,18 +1191,15 @@ var
   Texto: string;
 begin
   Texto := Trim(S);
-
   // vazio ou só espaço
   if Texto = '' then
     Exit(True);
-
   // tenta converter número
   if TryStrToFloat(StringReplace(Texto, ',', '.', [rfReplaceAll]), V) then
   begin
     if V = 0 then
       Exit(True);
   end;
-
   Result := False;
 end;
 
@@ -1459,13 +1453,13 @@ begin
   LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[qtd_modelos]', edt_qtd_modelos.Text, [rfIgnoreCase, rfReplaceAll]);
   LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[qtd_etiquetas]', edt_qtd_etiquetas.Text, [rfIgnoreCase, rfReplaceAll]);
   LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[max_aceitavel]', edt_max_aceitavel.Text, [rfIgnoreCase, rfReplaceAll]);
-  LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[material1]', edt_material1.Text, [rfIgnoreCase, rfReplaceAll]);
-  LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[material2]', edt_material2.Text, [rfIgnoreCase, rfReplaceAll]);
+  //LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[material1]', edt_material1.Text, [rfIgnoreCase, rfReplaceAll]);
+  //LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[material2]', edt_material2.Text, [rfIgnoreCase, rfReplaceAll]);
 
-  LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[medida_maior1]', edt_medida_maior1.Text, [rfIgnoreCase, rfReplaceAll]);
-  LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[medida_maior2]', edt_medida_maior2.Text, [rfIgnoreCase, rfReplaceAll]);
-  LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[medida_menor1]', edt_medida_menor1.Text, [rfIgnoreCase, rfReplaceAll]);
-  LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[medida_menor2]', edt_medida_menor2.Text, [rfIgnoreCase, rfReplaceAll]);
+  //LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[medida_maior1]', edt_medida_maior1.Text, [rfIgnoreCase, rfReplaceAll]);
+  //LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[medida_maior2]', edt_medida_maior2.Text, [rfIgnoreCase, rfReplaceAll]);
+  //LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[medida_menor1]', edt_medida_menor1.Text, [rfIgnoreCase, rfReplaceAll]);
+  //LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[medida_menor2]', edt_medida_menor2.Text, [rfIgnoreCase, rfReplaceAll]);
 
   LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[mt_compra1]', edt_metragem_compra1.Text, [rfIgnoreCase, rfReplaceAll]);
   LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[mt_compra2]', edt_metragem_compra2.Text, [rfIgnoreCase, rfReplaceAll]);

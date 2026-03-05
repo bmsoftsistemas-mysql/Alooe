@@ -26,6 +26,7 @@ object frmProducao: TfrmProducao
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitTop = -8
     object LabelModelo: TLabel
       Left = 32
       Top = 20
@@ -104,14 +105,14 @@ object frmProducao: TfrmProducao
     end
     object Label2: TLabel
       Left = 32
-      Top = 343
+      Top = 368
       Width = 43
       Height = 13
       Caption = 'C'#225'lculos:'
     end
     object Label3: TLabel
       Left = 32
-      Top = 543
+      Top = 520
       Width = 45
       Height = 13
       Caption = 'Imagens:'
@@ -122,6 +123,27 @@ object frmProducao: TfrmProducao
       Width = 110
       Height = 13
       Caption = 'N'#176' do Pedido de Venda'
+    end
+    object Label5: TLabel
+      Left = 32
+      Top = 673
+      Width = 37
+      Height = 13
+      Caption = 'Largura'
+    end
+    object Label6: TLabel
+      Left = 168
+      Top = 673
+      Width = 29
+      Height = 13
+      Caption = 'Altura'
+    end
+    object Label7: TLabel
+      Left = 32
+      Top = 323
+      Width = 74
+      Height = 13
+      Caption = 'C'#243'digo Imagem'
     end
     object EdtQuantidade: TEdit
       Left = 199
@@ -161,9 +183,9 @@ object frmProducao: TfrmProducao
     end
     object MmObs: TMemo
       Left = 32
-      Top = 270
+      Top = 267
       Width = 481
-      Height = 63
+      Height = 51
       BorderStyle = bsNone
       Lines.Strings = (
         'MmObs')
@@ -203,17 +225,17 @@ object frmProducao: TfrmProducao
       OnKeyDown = lstSugestoesKeyDown
     end
     object btnImage: TButton
-      Left = 32
-      Top = 686
+      Left = 438
+      Top = 667
       Width = 75
-      Height = 25
+      Height = 21
       Caption = 'Add Imagem'
       TabOrder = 10
       OnClick = btnImageClick
     end
     object FlowPanel1: TFlowPanel
       Left = 32
-      Top = 557
+      Top = 534
       Width = 481
       Height = 127
       BevelKind = bkFlat
@@ -297,12 +319,12 @@ object frmProducao: TfrmProducao
     end
     object WBDadosModelo: TWebBrowser
       Left = 32
-      Top = 357
+      Top = 384
       Width = 481
-      Height = 180
+      Height = 134
       TabOrder = 16
       ControlData = {
-        4C000000B63100009B1200000000000000000000000000000000000000000000
+        4C000000B6310000D90D00000000000000000000000000000000000000000000
         000000004C000000000000000000000001000000E0D057007335CF11AE690800
         2B2E126208000000000000004C0000000114020000000000C000000000000046
         8000000000000000000000000000000000000000000000000000000000000000
@@ -322,8 +344,32 @@ object frmProducao: TfrmProducao
       Width = 75
       Height = 31
       Caption = 'Imprimir'
-      TabOrder = 21
+      TabOrder = 18
       OnClick = Button1Click
+    end
+    object EdtLarguraMM: TEdit
+      Left = 32
+      Top = 688
+      Width = 121
+      Height = 21
+      TabOrder = 19
+      OnChange = EdtQuantidadeChange
+    end
+    object EdtAlturaMM: TEdit
+      Left = 168
+      Top = 688
+      Width = 121
+      Height = 21
+      TabOrder = 20
+      OnChange = EdtQuantidadeChange
+    end
+    object edtCodigo: TEdit
+      Left = 32
+      Top = 341
+      Width = 121
+      Height = 21
+      TabOrder = 24
+      OnChange = EdtQuantidadeChange
     end
   end
   object WebBrowserImp: TWebBrowser
@@ -457,7 +503,8 @@ object frmProducao: TfrmProducao
       '  image,'
       '  tipoCorte,'
       '  dadosModelagem,'
-      '  n_pedido'
+      '  n_pedido,'
+      '  codigo'
       ''
       'FROM ordens_producao'
       'where id_producao= :id')
@@ -580,6 +627,12 @@ object frmProducao: TfrmProducao
       AutoGenerateValue = arDefault
       FieldName = 'n_pedido'
       Origin = 'n_pedido'
+      Size = 255
+    end
+    object QrSaveProdcodigo: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codigo'
+      Origin = 'codigo'
       Size = 255
     end
   end

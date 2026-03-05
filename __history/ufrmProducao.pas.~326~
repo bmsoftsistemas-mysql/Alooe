@@ -90,6 +90,9 @@ type
     Label5: TLabel;
     EdtAlturaMM: TEdit;
     Label6: TLabel;
+    Label7: TLabel;
+    edtCodigo: TEdit;
+    QrSaveProdcodigo: TStringField;
     procedure btnEnviarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBLookupModeloCloseUp(Sender: TObject);
@@ -345,6 +348,7 @@ begin
           QrSaveProdtipoCorte.AsInteger                  := StrToInt(cbTipoCorte.Value);
           QrSaveProddadosModelagem.AsString              := DadosModeloEnvio;
           QrSaveProdn_pedido.AsString                    := name;
+          QrSaveProdcodigo.AsString                      := edtCodigo.Text;
           QrSaveProd.Post;
 
           AvisoAtt('Processo de envio concluído...', 5, -1);
@@ -605,6 +609,24 @@ begin
       HtmlFinal.Add('  margin: 0;');
       HtmlFinal.Add('}');
 
+      HtmlFinal.Add('.texto-overlay {');
+      HtmlFinal.Add('  position: absolute;');
+      HtmlFinal.Add('  font-family: Tahoma, sans-serif;');
+      HtmlFinal.Add('  font-size: 10pt;');
+      HtmlFinal.Add('  font-weight: bold;');
+      HtmlFinal.Add('  color: black;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.texto-esq {');
+      HtmlFinal.Add('  top: 2mm;');
+      HtmlFinal.Add('  left: 2mm;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.texto-dir {');
+      HtmlFinal.Add('  top: 2mm;');
+      HtmlFinal.Add('  right: 2mm;');
+      HtmlFinal.Add('}');
+
       // mata centralização vinda do HTML
       HtmlFinal.Add('.planilha-container center { text-align: left !important; }');
 
@@ -650,18 +672,26 @@ begin
 
       // GABARITO: remover pontilhado
       HtmlFinal.Add('.gabarito-box {');
+      HtmlFinal.Add('  position: relative;');
       HtmlFinal.Add('  display: inline-block;');
+      HtmlFinal.Add('  width: '  + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm;');
+      HtmlFinal.Add('  height: ' + StringReplace(FormatFloat('0.###', HFix), ',', '.', [rfReplaceAll]) + 'mm;');
       HtmlFinal.Add('  box-sizing: border-box;');
-      HtmlFinal.Add('  outline: none !important;'); // <<< tira pontilhado
       HtmlFinal.Add('}');
 
       // --- MODO GABARITO (1:1) --- (tamanho aplicado DIRETO na imagem)
+//      HtmlFinal.Add('.gabarito-box img {');
+//      HtmlFinal.Add('  width: '  + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm !important;');
+//      HtmlFinal.Add('  height: ' + StringReplace(FormatFloat('0.###', HFix), ',', '.', [rfReplaceAll]) + 'mm !important;');
+//      HtmlFinal.Add('  max-width: none !important;');
+//      HtmlFinal.Add('  max-height: none !important;');
+//      HtmlFinal.Add('  object-fit: fill !important;');
+//      HtmlFinal.Add('  display: block;');
+//      HtmlFinal.Add('}');
+
       HtmlFinal.Add('.gabarito-box img {');
-      HtmlFinal.Add('  width: '  + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm !important;');
-      HtmlFinal.Add('  height: ' + StringReplace(FormatFloat('0.###', HFix), ',', '.', [rfReplaceAll]) + 'mm !important;');
-      HtmlFinal.Add('  max-width: none !important;');
-      HtmlFinal.Add('  max-height: none !important;');
-      HtmlFinal.Add('  object-fit: fill !important;');
+      HtmlFinal.Add('  width: 100%;');
+      HtmlFinal.Add('  height: 100%;');
       HtmlFinal.Add('  display: block;');
       HtmlFinal.Add('}');
 
@@ -726,18 +756,28 @@ begin
       // IMAGEM
       HtmlFinal.Add('<div class="imagem-container">');
       HtmlFinal.Add('<div class="gabarito-box">');
-      HtmlFinal.Add('<img src="etiqueta.png?v=' + IntToStr(GetTickCount) + '" alt="Etiqueta">');
-      HtmlFinal.Add('</div>');
-      HtmlFinal.Add('</div>');
 
+      // IMAGEM
+      HtmlFinal.Add('<img src="etiqueta.png?v=' + IntToStr(GetTickCount) + '" alt="Etiqueta">');
+
+      // TEXTO ESQUERDA (edtcodigo)
+      HtmlFinal.Add('<div class="texto-overlay texto-esq">' +
+                    Trim(EdtCodigo.Text) +
+                    '</div>');
+
+      // TEXTO DIREITA (medidas)
+      HtmlFinal.Add('<div class="texto-overlay texto-dir">' +
+                    Trim(EdtLarguraMM.Text) + 'x' + Trim(EdtAlturaMM.Text) +
+                    '</div>');
+
+      HtmlFinal.Add('</div>');
       // OBS (abaixo da imagem)
       if ObsHTML <> '' then
       begin
         HtmlFinal.Add('<div class="obs-container">');
-        HtmlFinal.Add('<b>Obs:</b> ' + ObsHTML);
+        HtmlFinal.Add('<b></b> ' + ObsHTML);
         HtmlFinal.Add('</div>');
       end;
-
       HtmlFinal.Add('</div>'); // quadro-inferior
 
       // Coluna direita (livre)

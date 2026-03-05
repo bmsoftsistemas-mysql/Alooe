@@ -181,7 +181,7 @@ object frmModelagem: TfrmModelagem
       Height = 21
       Color = clMoneyGreen
       NumbersOnly = True
-      TabOrder = 4
+      TabOrder = 8
       OnChange = edt_max_aceitavelChange
     end
     object edt_metragem_compra1: TEdit
@@ -191,7 +191,7 @@ object frmModelagem: TfrmModelagem
       Height = 21
       TabStop = False
       ReadOnly = True
-      TabOrder = 5
+      TabOrder = 9
     end
     object edt_metragem_compra2: TEdit
       Left = 537
@@ -200,16 +200,16 @@ object frmModelagem: TfrmModelagem
       Height = 21
       TabStop = False
       ReadOnly = True
-      TabOrder = 6
+      TabOrder = 10
     end
     object edt_medida_maior1: TEdit
       Left = 106
-      Top = 123
+      Top = 125
       Width = 112
       Height = 21
       Color = clMoneyGreen
       NumbersOnly = True
-      TabOrder = 7
+      TabOrder = 4
       OnChange = edt_medida_maior1Change
     end
     object edt_medida_menor1: TEdit
@@ -219,7 +219,7 @@ object frmModelagem: TfrmModelagem
       Height = 21
       Color = clMoneyGreen
       NumbersOnly = True
-      TabOrder = 8
+      TabOrder = 5
       OnChange = edt_medida_menor1Change
     end
     object edt_medida_maior2: TEdit
@@ -229,7 +229,7 @@ object frmModelagem: TfrmModelagem
       Height = 21
       Color = clMoneyGreen
       NumbersOnly = True
-      TabOrder = 9
+      TabOrder = 6
       OnChange = edt_medida_maior2Change
     end
     object edt_medida_menor2: TEdit
@@ -239,7 +239,7 @@ object frmModelagem: TfrmModelagem
       Height = 21
       Color = clMoneyGreen
       NumbersOnly = True
-      TabOrder = 10
+      TabOrder = 7
       OnChange = edt_medida_menor2Change
     end
     object edt_material1: TEdit

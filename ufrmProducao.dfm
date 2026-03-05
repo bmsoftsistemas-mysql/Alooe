@@ -26,6 +26,7 @@ object frmProducao: TfrmProducao
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitTop = -8
     object LabelModelo: TLabel
       Left = 32
       Top = 20
@@ -104,7 +105,7 @@ object frmProducao: TfrmProducao
     end
     object Label2: TLabel
       Left = 32
-      Top = 324
+      Top = 368
       Width = 43
       Height = 13
       Caption = 'C'#225'lculos:'
@@ -136,6 +137,13 @@ object frmProducao: TfrmProducao
       Width = 29
       Height = 13
       Caption = 'Altura'
+    end
+    object Label7: TLabel
+      Left = 32
+      Top = 323
+      Width = 74
+      Height = 13
+      Caption = 'C'#243'digo Imagem'
     end
     object EdtQuantidade: TEdit
       Left = 199
@@ -311,12 +319,12 @@ object frmProducao: TfrmProducao
     end
     object WBDadosModelo: TWebBrowser
       Left = 32
-      Top = 338
+      Top = 384
       Width = 481
-      Height = 180
+      Height = 134
       TabOrder = 16
       ControlData = {
-        4C000000B63100009B1200000000000000000000000000000000000000000000
+        4C000000B6310000D90D00000000000000000000000000000000000000000000
         000000004C000000000000000000000001000000E0D057007335CF11AE690800
         2B2E126208000000000000004C0000000114020000000000C000000000000046
         8000000000000000000000000000000000000000000000000000000000000000
@@ -353,6 +361,14 @@ object frmProducao: TfrmProducao
       Width = 121
       Height = 21
       TabOrder = 20
+      OnChange = EdtQuantidadeChange
+    end
+    object edtCodigo: TEdit
+      Left = 32
+      Top = 341
+      Width = 121
+      Height = 21
+      TabOrder = 24
       OnChange = EdtQuantidadeChange
     end
   end
@@ -487,7 +503,8 @@ object frmProducao: TfrmProducao
       '  image,'
       '  tipoCorte,'
       '  dadosModelagem,'
-      '  n_pedido'
+      '  n_pedido,'
+      '  codigo'
       ''
       'FROM ordens_producao'
       'where id_producao= :id')
@@ -611,6 +628,11 @@ object frmProducao: TfrmProducao
       FieldName = 'n_pedido'
       Origin = 'n_pedido'
       Size = 255
+    end
+    object QrSaveProdcodigo: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codigo'
+      Origin = 'codigo'
     end
   end
   object OpenDialog1: TOpenDialog

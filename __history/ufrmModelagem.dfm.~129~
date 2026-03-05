@@ -1,7 +1,7 @@
 object frmModelagem: TfrmModelagem
   Left = 0
   Top = 0
-  BorderStyle = bsDialog
+  BorderStyle = bsSingle
   Caption = 'Modelagem'
   ClientHeight = 715
   ClientWidth = 668
@@ -25,8 +25,6 @@ object frmModelagem: TfrmModelagem
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 658
-    ExplicitHeight = 705
     object Label1: TLabel
       Left = 24
       Top = 32
@@ -2884,8 +2882,6 @@ object frmModelagem: TfrmModelagem
       Align = alBottom
       BevelOuter = bvNone
       TabOrder = 17
-      ExplicitTop = 664
-      ExplicitWidth = 658
       object btnEnviar: TButton
         AlignWithMargins = True
         Left = 568
@@ -3031,12 +3027,18 @@ object frmModelagem: TfrmModelagem
       '  LM_G1_A1,'
       '  LM_G1_A2,'
       '  LM_G2_A1,'
-      '  LM_G2_A2'
+      '  LM_G2_A2,'
+      '  MT_COMPRA1,'
+      '  MT_COMPRA2,'
+      '  FACA_TIPO,'
+      '  FACA_MD1,'
+      '  FACA_MD2,'
+      '  CODIGO'
       ''
       'FROM modelagem'
       'where ID = :ID')
-    Left = 629
-    Top = 508
+    Left = 429
+    Top = 340
     ParamData = <
       item
         Name = 'ID'
@@ -3292,6 +3294,40 @@ object frmModelagem: TfrmModelagem
       AutoGenerateValue = arDefault
       FieldName = 'LM_G2_A2'
       Origin = 'LM_G2_A2'
+    end
+    object QrModelagemMT_COMPRA1: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'MT_COMPRA1'
+      Origin = 'MT_COMPRA1'
+      Precision = 15
+    end
+    object QrModelagemMT_COMPRA2: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'MT_COMPRA2'
+      Origin = 'MT_COMPRA2'
+      Precision = 15
+    end
+    object QrModelagemFACA_TIPO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'FACA_TIPO'
+      Origin = 'FACA_TIPO'
+      Size = 255
+    end
+    object QrModelagemFACA_MD1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'FACA_MD1'
+      Origin = 'FACA_MD1'
+    end
+    object QrModelagemFACA_MD2: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'FACA_MD2'
+      Origin = 'FACA_MD2'
+    end
+    object QrModelagemCODIGO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CODIGO'
+      Origin = 'CODIGO'
+      Size = 255
     end
   end
   object QrFacasEdt: TFDQuery

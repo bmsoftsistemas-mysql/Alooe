@@ -90,6 +90,9 @@ type
     Label5: TLabel;
     EdtAlturaMM: TEdit;
     Label6: TLabel;
+    Label7: TLabel;
+    edtCodigo: TEdit;
+    QrSaveProdcodigo: TStringField;
     procedure btnEnviarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBLookupModeloCloseUp(Sender: TObject);
@@ -121,6 +124,7 @@ type
     procedure ColarImagemDoClipboard;
     procedure DisableIEHeadersFooters;
     procedure SalvarImagemClipboardPNG(const ArquivoPng: string);
+    function MemoToHtml(const S: string): string;
     { Private declarations }
   public
     { Public declarations }
@@ -344,6 +348,7 @@ begin
           QrSaveProdtipoCorte.AsInteger                  := StrToInt(cbTipoCorte.Value);
           QrSaveProddadosModelagem.AsString              := DadosModeloEnvio;
           QrSaveProdn_pedido.AsString                    := name;
+          QrSaveProdcodigo.AsString                      := edtCodigo.Text;
           QrSaveProd.Post;
 
           AvisoAtt('Processo de envio concluído...', 5, -1);
@@ -414,10 +419,8 @@ begin
     Bmp := TBitmap.Create;
     Png := TPngImage.Create;
     try
-      // 🔥 Clipboard → Bitmap
       Bmp.Assign(Clipboard);
 
-      // 🔥 Bitmap → PNG
       Png.Assign(Bmp);
       Png.SaveToFile(FileName);
     finally
@@ -464,13 +467,25 @@ begin
   WBDadosModelo.Navigate(pubDirEXE + 'dados.html');
 end;
 
+function TfrmProducao.MemoToHtml(const S: string): string;
+begin
+  Result := S;
+  Result := StringReplace(Result, '&', '&amp;', [rfReplaceAll]);
+  Result := StringReplace(Result, '<', '&lt;',  [rfReplaceAll]);
+  Result := StringReplace(Result, '>', '&gt;',  [rfReplaceAll]);
+  Result := StringReplace(Result, '"', '&quot;',[rfReplaceAll]);
+  Result := StringReplace(Result, #13#10, '<br>', [rfReplaceAll]);
+  Result := StringReplace(Result, #10, '<br>', [rfReplaceAll]);
+  Result := StringReplace(Result, #13, '<br>', [rfReplaceAll]);
+end;
+
 procedure TfrmProducao.Button1Click(Sender: TObject);
 const
   LARGURA_ESQ_MM = 148;   // metade da A4 paisagem (297/2 = 148,5)
   ALTURA_TOPO_MM = 90;    // altura do QUADRO da planilha (ajuste aqui)
-  GAP_MM         = 5;     // espaço entre os quadros
-  ZOOM_PLANILHA  = '0.45';// aumenta a planilha (ajuste fino: 0.65..0.90)
-  COL_ESQ_MM = 110; // mesma largura da planilha e do cabeçalho
+  GAP_MM         = 8;     // espaço entre os quadros
+  ZOOM_PLANILHA  = '0.60';// aumenta a planilha (ajuste fino: 0.65..0.90)
+  COL_ESQ_MM = 120; // mesma largura da planilha e do cabeçalho
 
 var
   HTMLOriginal: string;
@@ -483,6 +498,7 @@ var
   WFix, HFix: Double;
   PastaTemp: string;
   CacheBuster: string;
+  ObsHTML: string;
 begin
   if (ModelagemTerminada) then
   begin
@@ -496,7 +512,6 @@ begin
 
     // Caminhos temporários
     ArqHTML := IncludeTrailingPathDelimiter(GetEnvironmentVariable('TEMP')) + 'impressao.html';
-    ArqImg  := IncludeTrailingPathDelimiter(GetEnvironmentVariable('TEMP')) + 'etiqueta.bmp';
 
     Wmm := StrToFloatDef(StringReplace(Trim(EdtLarguraMM.Text), ',', '.', [rfReplaceAll]), 0);
     Hmm := StrToFloatDef(StringReplace(Trim(EdtAlturaMM.Text),   ',', '.', [rfReplaceAll]), 0);
@@ -504,9 +519,11 @@ begin
     if (Wmm <= 0) or (Hmm <= 0) then
       raise Exception.Create('Informe Largura e Altura (mm) para imprimir em modo gabarito 1:1.');
 
-    FatorCal := 0.98;
+    FatorCal := 1;
     WFix := Wmm * FatorCal;
     HFix := Hmm * FatorCal;
+
+    ObsHTML := MemoToHtml(Trim(MmObs.Lines.Text));
 
     // Captura o HTML atual do WebBrowser
     if Assigned(WBDadosModelo.Document) then
@@ -518,6 +535,7 @@ begin
       raise Exception.Create('WebBrowser não contém conteúdo.');
 
     // Salva a imagem copiada do Corel
+    ArqImg := IncludeTrailingPathDelimiter(GetEnvironmentVariable('TEMP')) + 'etiqueta.png';
     SalvarImagemClipboardPNG(ArqImg);
 
     // Monta o HTML final de impressão
@@ -591,6 +609,24 @@ begin
       HtmlFinal.Add('  margin: 0;');
       HtmlFinal.Add('}');
 
+      HtmlFinal.Add('.texto-overlay {');
+      HtmlFinal.Add('  position: absolute;');
+      HtmlFinal.Add('  font-family: Tahoma, sans-serif;');
+      HtmlFinal.Add('  font-size: 10pt;');
+      HtmlFinal.Add('  font-weight: bold;');
+      HtmlFinal.Add('  color: black;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.texto-esq {');
+      HtmlFinal.Add('  top: 2mm;');
+      HtmlFinal.Add('  left: 2mm;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.texto-dir {');
+      HtmlFinal.Add('  top: 2mm;');
+      HtmlFinal.Add('  right: 2mm;');
+      HtmlFinal.Add('}');
+
       // mata centralização vinda do HTML
       HtmlFinal.Add('.planilha-container center { text-align: left !important; }');
 
@@ -608,8 +644,7 @@ begin
       HtmlFinal.Add('  white-space: nowrap;');
       HtmlFinal.Add('}');
 
-      // -------- QUADRO INFERIOR (IMAGEM) --------
-      // QUADRO INFERIOR sem borda/fundo
+      // -------- QUADRO INFERIOR (IMAGEM + OBS) --------
       HtmlFinal.Add('.quadro-inferior {');
       HtmlFinal.Add('  margin-top: ' + IntToStr(GAP_MM) + 'mm;');
       HtmlFinal.Add('  height: calc(100% - ' + IntToStr(ALTURA_TOPO_MM) + 'mm - ' + IntToStr(GAP_MM) + 'mm);');
@@ -618,31 +653,53 @@ begin
       HtmlFinal.Add('  box-sizing: border-box;');
       HtmlFinal.Add('  padding: 0 !important;');
       HtmlFinal.Add('  display: flex;');
-      HtmlFinal.Add('  align-items: flex-start;');
-      HtmlFinal.Add('  justify-content: flex-start;');
+      HtmlFinal.Add('  flex-direction: column;');  // <<< agora é coluna
       HtmlFinal.Add('  overflow: hidden;');
       HtmlFinal.Add('}');
 
       HtmlFinal.Add('.imagem-container {');
+      HtmlFinal.Add('  flex: 0 0 auto;');
+      HtmlFinal.Add('  width: '  + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm;');
+      HtmlFinal.Add('  height: ' + StringReplace(FormatFloat('0.###', HFix), ',', '.', [rfReplaceAll]) + 'mm;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.obs-container {');
+      HtmlFinal.Add('  margin-top: 2mm;');
+      HtmlFinal.Add('  font-family: Tahoma, sans-serif;');
+      HtmlFinal.Add('  font-size: 10pt;');
+      HtmlFinal.Add('  line-height: 1.2;');
+      HtmlFinal.Add('  white-space: normal;');
+      HtmlFinal.Add('  word-break: break-word;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.gabarito-box {');
+      HtmlFinal.Add('  position: relative;');
       HtmlFinal.Add('  width: 100%;');
       HtmlFinal.Add('  height: 100%;');
-      HtmlFinal.Add('  position: relative;');
       HtmlFinal.Add('}');
 
       // GABARITO: remover pontilhado
-      HtmlFinal.Add('.gabarito-box {');
-      HtmlFinal.Add('  display: inline-block;');
-      HtmlFinal.Add('  box-sizing: border-box;');
-      HtmlFinal.Add('  outline: none !important;'); // <<< tira pontilhado
-      HtmlFinal.Add('}');
+//      HtmlFinal.Add('.gabarito-box {');
+//      HtmlFinal.Add('  position: relative;');
+//      HtmlFinal.Add('  display: inline-block;');
+//      HtmlFinal.Add('  width: '  + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm;');
+//      HtmlFinal.Add('  height: ' + StringReplace(FormatFloat('0.###', HFix), ',', '.', [rfReplaceAll]) + 'mm;');
+//      HtmlFinal.Add('  box-sizing: border-box;');
+//      HtmlFinal.Add('}');
 
       // --- MODO GABARITO (1:1) --- (tamanho aplicado DIRETO na imagem)
+//      HtmlFinal.Add('.gabarito-box img {');
+//      HtmlFinal.Add('  width: '  + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm !important;');
+//      HtmlFinal.Add('  height: ' + StringReplace(FormatFloat('0.###', HFix), ',', '.', [rfReplaceAll]) + 'mm !important;');
+//      HtmlFinal.Add('  max-width: none !important;');
+//      HtmlFinal.Add('  max-height: none !important;');
+//      HtmlFinal.Add('  object-fit: fill !important;');
+//      HtmlFinal.Add('  display: block;');
+//      HtmlFinal.Add('}');
+
       HtmlFinal.Add('.gabarito-box img {');
-      HtmlFinal.Add('  width: '  + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm !important;');
-      HtmlFinal.Add('  height: ' + StringReplace(FormatFloat('0.###', HFix), ',', '.', [rfReplaceAll]) + 'mm !important;');
-      HtmlFinal.Add('  max-width: none !important;');
-      HtmlFinal.Add('  max-height: none !important;');
-      HtmlFinal.Add('  object-fit: fill !important;');
+      HtmlFinal.Add('  width: 100%;');
+      HtmlFinal.Add('  height: 100%;');
       HtmlFinal.Add('  display: block;');
       HtmlFinal.Add('}');
 
@@ -703,16 +760,33 @@ begin
       HtmlFinal.Add('</div>');
 
       HtmlFinal.Add('<div class="quadro-inferior">');
+
+      // IMAGEM
       HtmlFinal.Add('<div class="imagem-container">');
-
       HtmlFinal.Add('<div class="gabarito-box">');
-      HtmlFinal.Add('<img src="etiqueta.png?v=' + CacheBuster + '" alt="Etiqueta">');
-      HtmlFinal.Add('</div>');
+
+      // IMAGEM
+      HtmlFinal.Add('<img src="etiqueta.png?v=' + IntToStr(GetTickCount) + '" alt="Etiqueta">');
+
+      // TEXTO ESQUERDA (edtcodigo)
+      HtmlFinal.Add('<div class="texto-overlay texto-esq">' +
+                    Trim(EdtCodigo.Text) +
+                    '</div>');
+
+      // TEXTO DIREITA (medidas)
+      HtmlFinal.Add('<div class="texto-overlay texto-dir">' +
+                    Trim(EdtLarguraMM.Text) + 'x' + Trim(EdtAlturaMM.Text) +
+                    '</div>');
 
       HtmlFinal.Add('</div>');
-      HtmlFinal.Add('</div>');
-
-      HtmlFinal.Add('</div>'); // col-esq
+      // OBS (abaixo da imagem)
+      if ObsHTML <> '' then
+      begin
+        HtmlFinal.Add('<div class="obs-container">');
+        HtmlFinal.Add('<b></b> ' + ObsHTML);
+        HtmlFinal.Add('</div>');
+      end;
+      HtmlFinal.Add('</div>'); // quadro-inferior
 
       // Coluna direita (livre)
       HtmlFinal.Add('<div class="col-dir"></div>');
@@ -747,22 +821,45 @@ end;
 
 procedure TfrmProducao.SalvarImagemClipboardPNG(const ArquivoPng: string);
 var
-  bmp: TBitmap;
-  png: TPngImage;
+  Bmp: TBitmap;
+  Png: TPngImage;
+  MF: TMetafile;
 begin
-  if not Clipboard.HasFormat(CF_BITMAP) then
-    raise Exception.Create('Nenhuma imagem encontrada no Ctrl + V.');
-
-  bmp := TBitmap.Create;
-  png := TPngImage.Create;
+  Bmp := TBitmap.Create;
+  Png := TPngImage.Create;
+  MF  := TMetafile.Create;
   try
-    bmp.Assign(Clipboard);
-    png.Assign(bmp);
+    // 1) Bitmap clássico
+    if Clipboard.HasFormat(CF_BITMAP) then
+      Bmp.Assign(Clipboard)
+
+    // 2) Printscreen / Snipping geralmente cai aqui (DIB)
+    else if Clipboard.HasFormat(CF_DIB) then
+      Bmp.Assign(Clipboard)
+
+    // 3) Algumas versões colocam DIBV5 (nem sempre exposto como constante no Delphi)
+    else if Clipboard.HasFormat(RegisterClipboardFormat('DeviceIndependentBitmap')) then
+      Bmp.Assign(Clipboard)
+
+    // 4) Caso venha como Metafile (não é seu caso agora, mas deixa pronto)
+    else if Clipboard.HasFormat(CF_ENHMETAFILE) then
+    begin
+      MF.Assign(Clipboard);
+      Bmp.SetSize(MF.Width, MF.Height);
+      Bmp.Canvas.Brush.Color := clWhite;
+      Bmp.Canvas.FillRect(Rect(0, 0, Bmp.Width, Bmp.Height));
+      Bmp.Canvas.Draw(0, 0, MF);
+    end
+    else
+      raise Exception.Create('O clipboard não contém uma imagem suportada (bitmap/DIB/metafile).');
+
     ForceDirectories(ExtractFileDir(ArquivoPng));
-    png.SaveToFile(ArquivoPng);
+    Png.Assign(Bmp);
+    Png.SaveToFile(ArquivoPng);
   finally
-    png.Free;
-    bmp.Free;
+    MF.Free;
+    Png.Free;
+    Bmp.Free;
   end;
 end;
 
