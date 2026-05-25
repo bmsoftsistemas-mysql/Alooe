@@ -11,7 +11,7 @@ uses
   FireDAC.Comp.Client, Vcl.DBCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, System.DateUtils,
   REST.Types, REST.HttpClient, EncdDecd, System.NetEncoding, RzButton, RzRadChk,
   RzCmboBx, UtilsRz, Vcl.OleCtrls, SHDocVw, Vcl.Clipbrd, Vcl.Imaging.pngimage, System.IOUtils,
-  Winapi.ActiveX, MSHTML, System.Win.Registry;
+  Winapi.ActiveX, MSHTML, System.Win.Registry, GDIPAPI, GDIPOBJ, Math;
 
 type
   TfrmProducao = class(TForm)
@@ -93,6 +93,7 @@ type
     Label7: TLabel;
     edtCodigo: TEdit;
     QrSaveProdcodigo: TStringField;
+    WebBrowser1: TWebBrowser;
     procedure btnEnviarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBLookupModeloCloseUp(Sender: TObject);
@@ -125,6 +126,8 @@ type
     procedure DisableIEHeadersFooters;
     procedure SalvarImagemClipboardPNG(const ArquivoPng: string);
     function MemoToHtml(const S: string): string;
+    procedure VerificaCopia;
+    procedure AplicarSharpen(Bmp: TBitmap);
     { Private declarations }
   public
     { Public declarations }
@@ -141,7 +144,7 @@ var
   ID : Integer;
   TipoCorte: Integer;
   ModelagemTerminada: Boolean;
-  DadosModeloEnvio: string;
+  DadosModeloEnvio, DadosModeloImprimir: string;
 
 implementation
 
@@ -404,43 +407,76 @@ end;
 
 procedure TfrmProducao.ColarImagemDoClipboard;
 var
-  Img: TImage;
-  Bmp: TBitmap;
-  Png: TPngImage;
-  FileName: string;
+  Img       : TImage;
+  Bmp, BmpHD: TBitmap;
+  Png       : TPngImage;
+  FileName  : string;
+  ScaleFactor: Integer;
 begin
-  if Clipboard.HasFormat(CF_BITMAP) then
+  FileName    := GetTempImagePath + FormatDateTime('yyyymmdd_hhnnss_zzz', Now) + '.png';
+  ScaleFactor := 8;
+
+  if not Clipboard.HasFormat(CF_BITMAP) then
   begin
-    // gera nome único
-    FileName :=
-      GetTempImagePath +
-      FormatDateTime('yyyymmdd_hhnnss_zzz', Now) + '.png';
-
-    Bmp := TBitmap.Create;
-    Png := TPngImage.Create;
-    try
-      Bmp.Assign(Clipboard);
-
-      Png.Assign(Bmp);
-      Png.SaveToFile(FileName);
-    finally
-      Png.Free;
-      Bmp.Free;
-    end;
-
-    // cria a imagem no FlowPanel
-    Img := TImage.Create(FlowPanel1);
-    Img.Parent := FlowPanel1;
-    Img.Width := 100;
-    Img.Height := 100;
-    Img.Stretch := True;
-    Img.Proportional := True;
-
-    Img.Picture.LoadFromFile(FileName);
-
-    Img.Hint := FileName;
-    Img.ShowHint := True;
+    ShowMessage('Apenas imagens bitmap são permitidas (use CTRL+C no CorelDraw).');
+    Exit;
   end;
+
+  Bmp   := TBitmap.Create;
+  BmpHD := TBitmap.Create;
+  Png   := TPngImage.Create;
+  try
+    Bmp.Assign(Clipboard);
+
+    // Escala com HALFTONE (interpolação de qualidade)
+    BmpHD.PixelFormat := pf32bit;
+    BmpHD.SetSize(Bmp.Width * ScaleFactor, Bmp.Height * ScaleFactor);
+
+    SetStretchBltMode(BmpHD.Canvas.Handle, HALFTONE);
+    SetBrushOrgEx(BmpHD.Canvas.Handle, 0, 0, nil);
+
+    StretchBlt(
+      BmpHD.Canvas.Handle,
+      0, 0, BmpHD.Width, BmpHD.Height,
+      Bmp.Canvas.Handle,
+      0, 0, Bmp.Width, Bmp.Height,
+      SRCCOPY
+    );
+
+    Png.Assign(BmpHD);
+    Png.SaveToFile(FileName);
+  finally
+    Png.Free;
+    BmpHD.Free;
+    Bmp.Free;
+  end;
+
+  // ── Exibe no FlowPanel ───────────────────────────────────────────────
+  Img := TImage.Create(FlowPanel1);
+  Img.Parent       := FlowPanel1;
+  Img.Width        := 100;
+  Img.Height       := 100;
+  Img.Stretch      := True;
+  Img.Proportional := True;
+  Img.Picture.LoadFromFile(FileName);
+  Img.Hint         := FileName;
+  Img.ShowHint     := True;
+end;
+procedure TfrmProducao.VerificaCopia;
+var
+  i: Integer;
+  formatos: string;
+  nome: array[0..255] of Char;
+begin
+  formatos := 'Formatos no Clipboard:' + #13#10;
+  for i := 0 to Clipboard.FormatCount - 1 do
+  begin
+    GetClipboardFormatName(Clipboard.Formats[i], nome, 255);
+    formatos := formatos +
+      '  ID: ' + IntToStr(Clipboard.Formats[i]) +
+      ' → ' + string(nome) + #13#10;
+  end;
+  ShowMessage(formatos);
 end;
 
 procedure TfrmProducao.btnModeloClick(Sender: TObject);
@@ -464,7 +500,9 @@ begin
   frmModelagem.Free;
 
   StringToFile(DadosModeloEnvio, pubDirEXE + 'dados.html');
+  StringToFile(DadosModeloImprimir, pubDirEXE + 'dados_imprimi.html');
   WBDadosModelo.Navigate(pubDirEXE + 'dados.html');
+  WebBrowser1.Navigate(pubDirEXE + 'dados_imprimi.html');
 end;
 
 function TfrmProducao.MemoToHtml(const S: string): string;
@@ -484,7 +522,7 @@ const
   LARGURA_ESQ_MM = 148;   // metade da A4 paisagem (297/2 = 148,5)
   ALTURA_TOPO_MM = 90;    // altura do QUADRO da planilha (ajuste aqui)
   GAP_MM         = 8;     // espaço entre os quadros
-  ZOOM_PLANILHA  = '0.60';// aumenta a planilha (ajuste fino: 0.65..0.90)
+  ZOOM_PLANILHA  = '0.50';// aumenta a planilha (ajuste fino: 0.65..0.90)
   COL_ESQ_MM = 120; // mesma largura da planilha e do cabeçalho
 
 var
@@ -526,9 +564,9 @@ begin
     ObsHTML := MemoToHtml(Trim(MmObs.Lines.Text));
 
     // Captura o HTML atual do WebBrowser
-    if Assigned(WBDadosModelo.Document) then
+    if Assigned(WebBrowser1.Document) then
     begin
-      Doc := WBDadosModelo.Document as IHTMLDocument2;
+      Doc := WebBrowser1.Document as IHTMLDocument2;
       HTMLOriginal := Doc.body.innerHTML;
     end
     else
@@ -590,16 +628,6 @@ begin
       HtmlFinal.Add('  box-sizing: border-box;');
       HtmlFinal.Add('}');
 
-      HtmlFinal.Add('.op-box {');
-      HtmlFinal.Add('  width: ' + IntToStr(COL_ESQ_MM) + 'mm;');    // <<< aqui também
-      HtmlFinal.Add('  border: 1px solid #999;');
-      HtmlFinal.Add('  display: flex;');
-      HtmlFinal.Add('  align-items: stretch;');
-      HtmlFinal.Add('  box-sizing: border-box;');
-      HtmlFinal.Add('  margin-bottom: 1mm;');
-      HtmlFinal.Add('  height: 16mm;');
-      HtmlFinal.Add('}');
-
       HtmlFinal.Add('.planilha-container {');
       HtmlFinal.Add('  width: ' + IntToStr(COL_ESQ_MM) + 'mm;');     // <<< aqui
       HtmlFinal.Add('  max-width: ' + IntToStr(COL_ESQ_MM) + 'mm;'); // <<< aqui
@@ -616,28 +644,29 @@ begin
       HtmlFinal.Add('  font-weight: bold;');
       HtmlFinal.Add('  color: black;');
       HtmlFinal.Add('}');
-
       HtmlFinal.Add('.texto-esq {');
       HtmlFinal.Add('  top: 2mm;');
       HtmlFinal.Add('  left: 2mm;');
       HtmlFinal.Add('}');
-
       HtmlFinal.Add('.texto-dir {');
       HtmlFinal.Add('  top: 2mm;');
       HtmlFinal.Add('  right: 2mm;');
       HtmlFinal.Add('}');
 
+//      HtmlFinal.Add('.linha-info {');
+//      HtmlFinal.Add('  width: ' + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm;');
       HtmlFinal.Add('.linha-info {');
-      HtmlFinal.Add('  width: ' + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm;');
+      HtmlFinal.Add('  width: 100%;');  // <<< MUITO IMPORTANTE
       HtmlFinal.Add('  display: flex !important;');
       HtmlFinal.Add('  flex-direction: row !important;');
-      HtmlFinal.Add('  flex-wrap: nowrap !important;'); // PROÍBE terminantemente a quebra
+      HtmlFinal.Add('  flex-wrap: nowrap !important;');
       HtmlFinal.Add('  justify-content: space-between;');
       HtmlFinal.Add('  align-items: flex-end;');
       HtmlFinal.Add('  font-family: Tahoma, sans-serif;');
-      HtmlFinal.Add('  font-size: 10pt;');
+      HtmlFinal.Add('  font-size: 9pt;');   // << ligeiramente menor para caber
       HtmlFinal.Add('  font-weight: bold;');
       HtmlFinal.Add('  margin-bottom: 1mm;');
+      HtmlFinal.Add('  overflow: hidden;');
       HtmlFinal.Add('}');
 
       HtmlFinal.Add('.info-esq { flex-shrink: 0; white-space: nowrap; }');
@@ -662,7 +691,8 @@ begin
 
       // -------- QUADRO INFERIOR (IMAGEM + OBS) --------
       HtmlFinal.Add('.quadro-inferior {');
-      HtmlFinal.Add('  margin-top: ' + IntToStr(GAP_MM) + 'mm;');
+      //HtmlFinal.Add('  margin-top: ' + IntToStr(GAP_MM) + 'mm;');
+      HtmlFinal.Add('  margin-top: 0;');   // << sem espaço
       HtmlFinal.Add('  height: calc(100% - ' + IntToStr(ALTURA_TOPO_MM) + 'mm - ' + IntToStr(GAP_MM) + 'mm);');
       HtmlFinal.Add('  border: none !important;');
       HtmlFinal.Add('  background: transparent !important;');
@@ -673,16 +703,26 @@ begin
       HtmlFinal.Add('  overflow: hidden;');
       HtmlFinal.Add('}');
 
+//      HtmlFinal.Add('.imagem-container {');
+//      HtmlFinal.Add('  flex: 0 0 auto;');
+//      HtmlFinal.Add('  margin-top: 0;');   // << garantir sem margem extra
+//      HtmlFinal.Add('  width: '  + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm;');
+//      HtmlFinal.Add('  height: ' + StringReplace(FormatFloat('0.###', HFix), ',', '.', [rfReplaceAll]) + 'mm;');
+//      HtmlFinal.Add('}');
+
       HtmlFinal.Add('.imagem-container {');
       HtmlFinal.Add('  flex: 0 0 auto;');
-      HtmlFinal.Add('  width: '  + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm;');
-      HtmlFinal.Add('  height: ' + StringReplace(FormatFloat('0.###', HFix), ',', '.', [rfReplaceAll]) + 'mm;');
+      HtmlFinal.Add('  margin-top: 0;');
+      HtmlFinal.Add('  width: 100%;');   // <<< LIBERA
+      HtmlFinal.Add('  height: auto;');  // <<< LIBERA
       HtmlFinal.Add('}');
 
+//      HtmlFinal.Add('.obs-container {');
       HtmlFinal.Add('.obs-container {');
+      HtmlFinal.Add('  width: 100%;');
       HtmlFinal.Add('  margin-top: 2mm;');
       HtmlFinal.Add('  font-family: Tahoma, sans-serif;');
-      HtmlFinal.Add('  font-size: 10pt;');
+      HtmlFinal.Add('  font-size: 8pt;');
       HtmlFinal.Add('  line-height: 1.2;');
       HtmlFinal.Add('  white-space: normal;');
       HtmlFinal.Add('  word-break: break-word;');
@@ -711,33 +751,33 @@ begin
       // -------- CABEÇALHO OP (SEM CAIXA) --------
       HtmlFinal.Add('.op-box {');
       HtmlFinal.Add('  width: ' + IntToStr(COL_ESQ_MM) + 'mm;');
-      HtmlFinal.Add('  border: none !important;');      // <<< tira a caixa externa
+      HtmlFinal.Add('  border: none !important;');
       HtmlFinal.Add('  display: flex;');
-      HtmlFinal.Add('  align-items: stretch;');
+      HtmlFinal.Add('  flex-direction: row;');   // << já estava, mas confirmar
+      HtmlFinal.Add('  align-items: center;');   // << centralizar verticalmente
       HtmlFinal.Add('  box-sizing: border-box;');
       HtmlFinal.Add('  margin-bottom: 1mm;');
-      HtmlFinal.Add('  height: 16mm;');
+      HtmlFinal.Add('  height: 6mm;');          // << reduzir altura
       HtmlFinal.Add('}');
 
       HtmlFinal.Add('.op-box .op-label {');
-      HtmlFinal.Add('  width: 28mm;');
+      HtmlFinal.Add('  flex-shrink: 0;');        // << não encolhe
+      HtmlFinal.Add('  white-space: nowrap;');   // << não quebra linha
       HtmlFinal.Add('  display: flex;');
       HtmlFinal.Add('  align-items: center;');
-      HtmlFinal.Add('  justify-content: center;');
       HtmlFinal.Add('  font-weight: bold;');
-      HtmlFinal.Add('  font-size: 22pt;');
-      HtmlFinal.Add('  border-right: 1px solid #999;'); // <<< mantém só a linha vertical
+      HtmlFinal.Add('  font-size: 18pt;');
+      HtmlFinal.Add('  padding-right: 3mm;');
       HtmlFinal.Add('  box-sizing: border-box;');
       HtmlFinal.Add('}');
 
       HtmlFinal.Add('.op-box .op-num {');
-      HtmlFinal.Add('  flex: 1;');
+      HtmlFinal.Add('  flex-shrink: 0;');        // << não encolhe
+      HtmlFinal.Add('  white-space: nowrap;');   // << não quebra linha
       HtmlFinal.Add('  display: flex;');
       HtmlFinal.Add('  align-items: center;');
-      HtmlFinal.Add('  justify-content: center;');
       HtmlFinal.Add('  font-weight: bold;');
-      HtmlFinal.Add('  font-size: 22pt;');
-      HtmlFinal.Add('  border: none !important;');      // <<< garante sem borda
+      HtmlFinal.Add('  font-size: 18pt;');
       HtmlFinal.Add('  box-sizing: border-box;');
       HtmlFinal.Add('}');
 
@@ -754,8 +794,7 @@ begin
 
       // CABEÇALHO OP
       HtmlFinal.Add('<div class="op-box">');
-      HtmlFinal.Add('  <div class="op-label">OP</div>');
-      HtmlFinal.Add('  <div class="op-num">' + Trim(EdtNpedido.Text) + '</div>');
+      HtmlFinal.Add('  OP ' + Trim(EdtNpedido.Text));
       HtmlFinal.Add('</div>');
 
       // PLANILHA
@@ -771,21 +810,16 @@ begin
 
       // LINHA SUPERIOR (codigo + medidas)
       HtmlFinal.Add('<div class="linha-info">');
-
-      HtmlFinal.Add('<div class="info-esq">' +
-                    Trim(EdtCodigo.Text) +
-                    '</div>');
-
-      HtmlFinal.Add('<div class="info-dir">' +
+      HtmlFinal.Add('  <div class="info-esq">' +
+                    Trim(EdtCodigo.Text) + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
                     Trim(EdtLarguraMM.Text) + 'x' + Trim(EdtAlturaMM.Text) +
                     'mm</div>');
-
       HtmlFinal.Add('</div>');
-
-      // IMAGEM
+      // Depois vem a imagem:
       HtmlFinal.Add('<div class="gabarito-box">');
       HtmlFinal.Add('<img src="etiqueta.png?v=' + IntToStr(GetTickCount) + '" alt="Etiqueta">');
       HtmlFinal.Add('</div>');
+
       // OBS (abaixo da imagem)
       if ObsHTML <> '' then
       begin
@@ -828,45 +862,98 @@ end;
 
 procedure TfrmProducao.SalvarImagemClipboardPNG(const ArquivoPng: string);
 var
-  Bmp: TBitmap;
-  Png: TPngImage;
-  MF: TMetafile;
+  Bmp         : TBitmap;
+  TempBmp     : TBitmap;
+  Png         : TPngImage;
+  GPSrcBitmap : TGPBitmap;
+  GPGraphics  : TGPGraphics;
+  ScaleFactor : Integer;
 begin
-  Bmp := TBitmap.Create;
-  Png := TPngImage.Create;
-  MF  := TMetafile.Create;
+  ScaleFactor := 4;
+  Bmp     := TBitmap.Create;
+  TempBmp := TBitmap.Create;
+  Png     := TPngImage.Create;
   try
-    // 1) Bitmap clássico
-    if Clipboard.HasFormat(CF_BITMAP) then
-      Bmp.Assign(Clipboard)
+    if not Clipboard.HasFormat(CF_BITMAP) then
+      raise Exception.Create('Clipboard não contém bitmap.');
 
-    // 2) Printscreen / Snipping geralmente cai aqui (DIB)
-    else if Clipboard.HasFormat(CF_DIB) then
-      Bmp.Assign(Clipboard)
+    Bmp.Assign(Clipboard);
+    Bmp.PixelFormat := pf32bit;
 
-    // 3) Algumas versões colocam DIBV5 (nem sempre exposto como constante no Delphi)
-    else if Clipboard.HasFormat(RegisterClipboardFormat('DeviceIndependentBitmap')) then
-      Bmp.Assign(Clipboard)
+    // Prepara bitmap destino
+    TempBmp.PixelFormat := pf32bit;
+    TempBmp.SetSize(Bmp.Width * ScaleFactor, Bmp.Height * ScaleFactor);
 
-    // 4) Caso venha como Metafile (não é seu caso agora, mas deixa pronto)
-    else if Clipboard.HasFormat(CF_ENHMETAFILE) then
-    begin
-      MF.Assign(Clipboard);
-      Bmp.SetSize(MF.Width, MF.Height);
-      Bmp.Canvas.Brush.Color := clWhite;
-      Bmp.Canvas.FillRect(Rect(0, 0, Bmp.Width, Bmp.Height));
-      Bmp.Canvas.Draw(0, 0, MF);
-    end
-    else
-      raise Exception.Create('O clipboard não contém uma imagem suportada (bitmap/DIB/metafile).');
+    // ✅ GDI+ direto no DC do TempBmp — sem GetHBITMAP
+    GPSrcBitmap := TGPBitmap.Create(Bmp.Handle, Bmp.Palette);
+    GPGraphics  := TGPGraphics.Create(TempBmp.Canvas.Handle); // ← DC direto
+    try
+      GPGraphics.SetInterpolationMode(InterpolationModeHighQualityBicubic);
+      GPGraphics.SetSmoothingMode(SmoothingModeHighQuality);
+      GPGraphics.SetPixelOffsetMode(PixelOffsetModeHighQuality);
+      GPGraphics.SetCompositingQuality(CompositingQualityHighQuality);
+
+      GPGraphics.DrawImage(
+        GPSrcBitmap,
+        MakeRect(0, 0, TempBmp.Width, TempBmp.Height)
+      );
+    finally
+      GPGraphics.Free;
+      GPSrcBitmap.Free;
+    end;
+
+    AplicarSharpen(TempBmp);
 
     ForceDirectories(ExtractFileDir(ArquivoPng));
-    Png.Assign(Bmp);
+    Png.Assign(TempBmp);
     Png.SaveToFile(ArquivoPng);
   finally
-    MF.Free;
     Png.Free;
+    TempBmp.Free;
     Bmp.Free;
+  end;
+end;
+
+procedure TfrmProducao.AplicarSharpen(Bmp: TBitmap);
+// Kernel sharpen 3x3:  0 -1  0
+//                      -1  5 -1
+//                       0 -1  0
+var
+  x, y: Integer;
+  Src, Dst: TBitmap;
+  pSrc0, pSrc1, pSrc2, pDst: PByteArray;
+  R, G, B: Integer;
+begin
+  Src := TBitmap.Create;
+  Dst := TBitmap.Create;
+  try
+    Src.Assign(Bmp);
+    Src.PixelFormat := pf24bit;
+    Dst.Assign(Src);
+
+    for y := 1 to Src.Height - 2 do
+    begin
+      pSrc0 := Src.ScanLine[y - 1];
+      pSrc1 := Src.ScanLine[y];
+      pSrc2 := Src.ScanLine[y + 1];
+      pDst  := Dst.ScanLine[y];
+
+      for x := 1 to Src.Width - 2 do
+      begin
+        B := 5 * pSrc1[x*3]   - pSrc0[x*3]   - pSrc2[x*3]   - pSrc1[(x-1)*3]   - pSrc1[(x+1)*3];
+        G := 5 * pSrc1[x*3+1] - pSrc0[x*3+1] - pSrc2[x*3+1] - pSrc1[(x-1)*3+1] - pSrc1[(x+1)*3+1];
+        R := 5 * pSrc1[x*3+2] - pSrc0[x*3+2] - pSrc2[x*3+2] - pSrc1[(x-1)*3+2] - pSrc1[(x+1)*3+2];
+
+        pDst[x*3]   := Max(0, Min(255, B));
+        pDst[x*3+1] := Max(0, Min(255, G));
+        pDst[x*3+2] := Max(0, Min(255, R));
+      end;
+    end;
+
+    Bmp.Assign(Dst);
+  finally
+    Src.Free;
+    Dst.Free;
   end;
 end;
 
@@ -1175,6 +1262,7 @@ begin
     EdtCliente.Text      := QrSaveProdcustomer.AsString;
     MmObs.Text           := QrSaveProdnote.AsString;
     cbTipoCorte.Value    := QrSaveProdtipoCorte.AsString;
+    edtCodigo.Text       := QrSaveProdcodigo.AsString;
     ID                   := QrSaveProdid_modelagem.AsInteger;
 
     StringToFile(QrSaveProddadosModelagem.AsString, pubDirEXE + 'dados.html');

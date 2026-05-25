@@ -1,0 +1,1499 @@
+﻿unit ufrmProducao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,TabForms, Vcl.StdCtrls, System.Json,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, Vcl.DBCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, System.DateUtils,
+  REST.Types, REST.HttpClient, EncdDecd, System.NetEncoding, RzButton, RzRadChk,
+  RzCmboBx, UtilsRz, Vcl.OleCtrls, SHDocVw, Vcl.Clipbrd, Vcl.Imaging.pngimage, System.IOUtils,
+  Winapi.ActiveX, MSHTML, System.Win.Registry, GDIPAPI, GDIPOBJ;
+
+type
+  TfrmProducao = class(TForm)
+    Panel2: TPanel;
+    LabelModelo: TLabel;
+    LabelQuantidade: TLabel;
+    LabelEntrega: TLabel;
+    LabelInicio: TLabel;
+    LabelFim: TLabel;
+    LabelStatus: TLabel;
+    LabelObs: TLabel;
+    LabelCor: TLabel;
+    EdtQuantidade: TEdit;
+    DtEntrega: TDateTimePicker;
+    DtInicio: TDateTimePicker;
+    DtFim: TDateTimePicker;
+    CbCor: TColorBox;
+    MmObs: TMemo;
+    LabelCliente: TLabel;
+    QrModelos: TFDQuery;
+    QrModelosid: TStringField;
+    QrModeloshref: TStringField;
+    QrModelosproduct_id: TStringField;
+    QrModelosproduct_name: TStringField;
+    QrModelosproduct_unit: TStringField;
+    QrModelosproduct_color: TStringField;
+    QrModelosnome_etiqueta: TStringField;
+    QrModeloscor_etiqueta: TStringField;
+    QrModelosquantidade_producao: TBCDField;
+    DtModelos: TDataSource;
+    EdtCliente: TEdit;
+    EdtModelos: TEdit;
+    QrSaveProd: TFDQuery;
+    lstSugestoes: TListBox;
+    EdtNpedido: TEdit;
+    QrSaveProdid_producao: TStringField;
+    QrSaveProdid_prod: TStringField;
+    QrSaveProdexpectedProductionQuantity: TIntegerField;
+    QrSaveProdproductionQuantityBalance: TIntegerField;
+    QrSaveProdisFictitious: TBooleanField;
+    QrSaveProdpriority: TIntegerField;
+    QrSaveProddeliveryDate: TDateTimeField;
+    QrSaveProdearlyStart: TDateTimeField;
+    QrSaveProdlaterEnd: TDateTimeField;
+    QrSaveProdsalesOrder: TStringField;
+    QrSaveProdsalesOrderDate: TDateTimeField;
+    QrSaveProdcustomer: TStringField;
+    QrSaveProdcolor: TStringField;
+    QrSaveProdprogressStatus: TStringField;
+    QrSaveProdname: TStringField;
+    btnImage: TButton;
+    OpenDialog1: TOpenDialog;
+    FlowPanel1: TFlowPanel;
+    btnEnviar: TButton;
+    btnCancelar: TButton;
+    btnModelo: TButton;
+    QrSaveProdid_modelagem: TIntegerField;
+    QrSaveProdnote: TStringField;
+    QrSaveProdimage: TMemoField;
+    cbTipoCorte: TRzComboBox;
+    QrSaveProdtipoCorte: TIntegerField;
+    WBDadosModelo: TWebBrowser;
+    Label1: TLabel;
+    QrSaveProddadosModelagem: TMemoField;
+    Label2: TLabel;
+    Label3: TLabel;
+    QrModeloscliente: TStringField;
+    QrLastProd: TFDQuery;
+    QrLastProdPEDIDO: TIntegerField;
+    EdtNpedidoVenda: TEdit;
+    Label4: TLabel;
+    QrSaveProdn_pedido: TStringField;
+    Button1: TButton;
+    WebBrowserImp: TWebBrowser;
+    EdtLarguraMM: TEdit;
+    Label5: TLabel;
+    EdtAlturaMM: TEdit;
+    Label6: TLabel;
+    Label7: TLabel;
+    edtCodigo: TEdit;
+    QrSaveProdcodigo: TStringField;
+    procedure btnEnviarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure DBLookupModeloCloseUp(Sender: TObject);
+    procedure EdtModelosChange(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure EdtQuantidadeChange(Sender: TObject);
+    procedure lstSugestoesKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EdtModelosKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnImageClick(Sender: TObject);
+    procedure btnModeloClick(Sender: TObject);
+    procedure EdtQuantidadeExit(Sender: TObject);
+    procedure EdtModelosKeyPress(Sender: TObject; var Key: Char);
+    procedure cbTipoCorteChange(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Button1Click(Sender: TObject);
+  private
+    procedure SetColorBoxFromHex(ColorBox: TColorBox; HexColor: string);
+    procedure edtModeloKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure lstSugestoesClick(Sender: TObject);
+    procedure SelecionaModelo;
+    function FormatDateTimeToAPIPattern(Data: TDateTime): string;
+    function ParseAPIDateTimeToLocal(const DataStr: string): TDateTime;
+    function ImageToBase64(const FilePath: string): string;
+    procedure SelecionaCorte;
+    procedure ColarImagemDoClipboard;
+    procedure DisableIEHeadersFooters;
+    procedure SalvarImagemClipboardPNG(const ArquivoPng: string);
+    function MemoToHtml(const S: string): string;
+    procedure VerificaCopia;
+    procedure AplicarSharpen(Bmp: TBitmap);
+    { Private declarations }
+  public
+    { Public declarations }
+
+    Visualizacao: Boolean;
+    DadosCarregados: Boolean;
+    CorSelecionada, ID_modelo, ID_produto: string;
+    procedure BloquearCampos;
+  end;
+
+var
+  frmProducao: TfrmProducao;
+  Edit : Boolean;
+  ID : Integer;
+  TipoCorte: Integer;
+  ModelagemTerminada: Boolean;
+  DadosModeloEnvio: string;
+
+implementation
+
+{$R *.dfm}
+
+uses ufrmRequest, uDD, ufrmModelos, Super, MD5, ufrmAviso, ufrmModelagem,
+  ufrmProducoesEnv;
+
+procedure TfrmProducao.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmProducao.btnEnviarClick(Sender: TObject);
+var
+  JSONObj, DepObj: TJSONObject;
+  DepArray: TJSONArray;
+  JsonStr: string;
+  RootObj, CollectionObj, ItemObj, DataObj: TJSONObject;
+  ItemsArray: TJSONArray;
+  id_int, productId, name, salesOrder, salesOrderDate, customer, color, progressStatus: string;
+  expectedProductionQuantity, productionQuantityBalance, priority: Integer;
+  isFictitious: Boolean;
+  deliveryDate, earlyStart, laterEnd: string;
+  i: Integer;
+  img: TImage;
+  base64, htmlTag, noteContent: string;
+begin
+  JSONObj := TJSONObject.Create;
+  try
+    if (ModelagemTerminada) then
+    begin
+      // Propriedades principais
+      if  not EditOrd then
+      begin
+        JSONObj.AddPair('productId', TJSONString.Create(ID_Produto));
+      end
+      else
+      begin
+        JSONObj.AddPair('productId', TJSONString.Create(IDPRO));
+      end;
+      JSONObj.AddPair('name', '*' + EdtNpedido.Text);
+      JSONObj.AddPair('expectedProductionQuantity', TJSONNumber.Create(StrToFloat(EdtQuantidade.Text)));
+      JSONObj.AddPair('isFictitious', TJSONBool.Create(False));
+      JSONObj.AddPair('priority', TJSONNumber.Create(0));
+      JSONObj.AddPair('deliveryDate', TJSONString.Create((FormatDateTimeToAPIPattern(DtEntrega.DateTime))));
+      JSONObj.AddPair('earlyStart', TJSONString.Create((FormatDateTimeToAPIPattern(DtInicio.DateTime))));
+      JSONObj.AddPair('laterEnd', TJSONString.Create((FormatDateTimeToAPIPattern(DtFim.DateTime))));
+      JSONObj.AddPair('salesOrder', EdtNpedidoVenda.Text);
+      JSONObj.AddPair('salesOrderDate', TJSONString.Create((FormatDateTimeToAPIPattern(now))));
+      JSONObj.AddPair('customer', EdtCliente.Text);
+      if  not EditOrd then
+      begin
+        JSONObj.AddPair('color', CorSelecionada);
+      end
+      else
+      begin
+        JSONObj.AddPair('color', COR);
+      end;
+
+      //pegar as imagens e converter para base64
+      noteContent := '';
+
+      for i := 0 to FlowPanel1.ControlCount - 1 do
+      begin
+        if FlowPanel1.Controls[i] is TImage then
+        begin
+          img := TImage(FlowPanel1.Controls[i]);
+          base64 := ImageToBase64(img.Hint);
+          if  not EditOrd then
+          begin
+            htmlTag := '<img src="data:image/jpeg;base64,' + base64 + '" />';
+          end
+          else
+          begin
+            htmlTag := IMAGE + sLineBreak + '<img src="data:image/jpeg;base64,' + base64 + '" />';
+          end;
+
+          noteContent := noteContent + htmlTag + sLineBreak;
+        end;
+      end;
+
+      if FlowPanel1.ControlCount = 0 then
+      begin
+        noteContent := IMAGE;
+      end;
+
+      JSONObj.AddPair('note', MmObs.Text + '<br>' + '<br>' + DadosModeloEnvio + '<br>' + '<br>' + noteContent );
+
+      if EditOrd then
+      begin
+        JSONObj.AddPair('id', QrSaveProdid_producao.AsString);
+      end;
+
+      // Dependência de Ordens de Produção
+  //    DepArray := TJSONArray.Create;
+  //    DepObj := TJSONObject.Create;
+  //    DepObj.AddPair('previousProductionOrderId', '3fa85f64-5717-4562-b3fc-2c963f66afa6');
+  //    DepArray.AddElement(DepObj);
+  //    JSONObj.AddPair('previousProductionOrdersDependency', DepArray);
+
+      frmRequest.RESTRequestProd.ResetToDefaults;
+      frmRequest.RESTClientProd.ResetToDefaults;
+      frmRequest.RESTRequestProd.Params.Clear;
+
+      if  not EditOrd then
+      begin
+        frmRequest.RESTRequestProd.Method := rmPOST;
+        frmRequest.RESTClientProd.BaseURL := URL + defProducao + ID_modelo;
+        frmRequest.RESTRequestProd.Params.AddItem('Authorization', 'Bearer ' + defAppToken, pkHTTPHEADER, [poDoNotEncode]);
+        frmRequest.RESTRequestProd.Body.ClearBody;
+
+        //StringToFile(JSONObj.ToString, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsProducao.json');
+        frmRequest.RESTRequestProd.AddBody(JSONObj);
+      end
+      else
+      begin
+        frmRequest.RESTRequestProd.Method := rmPUT;
+        frmRequest.RESTClientProd.BaseURL := URL + defProducaoPut;
+        frmRequest.RESTRequestProd.Params.AddItem('Authorization', 'Bearer ' + defAppToken, pkHTTPHEADER, [poDoNotEncode]);
+        frmRequest.RESTRequestProd.Body.ClearBody;
+
+        //StringToFile(JSONObj.ToString, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\Alooe\extras\jsProducaoPut.json');
+        frmRequest.RESTRequestProd.AddBody(JSONObj);
+      end;
+
+      AvisoAtt('Enviando pedido...', 5, -1);
+      try
+        frmRequest.RESTRequestProd.Execute;
+      except
+        on E: EHTTPProtocolException do
+        begin
+          ShowMessage('Erro HTTP: ' + E.Message);
+          Exit;
+        end;
+        on E: Exception do
+        begin
+          ShowMessage('Erro inesperado: ' + E.Message);
+          Exit;
+        end;
+      end;
+
+      JsonStr := frmRequest.RESTResponseProd.Content;
+      //StringToFile(JsonStr, 'F:\Projetos Delphi\BM MySQL\Outros Projetos\BM2Aloee\extras\jsContentConflict.json');
+      RootObj := TJSONObject.ParseJSONValue(JsonStr) as TJSONObject;
+      try
+        CollectionObj := RootObj.GetValue<TJSONObject>('collection');
+        ItemsArray := CollectionObj.GetValue<TJSONArray>('items');
+
+        if (ItemsArray.Count > 0) then
+        begin
+          ItemObj := ItemsArray.Items[0] as TJSONObject;
+          DataObj := ItemObj.GetValue<TJSONObject>('data');
+
+          // Pegando os valores
+          id_int                     := DataObj.GetValue<string>('id');
+          productId                  := DataObj.GetValue<string>('productId');
+          name                       := DataObj.GetValue<string>('name');
+          expectedProductionQuantity := Trunc(DataObj.GetValue<Double>('expectedProductionQuantity'));
+          productionQuantityBalance  := Trunc(DataObj.GetValue<Double>('productionQuantityBalance'));
+          isFictitious               := DataObj.GetValue<Boolean>('isFictitious');
+          priority                   := DataObj.GetValue<Integer>('priority');
+          deliveryDate               := DataObj.GetValue<string>('deliveryDate');
+          earlyStart                 := DataObj.GetValue<string>('earlyStart');
+          laterEnd                   := DataObj.GetValue<string>('laterEnd');
+          salesOrder                 := DataObj.GetValue<string>('salesOrder');
+          salesOrderDate             := DataObj.GetValue<string>('salesOrderDate');
+          customer                   := DataObj.GetValue<string>('customer');
+          color                      := DataObj.GetValue<string>('color');
+          progressStatus             := DataObj.GetValue<string>('progressStatus');
+
+          // Salvando pedido
+          AvisoAtt('Salvando pedido...', 5, -1);
+          QrSaveProd.Close;
+          QrSaveProd.ParamByName('id').AsString := IDPRODUCAO;
+          QrSaveProd.Open;
+
+          if not EditOrd then
+          begin
+            QrSaveProd.Append;
+          end
+          else
+          begin
+            QrSaveProd.Edit;
+          end;
+          QrSaveProdid_producao.AsString                 := id_int;
+          QrSaveProdid_prod.AsString                     := productId;
+          QrSaveProdname.AsString                        := EdtModelos.Text;
+          QrSaveProdexpectedProductionQuantity.AsInteger := expectedProductionQuantity;
+          QrSaveProdproductionQuantityBalance.AsInteger  := productionQuantityBalance;
+          QrSaveProdisFictitious.AsBoolean               := isFictitious;
+          QrSaveProdpriority.AsInteger                   := priority;
+          QrSaveProddeliveryDate.AsDateTime              := ParseAPIDateTimeToLocal(deliveryDate);
+          QrSaveProdearlyStart.AsDateTime                := ParseAPIDateTimeToLocal(earlyStart);
+          QrSaveProdlaterEnd.AsDateTime                  := ParseAPIDateTimeToLocal(laterEnd);
+          QrSaveProdsalesOrder.AsString                  := salesOrder;
+          QrSaveProdsalesOrderDate.AsDateTime            := ParseAPIDateTimeToLocal(salesOrderDate);
+          QrSaveProdcustomer.AsString                    := customer;
+          QrSaveProdcolor.AsString                       := color;
+          QrSaveProdprogressStatus.AsString              := progressStatus;
+          QrSaveProdid_modelagem.AsInteger               := ID;
+          QrSaveProdnote.AsString                        := MmObs.Text;
+          QrSaveProdimage.AsString                       := noteContent;
+          QrSaveProdtipoCorte.AsInteger                  := StrToInt(cbTipoCorte.Value);
+          QrSaveProddadosModelagem.AsString              := DadosModeloEnvio;
+          QrSaveProdn_pedido.AsString                    := name;
+          QrSaveProdcodigo.AsString                      := edtCodigo.Text;
+          QrSaveProd.Post;
+
+          AvisoAtt('Processo de envio concluído...', 5, -1);
+        end;
+      finally
+        RootObj.Free;
+      end
+    end
+    else
+    begin
+      raiseWithFocus(btnModelo, 'Necessário fazer modelagem da produção!');
+    end;
+  finally
+    JSONObj.Free;
+  end;
+
+  Edit := False;
+  ModalResult := mrOk;
+end;
+
+function GetTempImagePath: string;
+begin
+  Result := IncludeTrailingPathDelimiter(GetTempDir) + 'ImagensProducao\';
+  ForceDirectories(Result);
+end;
+
+procedure TfrmProducao.btnImageClick(Sender: TObject);
+var
+  i: Integer;
+  img: TImage;
+begin
+  OpenDialog1.Options := [ofAllowMultiSelect, ofFileMustExist];
+  OpenDialog1.Filter  := 'Imagens|*.jpg;*.jpeg;*.png;*.bmp';
+
+  if OpenDialog1.Execute then
+  begin
+    //FlowPanel1.DestroyComponents;
+
+    for i := 0 to OpenDialog1.Files.Count - 1 do
+    begin
+      img          := TImage.Create(FlowPanel1);
+      img.Parent   := FlowPanel1;
+      img.Picture.LoadFromFile(OpenDialog1.Files[i]);
+      img.Width    := 100;
+      img.Height   := 100;
+      img.Stretch  := True;
+
+      img.Hint     := OpenDialog1.Files[i]; // guarda o caminho no Hint
+      img.ShowHint := True;
+    end;
+  end;
+end;
+
+procedure TfrmProducao.ColarImagemDoClipboard;
+var
+  Img       : TImage;
+  Bmp, BmpHD: TBitmap;
+  Png       : TPngImage;
+  FileName  : string;
+  ScaleFactor: Integer;
+begin
+  FileName    := GetTempImagePath + FormatDateTime('yyyymmdd_hhnnss_zzz', Now) + '.png';
+  ScaleFactor := 8;
+
+  if not Clipboard.HasFormat(CF_BITMAP) then
+  begin
+    ShowMessage('Apenas imagens bitmap são permitidas (use CTRL+C no CorelDraw).');
+    Exit;
+  end;
+
+  Bmp   := TBitmap.Create;
+  BmpHD := TBitmap.Create;
+  Png   := TPngImage.Create;
+  try
+    Bmp.Assign(Clipboard);
+
+    // Escala com HALFTONE (interpolação de qualidade)
+    BmpHD.PixelFormat := pf32bit;
+    BmpHD.SetSize(Bmp.Width * ScaleFactor, Bmp.Height * ScaleFactor);
+
+    SetStretchBltMode(BmpHD.Canvas.Handle, HALFTONE);
+    SetBrushOrgEx(BmpHD.Canvas.Handle, 0, 0, nil);
+
+    StretchBlt(
+      BmpHD.Canvas.Handle,
+      0, 0, BmpHD.Width, BmpHD.Height,
+      Bmp.Canvas.Handle,
+      0, 0, Bmp.Width, Bmp.Height,
+      SRCCOPY
+    );
+
+    Png.Assign(BmpHD);
+    Png.SaveToFile(FileName);
+  finally
+    Png.Free;
+    BmpHD.Free;
+    Bmp.Free;
+  end;
+
+  // ── Exibe no FlowPanel ───────────────────────────────────────────────
+  Img := TImage.Create(FlowPanel1);
+  Img.Parent       := FlowPanel1;
+  Img.Width        := 100;
+  Img.Height       := 100;
+  Img.Stretch      := True;
+  Img.Proportional := True;
+  Img.Picture.LoadFromFile(FileName);
+  Img.Hint         := FileName;
+  Img.ShowHint     := True;
+end;
+procedure TfrmProducao.VerificaCopia;
+var
+  i: Integer;
+  formatos: string;
+  nome: array[0..255] of Char;
+begin
+  formatos := 'Formatos no Clipboard:' + #13#10;
+  for i := 0 to Clipboard.FormatCount - 1 do
+  begin
+    GetClipboardFormatName(Clipboard.Formats[i], nome, 255);
+    formatos := formatos +
+      '  ID: ' + IntToStr(Clipboard.Formats[i]) +
+      ' → ' + string(nome) + #13#10;
+  end;
+  ShowMessage(formatos);
+end;
+
+procedure TfrmProducao.btnModeloClick(Sender: TObject);
+begin
+  if (EdtNpedido.Text = '') then
+    raiseWithFocus(EdtNpedido, 'Número do Pedido em branco');
+
+  if (EdtQuantidade.Text = '') then
+    raiseWithFocus(EdtQuantidade, 'Quantidade em branco');
+
+  if (cbTipoCorte.Value = '') then
+    raiseWithFocus(cbTipoCorte, 'Obrigatório escolher Modelo a ser usado');
+
+  if EditOrd then
+    Edit := EditOrd;
+
+  TipoCorte := StrToInt(cbTipoCorte.Value);
+  frmModelagem := Tfrmmodelagem.Create(Application);
+  frmModelagem.ShowModal;
+  Edit := True;
+  frmModelagem.Free;
+
+  StringToFile(DadosModeloEnvio, pubDirEXE + 'dados.html');
+  WBDadosModelo.Navigate(pubDirEXE + 'dados.html');
+end;
+
+function TfrmProducao.MemoToHtml(const S: string): string;
+begin
+  Result := S;
+  Result := StringReplace(Result, '&', '&amp;', [rfReplaceAll]);
+  Result := StringReplace(Result, '<', '&lt;',  [rfReplaceAll]);
+  Result := StringReplace(Result, '>', '&gt;',  [rfReplaceAll]);
+  Result := StringReplace(Result, '"', '&quot;',[rfReplaceAll]);
+  Result := StringReplace(Result, #13#10, '<br>', [rfReplaceAll]);
+  Result := StringReplace(Result, #10, '<br>', [rfReplaceAll]);
+  Result := StringReplace(Result, #13, '<br>', [rfReplaceAll]);
+end;
+
+procedure TfrmProducao.Button1Click(Sender: TObject);
+const
+  LARGURA_ESQ_MM = 148;   // metade da A4 paisagem (297/2 = 148,5)
+  ALTURA_TOPO_MM = 90;    // altura do QUADRO da planilha (ajuste aqui)
+  GAP_MM         = 8;     // espaço entre os quadros
+  ZOOM_PLANILHA  = '0.50';// aumenta a planilha (ajuste fino: 0.65..0.90)
+  COL_ESQ_MM = 120; // mesma largura da planilha e do cabeçalho
+
+var
+  HTMLOriginal: string;
+  HTMLFinal: TStringList;
+  ArqHTML, ArqImg: string;
+  Doc: IHTMLDocument2;
+  HTMLOrig: string;
+  Wmm, Hmm: Double;
+  FatorCal: Double;
+  WFix, HFix: Double;
+  PastaTemp: string;
+  CacheBuster: string;
+  ObsHTML: string;
+begin
+  if (ModelagemTerminada) then
+  begin
+    PastaTemp := IncludeTrailingPathDelimiter(GetEnvironmentVariable('TEMP'));
+    ArqHTML := PastaTemp + 'impressao.html';
+
+    // PNG na MESMA pasta do HTML
+    ArqImg := PastaTemp + 'etiqueta.png';
+
+    CacheBuster := IntToStr(GetTickCount);
+
+    // Caminhos temporários
+    ArqHTML := IncludeTrailingPathDelimiter(GetEnvironmentVariable('TEMP')) + 'impressao.html';
+
+    Wmm := StrToFloatDef(StringReplace(Trim(EdtLarguraMM.Text), ',', '.', [rfReplaceAll]), 0);
+    Hmm := StrToFloatDef(StringReplace(Trim(EdtAlturaMM.Text),   ',', '.', [rfReplaceAll]), 0);
+
+    if (Wmm <= 0) or (Hmm <= 0) then
+      raise Exception.Create('Informe Largura e Altura (mm) para imprimir em modo gabarito 1:1.');
+
+    FatorCal := 1;
+    WFix := Wmm * FatorCal;
+    HFix := Hmm * FatorCal;
+
+    ObsHTML := MemoToHtml(Trim(MmObs.Lines.Text));
+
+    // Captura o HTML atual do WebBrowser
+    if Assigned(WBDadosModelo.Document) then
+    begin
+      Doc := WBDadosModelo.Document as IHTMLDocument2;
+      HTMLOriginal := Doc.body.innerHTML;
+    end
+    else
+      raise Exception.Create('WebBrowser não contém conteúdo.');
+
+    // Salva a imagem copiada do Corel
+    ArqImg := IncludeTrailingPathDelimiter(GetEnvironmentVariable('TEMP')) + 'etiqueta.png';
+    SalvarImagemClipboardPNG(ArqImg);
+
+    // Monta o HTML final de impressão
+    HTMLFinal := TStringList.Create;
+    try
+      // Remove CENTER do HTML original (evita centralização forçada)
+      HTMLOrig := HTMLOriginal;
+      HTMLOrig := StringReplace(HTMLOrig, '<CENTER>', '', [rfReplaceAll, rfIgnoreCase]);
+      HTMLOrig := StringReplace(HTMLOrig, '</CENTER>', '', [rfReplaceAll, rfIgnoreCase]);
+
+      HtmlFinal.Clear;
+
+      HtmlFinal.Add('<!DOCTYPE html>');
+      HtmlFinal.Add('<html>');
+      HtmlFinal.Add('<head>');
+      HtmlFinal.Add('<meta charset="utf-8">');
+
+      HtmlFinal.Add('<style>');
+
+      // Página A4 paisagem
+      HtmlFinal.Add('@page { size: 297mm 210mm; margin: 0; }');
+
+      HtmlFinal.Add('html, body {');
+      HtmlFinal.Add('  margin: 0;');
+      HtmlFinal.Add('  padding: 0;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('@media print {');
+      HtmlFinal.Add('  html, body { margin:0; padding:0; overflow:hidden !important; }');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.pagina { width: 207mm; height: 208mm; overflow:hidden; display:flex; }');
+      HtmlFinal.Add('  width: 297mm;');
+      HtmlFinal.Add('  height: 208mm;');          // já ajusto pra matar 2ª página (explico abaixo)
+      HtmlFinal.Add('  overflow: hidden;');
+      HtmlFinal.Add('  display: flex;');
+      HtmlFinal.Add('  flex-direction: row;');
+      HtmlFinal.Add('  box-sizing: border-box;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.col-esq {');
+      HtmlFinal.Add('  flex: 0 0 ' + IntToStr(COL_ESQ_MM) + 'mm;'); // <<< MAIS IMPORTANTE
+      HtmlFinal.Add('  width: ' + IntToStr(COL_ESQ_MM) + 'mm;');
+      HtmlFinal.Add('  height: 100%;');
+      HtmlFinal.Add('  display: flex;');
+      HtmlFinal.Add('  flex-direction: column;');
+      HtmlFinal.Add('  box-sizing: border-box;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.quadro-superior, .quadro-inferior {');
+      HtmlFinal.Add('  width: ' + IntToStr(COL_ESQ_MM) + 'mm;');    // <<< evita “linha sobrando”
+      HtmlFinal.Add('  box-sizing: border-box;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.planilha-container {');
+      HtmlFinal.Add('  width: ' + IntToStr(COL_ESQ_MM) + 'mm;');     // <<< aqui
+      HtmlFinal.Add('  max-width: ' + IntToStr(COL_ESQ_MM) + 'mm;'); // <<< aqui
+      HtmlFinal.Add('  overflow: hidden;');
+      HtmlFinal.Add('  zoom: ' + ZOOM_PLANILHA + ';');
+      HtmlFinal.Add('  display: block;');
+      HtmlFinal.Add('  margin: 0;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.texto-overlay {');
+      HtmlFinal.Add('  position: absolute;');
+      HtmlFinal.Add('  font-family: Tahoma, sans-serif;');
+      HtmlFinal.Add('  font-size: 10pt;');
+      HtmlFinal.Add('  font-weight: bold;');
+      HtmlFinal.Add('  color: black;');
+      HtmlFinal.Add('}');
+      HtmlFinal.Add('.texto-esq {');
+      HtmlFinal.Add('  top: 2mm;');
+      HtmlFinal.Add('  left: 2mm;');
+      HtmlFinal.Add('}');
+      HtmlFinal.Add('.texto-dir {');
+      HtmlFinal.Add('  top: 2mm;');
+      HtmlFinal.Add('  right: 2mm;');
+      HtmlFinal.Add('}');
+
+//      HtmlFinal.Add('.linha-info {');
+//      HtmlFinal.Add('  width: ' + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm;');
+      HtmlFinal.Add('.linha-info {');
+      HtmlFinal.Add('  width: 100%;');  // <<< MUITO IMPORTANTE
+      HtmlFinal.Add('  display: flex !important;');
+      HtmlFinal.Add('  flex-direction: row !important;');
+      HtmlFinal.Add('  flex-wrap: nowrap !important;');
+      HtmlFinal.Add('  justify-content: space-between;');
+      HtmlFinal.Add('  align-items: flex-end;');
+      HtmlFinal.Add('  font-family: Tahoma, sans-serif;');
+      HtmlFinal.Add('  font-size: 9pt;');   // << ligeiramente menor para caber
+      HtmlFinal.Add('  font-weight: bold;');
+      HtmlFinal.Add('  margin-bottom: 1mm;');
+      HtmlFinal.Add('  overflow: hidden;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.info-esq { flex-shrink: 0; white-space: nowrap; }');
+      HtmlFinal.Add('.info-dir { flex-shrink: 0; white-space: nowrap; text-align: right; }');
+
+      // mata centralização vinda do HTML
+      HtmlFinal.Add('.planilha-container center { text-align: left !important; }');
+
+      // >>> FORÇA AS TABELAS A OCUPAREM A LARGURA TODA (resolve "MODELAGEM" não ir até o fim)
+      HtmlFinal.Add('.planilha-container table {');
+      HtmlFinal.Add('  width: 100% !important;');
+      HtmlFinal.Add('  table-layout: fixed !important;');
+      HtmlFinal.Add('  margin: 0 !important;');
+      HtmlFinal.Add('  border-collapse: collapse !important;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.planilha-container td, .planilha-container th {');
+      HtmlFinal.Add('  border: 1px solid #999 !important;');
+      HtmlFinal.Add('  padding: 2px 4px !important;');
+      HtmlFinal.Add('  white-space: nowrap;');
+      HtmlFinal.Add('}');
+
+      // -------- QUADRO INFERIOR (IMAGEM + OBS) --------
+      HtmlFinal.Add('.quadro-inferior {');
+      //HtmlFinal.Add('  margin-top: ' + IntToStr(GAP_MM) + 'mm;');
+      HtmlFinal.Add('  margin-top: 0;');   // << sem espaço
+      HtmlFinal.Add('  height: calc(100% - ' + IntToStr(ALTURA_TOPO_MM) + 'mm - ' + IntToStr(GAP_MM) + 'mm);');
+      HtmlFinal.Add('  border: none !important;');
+      HtmlFinal.Add('  background: transparent !important;');
+      HtmlFinal.Add('  box-sizing: border-box;');
+      HtmlFinal.Add('  padding: 0 !important;');
+      HtmlFinal.Add('  display: flex;');
+      HtmlFinal.Add('  flex-direction: column;');  // <<< agora é coluna
+      HtmlFinal.Add('  overflow: hidden;');
+      HtmlFinal.Add('}');
+
+//      HtmlFinal.Add('.imagem-container {');
+//      HtmlFinal.Add('  flex: 0 0 auto;');
+//      HtmlFinal.Add('  margin-top: 0;');   // << garantir sem margem extra
+//      HtmlFinal.Add('  width: '  + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm;');
+//      HtmlFinal.Add('  height: ' + StringReplace(FormatFloat('0.###', HFix), ',', '.', [rfReplaceAll]) + 'mm;');
+//      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.imagem-container {');
+      HtmlFinal.Add('  flex: 0 0 auto;');
+      HtmlFinal.Add('  margin-top: 0;');
+      HtmlFinal.Add('  width: 100%;');   // <<< LIBERA
+      HtmlFinal.Add('  height: auto;');  // <<< LIBERA
+      HtmlFinal.Add('}');
+
+//      HtmlFinal.Add('.obs-container {');
+      HtmlFinal.Add('.obs-container {');
+      HtmlFinal.Add('  width: 100%;');
+      HtmlFinal.Add('  margin-top: 2mm;');
+      HtmlFinal.Add('  font-family: Tahoma, sans-serif;');
+      HtmlFinal.Add('  font-size: 8pt;');
+      HtmlFinal.Add('  line-height: 1.2;');
+      HtmlFinal.Add('  white-space: normal;');
+      HtmlFinal.Add('  word-break: break-word;');
+      HtmlFinal.Add('}');
+
+      // GABARITO: remover pontilhado
+      HtmlFinal.Add('.gabarito-box {');
+      HtmlFinal.Add('  position: relative;');
+      HtmlFinal.Add('  display: inline-block;');
+      HtmlFinal.Add('  width: '  + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm;');
+      HtmlFinal.Add('  height: ' + StringReplace(FormatFloat('0.###', HFix), ',', '.', [rfReplaceAll]) + 'mm;');
+      HtmlFinal.Add('  box-sizing: border-box;');
+      HtmlFinal.Add('}');
+
+      // --- MODO GABARITO (1:1) --- (tamanho aplicado DIRETO na imagem)
+      HtmlFinal.Add('.gabarito-box img {');
+      HtmlFinal.Add('  width: '  + StringReplace(FormatFloat('0.###', WFix), ',', '.', [rfReplaceAll]) + 'mm !important;');
+      HtmlFinal.Add('  height: ' + StringReplace(FormatFloat('0.###', HFix), ',', '.', [rfReplaceAll]) + 'mm !important;');
+      HtmlFinal.Add('  max-width: none !important;');
+      HtmlFinal.Add('  max-height: none !important;');
+      HtmlFinal.Add('  object-fit: fill !important;');
+      HtmlFinal.Add('  display: block;');
+      HtmlFinal.Add('}');
+
+
+      // -------- CABEÇALHO OP (SEM CAIXA) --------
+      HtmlFinal.Add('.op-box {');
+      HtmlFinal.Add('  width: ' + IntToStr(COL_ESQ_MM) + 'mm;');
+      HtmlFinal.Add('  border: none !important;');
+      HtmlFinal.Add('  display: flex;');
+      HtmlFinal.Add('  flex-direction: row;');   // << já estava, mas confirmar
+      HtmlFinal.Add('  align-items: center;');   // << centralizar verticalmente
+      HtmlFinal.Add('  box-sizing: border-box;');
+      HtmlFinal.Add('  margin-bottom: 1mm;');
+      HtmlFinal.Add('  height: 6mm;');          // << reduzir altura
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.op-box .op-label {');
+      HtmlFinal.Add('  flex-shrink: 0;');        // << não encolhe
+      HtmlFinal.Add('  white-space: nowrap;');   // << não quebra linha
+      HtmlFinal.Add('  display: flex;');
+      HtmlFinal.Add('  align-items: center;');
+      HtmlFinal.Add('  font-weight: bold;');
+      HtmlFinal.Add('  font-size: 18pt;');
+      HtmlFinal.Add('  padding-right: 3mm;');
+      HtmlFinal.Add('  box-sizing: border-box;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('.op-box .op-num {');
+      HtmlFinal.Add('  flex-shrink: 0;');        // << não encolhe
+      HtmlFinal.Add('  white-space: nowrap;');   // << não quebra linha
+      HtmlFinal.Add('  display: flex;');
+      HtmlFinal.Add('  align-items: center;');
+      HtmlFinal.Add('  font-weight: bold;');
+      HtmlFinal.Add('  font-size: 18pt;');
+      HtmlFinal.Add('  box-sizing: border-box;');
+      HtmlFinal.Add('}');
+
+      HtmlFinal.Add('</style>');
+      HtmlFinal.Add('</head>');
+
+      HtmlFinal.Add('<body>');
+      HtmlFinal.Add('<div class="pagina">');
+
+      // Coluna esquerda com os 2 quadros
+      HtmlFinal.Add('<div class="col-esq">');
+
+      HtmlFinal.Add('<div class="quadro-superior">');
+
+      // CABEÇALHO OP
+      HtmlFinal.Add('<div class="op-box">');
+      HtmlFinal.Add('  OP ' + Trim(EdtNpedido.Text));
+      HtmlFinal.Add('</div>');
+
+      // PLANILHA
+      HtmlFinal.Add('<div class="planilha-container">');
+      HtmlFinal.Add(HTMLOrig);
+      HtmlFinal.Add('</div>');
+      HtmlFinal.Add('</div>');
+
+      HtmlFinal.Add('<div class="quadro-inferior">');
+
+      // IMAGEM
+      HtmlFinal.Add('<div class="imagem-container">');
+
+      // LINHA SUPERIOR (codigo + medidas)
+      HtmlFinal.Add('<div class="linha-info">');
+      HtmlFinal.Add('  <div class="info-esq">' +
+                    Trim(EdtCodigo.Text) + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+                    Trim(EdtLarguraMM.Text) + 'x' + Trim(EdtAlturaMM.Text) +
+                    'mm</div>');
+      HtmlFinal.Add('</div>');
+      // Depois vem a imagem:
+      HtmlFinal.Add('<div class="gabarito-box">');
+      HtmlFinal.Add('<img src="etiqueta.png?v=' + IntToStr(GetTickCount) + '" alt="Etiqueta">');
+      HtmlFinal.Add('</div>');
+
+      // OBS (abaixo da imagem)
+      if ObsHTML <> '' then
+      begin
+        HtmlFinal.Add('<div class="obs-container">');
+        HtmlFinal.Add('<b></b> ' + ObsHTML);
+        HtmlFinal.Add('</div>');
+      end;
+      HtmlFinal.Add('</div>'); // quadro-inferior
+
+      // Coluna direita (livre)
+      HtmlFinal.Add('<div class="col-dir"></div>');
+
+      HtmlFinal.Add('</div>'); // pagina
+      HtmlFinal.Add('</body>');
+      HtmlFinal.Add('</html>');
+
+      HTMLFinal.SaveToFile(ArqHTML, TEncoding.UTF8);
+    finally
+      HTMLFinal.Free;
+    end;
+
+    // Abre o HTML final no WebBrowser
+    WebBrowserImp.Navigate('file:///' + StringReplace(ArqHTML, '\', '/', [rfReplaceAll]));
+
+    while WebBrowserImp.ReadyState <> READYSTATE_COMPLETE do
+      Application.ProcessMessages;
+
+    // Aguarda um pouco para o conteúdo carregar completamente
+    Sleep(500);
+
+
+    // imprime
+    WebBrowserImp.ExecWB(OLECMDID_PRINT, OLECMDEXECOPT_PROMPTUSER);
+  end
+  else
+  begin
+    raiseWithFocus(btnModelo, 'Necessário fazer modelagem da produção!');
+  end;
+end;
+
+//procedure TfrmProducao.SalvarImagemClipboardPNG(const ArquivoPng: string);
+//var
+//  Bmp   : TBitmap;
+//  BmpHD : TBitmap;
+//  Png   : TPngImage;
+//  ScaleFactor: Integer;
+//begin
+//  ScaleFactor := 8; // 4x = ~384 DPI
+//
+//  Bmp   := TBitmap.Create;
+//  BmpHD := TBitmap.Create;
+//  Png   := TPngImage.Create;
+//  try
+//    if Clipboard.HasFormat(CF_BITMAP) then
+//      Bmp.Assign(Clipboard)
+//    else
+//      raise Exception.Create('Clipboard não contém bitmap.');
+//
+//    // Cria bitmap maior com StretchBlt em modo HALFTONE (melhor qualidade)
+//    BmpHD.PixelFormat := pf32bit;
+//    BmpHD.SetSize(Bmp.Width * ScaleFactor, Bmp.Height * ScaleFactor);
+//
+//    SetStretchBltMode(BmpHD.Canvas.Handle, HALFTONE);
+//    SetBrushOrgEx(BmpHD.Canvas.Handle, 0, 0, nil);
+//
+//    StretchBlt(
+//      BmpHD.Canvas.Handle,
+//      0, 0, BmpHD.Width, BmpHD.Height,  // destino maior
+//      Bmp.Canvas.Handle,
+//      0, 0, Bmp.Width, Bmp.Height,       // origem original
+//      SRCCOPY
+//    );
+//
+//    ForceDirectories(ExtractFileDir(ArquivoPng));
+//    Png.Assign(BmpHD);
+//    Png.SaveToFile(ArquivoPng);
+//  finally
+//    Png.Free;
+//    BmpHD.Free;
+//    Bmp.Free;
+//  end;
+//end;
+
+procedure TfrmProducao.SalvarImagemClipboardPNG(const ArquivoPng: string);
+var
+  Bmp         : TBitmap;
+  Png         : TPngImage;
+  GPSrcBitmap : TGPBitmap;
+  GPDstBitmap : TGPBitmap;
+  GPGraphics  : TGPGraphics;
+  ScaleFactor : Integer;
+  TempBmp     : TBitmap;
+begin
+  ScaleFactor := 4;
+  Bmp     := TBitmap.Create;
+  TempBmp := TBitmap.Create;
+  Png     := TPngImage.Create;
+  try
+    if not Clipboard.HasFormat(CF_BITMAP) then
+      raise Exception.Create('Clipboard não contém bitmap.');
+
+    Bmp.Assign(Clipboard);
+    Bmp.PixelFormat := pf32bit;
+
+    // Bitmap destino em memória
+    TempBmp.PixelFormat := pf32bit;
+    TempBmp.SetSize(Bmp.Width * ScaleFactor, Bmp.Height * ScaleFactor);
+
+    // GDI+: cria bitmap GDI+ a partir do bitmap GDI
+    GPSrcBitmap := TGPBitmap.Create(Bmp.Handle, Bmp.Palette);
+    GPDstBitmap := TGPBitmap.Create(TempBmp.Width, TempBmp.Height, PixelFormat32bppARGB);
+    GPGraphics  := TGPGraphics.Create(GPDstBitmap);
+    try
+      // ← Esta é a chave: interpolação bicúbica de alta qualidade
+      GPGraphics.SetInterpolationMode(InterpolationModeHighQualityBicubic);
+      GPGraphics.SetSmoothingMode(SmoothingModeHighQuality);
+      GPGraphics.SetPixelOffsetMode(PixelOffsetModeHighQuality);
+      GPGraphics.SetCompositingQuality(CompositingQualityHighQuality);
+
+      GPGraphics.DrawImage(
+        GPSrcBitmap,
+        0, 0,
+        TempBmp.Width,
+        TempBmp.Height
+      );
+
+      // Converte GPBitmap de volta para TBitmap
+      GPDstBitmap.GetHBITMAP(MakeColor(255,255,255), TempBmp.Handle);
+
+    finally
+      GPGraphics.Free;
+      GPDstBitmap.Free;
+      GPSrcBitmap.Free;
+    end;
+
+    ForceDirectories(ExtractFileDir(ArquivoPng));
+    Png.Assign(TempBmp);
+    Png.SaveToFile(ArquivoPng);
+  finally
+    Png.Free;
+    TempBmp.Free;
+    Bmp.Free;
+  end;
+end;
+
+procedure TfrmProducao.AplicarSharpen(Bmp: TBitmap);
+// Kernel sharpen 3x3:  0 -1  0
+//                      -1  5 -1
+//                       0 -1  0
+var
+  x, y: Integer;
+  Src, Dst: TBitmap;
+  pSrc0, pSrc1, pSrc2, pDst: PByteArray;
+  R, G, B: Integer;
+begin
+  Src := TBitmap.Create;
+  Dst := TBitmap.Create;
+  try
+    Src.Assign(Bmp);
+    Src.PixelFormat := pf24bit;
+    Dst.Assign(Src);
+
+    for y := 1 to Src.Height - 2 do
+    begin
+      pSrc0 := Src.ScanLine[y - 1];
+      pSrc1 := Src.ScanLine[y];
+      pSrc2 := Src.ScanLine[y + 1];
+      pDst  := Dst.ScanLine[y];
+
+      for x := 1 to Src.Width - 2 do
+      begin
+        B := 5 * pSrc1[x*3]   - pSrc0[x*3]   - pSrc2[x*3]   - pSrc1[(x-1)*3]   - pSrc1[(x+1)*3];
+        G := 5 * pSrc1[x*3+1] - pSrc0[x*3+1] - pSrc2[x*3+1] - pSrc1[(x-1)*3+1] - pSrc1[(x+1)*3+1];
+        R := 5 * pSrc1[x*3+2] - pSrc0[x*3+2] - pSrc2[x*3+2] - pSrc1[(x-1)*3+2] - pSrc1[(x+1)*3+2];
+
+        pDst[x*3]   := Max(0, Min(255, B));
+        pDst[x*3+1] := Max(0, Min(255, G));
+        pDst[x*3+2] := Max(0, Min(255, R));
+      end;
+    end;
+
+    Bmp.Assign(Dst);
+  finally
+    Src.Free;
+    Dst.Free;
+  end;
+end;
+
+procedure TfrmProducao.cbTipoCorteChange(Sender: TObject);
+begin
+  ModelagemTerminada := False;
+end;
+
+function TfrmProducao.ImageToBase64(const FilePath: string): string;
+var
+  InputStream: TMemoryStream;
+  OutputStream: TStringStream;
+begin
+  InputStream  := TMemoryStream.Create;
+  OutputStream := TStringStream.Create('', TEncoding.ASCII);
+  try
+    InputStream.LoadFromFile(FilePath);
+    InputStream.Position := 0;
+    EncodeStream(InputStream, OutputStream);
+    Result := OutputStream.DataString;
+  finally
+    InputStream.Free;
+    OutputStream.Free;
+  end;
+end;
+
+
+function TfrmProducao.FormatDateTimeToAPIPattern(Data: TDateTime): string;
+var
+  utcData: TDateTime;
+begin
+  // Converte para UTC
+  utcData := TTimeZone.Local.ToUniversalTime(Data);
+
+  // Formata no padrão ISO 8601 com milissegundos e sufixo 'Z'
+  Result := FormatDateTime('yyyy"-"mm"-"dd"T"hh":"nn":"ss"."zzz', utcData) + 'Z';
+end;
+
+function TfrmProducao.ParseAPIDateTimeToLocal(const DataStr: string): TDateTime;
+var
+  ISODateStr: string;
+  utcDateTime: TDateTime;
+begin
+  // Remove o 'Z' do final, se houver
+  ISODateStr := DataStr;
+  if ISODateStr.EndsWith('Z') then
+    ISODateStr := ISODateStr.Substring(0, ISODateStr.Length - 1);
+
+  // Substitui o 'T' por espaço
+  ISODateStr := StringReplace(ISODateStr, 'T', ' ', [rfReplaceAll]);
+
+  // Remove milissegundos, se houver
+  if Pos('.', ISODateStr) > 0 then
+    ISODateStr := Copy(ISODateStr, 1, Pos('.', ISODateStr) - 1);
+
+  // Força formato de data/hora padrão aceito
+  FormatSettings.DateSeparator   := '-';
+  FormatSettings.TimeSeparator   := ':';
+  FormatSettings.ShortDateFormat := 'yyyy-mm-dd';
+  FormatSettings.LongTimeFormat  := 'hh:nn:ss';
+
+  if not TryStrToDateTime(ISODateStr, utcDateTime, FormatSettings) then
+    raise Exception.Create('Formato de data inválido: ' + DataStr);
+
+  // Converte para horário local
+  Result := TTimeZone.Local.ToLocalTime(utcDateTime);
+end;
+
+procedure TfrmProducao.DBLookupModeloCloseUp(Sender: TObject);
+begin
+  if not QrModelos.IsEmpty then
+  begin
+    EdtQuantidade.Text := QrModelos.FieldByName('quantidade_producao').AsString;
+    SetColorBoxFromHex(CbCor, QrModelos.FieldByName('cor_etiqueta').AsString);
+  end;
+end;
+
+procedure TfrmProducao.DisableIEHeadersFooters;
+begin
+
+end;
+
+procedure TfrmProducao.EdtModelosChange(Sender: TObject);
+var
+  texto: string;
+begin
+  texto := Trim(edtModelos.Text);
+  lstSugestoes.Items.Clear;
+
+  if texto = '' then
+  begin
+    lstSugestoes.Visible := False;
+    DadosCarregados      := False;  // reset porque texto está vazio
+    EdtQuantidade.Text   := '';
+    CbCor.Selected       := clWhite; // ou algo assim para limpar
+    Exit;
+  end;
+
+  // Atualiza a lista de sugestões
+  if Length(texto) >= 2 then
+  begin
+    QrModelos.Close;
+    QrModelos.ParamByName('param').AsString := '%' + texto + '%';
+    QrModelos.Open;
+
+    while not QrModelos.Eof do
+    begin
+      lstSugestoes.Items.Add(QrModelos.FieldByName('nome_etiqueta').AsString);
+      QrModelos.Next;
+    end;
+
+    if lstSugestoes.Items.Count > 0 then
+    begin
+      lstSugestoes.ItemIndex := 0;
+      lstSugestoes.Left      := edtModelos.Left;
+      lstSugestoes.Top       := edtModelos.Top + edtModelos.Height;
+      lstSugestoes.Width     := edtModelos.Width;
+      lstSugestoes.Visible   := True;
+      lstSugestoes.BringToFront;
+    end
+    else
+      lstSugestoes.Visible := False;
+  end;
+
+  // Só atualiza os campos se os dados ainda não foram carregados
+  if not DadosCarregados then
+  begin
+    if not QrModelos.IsEmpty then
+    begin
+      EdtQuantidade.Text := QrModelos.FieldByName('quantidade_producao').AsString;
+      SetColorBoxFromHex(CbCor, QrModelos.FieldByName('cor_etiqueta').AsString);
+    end
+    else
+    begin
+      EdtQuantidade.Text := '';
+      CbCor.Selected := clWhite;
+    end;
+  end;
+
+  FlowPanel1.DestroyComponents;
+end;
+
+procedure TfrmProducao.EdtQuantidadeChange(Sender: TObject);
+var
+  valor: Double;
+  textoFormatado: string;
+begin
+//  if TryStrToFloat(edtQuantidade.Text, valor) then
+//  begin
+//    // Formata com 4 dígitos inteiros (com zeros à esquerda) e 4 decimais
+//    // '0000.0000' significa exatamente isso
+//    textoFormatado := FormatFloat('0000.0000', valor);
+//    edtQuantidade.Text := textoFormatado;
+//  end
+//  else
+//  begin
+//    // Caso não seja número, limpa ou coloca padrão
+//    edtQuantidade.Text := '0000.0000';
+//  end;
+end;
+
+procedure TfrmProducao.EdtQuantidadeExit(Sender: TObject);
+var
+  valor: Double;
+  textoFormatado: string;
+begin
+  if TryStrToFloat(edtQuantidade.Text, valor) then
+  begin
+    // Formata com 4 dígitos inteiros (com zeros à esquerda) e 4 decimais
+    // '0000.0000' significa exatamente isso
+    textoFormatado     := FormatFloat('0000.0000', valor);
+    edtQuantidade.Text := textoFormatado;
+  end
+  else
+  begin
+    // Caso não seja número, limpa ou coloca padrão
+    edtQuantidade.Text := '0000.0000';
+  end;
+end;
+
+procedure TfrmProducao.SetColorBoxFromHex(ColorBox: TColorBox; HexColor: string);
+var
+  R, G, B: Byte;
+  Color: TColor;
+  CorHex: string;
+begin
+  // Remove o '#' se existir
+  if HexColor.StartsWith('#') then
+    Delete(HexColor, 1, 1);
+
+  if Length(HexColor) = 6 then
+  begin
+    R := StrToInt('$' + Copy(HexColor, 1, 2));
+    G := StrToInt('$' + Copy(HexColor, 3, 2));
+    B := StrToInt('$' + Copy(HexColor, 5, 2));
+
+    Color := RGB(R, G, B);
+
+    // Verifica se a cor já está no ColorBox
+    if ColorBox.Items.IndexOfObject(TObject(Pointer(Color))) = -1 then
+    begin
+      CorHex := '#' + HexColor;
+      ColorBox.Items.AddObject(CorHex, TObject(Pointer(Color)));
+    end;
+
+    ColorBox.Selected := Color;
+  end
+  else
+    ColorBox.Selected := clWhite; // fallback
+end;
+
+procedure TfrmProducao.FormCreate(Sender: TObject);
+begin
+  // Configura a ListBox se ainda não estiver pronta
+  lstSugestoes.Visible   := False;
+  lstSugestoes.Parent    := Self;
+  lstSugestoes.TabStop   := False;
+  lstSugestoes.OnClick   := lstSugestoesClick;
+  lstSugestoes.OnKeyDown := lstSugestoesKeyDown;
+
+  // Configura o evento do Edit
+  edtModelos.OnKeyDown   := edtModeloKeyDown;
+  edtModelos.OnChange    := edtModelosChange;
+
+  //limpar memo e setar datas
+  MmObs.Text             := '';
+  DtInicio.DateTime      := now;
+  DtFim.DateTime         := now;
+  DtEntrega.DateTime     := now + 15;
+
+  BorderStyle            := bsSingle;
+  BorderIcons            := [biSystemMenu, biMinimize];
+
+  // trava o tamanho atual
+  Constraints.MinWidth   := Width;
+  Constraints.MaxWidth   := Width;
+  Constraints.MinHeight  := Height;
+  Constraints.MaxHeight  := Height;
+
+  SetListValues(cbTipoCorte);
+
+    // Remove o botão de fechar
+  SetWindowLong(Handle, GWL_STYLE,
+    GetWindowLong(Handle, GWL_STYLE) and not WS_SYSMENU);
+
+  QrLastProd.Close;
+  QrLastProd.Open;
+
+  EdtNpedido.Text := IntToStr((QrLastProdPEDIDO.AsInteger + 1));
+
+  WebBrowserImp.Visible := False;
+  WebBrowserImp.Align := alNone;
+  WebBrowserImp.Width := 0;
+  WebBrowserImp.Height := 0;
+end;
+
+procedure TfrmProducao.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = Ord('V')) and (ssCtrl in Shift) then
+    ColarImagemDoClipboard;
+end;
+
+procedure TfrmProducao.FormShow(Sender: TObject);
+begin
+  if Visualizacao then
+    btnEnviar.Visible := False;
+  //ordenar taborder forçadamente
+//  EdtModelos.SetFocus;
+  EdtModelos.TabOrder    := 0;
+  EdtNpedido.TabOrder    := 1;
+  EdtQuantidade.TabOrder := 2;
+  DtInicio.TabOrder      := 3;
+  DtFim.TabOrder         := 4;
+  DtEntrega.TabOrder     := 5;
+  EdtCliente.TabOrder    := 6;
+  MmObs.TabOrder         := 7;
+  btnImage.TabOrder      := 8;
+  btnEnviar.TabOrder     := 9;
+  btnCancelar.TabOrder   := 10;
+  lstSugestoes.TabOrder  := 11;
+
+  Edit := False;
+  ID := 0;
+
+  if  EditOrd then
+  begin
+    QrSaveProd.Close;
+    QrSaveProd.ParamByName('id').AsString := IDPRODUCAO;
+    QrSaveProd.Open;
+
+    EdtModelos.OnChange := nil;
+    EdtModelos.Text     := QrSaveProdname.AsString;
+    EdtModelos.Enabled  := False;
+    EdtModelos.TabStop  := False;
+    EdtModelos.ReadOnly := True;
+    EdtModelos.OnChange := EdtModelosChange;
+
+    EdtNpedido.Text      := QrSaveProdn_pedido.AsString.Replace('*', '');
+    EdtNpedidoVenda.Text := QrSaveProdsalesOrder.AsString;
+    EdtQuantidade.Text   := QrSaveProdproductionQuantityBalance.AsString;
+    SetColorBoxFromHex(CbCor, QrSaveProdcolor.AsString);
+    DtInicio.Date        := QrSaveProdearlyStart.Value;
+    DtFim.Date           := QrSaveProdlaterEnd.Value;
+    DtEntrega.Date       := QrSaveProddeliveryDate.Value;
+    EdtCliente.Text      := QrSaveProdcustomer.AsString;
+    MmObs.Text           := QrSaveProdnote.AsString;
+    cbTipoCorte.Value    := QrSaveProdtipoCorte.AsString;
+    edtCodigo.Text       := QrSaveProdcodigo.AsString;
+    ID                   := QrSaveProdid_modelagem.AsInteger;
+
+    StringToFile(QrSaveProddadosModelagem.AsString, pubDirEXE + 'dados.html');
+    WBDadosModelo.Navigate(pubDirEXE + 'dados.html');
+
+    EdtNpedido.SetFocus;
+    ModelagemTerminada := True;
+//    FlowPanel1 := ;
+  end
+  else
+  begin
+    ModelagemTerminada := False;
+  end;
+end;
+
+procedure TfrmProducao.SelecionaCorte;
+begin
+    if QrModeloscliente.AsString <> '' then
+  begin
+    case QrModeloscliente.AsInteger of
+      0: begin
+          // Validação para etapa Balancin e Enfesto
+          TipoCorte := 0;
+          cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      1: begin
+           // Validação para etapa Crack
+           TipoCorte := 1;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      2: begin
+           // Validação para etapa Laser P
+           TipoCorte := 2;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      3: begin
+           // Validação para etapa Laser M
+           TipoCorte := 3;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      4: begin
+           // Validação para etapa Laser G
+           TipoCorte := 4;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      5: begin
+           // Validação para etapa Laser c/ Montagem
+           TipoCorte := 5;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      6: begin
+           // Validação para etapa Galvo
+           TipoCorte := 6;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      7: begin
+           // Validação para etapa Galvo Final
+           TipoCorte := 7;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      8: begin
+           // Validação para etapa Crack c/ Silk Chapado
+           TipoCorte := 8;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+
+      9: begin
+           // Validação para etapa Etq c/ silk chapado sem faca
+           TipoCorte := 9;
+           cbTipoCorte.Value := IntToStr(QrModeloscliente.AsInteger);
+         end;
+    end;
+  end;
+end;
+
+procedure TfrmProducao.SelecionaModelo;
+begin
+  if lstSugestoes.ItemIndex >= 0 then
+  begin
+    edtModelos.Text      := lstSugestoes.Items[lstSugestoes.ItemIndex];
+    edtModelos.SelStart  := Length(edtModelos.Text);
+    lstSugestoes.Visible := False;
+
+    QrModelos.Close;
+    QrModelos.ParamByName('param').AsString := edtModelos.Text;
+    QrModelos.Open;
+
+    if not QrModelos.IsEmpty then
+    begin
+      EdtQuantidade.Text := QrModelos.FieldByName('quantidade_producao').AsString;
+      ID_modelo          := QrModelosid.AsString;
+      ID_produto         := QrModelosproduct_id.AsString;
+      CorSelecionada     := QrModelos.FieldByName('cor_etiqueta').AsString;
+      SetColorBoxFromHex(CbCor, QrModelos.FieldByName('cor_etiqueta').AsString);
+    end;
+
+    SelecionaCorte;
+    DadosCarregados := True;
+  end;
+
+  EdtNpedido.SetFocus;
+end;
+
+procedure TfrmProducao.lstSugestoesClick(Sender: TObject);
+begin
+  SelecionaModelo;
+end;
+
+procedure TfrmProducao.edtModeloKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if lstSugestoes.Visible then
+  begin
+    case Key of
+      VK_DOWN:
+        begin
+          if lstSugestoes.ItemIndex < lstSugestoes.Items.Count - 1 then
+            lstSugestoes.ItemIndex := lstSugestoes.ItemIndex + 1;
+          Key := 0;
+        end;
+      VK_UP:
+        begin
+          if lstSugestoes.ItemIndex > 0 then
+            lstSugestoes.ItemIndex := lstSugestoes.ItemIndex - 1;
+          Key := 0;
+        end;
+      VK_RETURN:
+        begin
+          if lstSugestoes.ItemIndex >= 0 then
+          begin
+            edtModelos.Text := lstSugestoes.Items[lstSugestoes.ItemIndex];
+            lstSugestoes.Visible := False;
+            Key := 0;
+            edtModelos.SelStart := Length(edtModelos.Text);
+            SelecionaModelo;
+          end;
+        end;
+      VK_ESCAPE:
+        lstSugestoes.Visible := False;
+    end;
+  end;
+end;
+
+procedure TfrmProducao.BloquearCampos;
+begin
+  // Desabilite os componentes que não devem ser editados
+//  EditNome.Enabled := False;
+//  EditQuantidade.Enabled := False;
+//  DateEntrega.Enabled := False;
+  // ... adicione todos os campos que deseja bloquear
+end;
+
+procedure TfrmProducao.EdtModelosKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = VK_RETURN) then
+  begin
+    SelecionaModelo;
+    Key := 0; // evita beep
+  end;
+end;
+
+procedure TfrmProducao.EdtModelosKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+    Key := #0; // mata beep no KeyPress
+end;
+
+procedure TfrmProducao.lstSugestoesKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = VK_RETURN) then
+  begin
+    SelecionaModelo;
+    Key := 0; // evita beep
+  end;
+end;
+
+end.

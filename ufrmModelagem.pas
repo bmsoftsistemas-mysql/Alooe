@@ -1203,12 +1203,30 @@ begin
   Result := False;
 end;
 
+function QuebrarTexto(const Texto: string; Limite: Integer): string;
+var
+  i: Integer;
+  resultado: string;
+begin
+  resultado := '';
+  i := 1;
+  while i <= Length(Texto) do
+  begin
+    resultado := resultado + Copy(Texto, i, Limite);
+    i := i + Limite;
+    if i <= Length(Texto) then
+      resultado := resultado + '<br>';
+  end;
+  Result := resultado;
+end;
+
 procedure TfrmModelagem.btnEnviarClick(Sender: TObject);
 var
   LHTML: TStringList;
   LHTML_table: TStringList;
   LHTML_Base: TStringList;
   MyClass: TComponent;
+  valorPedido: string;
 begin
   //validações informações iniciais
   if edt_max_aceitavel.Text = '' then
@@ -1447,8 +1465,9 @@ begin
       [rfIgnoreCase]);
 
   // === AGORA FAZ OS REPLACES NORMALMENTE ===
+  valorPedido := StringReplace(edt_pedido.Text, '*', '&#42;', [rfReplaceAll]);
 
-  LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[pedido]', edt_pedido.Text, [rfIgnoreCase, rfReplaceAll]);
+  LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[pedido]', valorPedido, [rfIgnoreCase, rfReplaceAll]);
   LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[comb]', edt_comb.Text, [rfIgnoreCase, rfReplaceAll]);
   LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[qtd_modelos]', edt_qtd_modelos.Text, [rfIgnoreCase, rfReplaceAll]);
   LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[qtd_etiquetas]', edt_qtd_etiquetas.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1463,6 +1482,10 @@ begin
 
   LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[mt_compra1]', edt_metragem_compra1.Text, [rfIgnoreCase, rfReplaceAll]);
   LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[mt_compra2]', edt_metragem_compra2.Text, [rfIgnoreCase, rfReplaceAll]);
+  LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[material1]', QuebrarTexto(edt_material1.Text, 20), [rfIgnoreCase, rfReplaceAll]);
+  LHTML_Base.Text := StringReplace(LHTML_Base.Text, '[material2]', QuebrarTexto(edt_material2.Text, 20), [rfIgnoreCase, rfReplaceAll]);
+
+  DadosModeloImprimir := LHTML_Base.Text ;
 
   LHTML.Text := StringReplace(LHTML.Text, '__table1__', LHTML_Base.Text, [rfIgnoreCase, rfReplaceAll]);
 
@@ -1484,7 +1507,6 @@ begin
   QrModelagemFACA_MD1.AsInteger := SafeStrToInt(EdtMedida1.Text);
   QrModelagemFACA_MD2.AsInteger := SafeStrToInt(EdtMedida2.Text);
   QrModelagemCODIGO.AsString  := (EdtCodigo.Text);
-
 
   try
     LHTML_table := TStringList.Create;
@@ -1530,7 +1552,8 @@ begin
 
             LHTML_table.LoadFromFile(pubDirEXE + 'enfesto.html');
 
-            LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material1.Text, [rfIgnoreCase, rfReplaceAll]);
+            // LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material1.Text, [rfIgnoreCase, rfReplaceAll]);
+            LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material1.Text, 20), [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '1', [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[altura]', edt_enfesto_altura1.Text, [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[qtd_tiras]', edt_enfesto_qtd_tiras1.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1548,7 +1571,7 @@ begin
            begin
 
             LHTML_table.LoadFromFile(pubDirEXE +  'enfesto.html');
-            LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material2.Text, [rfIgnoreCase, rfReplaceAll]);
+            LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material2.Text, 20), [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '2', [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[altura]', edt_enfesto_altura2.Text, [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[qtd_tiras]', edt_enfesto_qtd_tiras2.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1575,7 +1598,7 @@ begin
       1: begin
             LHTML_table.LoadFromFile(pubDirEXE + 'crack.html');
 
-            LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material1.Text, [rfIgnoreCase, rfReplaceAll]);
+            LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material1.Text, 20), [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '1', [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[hor]', edt_crack_hv1.Text, [rfIgnoreCase, rfReplaceAll]);
             LHTML_table.Text := StringReplace(LHTML_table.Text, '[vert]', edt_crack_hv2.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1594,7 +1617,7 @@ begin
       2: begin
            LHTML_table.LoadFromFile(pubDirEXE + 'laserP.html');
 
-           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material1.Text, [rfIgnoreCase, rfReplaceAll]);
+           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material1.Text, 20), [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '1', [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[hor]', edt_laserp1_hv1.Text, [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[vert]', edt_laserp1_hv2.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1609,7 +1632,7 @@ begin
            begin
              LHTML_table.LoadFromFile(pubDirEXE + 'laserP.html');
 
-             LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material2.Text, [rfIgnoreCase, rfReplaceAll]);
+             LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material2.Text, 20), [rfIgnoreCase, rfReplaceAll]);
              LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '2', [rfIgnoreCase, rfReplaceAll]);
              LHTML_table.Text := StringReplace(LHTML_table.Text, '[hor]', edt_laserp2_hv1.Text, [rfIgnoreCase, rfReplaceAll]);
              LHTML_table.Text := StringReplace(LHTML_table.Text, '[vert]', edt_laserp2_hv2.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1633,7 +1656,7 @@ begin
       3: begin
            LHTML_table.LoadFromFile(pubDirEXE + 'laserM.html');
 
-           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material1.Text, [rfIgnoreCase, rfReplaceAll]);
+           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material1.Text, 20), [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '1', [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[hor]', edt_laserm1_hv1.Text, [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[vert]', edt_laserm1_hv2.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1648,7 +1671,7 @@ begin
            begin
              LHTML_table.LoadFromFile(pubDirEXE + 'laserM.html');
 
-             LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material2.Text, [rfIgnoreCase, rfReplaceAll]);
+             LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material2.Text, 20), [rfIgnoreCase, rfReplaceAll]);
              LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '2', [rfIgnoreCase, rfReplaceAll]);
              LHTML_table.Text := StringReplace(LHTML_table.Text, '[hor]', edt_laserm2_hv1.Text, [rfIgnoreCase, rfReplaceAll]);
              LHTML_table.Text := StringReplace(LHTML_table.Text, '[vert]', edt_laserm2_hv2.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1672,7 +1695,7 @@ begin
       4: begin
            LHTML_table.LoadFromFile(pubDirEXE + 'laserG.html');
 
-           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material1.Text, [rfIgnoreCase, rfReplaceAll]);
+           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material1.Text, 20), [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '1', [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[hor]', edt_laserg1_hv1.Text, [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[vert]', edt_laserg1_hv2.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1687,7 +1710,7 @@ begin
            begin
              LHTML_table.LoadFromFile(pubDirEXE + 'laserG.html');
 
-             LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material2.Text, [rfIgnoreCase, rfReplaceAll]);
+             LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material2.Text, 20), [rfIgnoreCase, rfReplaceAll]);
              LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '2', [rfIgnoreCase, rfReplaceAll]);
              LHTML_table.Text := StringReplace(LHTML_table.Text, '[hor]', edt_laserg2_hv1.Text, [rfIgnoreCase, rfReplaceAll]);
              LHTML_table.Text := StringReplace(LHTML_table.Text, '[vert]', edt_laserg2_hv2.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1717,7 +1740,7 @@ begin
 
            LHTML_table.LoadFromFile(pubDirEXE + 'laserGModelagem.html');
 
-           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material1.Text, [rfIgnoreCase, rfReplaceAll]);
+           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material1.Text, 20), [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '1', [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[hor]', edt_lasermontg1_hv1.Text, [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[vert]', edt_lasermontg1_hv2.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1735,7 +1758,7 @@ begin
 
            LHTML_table.LoadFromFile(pubDirEXE + 'laserGModelagem.html');
 
-           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material1.Text, [rfIgnoreCase, rfReplaceAll]);
+           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material1.Text, 20), [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '1', [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[hor]', edt_lasermontg2_hv1.Text, [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[vert]', edt_lasermontg2_hv2.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1757,7 +1780,7 @@ begin
       6: begin
            LHTML_table.LoadFromFile(pubDirEXE + 'galvo.html');
 
-           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material1.Text, [rfIgnoreCase, rfReplaceAll]);
+           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material1.Text, 20), [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '1', [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[altura]', edt_galvo_altura.Text, [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[qtd]', edt_galvo_qt.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1782,7 +1805,7 @@ begin
 
            LHTML_table.LoadFromFile(pubDirEXE + 'galvoFinal.html');
 
-           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material1.Text, [rfIgnoreCase, rfReplaceAll]);
+           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material1.Text, 20), [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '1', [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[altura]', edt_galvofinal_altura.Text, [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[qtd]', edt_galvofinal_qt.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1803,7 +1826,7 @@ begin
       8: begin
            LHTML_table.LoadFromFile(pubDirEXE + 'crackSilk.html');
 
-           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material1.Text, [rfIgnoreCase, rfReplaceAll]);
+           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material1.Text, 20), [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '1', [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[area1]', edt_crackchapado_area1.Text, [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[area2]', edt_crackchapado_area2.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1829,7 +1852,7 @@ begin
       9: begin
            LHTML_table.LoadFromFile(pubDirEXE + 'etqSilk.html');
 
-           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', edt_material1.Text, [rfIgnoreCase, rfReplaceAll]);
+           LHTML_table.Text := StringReplace(LHTML_table.Text, '[material]', QuebrarTexto(edt_material1.Text, 20), [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[tipo1]', '1', [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[area1]', edt_crackchapadosemfaca_area1.Text, [rfIgnoreCase, rfReplaceAll]);
            LHTML_table.Text := StringReplace(LHTML_table.Text, '[area2]', edt_crackchapadosemfaca_area2.Text, [rfIgnoreCase, rfReplaceAll]);
@@ -1850,6 +1873,7 @@ begin
            LHTML.Text := StringReplace(LHTML.Text, '__table3__', '', [rfIgnoreCase, rfReplaceAll]);
 
            DadosModeloEnvio := LHTML.Text;
+
          end;
 
     end;

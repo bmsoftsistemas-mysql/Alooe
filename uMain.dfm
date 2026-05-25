@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
   Left = 0
   Top = 0
-  Caption = 'Aloee - Vers'#227'o 1.1.0'
+  Caption = 'Aloee - Vers'#227'o 1.12.0'
   ClientHeight = 625
   ClientWidth = 1106
   Color = clBtnFace
@@ -653,6 +653,7 @@ object frmMain: TfrmMain
       'Password=Adm7062'
       'Database=bm_alooe'
       'DriverID=MySQL')
+    Connected = True
     Left = 696
     Top = 168
   end

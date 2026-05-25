@@ -234,9 +234,9 @@ begin
     AvisoAtt('Atualizando Modelos...', 5, -1);
     frmModelos.btnModelos.Click;
 
-    AvisoAtt('Atualizando Produções...', 5, -1);
+//    AvisoAtt('Atualizando Produções...', 5, -1);
     //descomentar
-    frmModelos.btnProducoes.Click;
+//    frmModelos.btnProducoes.Click;
   finally
     frmModelos.Free;
   end;

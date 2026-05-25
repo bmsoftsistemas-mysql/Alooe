@@ -3327,7 +3327,6 @@ object frmModelagem: TfrmModelagem
       AutoGenerateValue = arDefault
       FieldName = 'CODIGO'
       Origin = 'CODIGO'
-      Size = 255
     end
   end
   object QrFacasEdt: TFDQuery

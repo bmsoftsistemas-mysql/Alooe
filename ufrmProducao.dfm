@@ -26,7 +26,6 @@ object frmProducao: TfrmProducao
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = -8
     object LabelModelo: TLabel
       Left = 32
       Top = 20
@@ -71,9 +70,9 @@ object frmProducao: TfrmProducao
     object LabelStatus: TLabel
       Left = 32
       Top = 73
-      Width = 62
+      Width = 95
       Height = 13
-      Caption = 'N'#176' do Pedido'
+      Caption = 'Ordem de Produ'#231#227'o'
     end
     object LabelObs: TLabel
       Left = 32
@@ -118,7 +117,7 @@ object frmProducao: TfrmProducao
       Caption = 'Imagens:'
     end
     object Label4: TLabel
-      Left = 368
+      Left = 393
       Top = 214
       Width = 110
       Height = 13
@@ -331,7 +330,7 @@ object frmProducao: TfrmProducao
         00000000000000000100000000000000000000000000000000000000}
     end
     object EdtNpedidoVenda: TEdit
-      Left = 368
+      Left = 393
       Top = 229
       Width = 121
       Height = 21
@@ -368,7 +367,7 @@ object frmProducao: TfrmProducao
       Top = 341
       Width = 121
       Height = 21
-      TabOrder = 24
+      TabOrder = 21
       OnChange = EdtQuantidadeChange
     end
   end
@@ -380,6 +379,20 @@ object frmProducao: TfrmProducao
     TabOrder = 1
     ControlData = {
       4C000000B63100009B1200000000000000000000000000000000000000000000
+      000000004C000000000000000000000001000000E0D057007335CF11AE690800
+      2B2E126208000000000000004C0000000114020000000000C000000000000046
+      8000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000100000000000000000000000000000000000000}
+  end
+  object WebBrowser1: TWebBrowser
+    Left = 545
+    Top = 404
+    Width = 481
+    Height = 134
+    TabStop = False
+    TabOrder = 5
+    ControlData = {
+      4C000000B6310000D90D00000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800
       2B2E126208000000000000004C0000000114020000000000C000000000000046
       8000000000000000000000000000000000000000000000000000000000000000

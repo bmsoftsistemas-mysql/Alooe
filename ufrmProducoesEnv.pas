@@ -242,17 +242,25 @@ begin
   btnNovaOrdem.Font.Color          := clWhite;
 
     // Exemplo de estilização das colunas do grid
-  DBGrid1.Columns[0].Title.Caption := 'Nº Pedido';
-  DBGrid1.Columns[1].Title.Caption := 'Cliente';
-  DBGrid1.Columns[2].Title.Caption := 'Quantidade';
-  DBGrid1.Columns[2].Alignment     := taRightJustify;
-  DBGrid1.Columns[3].Title.Caption := 'Data Início';
-  DBGrid1.Columns[3].Alignment     := taCenter;
-  DBGrid1.Columns[4].Title.Caption := 'Data Fim';
+  DBGrid1.Columns[0].Title.Caption := 'Nº Ordem da Produção';
+
+  DBGrid1.Columns[1].Title.Caption := 'N° Pedido Venda';
+
+  DBGrid1.Columns[2].Title.Caption := 'Cliente';
+
+  DBGrid1.Columns[3].Title.Caption := 'Quantidade';
+  DBGrid1.Columns[3].Alignment     := taRightJustify;
+
+  DBGrid1.Columns[4].Title.Caption := 'Data Início';
   DBGrid1.Columns[4].Alignment     := taCenter;
-  DBGrid1.Columns[5].Title.Caption := 'Data Entrega';
+
+  DBGrid1.Columns[5].Title.Caption := 'Data Fim';
   DBGrid1.Columns[5].Alignment     := taCenter;
-  DBGrid1.Columns[6].Title.Caption := 'Status';
+
+  DBGrid1.Columns[6].Title.Caption := 'Data Entrega';
+  DBGrid1.Columns[6].Alignment     := taCenter;
+
+  DBGrid1.Columns[7].Title.Caption := 'Status';
 
 
   dtinicio.DateTime                := now;
